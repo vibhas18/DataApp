@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/prateek.aggarwal/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.1_0869897fbc280bed0859025b24c1e8b5af69cade.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-7.5.0_fa8f0bbbd8138a574393040621e6e2b096209ad4.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/libs/ormlite-android-4.49-SNAPSHOT.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ecfae85e17f2472852fa8298952f9d52f6a6bfa4">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/ormlite-android-4.49-SNAPSHOT_3577e4f213ffce0f0b2a8a77f4756d290488f05d.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-ddb/2.2.13/c5e29c073cc8539c409c6ef39201f979031de0c1/aws-android-sdk-ddb-2.2.13.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c5e29c073cc8539c409c6ef39201f979031de0c1">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/aws-android-sdk-ddb-2.2.13_3d6b2b2e750e403484d4baa833b1e49d6013d40d.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-core/2.2.13/bcb160fb9cb637c7908e77d473cdbdabdd80e2b9/aws-android-sdk-core-2.2.13.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="bcb160fb9cb637c7908e77d473cdbdabdd80e2b9">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/aws-android-sdk-core-2.2.13_105aa392e0239a08ee1588e34ca2654b24774a19.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-22.2.1_9996e50768378b9b8570ebd7ce4d5121969dae64.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-cognito/2.2.13/251ebccacaad6a5036952dc6b259a2aabba38356/aws-android-sdk-cognito-2.2.13.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="251ebccacaad6a5036952dc6b259a2aabba38356">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/aws-android-sdk-cognito-2.2.13_ee788837991ff871cc75418abee3114ef4c60ee0.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-location-7.5.0_3e6b955a3251dd82666970f2564dff4d8ca6c9f5.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/net.sf.opencsv/opencsv/2.3/c23708cdb9e80a144db433e23344a788a1fd6599/opencsv-2.3.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c23708cdb9e80a144db433e23344a788a1fd6599">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/opencsv-2.3_696880003731a32e695565959944ecf94c4d0f10.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-7.5.0_5d9fc67d36f73f361fe3e78714bbc34c2aaa5d5b.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.android.support/design/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1821601ddbec5ff125653097812823388700af74">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.android.support-design-22.2.1_29d0bc479f8d3c55bc590889605c01095565523c.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.mcxiaoke.volley/library-aar/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e40b9a81989bd4a846018551c280f8c4d837bf2e">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.mcxiaoke.volley-library-aar-1.0.0_162f254ad09e8add66396c22d740522900a4a90c.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_9947fe7530cc0bed150d47d92d74c38e2b3d1809.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.4.1/55605135bd7b836612e0bba7037c9669f6ccf89f/jackson-annotations-2.4.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="55605135bd7b836612e0bba7037c9669f6ccf89f">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/jackson-annotations-2.4.1_61b06faff823ea8195bbb7750265adc991cba020.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.astuetz/pagerslidingtabstrip/1.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="7912610ed96381c25c36d986eba422731b9641b6">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.astuetz-pagerslidingtabstrip-1.0.1_077f35c2cae387a4c179cef4cf3d2a49d92c9362.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.4.1/b130bcfb5a9c410c3cbd2e0adec9437e69a39e2c/jackson-core-2.4.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b130bcfb5a9c410c3cbd2e0adec9437e69a39e2c">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/jackson-core-2.4.1_4680b323d7d7b5c32d73886d703945a4c525bff5.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.4.1/f07c773f7b3a03c3801d405cadbdc93f7548e321/jackson-databind-2.4.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f07c773f7b3a03c3801d405cadbdc93f7548e321">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/jackson-databind-2.4.1_bb1ec7e50ad4e2dd2d154361c71483c0789fb513.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-22.2.1_e5e7dda8b7e864f1f62e317733159838ef4b6e34.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.1_0aa1eb1b81d890a6458f96b2a71b7111b22b3f1a.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/libs/ormlite-core-4.49-SNAPSHOT.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9a8b276da6dada8141f614d3feba25a0e8589db7">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/ormlite-core-4.49-SNAPSHOT_bb67afc7d7322f8084950744e4d71e02e33078f7.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-s3/2.2.13/1b15445de91b048a6b74506dd8261daf74decdcd/aws-android-sdk-s3-2.2.13.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1b15445de91b048a6b74506dd8261daf74decdcd">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/aws-android-sdk-s3-2.2.13_d37bc04ad5f709c1f84abbb89d40e504d3dd0644.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e1fa5e1123997a55e3ed65b44892993ff4b58cfe">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-22.2.1_753de11f741b719490d3993d62f8567e7fa409cb.jar" />
+    </item>
+    <item
+        jar="/Users/prateek.aggarwal/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/prateek.aggarwal/Downloads/dodatacollection/app/build/intermediates/pre-dexed/debug/gson-2.2.4_98a149199c41a788e6cc7a513e43fea8bdb14a15.jar" />
+    </item>
+
+</items>

@@ -1,0 +1,374 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.co.dineout.xoppin.dineoutcollection.fragment.steps.DetailFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_rest_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Chain Name"
+            android:textSize="12sp" />
+
+        <Spinner
+            android:id="@+id/spn_restaurant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shp_spinner_bg"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_hotel_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Hotel/Mall"
+            android:textSize="12sp" />
+
+        <Spinner
+            android:id="@+id/spn_hotel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shp_spinner_bg"
+            android:gravity="center_vertical" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/restaurant_description_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/et_restaurant_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="Description"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:nextFocusDown="@+id/submit"
+                android:textColorHint="#e7e7e7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/restaurant_cft_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/et_cft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="Cost for two *"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="numberDecimal"
+                android:lines="2"
+                android:nextFocusDown="@+id/submit"
+                android:singleLine="true"
+                android:textColorHint="#e7e7e7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_features_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Features"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_features"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/cb_smoking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Smoking Area" />
+
+            <CheckBox
+                android:id="@+id/cb_ac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Air Conditioned" />
+
+            <CheckBox
+                android:id="@+id/cb_dj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DJ" />
+
+            <CheckBox
+                android:id="@+id/cb_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wifi" />
+
+            <CheckBox
+                android:id="@+id/cb_valet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Valet available" />
+
+            <CheckBox
+                android:id="@+id/cb_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Home Delivery" />
+
+            <CheckBox
+                android:id="@+id/cb_alcohol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Serves Alcohol" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_tags_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Tags"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_tags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/cb_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bar" />
+
+                <CheckBox
+                    android:id="@+id/cb_romantic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Romantic" />
+
+                <CheckBox
+                    android:id="@+id/cb_five_star"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="5 Star" />
+
+                <CheckBox
+                    android:id="@+id/cb_brekfast"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Breakfast" />
+
+                <CheckBox
+                    android:id="@+id/cb_candle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Candle Light Dinner" />
+
+                <CheckBox
+                    android:id="@+id/cb_fine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fine Dining" />
+
+                <CheckBox
+                    android:id="@+id/cb_happy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Happy Hours" />
+
+                <CheckBox
+                    android:id="@+id/cb_hookah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hookah" />
+
+                <CheckBox
+                    android:id="@+id/cb_music"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Live Music" />
+
+                <CheckBox
+                    android:id="@+id/cb_lounge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lounge" />
+
+                <CheckBox
+                    android:id="@+id/cb_brewery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Microbrewery" />
+
+                <CheckBox
+                    android:id="@+id/cb_out"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Outdoor Seating" />
+
+                <CheckBox
+                    android:id="@+id/cb_dining"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Private Dining Available" />
+
+                <CheckBox
+                    android:id="@+id/cb_pub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pub" />
+
+                <CheckBox
+                    android:id="@+id/cb_veg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pure Veg" />
+
+                <CheckBox
+                    android:id="@+id/cb_plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dineout Plus" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/cb_screening"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Screening" />
+
+                <CheckBox
+                    android:id="@+id/cb_seafood"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Seafood" />
+
+                <CheckBox
+                    android:id="@+id/cb_sunday_brunch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sunday Brunch" />
+
+                <CheckBox
+                    android:id="@+id/cb_buffet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Buffet" />
+
+                <CheckBox
+                    android:id="@+id/cb_roof"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Roof Top" />
+
+                <CheckBox
+                    android:id="@+id/cb_cafe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cafe" />
+
+                <CheckBox
+                    android:id="@+id/cb_kids"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kids Friendly" />
+
+                <CheckBox
+                    android:id="@+id/cb_luxury"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Luxury Dining" />
+
+                <CheckBox
+                    android:id="@+id/cb_carlsberg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Carlsberg" />
+
+                <CheckBox
+                    android:id="@+id/cb_dance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dance Floor" />
+
+                <CheckBox
+                    android:id="@+id/cb_dog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dog Friendly" />
+
+                <CheckBox
+                    android:id="@+id/cb_karaoke"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Karaoke" />
+
+                <CheckBox
+                    android:id="@+id/cb_pool"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Poolside" />
+
+                <CheckBox
+                    android:id="@+id/cb_sea_facing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sea Facing" />
+
+                <CheckBox
+                    android:id="@+id/cb_lunch_buffet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lunch Buffet" />
+
+                <CheckBox
+                    android:id="@+id/cb_dinner_buffet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Dinner Buffet" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

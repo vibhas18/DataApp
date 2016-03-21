@@ -1,0 +1,69 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:orientation="vertical"
+    tools:context=".fragment.steps.ImageFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Profile Images" />
+
+    <TextView
+        android:id="@+id/tv_profile_image_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="0 images" />
+
+    <TextView
+        android:id="@+id/tv_add_profile_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shp_white_click_border"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Add Profile Image" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Menu Images" />
+
+    <TextView
+        android:id="@+id/tv_menu_image_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="0 images" />
+
+    <TextView
+        android:id="@+id/tv_add_menu_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shp_white_click_border"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Add Menu Image" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/tv_sync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shp_white_click_border"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Sync Restaurant" />
+
+
+</LinearLayout>

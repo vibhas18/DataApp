@@ -1,0 +1,265 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="in.co.dineout.xoppin.dineoutscollection.fragment.steps.NameAndDetailFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/profile_name_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="Restaurant Name *"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:nextFocusDown="@+id/submit"
+                android:singleLine="true"
+                android:textColorHint="#e7e7e7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/screen_name_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_screen_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="Screen Name *"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:nextFocusDown="@+id/submit"
+                android:singleLine="true"
+                android:textColorHint="#e7e7e7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/screen_name_mobile_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_screen_name_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="Informal Name"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:nextFocusDown="@+id/submit"
+                android:singleLine="true"
+                android:textColorHint="#e7e7e7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_city_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="City*"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shp_spinner_bg"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Select City" />
+
+        <TextView
+            android:id="@+id/tv_area_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Area*"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shp_spinner_bg"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Select Area" />
+
+        <TextView
+            android:id="@+id/tv_locality_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:text="Locality*"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_locality"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shp_spinner_bg"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Select Locality" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/restaurant_address_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_restaurant_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="Address *"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:lines="2"
+                android:nextFocusDown="@+id/submit"
+                android:singleLine="true"
+                android:textColorHint="#e7e7e7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/restaurant_landmark_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_restaurant_landmark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="Landmark *"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="textCapWords"
+                android:lines="2"
+                android:nextFocusDown="@+id/submit"
+                android:singleLine="true"
+                android:textColorHint="#e7e7e7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/restaurant_pincode_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_pincode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="Pincode*"
+                android:imeOptions="flagNoExtractUi"
+                android:inputType="numberSigned"
+                android:lines="2"
+                android:nextFocusDown="@+id/submit"
+                android:singleLine="true"
+                android:textColorHint="#e7e7e7" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tv_address_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Location" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_edit_lat_lon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Edit Location" />
+
+                <TextView
+                    android:id="@+id/tv_refresh_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/primary_outline"
+                    android:padding="5dp"
+                    android:text="Refresh"
+                    android:textColor="@color/colorPrimary" />
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/ll_address_container"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp">
+
+                <ImageView
+                    android:id="@+id/iv_map"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="#eeeeee"
+                    android:scaleType="fitXY" />
+
+                <!--<TextView-->
+                <!--android:id="@+id/tv_address"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentBottom="true"-->
+                <!--android:background="#66000000"-->
+                <!--android:maxLines="2"-->
+                <!--android:paddingLeft="16dp"-->
+                <!--android:paddingRight="16dp"-->
+                <!--android:text="Plot 1, Old Session Court Road, Near Fountain Chowk, Ludhiana, Punjab"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="12sp" />-->
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>
