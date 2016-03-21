@@ -86,7 +86,7 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
 
         final RestaurantDetailsModel restaurantDetailsModel = DatabaseManager.getInstance().getRestaurantDetailModelForId(syncStatusModel.getRestaurantDetailId());
 
-        String url = "http://laravel.dineoutdeals.in/index.php/api/resturant-details/";
+        String url = "http://laravel.dineoutdeals.in/index.php/api/save-resturant/";
 
         Response.Listener<JSONObject> respListener = new Response.Listener<JSONObject>() {
             @Override
@@ -113,8 +113,10 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
 
 
         JSONObject jsonObject = new JSONObject();
+//
         try {
             String data = ObjectMapperFactory.getObjectMapper().writeValueAsString(restaurantDetailsModel.prepareRestaurantFoSyncing());
+           Log.d(TAG,"----> "+data);
             jsonObject.put("resturant", data);
 
         } catch (JSONException e) {
