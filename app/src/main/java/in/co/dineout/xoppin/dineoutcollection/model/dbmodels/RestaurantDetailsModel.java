@@ -152,7 +152,7 @@ public class RestaurantDetailsModel implements Serializable {
             return;
         }
         try {
-            if (null != restaurant) {
+            if (null != restaurant ) {
                 restaurantJSONString = ObjectMapperFactory.getObjectMapper().writeValueAsString(restaurant);
             }
             Log.i("RestaurantDetailModel", restaurantJSONString);
@@ -204,6 +204,10 @@ public class RestaurantDetailsModel implements Serializable {
             Toast.makeText(context, "Screen Name cannot be null", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if (TextUtils.isEmpty(restaurant.getScreen_name_mobile())) {
+            Toast.makeText(context, "Informal name cannot be null", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         if (TextUtils.isEmpty(restaurant.getArea_id())) {
             Toast.makeText(context, "Area cannot be null", Toast.LENGTH_SHORT).show();
@@ -215,10 +219,10 @@ public class RestaurantDetailsModel implements Serializable {
             return false;
         }
 
-//        if (TextUtils.isEmpty(restaurant.getPhone())) {
-//            Toast.makeText(context, "Phone number cannot be null", Toast.LENGTH_SHORT).show();
-//            return false;
-//        }
+        if (TextUtils.isEmpty(restaurant.getPhone())) {
+            Toast.makeText(context, "Phone number cannot be null", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         if (restaurant.getCost_for_2() == 0) {
             Toast.makeText(context, "Const for 2 Cannot be null", Toast.LENGTH_SHORT).show();

@@ -134,7 +134,8 @@ public class RestaurantFormActivity extends AppCompatActivity {
     }
 
     public void saveRestaurantModel() {
-        if (null != restaurantDetailsModel && !TextUtils.isEmpty(restaurantDetailsModel.getRestaurantName())) {
+        if (null != restaurantDetailsModel &&
+                !TextUtils.isEmpty(restaurantDetailsModel.getRestaurantName())) {
             //save only if name is present
             restaurantDetailsModel.saveRestaurantDetail();
         }

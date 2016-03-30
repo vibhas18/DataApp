@@ -89,7 +89,7 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
 
         final RestaurantDetailsModel restaurantDetailsModel = DatabaseManager.getInstance().getRestaurantDetailModelForId(syncStatusModel.getRestaurantDetailId());
 
-        String url = "http://laravel.dineoutdeals.in/index.php/api/save-resturant/";
+        String url = "http://laravel.dineoutdeals.in/index.php/api/save-resturant";
 
         Response.Listener<JSONObject> respListener = new Response.Listener<JSONObject>() {
             @Override
@@ -97,6 +97,20 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
                 Log.d(TAG, response.toString());
 
 
+                if(response != null){
+                    try{
+                        if (null != response && Utils.getStringVal(response, "message").equalsIgnoreCase("Login successful")) {
+                            //update db
+                            syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+                            DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
+
+                            restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+                            DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
             }
         };
 
@@ -125,7 +139,8 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
 
 
 
-        DineoutPostRequest stringRequest = new DineoutPostRequest(Request.Method.POST, url,param, new Response.Listener<String>() {
+        DineoutPostRequest stringRequest = new DineoutPostRequest(Request.Method.POST, url,param,
+                LoginHelper.getDefaultHeaders(getBaseContext()),new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -146,32 +161,19 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
                 }
 
             }
-        },errorListener){
-
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-
-                Map<String,String> param = new HashMap<>();
-                param.put("resturant",jsonObject.optString("resturant"));
-                return param;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-
-
-                return LoginHelper.getDefaultHeaders(getBaseContext());
-            }
-        };
+        },errorListener);
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, jsonObject, respListener, errorListener) {
 
 
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return LoginHelper.getDefaultHeaders(getBaseContext());
+            }
         };
 
         // Adding request to request queue
-        DineoutCollectApp.getInstance().addToRequestQueue(stringRequest, TAG_POST_RETAURANT);
+        DineoutCollectApp.getInstance().addToRequestQueue(jsonObjReq, TAG_POST_RETAURANT);
     }
 
 }

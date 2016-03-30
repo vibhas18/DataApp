@@ -100,7 +100,7 @@ public class DatabaseManager {
                     .or()
                     .eq("type", SyncStatusModel.PROFILE)
                     .or()
-                    .eq("type",SyncStatusModel.DATA)
+                    .eq("type", SyncStatusModel.DATA)
                     .and()
                     .eq("syncRequested", true)
                     .and()
