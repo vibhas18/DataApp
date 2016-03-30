@@ -190,6 +190,11 @@ public class RestaurantDetailsModel implements Serializable {
             return false;
         }
 
+        if(TextUtils.isEmpty(restaurant.getPincode())){
+            Toast.makeText(context, "You need to provide pin code.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         if (TextUtils.isEmpty(restaurant.getCity_id())) {
             Toast.makeText(context, "City cannot be null", Toast.LENGTH_SHORT).show();
             return false;

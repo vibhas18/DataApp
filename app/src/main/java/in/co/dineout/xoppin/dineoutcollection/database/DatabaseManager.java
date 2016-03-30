@@ -99,6 +99,8 @@ public class DatabaseManager {
                     .eq("type", SyncStatusModel.MENU)
                     .or()
                     .eq("type", SyncStatusModel.PROFILE)
+                    .or()
+                    .eq("type",SyncStatusModel.DATA)
                     .and()
                     .eq("syncRequested", true)
                     .and()

@@ -16,13 +16,16 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import in.co.dineout.xoppin.dineoutcollection.DineoutCollectApp;
 import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
+import in.co.dineout.xoppin.dineoutcollection.helper.LoginHelper;
 import in.co.dineout.xoppin.dineoutcollection.helper.ObjectMapperFactory;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.SyncStatusModel;
+import in.co.dineout.xoppin.dineoutcollection.utils.DineoutPostRequest;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 /**
@@ -93,14 +96,7 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
 
-                if (null != response && Utils.getStringVal(response, "message").equalsIgnoreCase("Login successful")) {
-                    //update db
-                    syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                    DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
 
-                    restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                    DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
-                }
             }
         };
 
@@ -112,11 +108,13 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
         };
 
 
-        JSONObject jsonObject = new JSONObject();
+        final JSONObject jsonObject = new JSONObject();
+        Map<String,String> param = new HashMap<>();
 //
         try {
             String data = ObjectMapperFactory.getObjectMapper().writeValueAsString(restaurantDetailsModel.prepareRestaurantFoSyncing());
            Log.d(TAG,"----> "+data);
+            param.put("resturant", data);
             jsonObject.put("resturant", data);
 
         } catch (JSONException e) {
@@ -125,16 +123,55 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
             e.printStackTrace();
         }
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, jsonObject, respListener, errorListener) {
+
+
+        DineoutPostRequest stringRequest = new DineoutPostRequest(Request.Method.POST, url,param, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                if(response != null){
+                    try{
+                        JSONObject resp = new JSONObject(response);
+                        if (null != response && Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")) {
+                            //update db
+                            syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+                            DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
+
+                            restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+                            DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        },errorListener){
+
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> param = new HashMap<>();
+                param.put("resturant",jsonObject.optString("resturant"));
+                return param;
+            }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                return super.getHeaders();
+
+
+                return LoginHelper.getDefaultHeaders(getBaseContext());
             }
         };
 
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, jsonObject, respListener, errorListener) {
+
+
+        };
+
         // Adding request to request queue
-        DineoutCollectApp.getInstance().addToRequestQueue(jsonObjReq, TAG_POST_RETAURANT);
+        DineoutCollectApp.getInstance().addToRequestQueue(stringRequest, TAG_POST_RETAURANT);
     }
 
 }
