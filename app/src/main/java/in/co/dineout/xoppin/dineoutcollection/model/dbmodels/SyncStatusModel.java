@@ -7,7 +7,6 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-import in.co.dineout.xoppin.dineoutcollection.imageupload.AmazonS3Handler;
 import in.co.dineout.xoppin.dineoutcollection.model.ImageModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel.SYNC_STATUS;
 
@@ -189,7 +188,7 @@ public class SyncStatusModel implements Serializable {
 
         imageModel.setGil_id(0);
         imageModel.setImage_caption(imageCaption == null ? "" : imageCaption);
-        imageModel.setImage_name("http://dineout-images.s3.amazonaws.com/" + AmazonS3Handler.BUCKET_NAME + "/" + imageKey + ".jpg");
+        imageModel.setImage_name("http://d2932g54ef2vds.cloudfront.net" + "/" + imageKey );
         imageModel.setImage_state("new");
         return imageModel;
     }
