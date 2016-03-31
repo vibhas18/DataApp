@@ -189,7 +189,7 @@ public class SyncStatusModel implements Serializable {
 
         imageModel.setGil_id(0);
         imageModel.setImage_caption(imageCaption == null ? "" : imageCaption);
-        imageModel.setImage_name("http://st3.dineout-cdn.co.in/" + AmazonS3Handler.BUCKET_NAME + "/" + imageKey + ".jpg");
+        imageModel.setImage_name("http://dineout-images.s3.amazonaws.com/" + AmazonS3Handler.BUCKET_NAME + "/" + imageKey + ".jpg");
         imageModel.setImage_state("new");
         return imageModel;
     }
