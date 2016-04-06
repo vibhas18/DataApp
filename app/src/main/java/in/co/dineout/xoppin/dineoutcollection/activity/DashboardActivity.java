@@ -2,6 +2,7 @@ package in.co.dineout.xoppin.dineoutcollection.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -31,11 +32,12 @@ import in.co.dineout.xoppin.dineoutcollection.model.AssignedTaskModel;
 import in.co.dineout.xoppin.dineoutcollection.model.AssignedTasks;
 import in.co.dineout.xoppin.dineoutcollection.model.MreModel;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
     private static final String TAG = DashboardActivity.class.getSimpleName();
 
     private ArrayList<AssignedTaskModel> assignedTaskModels;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +46,17 @@ public class DashboardActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(0xFFFFFFFF);
         setSupportActionBar(toolbar);
 
+
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.dashboardFullToRefresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        onRefresh();
+
         MreModel user = LoginHelper.getUser(this);
         ((TextView) findViewById(R.id.tv_name)).setText(user.getFirstName() + " " + user.getLastName());
         ((TextView) findViewById(R.id.tv_email)).setText(user.getEmail());
         ((TextView) findViewById(R.id.tv_assigned_city)).setText(user.getAssignedCity());
 
-        ((TextView) findViewById(R.id.tv_pending_synced)).setText("" + DatabaseManager.getInstance().getAllUnSyncedRestaurants().size());
-        ((TextView) findViewById(R.id.tv_synced)).setText("" + DatabaseManager.getInstance().getAllSyncedRestaurants().size());
 
         findViewById(R.id.btn_assigned_tasks).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +113,7 @@ public class DashboardActivity extends AppCompatActivity {
         Response.Listener<JSONObject> respListener = new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                swipeRefreshLayout.setRefreshing(false);
                 Log.d(TAG, response.toString());
                 //parse and update list
                 AssignedTasks assignedTasks = null;
@@ -127,6 +134,7 @@ public class DashboardActivity extends AppCompatActivity {
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                swipeRefreshLayout.setRefreshing(false);
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
             }
         };
@@ -165,5 +173,14 @@ public class DashboardActivity extends AppCompatActivity {
 
         }
         return true;
+    }
+
+    @Override
+    public void onRefresh() {
+
+        ((TextView) findViewById(R.id.tv_pending_synced)).setText("" + DatabaseManager.getInstance().getAllUnSyncedRestaurants().size());
+        ((TextView) findViewById(R.id.tv_synced)).setText("" + DatabaseManager.getInstance().getAllSyncedRestaurants().size());
+        initiateRequestForAssignedTasks();
+
     }
 }

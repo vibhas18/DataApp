@@ -20,7 +20,7 @@ public class ConnectivityChangereceiver extends BroadcastReceiver {
             context.startService(intent1);
         } else {
             try {
-                context.stopService(new Intent(context, BackgroundSyncService.class));
+              //  context.stopService(new Intent(context, BackgroundSyncService.class));
             } catch (Exception e) {
                 e.printStackTrace();
             }

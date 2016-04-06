@@ -16,6 +16,12 @@
         android:title="Dashboard"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/dashboardFullToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -210,4 +216,5 @@
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>
     </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

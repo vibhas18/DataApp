@@ -1,5 +1,6 @@
 package in.co.dineout.xoppin.dineoutcollection.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -22,8 +23,12 @@ import in.co.dineout.xoppin.dineoutcollection.fragment.steps.DetailFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.steps.ImageFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.steps.NameAndDetailFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.steps.TimingsFragment;
+import in.co.dineout.xoppin.dineoutcollection.imageupload.AmazonS3Handler;
+import in.co.dineout.xoppin.dineoutcollection.imageupload.BackgroundSyncService;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.SyncStatusModel;
+import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 /**
  * Created by suraj on 16/02/16.
@@ -138,8 +143,12 @@ public class RestaurantFormActivity extends AppCompatActivity {
                 !TextUtils.isEmpty(restaurantDetailsModel.getRestaurantName())) {
             //save only if name is present
             restaurantDetailsModel.saveRestaurantDetail();
+
         }
     }
+
+
+
 
     @Override
     public void onBackPressed() {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -82,9 +83,10 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
     @Override
     public void onErrorReceived() {
 //        executeUpload();
+        Toast.makeText(getApplicationContext(),"failed to upload",Toast.LENGTH_SHORT).show();
     }
 
-    private void saveRestaurant(final SyncStatusModel syncStatusModel) {
+    public void saveRestaurant(final SyncStatusModel syncStatusModel) {
         String TAG_POST_RETAURANT = "TAG_POST_RETAURANT";
 
         final RestaurantDetailsModel restaurantDetailsModel = DatabaseManager.getInstance().getRestaurantDetailModelForId(syncStatusModel.getRestaurantDetailId());
@@ -99,13 +101,18 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
 
                 if(response != null){
                     try{
-                        if (null != response && Utils.getStringVal(response, "message").equalsIgnoreCase("Login successful")) {
+                        // Utils.getStringVal(response, "message").equalsIgnoreCase("Saved successful")
+                        if (null != response
+                                && response.optInt("status")==1
+                                && syncStatusModel.getSync_status()!=RestaurantDetailsModel.SYNC_STATUS.SYNCED
+                               ) {
                             //update db
                             syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
                             DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
 
                             restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
                             DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
+                            Toast.makeText(getApplicationContext(),"saved succesfully",Toast.LENGTH_SHORT).show();
                         }
                     }catch (Exception e){
                         e.printStackTrace();
@@ -118,6 +125,8 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+                restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.UPDATE);
+                DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
             }
         };
 
