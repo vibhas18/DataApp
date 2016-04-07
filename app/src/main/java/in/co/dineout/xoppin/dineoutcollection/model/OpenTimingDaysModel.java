@@ -12,80 +12,89 @@ import java.io.Serializable;
 public class OpenTimingDaysModel implements Serializable {
     private static final long serialVersionUID = 8747738709276510849L;
 
+
+    private TimingModel monday;
+
+
+    private TimingModel tuesday;
+
+
+    private TimingModel wednesday;
+
+
+    private TimingModel thursday;
+
+
+    private TimingModel friday;
+
+
+    private TimingModel saturday;
+
+
+    private TimingModel sunday;
+
+
+
     @JsonProperty("Monday")
-    private TimingModel Monday;
-
-    @JsonProperty("Tuesday")
-    private TimingModel Tuesday;
-
-    @JsonProperty("Wednesday")
-    private TimingModel Wednesday;
-
-    @JsonProperty("Thursday")
-    private TimingModel Thursday;
-
-    @JsonProperty("Friday")
-    private TimingModel Friday;
-
-    @JsonProperty("Saturday")
-    private TimingModel Saturday;
-
-    @JsonProperty("Sunday")
-    private TimingModel Sunday;
-
     public TimingModel getMonday() {
-        return this.Monday;
+        return this.monday;
     }
 
     public void setMonday(TimingModel monday) {
-        this.Monday = monday;
+        this.monday = monday;
     }
 
+    @JsonProperty("Tuesday")
     public TimingModel getTuesday() {
-        return this.Tuesday;
+        return this.tuesday;
     }
 
     public void setTuesday(TimingModel tuesday) {
-        this.Tuesday = tuesday;
+        this.tuesday = tuesday;
     }
 
+    @JsonProperty("Wednesday")
     public TimingModel getWednesday() {
-        return this.Wednesday;
+        return this.wednesday;
     }
 
     public void setWednesday(TimingModel wednesday) {
-        this.Wednesday = wednesday;
+        this.wednesday = wednesday;
     }
 
+    @JsonProperty("Thursday")
     public TimingModel getThursday() {
-        return this.Thursday;
+        return this.thursday;
     }
 
     public void setThursday(TimingModel thursday) {
-        this.Thursday = thursday;
+        this.thursday = thursday;
     }
 
+    @JsonProperty("Friday")
     public TimingModel getFriday() {
-        return this.Friday;
+        return this.friday;
     }
 
     public void setFriday(TimingModel friday) {
-        this.Friday = friday;
+        this.friday = friday;
     }
 
+    @JsonProperty("Saturday")
     public TimingModel getSaturday() {
-        return this.Saturday;
+        return this.saturday;
     }
 
     public void setSaturday(TimingModel saturday) {
-        this.Saturday = saturday;
+        this.saturday = saturday;
     }
 
+    @JsonProperty("Sunday")
     public TimingModel getSunday() {
-        return this.Sunday;
+        return this.sunday;
     }
 
     public void setSunday(TimingModel sunday) {
-        this.Sunday = sunday;
+        this.sunday = sunday;
     }
 }

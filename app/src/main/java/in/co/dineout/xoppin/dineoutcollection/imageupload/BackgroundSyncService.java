@@ -96,7 +96,7 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
         Response.Listener<JSONObject> respListener = new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
+                Log.d("sumon", response.toString());
 
 
                 if(response != null){
@@ -148,30 +148,30 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
 
 
 
-        DineoutPostRequest stringRequest = new DineoutPostRequest(Request.Method.POST, url,param,
-                LoginHelper.getDefaultHeaders(getBaseContext()),new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                if(response != null){
-                    try{
-                        JSONObject resp = new JSONObject(response);
-                        //Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")
-                        if (null != response && Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")) {
-                            //update db
-                            syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                            DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
-
-                            restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                            DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        },errorListener);
+//        DineoutPostRequest stringRequest = new DineoutPostRequest(Request.Method.POST, url,param,
+//                LoginHelper.getDefaultHeaders(getBaseContext()),new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//
+//                if(response != null){
+//                    try{
+//                        JSONObject resp = new JSONObject(response);
+//                        //Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")
+//                        if (null != response && Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")) {
+//                            //update db
+//                            syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+//                            DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
+//
+//                            restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+//                            DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
+//                        }
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//            }
+//        },errorListener);
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, jsonObject, respListener, errorListener) {
 
