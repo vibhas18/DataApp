@@ -156,6 +156,7 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
                 if(response != null){
                     try{
                         JSONObject resp = new JSONObject(response);
+                        //Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")
                         if (null != response && Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")) {
                             //update db
                             syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
