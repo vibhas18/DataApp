@@ -170,7 +170,14 @@ public class DetailFragment extends BaseStepFragment {
             }
         });
 
-        RestSpinnerAdapter restSpinnerAdapter = new RestSpinnerAdapter(getActivity(), StaticDataHandler.getInstance().getStaticDataModel().getChain());
+        //added defualt chain, if no chain is selected
+        ArrayList<ChainModel>model=StaticDataHandler.getInstance().getStaticDataModel().getChain();
+        ChainModel defaultChain=new ChainModel();
+        defaultChain.setCity_id(0);
+        defaultChain.setRestaurant_name("No Chain");
+        defaultChain.setRestaurant_chain_id(0);
+        model.add(0,defaultChain);
+        RestSpinnerAdapter restSpinnerAdapter = new RestSpinnerAdapter(getActivity(), model);
         spn_restaurant.setAdapter(restSpinnerAdapter);
     }
 
@@ -187,7 +194,14 @@ public class DetailFragment extends BaseStepFragment {
             }
         });
 
-        HotelSpinnerAdapter hotelSpinnerAdapter = new HotelSpinnerAdapter(getActivity(), StaticDataHandler.getInstance().getStaticDataModel().getHotels());
+        //default hotel id added
+        ArrayList<HotelsModel>hotelModels=StaticDataHandler.getInstance().getStaticDataModel().getHotels();
+        HotelsModel hotelMod= new HotelsModel();
+        hotelMod.setName("No Hotel");
+        hotelMod.setCity_id(0);
+        hotelMod.setHotel_id(0);
+        hotelModels.add(0,hotelMod);
+        HotelSpinnerAdapter hotelSpinnerAdapter = new HotelSpinnerAdapter(getActivity(), hotelModels);
         spn_hotel.setAdapter(hotelSpinnerAdapter);
     }
 

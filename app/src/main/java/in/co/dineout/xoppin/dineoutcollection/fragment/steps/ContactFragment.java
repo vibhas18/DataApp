@@ -15,6 +15,7 @@ import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
 import in.co.dineout.xoppin.dineoutcollection.model.RestContactModel;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
+import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 import in.co.dineout.xoppin.dineoutcollection.views.GcrrContactViewHelper;
 
 public class ContactFragment extends BaseStepFragment {
@@ -93,7 +94,10 @@ public class ContactFragment extends BaseStepFragment {
         }
 
         if (!TextUtils.isEmpty(et_mobile.getText().toString().trim())) {
-            restaurant.setMobile_number(et_mobile.getText().toString().trim());
+            if(Utils.isValidMobileValid(et_mobile.getText().toString().trim())){
+                restaurant.setMobile_number(et_mobile.getText().toString().trim());
+            }
+
         }
 
         if (!TextUtils.isEmpty(et_phone.getText().toString().trim())) {

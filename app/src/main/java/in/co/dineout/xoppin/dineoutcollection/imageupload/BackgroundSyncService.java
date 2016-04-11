@@ -115,6 +115,7 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
                             Toast.makeText(getApplicationContext(),"saved succesfully",Toast.LENGTH_SHORT).show();
                         }
                     }catch (Exception e){
+                        Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
@@ -125,6 +126,7 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),"failed to sync..." + error.getMessage(),Toast.LENGTH_SHORT).show();
                 restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.UPDATE);
                 DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
             }

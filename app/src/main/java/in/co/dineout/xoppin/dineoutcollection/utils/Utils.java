@@ -17,6 +17,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by suraj on 03/02/16.
@@ -115,5 +117,19 @@ public class Utils {
                 + latitude + "," + longitude +
                 "&zoom=15&size=520x260&markers=color:red%7Clabel:" + charForPointer + "%7C"
                 + latitude + "," + longitude;
+    }
+
+
+
+    //method to validate you mobile number, if it is valid it will return true
+    public static boolean isValidMobileValid(String mobileNo) {
+    // mobile number should be 10 digit
+        boolean is_mob_number=false;
+        Pattern pattern = Pattern.compile("\\d{10}");
+        Matcher matchr = pattern.matcher(mobileNo.trim());
+        if (matchr.matches()) {
+            is_mob_number = true;
+        }
+        return is_mob_number;
     }
 }

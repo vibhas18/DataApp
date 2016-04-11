@@ -18,6 +18,7 @@ import in.co.dineout.xoppin.dineoutcollection.helper.ObjectMapperFactory;
 import in.co.dineout.xoppin.dineoutcollection.helper.SaveToTextLog;
 import in.co.dineout.xoppin.dineoutcollection.model.ImageModel;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
+import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 /**
  * Created by suraj on 18/02/16.
@@ -223,6 +224,18 @@ public class RestaurantDetailsModel implements Serializable {
             Toast.makeText(context, "Phone number cannot be null", Toast.LENGTH_SHORT).show();
             return false;
         }
+
+//        if(TextUtils.isEmpty(restaurant.getMobile_number())){
+//            Toast.makeText(context, "Mobile no cannot be null", Toast.LENGTH_SHORT).show();
+//            return false;
+//        }
+
+//        if(!TextUtils.isEmpty(restaurant.getMobile_number())){
+//            if(Utils.isValidMobileValid(restaurant.getMobile_number())){
+//                Toast.makeText(context, "Invalid mobile no, please enter a valid mobile no", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+
 
         if (restaurant.getCost_for_2() == 0) {
             Toast.makeText(context, "Const for 2 Cannot be null", Toast.LENGTH_SHORT).show();
