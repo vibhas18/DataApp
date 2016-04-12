@@ -171,14 +171,46 @@ public class DetailFragment extends BaseStepFragment {
         });
 
         //added defualt chain, if no chain is selected
+
         ArrayList<ChainModel>model=StaticDataHandler.getInstance().getStaticDataModel().getChain();
-        ChainModel defaultChain=new ChainModel();
-        defaultChain.setCity_id(0);
-        defaultChain.setRestaurant_name("No Chain");
-        defaultChain.setRestaurant_chain_id(0);
-        model.add(0,defaultChain);
+        if(!isDefaultChainadded(model)){
+            ChainModel defaultChain=new ChainModel();
+            defaultChain.setCity_id(0);
+            defaultChain.setRestaurant_name("No Chain");
+            defaultChain.setRestaurant_chain_id(0);
+            model.add(0,defaultChain);
+        }
+
         RestSpinnerAdapter restSpinnerAdapter = new RestSpinnerAdapter(getActivity(), model);
         spn_restaurant.setAdapter(restSpinnerAdapter);
+    }
+
+
+    private boolean isDefaultChainadded(ArrayList<ChainModel>model){
+        if(model!=null){
+            if(model.size()>0){
+                for(int i=0;i<model.size();i++){
+                    if(model.get(i).getRestaurant_name().equalsIgnoreCase("No Chain")){
+                      return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+    private boolean isDefaultHotelAdded(ArrayList<HotelsModel>hotelModels){
+        if(hotelModels!=null){
+            if(hotelModels.size()>0){
+                for(int j=0;j<hotelModels.size();j++){
+                    if(hotelModels.get(j).getName().equalsIgnoreCase("No Hotel")){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private void initHotelSpinner() {
@@ -196,11 +228,14 @@ public class DetailFragment extends BaseStepFragment {
 
         //default hotel id added
         ArrayList<HotelsModel>hotelModels=StaticDataHandler.getInstance().getStaticDataModel().getHotels();
-        HotelsModel hotelMod= new HotelsModel();
-        hotelMod.setName("No Hotel");
-        hotelMod.setCity_id(0);
-        hotelMod.setHotel_id(0);
-        hotelModels.add(0,hotelMod);
+        if (!isDefaultHotelAdded(hotelModels)) {
+            HotelsModel hotelMod= new HotelsModel();
+            hotelMod.setName("No Hotel");
+            hotelMod.setCity_id(0);
+            hotelMod.setHotel_id(0);
+            hotelModels.add(0,hotelMod);
+        }
+
         HotelSpinnerAdapter hotelSpinnerAdapter = new HotelSpinnerAdapter(getActivity(), hotelModels);
         spn_hotel.setAdapter(hotelSpinnerAdapter);
     }
