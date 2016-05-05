@@ -158,7 +158,7 @@ public class DashboardActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case 1:
                 LoginHelper.logout(DashboardActivity.this);
-                startActivity(new Intent(DashboardActivity.this, MainActivity.class));
+                startActivity(new Intent(DashboardActivity.this, DataMainActivity.class));
                 finish();
                 break;
             default:

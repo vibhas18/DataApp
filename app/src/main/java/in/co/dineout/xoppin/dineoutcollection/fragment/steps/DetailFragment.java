@@ -26,9 +26,10 @@ import in.co.dineout.xoppin.dineoutcollection.model.HotelsModel;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.TagModel;
 
-public class DetailFragment extends BaseStepFragment {
+public class DetailFragment extends BaseStepFragment implements View.OnFocusChangeListener {
     private static final String TAG = DetailFragment.class.getSimpleName();
     public static final String TAG2 = DetailFragment.class.getCanonicalName();
+
 
     private Spinner spn_restaurant;
     private Spinner spn_hotel;
@@ -82,12 +83,16 @@ public class DetailFragment extends BaseStepFragment {
     private ChainModel restaurantChain = null;
     private HotelsModel hotelsModel = null;
 
-    public static DetailFragment newInstance() {
+
+
+    public static DetailFragment create(String key) {
         DetailFragment fragment = new DetailFragment();
         Bundle bundle = new Bundle();
+        bundle.putString(ARG_KEY,key);
         fragment.setArguments(bundle);
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,6 +113,7 @@ public class DetailFragment extends BaseStepFragment {
 
         et_restaurant_description = (EditText) view.findViewById(R.id.et_restaurant_description);
         et_cft = (EditText) view.findViewById(R.id.et_cft);
+        et_cft.setOnFocusChangeListener(this);
 
         //features
         cb_smoking = (CheckBox) view.findViewById(R.id.cb_smoking);
@@ -298,7 +304,7 @@ public class DetailFragment extends BaseStepFragment {
     }
 
     private ArrayList<TagModel> getTags() {
-        ArrayList<TagModel> tagsList = new ArrayList<>(5);
+        ArrayList<TagModel> tagsList = new ArrayList<>();
         if (cb_bar.isChecked()) {
             tagsList.add(new TagModel("Bar"));
         }
@@ -461,6 +467,9 @@ public class DetailFragment extends BaseStepFragment {
 
     @Override
     public void saveDataForStep() {
+
+        if(getActivity() == null)
+            return;
         Restaurant restaurant = ((RestaurantFormActivity) (getActivity())).getRestaurant();
         if (hotelsModel != null) {
             restaurant.setHotel_id(hotelsModel.getHotel_id());
@@ -499,6 +508,31 @@ public class DetailFragment extends BaseStepFragment {
         setTags(restaurant.getTags());
         setFeatures(restaurant.getFeatures());
 
+    }
+
+    @Override
+    public boolean isDataValid() {
+
+        List<TagModel> tagList = getTags();
+        if (tagList == null) {
+            return false;
+        }
+        else if (tagList!= null && tagList.size() == 0) {
+            return false;
+        }
+
+        else if (TextUtils.isEmpty(et_cft.getText().toString().trim())) {
+            return false;
+        }
+
+        saveDataForStep();
+        return true;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+
+        notifyChanges();
     }
 
     private class RestSpinnerAdapter extends ArrayAdapter<ChainModel> {

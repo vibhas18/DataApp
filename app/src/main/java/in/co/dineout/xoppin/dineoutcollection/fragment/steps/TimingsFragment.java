@@ -75,9 +75,10 @@ public class TimingsFragment extends BaseStepFragment {
         // Required empty public constructor
     }
 
-    public static TimingsFragment newInstance() {
+    public static TimingsFragment create(String key) {
         TimingsFragment fragment = new TimingsFragment();
         Bundle args = new Bundle();
+        args.putString(ARG_KEY,key);
         fragment.setArguments(args);
         return fragment;
     }
@@ -473,6 +474,11 @@ public class TimingsFragment extends BaseStepFragment {
         } else {
             sw_sat.setChecked(false);
         }
+    }
+
+    @Override
+    public boolean isDataValid() {
+        return false;
     }
 
     public static class TimePickerFragment extends DialogFragment implements

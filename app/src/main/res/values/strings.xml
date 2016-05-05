@@ -4,4 +4,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="next">Next</string>
+    <string name="prev">Previous</string>
+    <string name="finish">Sync Data</string>
+    <string name="review">Review</string>
+
+
+    <string name="submit_confirm_message">Do you want to send data for syncing?</string>
+    <string name="submit_confirm_button">Place order</string>
 </resources>

@@ -17,7 +17,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.RestContactModel;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.views.GcrrContactViewHelper;
 
-public class ContactFragment extends BaseStepFragment {
+public class ContactFragment extends BaseStepFragment implements View.OnFocusChangeListener {
 
     private EditText et_restaurant_website;
     private EditText et_restaurant_fb;
@@ -33,9 +33,10 @@ public class ContactFragment extends BaseStepFragment {
     public ContactFragment() {
     }
 
-    public static ContactFragment newInstance() {
+    public static ContactFragment create(String key) {
         ContactFragment fragment = new ContactFragment();
         Bundle args = new Bundle();
+        args.putString(ARG_KEY,key);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,6 +60,8 @@ public class ContactFragment extends BaseStepFragment {
         et_phone = (EditText) view.findViewById(R.id.et_phone);
         et_mobile = (EditText) view.findViewById(R.id.et_mobile);
 
+        et_phone.setOnFocusChangeListener(this);
+        et_mobile.setOnFocusChangeListener(this);
         ll_gcrr_contact = (LinearLayout) view.findViewById(R.id.ll_gcrr_contact);
 
         tv_add_gcrr_contacts = (TextView) view.findViewById(R.id.tv_add_gcrr_contacts);
@@ -71,6 +74,7 @@ public class ContactFragment extends BaseStepFragment {
                 View gcrrContactView = GcrrContactViewHelper.getGcrrContactView(getActivity(), null);
                 contactViews.add(gcrrContactView);
                 ll_gcrr_contact.addView(gcrrContactView);
+                notifyChanges();
             }
         });
     }
@@ -82,6 +86,9 @@ public class ContactFragment extends BaseStepFragment {
 
     @Override
     public void saveDataForStep() {
+
+        if(getActivity() == null)
+            return;
         Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
 
         if (!TextUtils.isEmpty(et_restaurant_website.getText().toString().trim())) {
@@ -125,5 +132,24 @@ public class ContactFragment extends BaseStepFragment {
                 ll_gcrr_contact.addView(gcrrContactView);
             }
         }
+    }
+
+    @Override
+    public boolean isDataValid() {
+        if (TextUtils.isEmpty(et_mobile.getText().toString().trim())) {
+            return false;
+        } else if (TextUtils.isEmpty(et_phone.getText().toString().trim())) {
+                return false;
+        }
+        else if (null == contactViews || (contactViews!= null && contactViews.size() <= 0) ){
+           return false;
+        }
+        saveDataForStep();
+        return true;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        notifyChanges();
     }
 }

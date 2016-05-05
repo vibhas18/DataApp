@@ -28,9 +28,10 @@ public class ImageFragment extends BaseStepFragment {
 
     private TextView tv_sync;
 
-    public static ImageFragment newInstance() {
+    public static ImageFragment create(String key) {
         ImageFragment fragment = new ImageFragment();
         Bundle args = new Bundle();
+        args.putString(ARG_KEY,key);
         fragment.setArguments(args);
         return fragment;
     }
@@ -97,5 +98,10 @@ public class ImageFragment extends BaseStepFragment {
         RestaurantDetailsModel restaurantDetailsModel = ((RestaurantFormActivity) getActivity()).getRestaurantDetailsModel();
         tvProfileImageCount.setText("" + DatabaseManager.getInstance().getImageCountForTypeAndRestaurant(restaurantDetailsModel.getId(), SyncStatusModel.PROFILE));
         tvMenuImagesCount.setText("" + DatabaseManager.getInstance().getImageCountForTypeAndRestaurant(restaurantDetailsModel.getId(), SyncStatusModel.MENU));
+    }
+
+    @Override
+    public boolean isDataValid() {
+        return false;
     }
 }

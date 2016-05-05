@@ -35,7 +35,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.AreaModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.LocalityModel;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
-public class NameAndDetailFragment extends BaseStepFragment {
+public class NameAndDetailFragment extends BaseStepFragment implements View.OnFocusChangeListener {
     private static final String TAG = NameAndDetailFragment.class.getSimpleName();
 
     private EditText et_profile_name;
@@ -61,16 +61,20 @@ public class NameAndDetailFragment extends BaseStepFragment {
     private double latitude;
     private double longitude;
 
-    public NameAndDetailFragment() {
-        // Required empty public constructor
-    }
 
-    public static NameAndDetailFragment newInstance() {
+
+
+
+
+    public static NameAndDetailFragment create(String key) {
         NameAndDetailFragment fragment = new NameAndDetailFragment();
         Bundle args = new Bundle();
+        args.putString(ARG_KEY,key);
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,7 +106,7 @@ public class NameAndDetailFragment extends BaseStepFragment {
                 Toast.makeText(getActivity(), "Location Recieved", Toast.LENGTH_SHORT).show();
                 latitude = l.getLatitude();
                 longitude = l.getLongitude();
-
+                notifyChanges();
                 Picasso.with(getActivity()).load(Utils.getMapImageUrl(latitude, longitude, "")).fit().into(iv_map, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -131,6 +135,13 @@ public class NameAndDetailFragment extends BaseStepFragment {
         et_restaurant_address = (EditText) view.findViewById(R.id.et_restaurant_address);
         et_restaurant_landmark = (EditText) view.findViewById(R.id.et_restaurant_landmark);
         et_pincode = (EditText) view.findViewById(R.id.et_pincode);
+
+        et_profile_name.setOnFocusChangeListener(this);
+        et_screen_name_mobile.setOnFocusChangeListener(this);
+        et_restaurant_address.setOnFocusChangeListener(this);
+        et_restaurant_landmark.setOnFocusChangeListener(this);
+        et_pincode.setOnFocusChangeListener(this);
+        et_screen_name.setOnFocusChangeListener(this);
 
         tv_city = (TextView) view.findViewById(R.id.tv_city);
         tv_area = (TextView) view.findViewById(R.id.tv_area);
@@ -167,6 +178,7 @@ public class NameAndDetailFragment extends BaseStepFragment {
                                             latitude = Double.parseDouble(latText.getText().toString().trim());
                                             longitude = Double.parseDouble(lonText.getText().toString().trim());
 
+                                            notifyChanges();
                                             Picasso.with(getActivity()).load(Utils.getMapImageUrl(latitude, longitude, "")).fit().into(iv_map, new Callback() {
                                                 @Override
                                                 public void onSuccess() {
@@ -211,12 +223,14 @@ public class NameAndDetailFragment extends BaseStepFragment {
                 fragment.setCallbacks(new GenericListSingleSelectFragment.Callbacks() {
                     @Override
                     public void onItemClicked(GenericModel object) {
+
                         if (null != object) {
                             cityModel = (CityModel) object;
                             tv_city.setText(cityModel.getName());
                         } else {
                             Toast.makeText(getActivity(), "City Not Selected", Toast.LENGTH_SHORT).show();
                         }
+                        notifyChanges();
                     }
                 });
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -244,6 +258,7 @@ public class NameAndDetailFragment extends BaseStepFragment {
                         } else {
                             Toast.makeText(getActivity(), "Area Not Selected", Toast.LENGTH_SHORT).show();
                         }
+                        notifyChanges();
                     }
                 });
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -270,6 +285,8 @@ public class NameAndDetailFragment extends BaseStepFragment {
                         } else {
                             Toast.makeText(getActivity(), "Locality Not Selected", Toast.LENGTH_SHORT).show();
                         }
+
+                        notifyChanges();
                     }
                 });
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -295,6 +312,10 @@ public class NameAndDetailFragment extends BaseStepFragment {
 
     @Override
     public void saveDataForStep() {
+
+        if(getActivity() == null){
+            return;
+        }
         if (TextUtils.isEmpty(et_profile_name.getText().toString())) {
             Toast.makeText(getActivity(), "To save the restaurant, you need to enter the name", Toast.LENGTH_LONG).show();
         } else {
@@ -414,5 +435,49 @@ public class NameAndDetailFragment extends BaseStepFragment {
             });
         }
 
+    }
+
+    @Override
+    public boolean isDataValid() {
+        if (TextUtils.isEmpty(et_profile_name.getText().toString())) {
+            return false;
+        } else if (TextUtils.isEmpty(et_profile_name.getText().toString().trim())) {
+                return false;
+
+        }else if (TextUtils.isEmpty(et_screen_name.getText().toString().trim())) {
+                return false;
+        } else if (TextUtils.isEmpty(et_screen_name_mobile.getText().toString().trim())) {
+                return false;
+        } else if (TextUtils.isEmpty(et_restaurant_address.getText().toString().trim())) {
+                return false;
+        } else if (TextUtils.isEmpty(et_restaurant_landmark.getText().toString().trim())) {
+                return false;
+        } else if (TextUtils.isEmpty(et_pincode.getText().toString().trim())) {
+                return false;
+        } else if (null == cityModel) {
+                return false;
+        } else if (null == areaModel) {
+                return false;
+        } else if (null == localityModel) {
+            return false;
+        }
+
+        saveDataForStep();
+        return true;
+    }
+
+
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
+    }
+
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+
+        notifyChanges();
     }
 }

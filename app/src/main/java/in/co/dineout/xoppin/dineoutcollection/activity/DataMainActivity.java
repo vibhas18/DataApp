@@ -29,8 +29,8 @@ import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.helper.LoginHelper;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
+public class DataMainActivity extends AppCompatActivity {
+    private static final String TAG = DataMainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         if (LoginHelper.isLoggedIn(this)) {
-            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+            startActivity(new Intent(DataMainActivity.this, DashboardActivity.class));
             finish();
         }
 
@@ -55,16 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(MainActivity.this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DataMainActivity.this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(MainActivity.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DataMainActivity.this, "Password cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (Utils.isConnectedWithToast(MainActivity.this)) {
+                if (Utils.isConnectedWithToast(DataMainActivity.this)) {
                     loginRequest(email, password);
                 }
 
@@ -90,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
                 pDialog.hide();
 
                 if (null != response && Utils.getStringVal(response, "message").equalsIgnoreCase("Login successful")) {
-                    LoginHelper.saveUser(MainActivity.this, Utils.getJsonObject(response, "data").toString());
-                    Toast.makeText(MainActivity.this, Utils.getStringVal(response, "message"), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                    LoginHelper.saveUser(DataMainActivity.this, Utils.getJsonObject(response, "data").toString());
+                    Toast.makeText(DataMainActivity.this, Utils.getStringVal(response, "message"), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(DataMainActivity.this, DashboardActivity.class));
                     finish();
                 }
 
-                Toast.makeText(MainActivity.this, Utils.getStringVal(response, "message"), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DataMainActivity.this, Utils.getStringVal(response, "message"), Toast.LENGTH_SHORT).show();
             }
         };
 
