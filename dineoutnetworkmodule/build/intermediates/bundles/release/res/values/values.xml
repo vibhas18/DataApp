@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <string name="app_name">DataNetworkModule</string>
+    <string name="base_url">http://laravel.dineoutdeals.in/index.php/api/</string>
+    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">b602b1cd-6a7f-4e1b-9541-15cf0eb90363</string>
+</resources>
