@@ -19,9 +19,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.dineout.android.volley.Request;
+import com.dineout.android.volley.Response;
+import com.dineout.android.volley.VolleyError;
+import com.dineout.android.volley.toolbox.ImageLoader;
+import com.example.datanetworkmodule.DineoutNetworkManager;
+import com.example.datanetworkmodule.ImageRequestManager;
+
+import org.json.JSONObject;
+
+import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.utils.MasterFragmentTransactionHelper;
@@ -71,23 +82,23 @@ public class MasterDataFragment extends DialogFragment {
      * set if header is auto reset when user finger up.Default values is true.
      **/
     private boolean isAutoResetHeader = true;
-//    /**
-//     * network manager will available in every fragment, user for making network
-//     * volley request
-//     **/
-//    private DineoutNetworkManager networkManager;
-//    /**
-//     * Image request manager, it will avaibale in every child class and
-//     * adapters, So dev no need create a another one.
-//     */
-//    private ImageRequestManager imageRequestManager;
-//    /**
-//     * Hold all request that are failed due any reason, And call
-//     * {@code retryRequestFail} for every request. Developer can decide in
-//     * retryRequestFail method weather request should be resent or not by using
-//     * request identifier.
-//     **/
-//    private Map<Integer, Map.Entry<Request<?>, VolleyError>> failedRequestsMap;
+    /**
+     * network manager will available in every fragment, user for making network
+     * volley request
+     **/
+    private DineoutNetworkManager networkManager;
+    /**
+     * Image request manager, it will avaibale in every child class and
+     * adapters, So dev no need create a another one.
+     */
+    private ImageRequestManager imageRequestManager;
+    /**
+     * Hold all request that are failed due any reason, And call
+     * {@code retryRequestFail} for every request. Developer can decide in
+     * retryRequestFail method weather request should be resent or not by using
+     * request identifier.
+     **/
+    private Map<Integer, Map.Entry<Request<?>, VolleyError>> failedRequestsMap;
 
     /**
      * menu inflater for inflating menus. we are not using Action bar and not
@@ -304,8 +315,8 @@ public class MasterDataFragment extends DialogFragment {
         // Log.d("Test", "Inside onCreate");
         successfulRequests = new HashMap<>();
         setHasOptionsMenu(true);
-//        networkManager = DineoutNetworkManager.newInstance(getActivity(), "");
-//        imageRequestManager = ImageRequestManager.getInstance(getActivity());
+        networkManager = DineoutNetworkManager.newInstance(getActivity(), "");
+        imageRequestManager = ImageRequestManager.getInstance(getActivity());
     }
 
     @Nullable
@@ -397,7 +408,7 @@ public class MasterDataFragment extends DialogFragment {
     @Override
     public void onDestroyView() {
 
-//        networkManager.cancel();
+        networkManager.cancel();
 
 
         super.onDestroyView();
@@ -468,13 +479,13 @@ public class MasterDataFragment extends DialogFragment {
         }
     }
 
-//    public DineoutNetworkManager getNetworkManager() {
-//        return networkManager;
-//    }
+    public DineoutNetworkManager getNetworkManager() {
+        return networkManager;
+    }
 //
-//    public com.dineout.android.volley.toolbox.ImageLoader getImageLoader() {
-//        return imageRequestManager.getImageLoader();
-//    }
+    public ImageLoader getImageLoader() {
+        return imageRequestManager.getImageLoader();
+    }
 
     /***
      * override this and return true if child is handling backpress (Toolbar and
@@ -516,18 +527,18 @@ public class MasterDataFragment extends DialogFragment {
      * Retry fail request to fetch data and clear the map. If they failed again
      * will added again in volley call back
      */
-//    protected final void retryFailedRequests() {
-//        if (this.failedRequestsMap != null) {
-//            Set<Map.Entry<Integer, Map.Entry<Request<?>, VolleyError>>> entries = this.failedRequestsMap
-//                    .entrySet();
-//            for (Map.Entry<Integer, Map.Entry<Request<?>, VolleyError>> entry : entries) {
-//                Map.Entry<Request<?>, VolleyError> value = entry.getValue();
-//                retryFailedRequest(entry.getKey(), value.getKey(),
-//                        value.getValue());
-//            }
-//            this.failedRequestsMap.clear();
-//        }
-//    }
+    protected final void retryFailedRequests() {
+        if (this.failedRequestsMap != null) {
+            Set<Map.Entry<Integer, Map.Entry<Request<?>, VolleyError>>> entries = this.failedRequestsMap
+                    .entrySet();
+            for (Map.Entry<Integer, Map.Entry<Request<?>, VolleyError>> entry : entries) {
+                Map.Entry<Request<?>, VolleyError> value = entry.getValue();
+                retryFailedRequest(entry.getKey(), value.getKey(),
+                        value.getValue());
+            }
+            this.failedRequestsMap.clear();
+        }
+    }
 
     /**
      * Should be implemented for retrying failed requests. It is invoked when
@@ -537,10 +548,10 @@ public class MasterDataFragment extends DialogFragment {
      * @param oldRequest Failed Request. Don't try to reuse.
      * @param error      Failed error
      */
-//    protected void retryFailedRequest(Integer identifier, Request<?> oldRequest,
-//                                      VolleyError error) {
-//
-//    }
+    protected void retryFailedRequest(Integer identifier, Request<?> oldRequest,
+                                      VolleyError error) {
+
+    }
 
     /***
      * Add fail request to fail requests map
@@ -548,30 +559,30 @@ public class MasterDataFragment extends DialogFragment {
      * @param request that will added
      * @param error   volley error due this request is get failed
      */
-//    private void addFailedRequest(Request<?> request, VolleyError error) {
-//        Map.Entry<Request<?>, VolleyError> failedEntry = new AbstractMap.SimpleImmutableEntry<Request<?>, VolleyError>(
-//                request, error);
-//        if (this.failedRequestsMap == null) {
-//            this.failedRequestsMap = new HashMap<>();
-//        }
-//        this.failedRequestsMap.put(request.getIdentifier(), failedEntry);
-//    }
-//
-//    private void removeAnyFailedRequests(int identifier) {
-//        if (this.failedRequestsMap != null) {
-//            this.failedRequestsMap.remove(identifier);
-//        }
-//    }
-//
-//    protected boolean shouldShowNetworkErrorView(Request<?> request,
-//                                                 VolleyError error) {
-//        final String oldUrl = successfulRequests.get(request.getIdentifier());
-//        final String newUrl = request.getUrl();
-//        if (!TextUtils.isEmpty(oldUrl)) {
-//            successfulRequests.put(request.getIdentifier(), newUrl);
-//        }
-//        return !newUrl.equals(oldUrl);
-//    }
+    private void addFailedRequest(Request<?> request, VolleyError error) {
+        Map.Entry<Request<?>, VolleyError> failedEntry = new AbstractMap.SimpleImmutableEntry<Request<?>, VolleyError>(
+                request, error);
+        if (this.failedRequestsMap == null) {
+            this.failedRequestsMap = new HashMap<>();
+        }
+        this.failedRequestsMap.put(request.getIdentifier(), failedEntry);
+    }
+
+    private void removeAnyFailedRequests(int identifier) {
+        if (this.failedRequestsMap != null) {
+            this.failedRequestsMap.remove(identifier);
+        }
+    }
+
+    protected boolean shouldShowNetworkErrorView(Request<?> request,
+                                                 VolleyError error) {
+        final String oldUrl = successfulRequests.get(request.getIdentifier());
+        final String newUrl = request.getUrl();
+        if (!TextUtils.isEmpty(oldUrl)) {
+            successfulRequests.put(request.getIdentifier(), newUrl);
+        }
+        return !newUrl.equals(oldUrl);
+    }
 
     /**
      * Call this function to show specific type of error screen
@@ -623,11 +634,11 @@ public class MasterDataFragment extends DialogFragment {
      * @param request
      * @param response (cache reeponse)
      **/
-//    protected boolean shouldDiscardRepeatCachedResponse(Request<?> request,
-//                                                        Response<?> response) {
-//        hideLoader();
-//        return true;
-//    }
+    protected boolean shouldDiscardRepeatCachedResponse(Request<?> request,
+                                                        Response<?> response) {
+        hideLoader();
+        return true;
+    }
 
     /**
      * return true if request has the valid response, child call can overrride
@@ -638,11 +649,11 @@ public class MasterDataFragment extends DialogFragment {
      * @param responseObject (Actual data)
      * @param response       http response header.
      **/
-//    protected boolean isRequestSuccessful(Request<JSONObject> request,
-//                                          JSONObject responseObject, Response<JSONObject> response) {
-//        return !responseObject.has("successful")
-//                || responseObject.optBoolean("successful");
-//    }
+    protected boolean isRequestSuccessful(Request<JSONObject> request,
+                                          JSONObject responseObject, Response<JSONObject> response) {
+        return !responseObject.has("successful")
+                || responseObject.optBoolean("successful");
+    }
 
     /**
      * Show force upgrade dialog if resp_code value is not latest and old

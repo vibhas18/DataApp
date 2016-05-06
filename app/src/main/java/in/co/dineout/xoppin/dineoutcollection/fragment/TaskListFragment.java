@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +39,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 /**
  * Created by suraj on 06/02/16.
  */
-public class TaskListFragment extends Fragment {
+public class TaskListFragment extends MasterDataFragment {
     private static final String TAG = TaskListFragment.class.getSimpleName();
     public static final String TAG2 = TaskListFragment.class.getCanonicalName();
 
