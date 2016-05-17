@@ -61,6 +61,12 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
         initiateRequestForAssignedTasks();
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setFragmentTitle("Assigned Restaurants");
+    }
+
     private void initiateRequestForAssignedTasks() {
 
         showLoadingDialog(false);

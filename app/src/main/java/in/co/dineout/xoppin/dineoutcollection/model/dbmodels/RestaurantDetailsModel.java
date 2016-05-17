@@ -3,6 +3,7 @@ package in.co.dineout.xoppin.dineoutcollection.model.dbmodels;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -181,7 +182,7 @@ public class RestaurantDetailsModel implements Serializable {
 
     public void updatePinCode(String code){
         try {
-            this.restaurant.put("pincode",code);
+            this.restaurant.put("pincode", code);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -544,8 +545,8 @@ public class RestaurantDetailsModel implements Serializable {
         }
     }
 
-    public String getLatitude() {
-        return restaurant.optString("latitude");
+    public double getLatitude() {
+        return restaurant.optDouble("latitude");
     }
 
     public void setLatitude(String latitude) {
@@ -557,8 +558,8 @@ public class RestaurantDetailsModel implements Serializable {
         }
     }
 
-    public String getLongitude() {
-        return restaurant.optString("longitude");
+    public double getLongitude() {
+        return restaurant.optDouble("longitude");
     }
 
     public void setLongitude(String longitude) {
@@ -1010,6 +1011,96 @@ public class RestaurantDetailsModel implements Serializable {
         }catch (Exception e){
 
         }
+    }
+
+    public int validateRestaurant(Context context){
+
+        DataDatabaseUtils utils = DataDatabaseUtils.getInstance(context);
+
+        if(!isBasicDetailValid()){
+            Toast.makeText(context, "Please provide all star mark field "
+                   , Toast.LENGTH_SHORT).show();
+            return 0;
+        }else if(!isDetailValid()){
+            Toast.makeText(context, "Please provide all star mark field "
+                    , Toast.LENGTH_SHORT).show();
+            return 1;
+        }
+        else if(!isContactValid()){
+            Toast.makeText(context, "Please provide all star mark field "
+                    , Toast.LENGTH_SHORT).show();
+            return 2;
+        }else if(!isCuisineValid()){
+            Toast.makeText(context, "Please provide all star mark field "
+                    , Toast.LENGTH_SHORT).show();
+            return 3;
+        }else if((utils.hasProfileImages(this.getRestaurantId())
+                && utils.hasMenuImages(this.getRestaurantId()))){
+            Toast.makeText(context, "Please provide profile and menu images "
+                    , Toast.LENGTH_SHORT).show();
+            return 5;
+        }
+        return -1;
+    }
+
+
+    private boolean isBasicDetailValid(){
+        if (TextUtils.isEmpty(this.getProfile_name())) {
+            return false;
+        } else if (TextUtils.isEmpty(this.getScreen_name())) {
+            return false;
+
+        }else if (TextUtils.isEmpty(this.getScreen_name_mobile())) {
+            return false;
+        } else if (TextUtils.isEmpty(this.getAddress())) {
+            return false;
+        } else if (TextUtils.isEmpty(this.getLandmark())) {
+            return false;
+        } else if (TextUtils.isEmpty(this.getPincode())) {
+            return false;
+        } else if (TextUtils.isEmpty(this.getCity_id())) {
+            return false;
+        } else if (TextUtils.isEmpty(this.getArea_id())) {
+            return false;
+        } else if (TextUtils.isEmpty(this.getLocality_id())) {
+            return false;
+        } else if(this.getLatitude() == 0 || this.getLongitude() == 0 ){
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isDetailValid(){
+
+        if (this.getTags().size() > 0) {
+            return false;
+        }
+
+        else if (this.getCost_for_2() <=0) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isContactValid(){
+
+        if (TextUtils.isEmpty(this.getMobile_number()) ) {
+            return false;
+        }else if(TextUtils.isEmpty(this.getPhone())){
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isCuisineValid(){
+        if (this.getPrimary_cuisine().size() > 0) {
+            return false;
+        }else if (this.getSecondary_cuisine().size() > 0) {
+            return false;
+        }
+        return true;
     }
 
 

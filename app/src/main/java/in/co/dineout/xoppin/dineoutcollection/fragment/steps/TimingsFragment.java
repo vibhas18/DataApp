@@ -76,11 +76,9 @@ public class TimingsFragment extends BaseStepFragment {
         // Required empty public constructor
     }
 
-    public static TimingsFragment create(String key) {
+    public static TimingsFragment create() {
         TimingsFragment fragment = new TimingsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_KEY,key);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -95,6 +93,8 @@ public class TimingsFragment extends BaseStepFragment {
         initViews(view);
         populateViewFromData();
     }
+
+
 
     private void initViews(final View view) {
         tv_monday_open = (TextView) view.findViewById(R.id.tv_monday_open);
@@ -258,10 +258,6 @@ public class TimingsFragment extends BaseStepFragment {
         }
     };
 
-    @Override
-    public void onStepChanged() {
-
-    }
 
     @Override
     public void saveDataForStep() {
@@ -477,11 +473,6 @@ public class TimingsFragment extends BaseStepFragment {
         }
     }
 
-    @Override
-    public boolean isDataValid() {
-
-        return false;
-    }
 
     @Override
     public void onStop() {

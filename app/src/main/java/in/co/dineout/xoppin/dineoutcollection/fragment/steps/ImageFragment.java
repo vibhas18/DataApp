@@ -27,11 +27,9 @@ public class ImageFragment extends BaseStepFragment {
 
     private TextView tv_sync;
 
-    public static ImageFragment create(String key) {
+    public static ImageFragment create() {
         ImageFragment fragment = new ImageFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_KEY,key);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -74,17 +72,16 @@ public class ImageFragment extends BaseStepFragment {
         tv_sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ((RestaurantFormActivity)getActivity()).getRestaurantDetailsModel().sendToSync(getActivity());
+
+                if(getParentFragment() != null && getParentFragment() instanceof RestaurantFormFragment){
+                    ((RestaurantFormFragment)getParentFragment()).sendRestaurantForSyncing();
+                }
             }
         });
 
         populateViewFromData();
     }
 
-    @Override
-    public void onStepChanged() {
-
-    }
 
     @Override
     public void saveDataForStep() {
@@ -99,8 +96,5 @@ public class ImageFragment extends BaseStepFragment {
 
     }
 
-    @Override
-    public boolean isDataValid() {
-        return false;
-    }
+
 }

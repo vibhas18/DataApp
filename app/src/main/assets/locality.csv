@@ -1,1456 +1,1476 @@
-10,1,Greater Kailash - 1
-11,1,East of Kailash
-12,1,Green Park
-13,1,Defence Colony
-14,5,Khan Market
-15,1,Nizammudin
-16,5,Connaught Place
-17,5,Chanakyapuri
-18,2,Preet Vihar
-19,2,Mayur Vihar
-20,6,Kaushambhi
-21,6,Indirapuram
-22,3,Kamla Nagar
-23,3,Civil Lines
-24,3,Daryaganj
-25,4,Rajouri Garden
-26,4,Punjabi Bagh
-27,7,DLF Phase - 1
-28,7,Ambience Mall
-29,7,DLF Phase - 3
-30,8,Sector 16
-31,8,Sector 63
-32,9,Mathura Road
-33,9,Sector 37
-34,8,Sector 18
-35,1,Saket
-36,1,Vasant Kunj
-39,7,Mehrauli
-40,1,Nehru Place
-43,1,Greater Kailash - 2
-44,7,MG Road
-45,4,Raja Garden
-46,7,DLF Cyber City
-48,4,Subhash Nagar
-49,1,Mehrauli
-50,8,Sector 38A
-51,1,Malviya Nagar
-54,1,New Friends Colony
-55,1,Hauz Khas
-56,1,Vasant Vihar
-57,1,Satya Niketan
-58,1,South Extension - 2
-60,1,Lajpat Nagar - 2
-61,1,Kalkaji
-62,1,Jasola
-63,1,Lajpat Nagar - 4
-64,1,Aurobindo Marg
-65,1,Bhikaji Cama Place
-67,1,Safdarjung
-68,1,Chitranjan Park
-69,1,Khel Gaon Marg
-70,1,SDA
-71,1,Sainik Farms
-72,1,Jungpura
-73,1,Kailash Colony
-74,5,Sardar Patel Marg
-75,1,Suraj Kund
-76,1,MG Road
-77,1,Mahipalpur
-78,1,IGI Airport
-80,1,Sarita Vihar
-81,1,Yusuf Sarai
-82,1,Alaknanda
-83,1,Lajpat Nagar - 1
-84,1,RK Puram
-85,1,South Extension - 1
-86,1,Okhla Phase - 1
-87,1,Sarojini Nagar
-88,1,Geetanjali Enclave
-89,1,Munirka
-90,1,Okhla Phase - 2
-91,1,Panchsheel Park
-92,1,Friends Colony
-93,1,Okhla Phase - 3
-94,1,Qutab Institutional Area
-95,1,Shanti Niketan Marg
-96,1,Greater Kailash 3
-97,1,JNU
-98,1,Lajpat Nagar - 3
-99,5,Race Course
-100,1,Siri Fort Road
-101,1,Tughlakabad Institutional Area
-102,3,Rohini
-103,3,Pitampura
-105,3,Delhi University
-106,3,Shalimar Bagh
-107,3,Ashok Vihar Phase - 1
-109,3,Prashant Vihar
-110,3,Model Town 2
-111,5,Chandni Chowk
-112,3,Ashok Vihar Phase - 2
-113,3,Model Town 1
-115,3,Kashmiri Gate
-116,3,Model Town 3
-117,3,Wazirpur
-118,3,Ashok Vihar Phase - 3
-119,3,Azadpur
-120,3,GTB Nagar
-121,3,Vijay Nagar
-122,5,Jama Masjid
-124,5,Paharganj
-125,5,Lodhi Road
-126,5,Lodhi Colony
-127,5,Gole Market
-128,5,Pandara Road Market
-129,5,Mansingh Road
-130,5,Aurangzeb Road
-131,5,Sundar Nagar
-134,7,DLF Phase - 2
-135,7,Sector 14
-136,7,Sushant Lok
-138,7,Palam Vihar
-139,7,Sohna Road
-140,7,Sector 29
-141,7,Sector 15
-142,7,Sector 31
-143,7,Sector 53
-144,7,Sector 56
-145,7,Sector 54
-146,7,Udyog Vihar
-147,7,Sector 23
-148,7,Sector 39
-149,7,Sector 22
-150,7,Sector 4
-151,7,South City 2
-152,7,DLF Phase - 5
-153,7,Sector 50
-154,7,Sector 7
-155,7,South City 1
-156,7,Old Rly Road
-157,7,Sector 17
-158,7,Sadar Bazar
-159,7,Sector 44
-160,7,Sector 45
-161,7,Sector 43
-162,7,Golf Course Road
-163,7,Sector 8
-164,7,Ardee City
-165,7,Sector 12
-166,7,Sikandarpur
-167,4,Dwarka
-168,4,Janakpuri
-169,4,Vikaspuri
-170,5,Karol Bagh
-171,4,Paschim Vihar
-173,4,Jail Road
-174,4,Tagore Garden
-175,4,Tilak Nagar
-176,4,East Patel Nagar
-177,4,Naraina
-178,4,Uttam Nagar
-179,4,Kirti Nagar
-180,4,West Patel Nagar
-181,4,Palam
-182,4,Rajinder Nagar
-183,4,Delhi Cantt.
-185,4,Rajendra Place
-186,4,Najafgarh
-187,4,Moti Nagar
-189,4,Lawrence Road
-190,4,Inderlok
-191,4,Mayapuri Phase - 1
-192,4,Mayapuri Phase - 2
-193,4,Nangloi
-194,4,South Patel Nagar
-195,4,Karampura
-196,2,Laxmi Nagar
-197,2,Mayur Vihar Phase - 1
-198,2,Shahadra
-200,2,Krishna Nagar
-201,2,Patparganj
-202,2,Vikas Marg
-203,2,IP Extension
-204,2,Mayur Vihar Phase - 3
-205,2,Dilshad Garden
-206,2,Shakarpur
-207,2,Chander Nagar
-208,2,Vasundhara Enclave
-209,2,Trilokpuri
-210,2,Dayanand Vihar
-211,2,Geeta Colony
-212,8,Greater Noida
-213,8,Sector 50
-214,8,Sector 62
-215,8,Sector 61
-216,8,Sector 25
-217,8,Sector 15
-218,8,Sector 27
-219,8,Sector 29
-221,8,Sector 110
-222,8,Sector 127
-223,8,Sector 11
-225,8,Sector 44
-226,8,Sector 26
-227,8,Sector 41
-228,8,Sector 58
-229,8,Sector 12
-230,8,Sector 55
-231,8,Sector 2
-232,8,Sector 28
-233,8,Sector 51
-234,8,Sector 22
-235,8,Sector 7
-236,8,Sector 93
-237,8,Sector 1
-238,8,Sector 17
-239,8,Sector 37
-240,8,Sector 49
-241,8,Sector 53
-242,8,Sector 83
-243,9,Sector 12
-244,9,Sector 15
-245,9,Sector 21
-247,9,NIT
-248,9,Sector 16
-249,9,Sector 10
-250,9,Sector 31
-251,9,Charmswood Village
-253,9,Badarpur border
-254,9,Sector 14
-255,9,Badkal Lake
-256,9,Ballabhgarh
-257,9,Sector 19
-258,9,Sector 29
-259,9,Sector 34
-260,9,Sector 11
-261,9,Sector 28
-262,9,Sector 46
-263,9,Sector 7
-264,9,Sector 3
-265,9,Sector 20
-266,9,Sector 30
-267,9,Sector 9
-269,6,Vaishali
-271,6,Raj Nagar
-272,6,Sahibabad
-273,6,Mohan Nagar
-274,6,Chander Nagar
-275,6,Ramprastha
-276,6,Surya Nagar
-277,6,Ambedkar Road
-278,6,Murad Nagar
-279,1,Hauz Khas Village
-280,1,Adchini
-281,1,Said Ul Ajaib
-282,4,Hari Nagar
-283,9,Suraj Kund
-284,7,DLF Phase 4
-286,5,Malcha Marg
-287,10,Breach Candy
-288,10,Byculla
-289,10,Charni Road
-290,10,Chowpatty
-291,10,Churchgate
-292,10,Colaba
-293,10,Cuffe Parade
-294,10,Dadar
-295,10,Fort
-296,10,Girgaum
-297,10,Grant Road
-298,10,Kalbadevi
-299,10,Kemps Corner
-300,10,Lower Parel
-301,10,Mahalaxmi
-302,10,Mahim
-303,10,Malabar Hill
-304,10,Marine Lines
-305,10,Mumbai CST Area
-306,10,Mumbai Central
-307,10,Nariman Point
-308,10,Parel
-309,10,Peddar Road
-310,10,Prabhadevi
-311,10,Tardeo
-312,10,Worli
-313,11,7 Bungalows
-314,11,Adarsh Nagar
-315,11,Andheri Lokhandwala
-316,11,Andheri West
-317,11,Andheri East
-318,11,Bandra East
-319,11,Bandra West
-320,11,Bhayandar
-321,11,Borivali East
-322,11,Borivali West
-323,11,Dahisar
-324,11,Gorai
-325,11,Goregaon East
-326,11,Goregaon West
-327,11,Jogeshwari
-328,11,Juhu
-329,11,Kandivali East
-330,11,Kandivali West
-331,11,Khar
-332,11,Malad East
-333,11,Malad West
-334,11,Marve
-335,11,Mira Road
-336,11,Oshiwara
-337,11,Santacruz East
-338,11,Santacruz West
-339,11,Vasai
-340,11,Versova
-341,11,Vile Parle East
-342,11,Vile Parle West
-343,12,Bhandup
-344,12,Chandivali
-345,12,Chembur
-346,12,Ghatkopar East
-347,12,Ghatkopar West
-348,12,Kurla
-349,12,Mahakali
-350,12,Marol
-351,12,Matunga
-352,12,Matunga West
-353,12,Mulund East
-354,12,Mulund West
-355,12,Powai
-356,12,Sakinaka
-357,12,Sion
-358,12,Trombay
-359,12,Vikhroli
-360,12,Wadala
-361,13,Airoli
-362,13,CBD-Belapur
-363,13,Ghansoli
-364,13,Kharghar
-365,13,Kopar Khairane
-366,13,Nerul
-367,13,Palm Beach Road
-368,13,Panvel
-369,13,Sanpada
-370,13,Seawoods
-371,13,Turbhe
-372,13,Vashi
-373,14,Dombivali
-374,14,Kalwa
-375,14,Kalyan
-376,14,Thane Area
-377,14,Ulhasnagar
-378,15,MG Road
-379,15,Lavelle Road
-380,15,Richmond Road
-381,15,Residency Road
-382,15,Infantary Road
-383,15,Brigade Road
-384,15,Ulsoor
-385,15,Cunningham Road
-386,15,Shanti Nagar
-387,15,Commercial Street
-388,15,Richmond Town
-389,15,Shivaji Nagar
-390,15,Church Street
-391,16,BTM Layout
-392,16,Jayanagar
-393,16,JP Nagar
-394,16,Koramangala
-395,16,Bellandur
-396,16,Sarjapur Road
-397,16,Bannerghatta Road
-398,16,Basavanagudi
-399,16,HSR Layout
-400,16,Banashankari
-401,16,Electronic City
-402,16,Ashok Nagar
-403,16,Doddakallasandra
-404,16,HanumanthaNagar
-405,16,Kasturba Road
-406,16,Magrath Road
-407,16,Nagrathpet
-408,17,Indiranagar
-409,17,Marathahalli
-410,17,Domlur
-411,17,Whitefield
-412,17,Old Madras Road
-413,17,Old Airport Road
-414,17,Jeevan Bhima Nagar
-415,17,Brookefields
-416,17,Kadugodi
-417,17,Vimanapura
-418,17,Dooravani Nagar
-419,17,Jayamahal Road
-420,17,Mahadevapura
-421,17,Byatarayanapura
-422,17,Krishnaraja Puram
-423,17,Thippasandra
-424,17,Varthur
-425,17,Ramamurthy Nagar
-426,18,Sanjay Nagar
-427,18,Frazer Town
-428,18,Kalyan Nagar
-429,18,Kammanahalli
-430,18,New BEL Road
-431,18,Banaswadi
-432,18,Nagawara
-433,18,Hebbal
-434,18,RT Nagar
-435,18,Yelahanka
-436,18,Sahakara Nagar
-437,18,Devanahalli
-438,18,Hennur
-439,18,HBR layout
-440,18,Kasturi Nagar
-441,18,Mathikere
-442,18,Nandhini Layout
-443,18,Ganga Nagar
-444,18,Jalahalli
-445,18,Sadashiva Nagar
-446,18,Maruthi Nagar
-447,18,St. Thomas Town
-448,18,Yeshwantpur
-449,19,Race Course Road
-450,19,Malleshwaram
-451,19,Mysore Road
-452,19,Sankey Road
-453,19,Sadashiv Nagar
-454,19,Rajajinagar
-455,19,Seshadripuram
-456,19,Rajarajeshwari Nagar
-457,19,Vijay Nagar
-458,19,Basaveshwara Nagar
-459,19,Gandhi Nagar
-460,19,Magadi Road
-461,19,Majestic
-462,19,Kengeri
-463,19,Nagarbhavi
-464,19,Mahalakshmipuram
-465,19,Tumkur Road
-466,19,Bidadi
-467,19,Vidyaranyapura
-468,7,Sector 30
-469,7,32nd Milestone
-470,7,Cyber City
-471,1,Anand Lok
-472,7,Sector 49
-473,22,Abhiramapuram
-474,22,Alwarpet
-475,22,Chepauk
-476,22,Chetpet
-477,22,Chintadripet
-478,22,Choolaimedu
-479,22,Egmore
-480,22,George Town
-481,22,Gopalapuram
-482,22,Kilpauk
-483,22,Kodambakkam
-484,22,Kotturpuram
-485,22,Mahalingapuram
-486,22,Mandavelli
-487,22,Mylapore
-488,22,Nandanam
-489,22,Nungambakkam
-490,22,Park Town
-491,22,Parrys
-492,22,Periamet
-493,22,Pudupet
-494,22,Purasavakkam
-495,22,R.A. Puram
-496,22,Royapettah
-497,22,Santhome
-498,22,Teynampet
-499,22,Thousand Lights
-500,22,Triplicane
-501,22,Vepery
-502,23,Kolathur
-503,23,Madhavaram
-504,23,Minjur
-505,23,Perambur
-506,23,Red Hills
-507,23,Royapuram
-508,23,Shenoy Nagar
-509,23,Sowcarpet
-510,23,Tiruvottiyur
-511,23,Tondiarpet
-512,23,Vyasarpadi
-513,23,Washermanpet
-514,24,Adambakkam
-515,24,Adyar
-516,24,Alandur
-517,24,Ashok Nagar
-518,24,Besant Nagar
-519,24,Chitlapakkam
-520,24,Chromepet
-521,24,East Coast Road
-522,24,Ekkattuthangal
-523,24,Gowrivakkam
-524,24,GST Road
-525,24,Guindy
-526,24,Indira Nagar
-527,24,Injambakkam
-528,24,Kanathur
-529,24,Kandanchavadi
-530,24,Karapakkam
-531,24,Keelkattalai
-532,24,KK Nagar
-533,24,Kottivakkam
-534,24,Madipakkam
-535,24,Mahabalipuram
-536,24,Manapakkam
-537,24,Medavakkam
-538,24,Meenambakkam
-539,24,MRC Nagar
-540,24,Muttukadu
-541,24,Nanganallur
-542,24,Navalur
-543,24,Neelankarai
-544,24,Padur
-545,24,Palavakkam
-546,24,Pallavaram
-547,24,Pallikaranai
-548,24,Pammal
-549,24,Perungalathur
-550,24,Perungudi
-551,24,Saidapet
-552,24,Selaiyur
-553,24,Semmencherry
-554,24,Sholinganallur
-555,24,Siruseri
-556,24,St. Thomas Mount
-557,24,Tambaram East
-558,24,Tharamani
-559,24,Thiruvanmiyur
-560,24,Thoraipakkam
-561,24,Thyagaraya Nagar
-562,24,Vandalur
-563,24,Velachery
-564,24,Vettuvankeni
-565,24,West Mambalam
-566,25,Alwarthirunagar
-567,25,Ambattur
-568,25,Aminjikarai
-569,25,Anakaputhur
-570,25,Anna Nagar
-571,25,Arumbakkam
-572,25,Avadi
-573,25,Ayanavaram
-574,25,Iyyapanthangal
-575,25,Kancheepuram
-576,25,Kattupakkam
-577,25,Koyambedu
-578,25,Maduravoyal
-579,25,Mogappair
-580,25,Nandambakkam
-581,25,Padi
-582,25,Poonamallee
-583,25,Porur
-584,25,Ramapuram
-585,25,Saligramam
-586,25,Sriperumbudur
-587,25,Thirumullaivoyal Colony
-588,25,Vadapalani
-589,25,Valasaravakkam
-590,25,Villivakkam
-591,25,Virugambakkam
-592,26,Abids
-593,26,Ameerpet
-594,26,Banjara Hills
-595,26,Basheerbagh
-596,26,Begumpet
-597,26,Himayath Nagar
-598,26,Hitech City
-599,26,Jubilee Hills
-600,26,Kavadiguda
-601,26,Khairatabad
-602,26,Lakdi-Ka-Pul
-603,26,Masab Tank
-604,26,Necklace Road
-605,26,Panjagutta
-606,26,Saifabad
-607,26,Sindhi Colony
-608,26,Somajiguda
-609,26,SR Nagar
-610,26,Sri Nagar
-611,26,Tank Bund
-612,26,Yousufguda
-613,27,Amberpet
-614,27,Chikkadpally
-615,27,Chilkal Guda
-616,27,Dammaiguda
-617,27,East Marredpalli
-618,27,Habsiguda
-619,27,Kapra
-620,27,Keesara
-621,27,Kothapet
-622,27,Malkajgiri
-623,27,Mallapur
-624,27,Mettu Guda
-625,27,Musheerbad
-626,27,Nacharam
-627,27,Nagole
-628,27,Padma Rao Nagar
-629,27,Ramanthapur
-630,27,RTC X Road
-631,27,Tarnaka
-632,27,Uppal
-633,27,Vidya Nagar
-634,27,Warasiguda
-635,28,A.S Rao Nagar
-636,28,Alwal
-637,28,Balanagar
-638,28,Bowenpally
-639,28,Jeedimetla
-640,28,Kompally
-641,28,Kukatpally
-642,28,Kushaiguda
-643,28,Moosapet
-644,28,Neredimet
-645,28,Nizampet
-646,28,Sainik Puri
-647,28,Sanath Nagar
-648,28,Shameerpet
-649,28,Sikh Village
-650,28,Trimulgherry
-651,28,West Marredpalli
-652,29,Karkhana
-653,29,MG Road
-654,29,Parade Grounds
-655,29,SD Road
-656,29,Secunderabad
-657,29,SP Road
-658,30,Attapur
-659,30,Begum Bazaar
-660,30,Chandrayana Gutta
-661,30,Charminar
-662,30,Dilsukh Nagar
-663,30,Falaknuma
-664,30,Ghansi Bazar
-665,30,Hyder Guda
-666,30,Kachiguda
-667,30,Karman Ghat
-668,30,Koti
-669,30,L B Nagar
-670,30,Malakpet
-671,30,Mallepalli North
-672,30,Meerpet
-673,30,Mehdipatnam
-674,30,Nallakunta
-675,30,Nampally
-676,30,Narayana Guda
-677,30,Rajendra Nagar
-678,30,Santosh Nagar
-679,30,Saroor Nagar West
-680,30,Shamshabad
-681,30,Sivarampalli
-682,30,Vanasthalipuram
-683,30,Yakutpura
-684,31,Bandlaguda
-685,31,Chanda Nagar
-686,31,Erragadda
-687,31,Gachibowli
-688,31,Kondapur
-689,31,Kothaguda
-690,31,Lingampally
-691,31,Madhapur
-692,31,Manikonda
-693,31,Miyapur
-694,31,Moti Nagar
-695,31,Tolichowki
-696,32,Bhawanipeth
-697,32,Budhwar Peth
-698,32,Bund Garden Road
-699,32,Camp
-700,32,MG Road
-701,32,Nana Peth
-702,32,Navi Peth
-703,32,Rasta Peth
-704,32,Raviwar Peth
-705,32,Sadashiv Peth
-706,32,Sasoon Road
-707,32,Shanivar Peth
-708,32,Shivaji Nagar
-709,32,Shukrawar Peth
-710,32,Station Road
-711,32,Wakad
-712,33,Alandi Road
-713,33,Chandan Nagar
-714,33,Fatima Nagar
-715,33,Hadapsar
-716,33,Kalyani Nagar
-717,33,Kharadi
-718,33,Koregaon Park
-719,33,Lohegaon
-720,33,Magarpatta City
-721,33,Mundhwa
-722,33,Nagar Road
-723,33,Viman Nagar
-724,33,Viman Nagar Road
-725,33,Vishrantwadi
-726,33,Wadgaon Sheri
-727,33,Wagholi
-728,33,Wanowari
-729,33,Yerwada
-730,34,Akurdi
-731,34,Bhosari
-732,34,Bopodi
-733,34,Chakan
-734,34,Chinchwad
-735,34,Dhole Patil Road
-736,34,Ghorpadi
-737,34,Hinjewadi
-738,34,Khadki
-739,34,Mumbai Pune Highway
-740,34,Nigdi
-741,34,Pimpale Gurav
-742,34,Pimple Saudagar
-743,34,Pimpri
-744,34,Pimpri Chinchawad Road
-745,34,Pradhikaran Nigdi
-746,34,Rahatani
-747,34,Ravet
-748,34,Tathawade
-749,34,Thergaon
-750,35,Ambegaon Area
-751,35,Anand Nagar
-752,35,Dapodi
-753,35,Dhankawdi
-754,35,Dhayari
-755,35,Karve Nagar
-756,35,Katraj
-757,35,Kondhwa
-758,35,Laxmi Road
-759,35,Loni Kalbhor
-760,35,Mukund Nagar
-761,35,Narhe
-762,35,NIBM Road
-763,35,Parvati
-764,35,Sahakar Nagar
-765,35,Sangamwadi
-766,35,Sangvi
-767,35,Satara Road
-768,35,Sinhagad Road
-769,35,Swargate
-770,35,Tilak Road
-771,35,Vadgaon Budrukh
-772,35,Wadgaon-Budruk
-773,35,Wanawadi
-774,36,Aundh
-775,36,Balewadi
-776,36,Baner
-777,36,Baner Road
-778,36,Bavdhan
-779,36,Bibwewadi
-780,36,Deccan Gymkhana
-781,36,Erandwane
-782,36,F.C. Road
-783,36,Ganeshkhind
-784,36,J.M.Road
-785,36,Kothrud
-786,36,Model Colony
-787,36,Narayan Peth
-788,36,Pashan
-789,36,Paud Road
-790,36,Pimple Nilakh
-791,36,Senapati Bapat Road
-792,36,Warje
-793,2,Mayur Vihar Phase - 2
-794,7,Cyber Hub
-1553,8,Sector 15
-1554,8,Sector 15 A
-1555,24,Old Mahabalipuram Road (OMR)
-1556,1,Okhla
-1557,17,Madhavanagar
-1558,7,Sector 39
-1560,36,Pune University
-1561,15,St. Marks Road
-1562,15,Vijay Mallya Road
-1565,17,Kalyan Nagar
-1566,16,Adugodi
-1567,16,Bangalore Mysore Highway
-1568,16,Bommanahalli
-1569,17,Cambridge Layout
-1570,16,Chamarajpet
-1571,19,Chandra Layout
-1572,16,Chikpete
-1573,17,Cox Town
-1574,17,CV Raman Nagar
-1575,18,Devarajivanahalli
-1576,16,Ejipura
-1577,15,High Grounds
-1578,16,Hosur Road
-1579,17,HRBR Layout
-1580,16,JC Road
-1581,17,Kadubisanahalli
-1582,17,Kaggadasapura
-1583,16,Kanakapura Road
-1584,17,Kodihalli
-1585,17,KR Puram
-1586,16,Kumaraswamy Layout
-1587,17,Kundalahalli
-1588,16,Madiwala
-1589,17,Murugeshpalya
-1590,17,Narayanapura
-1591,17,New Thippasandra
-1592,19,Peenya
-1593,15,Sampangirama Nagar
-1594,16,SG Palya
-1595,16,Singasandra
-1596,15,St Marks Road
-1597,16,Uttarahalli
-1598,15,Vasanth Nagar
-1599,15,Vittal Mallya Road
-1600,16,VV Puram
-1601,16,Wilson Garden
-1645,4,Aaya Nagar
-1646,3,Adarsh Nagar
-1647,5,Ajmeri Gate
-1648,3,Alipur
-1649,4,Anand Parbat
-1650,2,Anand Vihar
-1651,1,Andrews Ganj
-1652,3,Aruna Nagar
-1653,4,Bali Nagar
-1654,3,Bawana
-1655,3,Begampur
-1656,1,Ber Sarai
-1657,3,Budh Vihar
-1658,3,Burari
-1659,1,Chattarpur
-1660,5,Chawri Bazar
-1661,7,Civil Lines
-1662,6,Crossings Republik
-1663,6,Daulatpura
-1664,7,Delhi Gurgaon Expressway
-1665,7,DLF Golf Course Road
-1666,5,Dr Zakir Hussain Marg
-1667,6,Gandhi Nagar
-1668,1,Gautam Nagar
-1669,2,Gazipur
-1670,2,Gokalpur
-1671,9,Green Fields Colony
-1672,3,Gujranwala Town
-1673,7,IMT Manesar
-1674,1,INA
-1675,4,Inderpuri
-1676,5,ITO
-1677,3,Jahangirpuri
-1678,5,Janpath
-1679,4,Jhandewalan
-1680,2,Kalyan Puri
-1681,6,Kamla Nehru Nagar
-1682,1,Kapashera
-1683,2,Karawal Nagar
-1684,2,Karkardooma
-1685,6,Kavi Nagar
-1686,3,Keshav Puram
-1687,1,Khanpur
-1688,6,Lal Kuan
-1689,6,Lohia Nagar
-1690,6,Loni
-1691,6,Madhopura
-1692,2,Mandawali
-1693,3,Mandoli
-1694,4,Mangolpuri
-1695,4,Mansarovar Garden
-1696,1,Moti Bagh
-1697,3,Mukherjee Nagar
-1698,3,Mukundpur
-1699,4,Mundka
-1700,3,Narela
-1701,6,Naya Ganj
-1702,2,New Ashok Nagar
-1703,7,NH 8
-1704,7,Old Delhi Road
-1705,2,Pandav Nagar
-1706,6,Patel Nagar
-1707,4,Peeragarhi
-1708,5,Pragati Maidan
-1709,6,Pratap Vihar
-1710,4,Raj Nagar
-1711,6,Rajendra Nagar
-1712,1,Rajokri
-1713,4,Ramesh Nagar
-1714,1,Rangpuri
-1715,3,Rani Bagh
-1716,3,Sabzi Mandi
-1717,5,Sadar Bazar
-1718,1,Samalkha
-1719,3,Samaypur
-1720,1,Sangam Vihar
-1721,3,Sanjay Gandhi Transport Nagar
-1722,3,Sarup Nagar
-1723,8,Sector 10
-1724,7,Sector 10
-1725,8,Sector 102
-1726,8,Sector 104
-1727,8,Sector 120
-1728,8,Sector 125
-1729,7,Sector 13
-1730,8,Sector 132
-1731,8,Sector 135
-1732,8,Sector 142
-1733,8,Sector 144
-1734,9,Sector 15A
-1735,9,Sector 17
-1736,9,Sector 18
-1737,8,Sector 20
-1738,8,Sector 21
-1739,9,Sector 23
-1740,8,Sector 25A
-1741,7,Sector 26
-1742,8,Sector 3
-1743,7,Sector 3
-1744,8,Sector 30
-1745,8,Sector 31
-1746,8,Sector 32
-1747,7,Sector 32
-1748,7,Sector 33
-1749,8,Sector 34
-1750,8,Sector 35
-1751,9,Sector 35
-1752,7,Sector 37
-1753,8,Sector 38
-1754,7,Sector 38
-1755,8,Sector 39
-1756,7,Sector 40
-1757,8,Sector 40
-1758,8,Sector 45
-1759,7,Sector 46
-1760,7,Sector 47
-1761,8,Sector 48
-1762,7,Sector 48
-1763,9,Sector 49
-1764,8,Sector 5
-1765,7,Sector 51
-1766,7,Sector 52
-1767,8,Sector 52
-1768,7,Sector 57
-1769,8,Sector 59
-1770,7,Sector 6
-1771,8,Sector 6
-1772,8,Sector 66
-1773,8,Sector 72
-1774,9,Sector 7A
-1775,8,Sector 8
-1776,9,Sector 8
-1777,8,Sector 82
-1778,1,Shahpur Jat
-1779,4,Shakurpur
-1780,6,Shalimar Garden
-1781,3,Shastri Nagar
-1782,6,Shastri Nagar
-1783,1,Sheikh Sarai
-1784,4,Sultanpuri
-1785,2,Swasthya Vihar
-1786,4,Tri Nagar
-1787,6,Vasundhra
-1788,6,Vijay Nagar
-1789,2,Vinod Nagar
-1790,4,Vishnu Garden
-1791,2,Vivek Vihar
-1792,3,Wazirabad
-1793,3,Ashok Vihar
-1794,1,Badarpur
-1795,1,Khel Gaon
-1796,4,Mayapuri
-1797,3,Model Town
-1798,5,Pandara Road
-1799,7,Sushant Lok Phase 1
-1800,1,Tughlaqabad
-1801,4,Patel Nagar
-1802,10,Antop Hill
-1803,14,Bhiwandi
-1804,14,Boisar
-1805,10,Cumballa Hill
-1806,14,Diva
-1807,12,Elephanta Island
-1808,10,Haji Ali Road
-1809,13,Kamothe
-1810,12,Kanjurmarg West
-1811,11,Lonavala
-1812,10,Mandvi
-1813,10,Masjid Bunder
-1814,10,Mazgaon
-1815,14,Mira Bhayandar
-1816,14,Mumbai Pune Road
-1817,14,Mumbra
-1818,14,Nalasopara East
-1819,14,Nalasopara West
-1820,10,Sewri
-1821,14,Virar East
-1822,14,Virar West
-1823,12,Bhandup East
-1824,12,Bhandup West
-1825,14,Bhayandar East
-1826,14,Bhayandar West
-1827,10,Dadar East
-1828,10,Dadar West
-1829,11,Dahisar East
-1830,11,Dahisar West
-1831,14,Dombivli East
-1832,14,Dombivli West
-1833,11,Jogeshwari East
-1834,11,Jogeshwari West
-1835,14,Kalyan East
-1836,14,Kalyan West
-1837,11,Khar East
-1838,11,Khar West
-1839,12,Kurla East
-1840,12,Kurla West
-1841,14,Mira Road East
-1842,14,Thane East
-1843,14,Thane West
-1844,14,Vasai East
-1845,14,Vasai West
-1846,12,Vikhroli East
-1847,12,Vikhroli West
-1848,35,Ambegaon
-1849,34,Lonavala
-1850,36,Mulshi
-1851,95,Bapunagar
-1852,94,Ellis Bridge
-1853,94,Lal Darwaja
-1854,94,Law Garden
-1855,94,Navrangpura
-1856,94,Paldi
-1857,95,Bhadra
-1858,95,Hansol
-1859,94,Kalupur
-1860,95,Kankaria
-1861,95,Khanpur
-1862,95,Maninagar
-1863,95,Raipur
-1864,95,Rakhial
-1865,95,Shahibaug
-1866,39,Adalaj Gandhinagar
-1867,39,Gandhinagar
-1868,41,Satellite
-1869,41,Bodakdev
-1870,41,Drive in Road
-1871,41,Gurukul
-1872,41,Memnagar
-1873,41,Nehru Nagar
-1874,41,Panjrapole
-1875,41,S G Highway
-1876,41,Sarkhej
-1877,41,Thaltej
-1878,41,Vasna
-1879,41,Vastrapur
-1880,41,Vejalpur
-1881,41,Bopal
-1882,39,Sabarmati
-1883,39,Naranpura
-1884,94,Usmanpura
-1885,40,Danilimda
-1886,95,Nava Naroda
-1887,39,Sola
-1888,95,Dariapur
-1889,39,Chandkheda
-1890,39,New Wadaj
-1891,41,Sola Road
-1892,41,Juhapura
-1893,41,Ghatlodia
-1894,41,Gulbai Tekra
-1895,41,Ambawadi
-1896,94,Shahpur
-1897,94,Mirzapur
-1898,94,Khamasa
-1899,94,Raikhad
-1900,94,Sardar Patel Road
-1901,40,Jamalpur
-1902,40,Behrampura
-1903,94,Khadia
-1904,94,Sarangpur
-1905,94,Manek Chowk
-1906,40,Isanpur
-1907,95,Saraspur
-1908,95,Gomtipur
-1909,39,Meghani Nagar
-1910,95,Khokhra Mehmadabad
-1911,95,Odhav
-1912,95,Amraiwadi
-1913,95,Thakkarbapa Nagar
-1914,41,Prahlad Nagar
-1915,39,Gota
-1916,40,Vatva
-1917,40,Narol
-1918,39,Keshav Nagar
-1919,39,Naroda
-1920,39,Mehsana
-1921,95,Nikol
-1922,40,Bavla
-1923,39,Ranip
-1924,95,Vastral
-1925,39,Motera
-1926,39,Chandlodia
-1927,41,Hathijan
-1928,95,Ghodasar
-1929,39,Saijpur Bogha
-1930,41,Chanakyapuri
-1931,39,Kubernagar
-1932,39,Asarwa
-1933,41,Shyamal
-1934,95,Ashram Road
-1935,48,Sector 19
-1936,48,Sector 26
-1937,48,Sector 5
-1938,48,Sector 7
-1939,48,Sector 8
-1940,48,Sector 9
-1941,47,Sector 16
-1942,47,Sector 17
-1943,47,Sector 18
-1944,47,Sector 20
-1945,47,Sector 21
-1946,47,Sector 22
-1947,47,Sector 23
-1948,47,Sector 24
-1949,49,Naya Gaon
-1950,49,Sector 10
-1951,49,Sector 11
-1952,49,Sector 12
-1953,49,Sector 14
-1954,49,Sector 15
-1955,50,Industrial Area Phase 1
-1956,50,Industrial Area Phase 2
-1957,50,Manimajra
-1958,51,Mohali
-1959,50,Sector 27
-1960,50,Sector 28
-1961,50,Sector 29
-1962,50,Sector 30
-1963,50,Sector 31
-1964,50,Sector 32
-1965,50,Sector 33
-1966,50,Sector 44
-1967,50,Sector 45
-1968,50,Sector 46
-1969,50,Sector 47
-1970,50,Sector 48
-1971,50,Sector 49
-1972,51,Sector 25
-1973,51,Sector 34
-1974,51,Sector 35
-1975,51,Sector 36
-1976,51,Sector 37
-1977,51,Sector 38
-1978,51,Sector 40
-1979,51,Sector 41
-1980,51,Sector 42
-1981,51,Sector 43
-1982,51,Panchkula
-1983,51,Zirakpur
-1984,48,Daria
-1985,50,Behlana
-1986,51,Maloya
-1987,53,Sector 59
-1988,53,Sector 64
-1989,53,Sector 60
-1990,53,Sector 61
-1991,53,Kharar
-1992,53,Sector 70
-1993,53,Sector 125
-1994,53,Sector 55
-1995,53,Sector 65
-1996,53,Sector 71
-1997,53,Sector 67
-1998,52,Sector 9
-1999,52,Sector 20
-2000,52,Sector 5
-2001,52,Sector 10
-2002,52,Sector 16
-2003,52,Sector 11
-2004,52,Sector 8
-2005,52,Sector 14
-2006,52,Sector 15
-2007,52,Sector 7
-2008,42,Hall Bazar
-2009,42,Joshi Colony
-2010,42,INA Colony
-2011,45,Verka
-2012,45,Vallah
-2013,43,Ranjit Avenue
-2014,43,Gumtala
-2015,44,Katra Ahluwalia
-2016,44,Bharariwal
-2017,46,Chheharta
-2018,46,Pind Kale
-2019,42,G T Road
-2020,42,Majitha Road
-2021,54,Colva
-2022,54,Margao
-2023,54,Verna
-2024,54,Utorda
-2025,54,Canacona
-2026,54,Cavelossim
-2027,54,Majorda
-2028,54,Cansaulim
-2029,54,Bogmalo
-2030,54,Cortalim
-2031,54,Ponda
-2032,54,Betalbatim
-2033,54,Quepem
-2034,54,Benaulim
-2035,54,Agonda
-2036,55,Calangute
-2037,55,Arpora
-2038,55,Panaji
-2039,55,Candolim
-2040,55,Dona Paula
-2041,55,Baga
-2042,55,Mapusa
-2043,55,Anjuna
-2044,55,Alto Porvorim
-2045,55,Porvorim
-2046,55,Morjim
-2047,55,Pernem
-2048,55,Arambol
-2049,55,Miramar
-2050,55,Vagator
-2051,55,Bicholim
-2052,55,Old Goa
-2053,54,Varca
-2054,54,Palolem
-2055,55,Saligao
-2056,55,Bambolim
-2057,55,Siolim
-2058,55,Agassaim
-2059,55,Sanquelim
-2060,54,Vasco Da Gama
-2061,55,Assagao
-2062,55,Nerul
-2063,55,Sangolda
-2064,60,Pardesi Pura
-2065,60,New Palasia
-2066,60,Old Palasia
-2067,60,Chhatribagh
-2068,60,Navlakha
-2069,58,Dev Nagar
-2070,56,Rahu Kedi
-2071,56,Manglia
-2072,56,Vijay Nagar
-2073,57,Rau
-2074,57,Rajendra Nagar
-2075,59,Sangam Nagar
-2076,58,South Tukoganj
-2077,57,Pipliya Rao
-2078,56,Mahalakshmi Nagar
-2079,60,Rajwada
-2080,59,Bada Ganpati
-2081,57,Vinay Nagar
-2082,57,Sudama Nagar
-2083,57,Dwarkapuri
-2084,58,Tilak Nagar
-2085,58,Chhoti Gwaltoli
-2086,60,Roopram Nagar
-2087,59,Airport Road
-2088,56,Chandra Nagar
-2089,56,Marimata Square
-2090,61,Adarsh Nagar
-2091,61,Agra Road
-2092,65,Bais Godam
-2093,65,Bani Park
-2094,63,Bapu Nagar
-2095,63,Bhawani Singh Road
-2096,62,Brahmpuri
-2097,65,C Scheme
-2098,65,Chandpole
-2099,65,Chaura Rasta
-2100,64,Chitrakoot Scheme
-2101,65,Civil Lines
-2102,63,Durgapura
-2103,62,Gopalbari
-2104,63,Gopalpura
-2105,64,Hasan Pura
-2106,63,Jagatpura
-2107,61,Jawahar Nagar
-2108,62,Jhotwara
-2109,65,Johari Bazaar
-2110,64,Khatipura
-2111,65,Lal Kothi
-2112,63,Malviya Nagar
-2113,63,Mansarovar
-2114,64,Mirza Ismail Road
-2115,61,Narayan Singh Circle
-2116,65,Nehru Bazar
-2117,63,Pratap Nagar
-2118,61,Raja Park
-2119,61,Ramganj
-2120,63,Sanganer
-2121,62,Shastri Nagar
-2122,64,Shyam Nagar
-2123,65,Sindhi Camp
-2124,63,Sitapura
-2125,64,Sodala
-2126,65,Subhash Nagar
-2127,63,Tonk Phatak
-2128,63,Tonk Road
-2129,62,Tripolia Bazaar
-2130,64,Vaishali Nagar
-2131,62,Vidhyadhar Nagar
-2132,62,Vishwakarma Industrial Area
-2133,64,Ajmer Road
-2134,62,Amer Road
-2135,63,Kukas
-2136,64,Panchyawala
-2137,62,Amer
-2138,64,Nirman Nagar
-2139,63,NH 8
-2140,66,Downtown
-2141,66,General Ganj
-2142,66,Mirpur
-2143,66,Shastri Nagar
-2144,68,Gandhigram
-2145,68,Jajmau Sub Metro City
-2146,67,Shukla Ganj
-2147,70,Kidwai Nagar
-2148,69,Kalyanpur
-2149,69,Armapur Estate
-2150,69,Khyora
-2151,69,Nawabganj
-2152,67,Khalasi Line
-2153,67,Ashok Nagar
-2154,67,Kakadeo
-2155,79,Aminabad
-2156,79,Cantonment
-2157,79,Chowk
-2158,79,Indra Nagar
-2159,80,Kamta
-2160,80,Vibhuti Khand
-2161,81,Aliganj
-2162,81,Daulatganj
-2163,81,Jankipuram
-2164,82,Alambagh
-2165,82,Nilmatha
-2166,82,Sindhunagar
-2167,83,Charbagh
-2168,83,Devpur
-2169,83,Rajajipuram
-2170,79,Hazratganj
-2171,82,Krishna Nagar
-2172,80,Gomti Nagar
-2173,82,Ashiyana
-2174,79,Daliganj
-2175,81,Mahanagar
-2176,81,Khurram Nagar
-2177,79,Lalbagh
-2178,89,Mall Road
-2179,90,Sanjauli
-2180,91,Bemloe
-2181,91,Chotta Shimla
-2182,91,New Shimla
-2183,92,Totu
-2184,89,Lakkar Bazar
-2185,90,Dhalli
-2186,92,Tutikandi
-2187,89,Cart Road
-2188,89,National Highway 22
-2189,87,Civil Lines
-2190,87,Old Ludhiana
-2191,87,Dal Bazar
-2192,87,Miller Ganj
-2193,85,Focal Point
-2194,86,Salem Tabri
-2195,88,Model Town
-2196,84,Haibowal Kalan
-2197,85,Jamalpur Colony
-2198,86,Govind Pura
-2199,88,Shimlapuri
-2200,15,Ferozepur Road
-2201,88,Dugri
-2202,84,Hambran Road
-2203,85,Samrala Road
-2204,88,Pakhowal Road
-2205,88,BRS Nagar
-2206,73,B B D Bagh
-2207,73,Bowbazar
-2208,71,Chandni Chowk
-2209,71,Chittaranjan Avenue
-2210,71,Entally
-2211,71,Esplanade
-2212,71,Park Street
-2213,71,Shakespeare Sarani
-2214,78,Dumdum
-2215,72,Kankurgachhi
-2216,72,Lake Town
-2217,72,Rajarhat
-2218,72,Salt Lake
-2219,72,Tangra
-2220,73,Shyambazar
-2221,74,Alipore
-2222,74,Ballygunge
-2223,74,Bhawanipur
-2224,71,Camac Street
-2225,74,Elgin Road
-2226,74,Gariahat
-2227,74,Hazra
-2228,74,Jadavpur
-2229,74,Kalighat
-2230,74,New Alipore
-2231,74,Santoshpur
-2232,74,Tollygunge
-2233,73,Ultadanga
-2234,74,Garia
-2235,74,Rashbehari Avenue
-2236,73,Baranagar
-2237,74,Diamond Harbour Road
-2238,75,Howrah
-2239,74,Park Street
-2240,73,Bidhan Sarani
-2241,74,Jodhpur Park
-2242,74,Russel Street
-2243,72,Bangur Avenue
-2244,71,Ho Chi Minh Sarani
-2245,71,Dharmatala
-2246,74,JBS Haldane Avenue
-2247,74,Behala
-2248,73,MG Road
-2249,74,Southern Avenue
-2250,72,E.M Bypass
-2251,73,Jessore Road
-2252,74,Hindustan Park
-2253,71,Sarat Bose Road
-2254,78,Barrackpore
-2255,73,Belgharia
-2256,72,Beliaghata
-2257,74,AJC Bose Road
-2258,73,Sealdah
-2259,74,Dhakuria
-2260,73,College Street
-2261,71,New Market
-2262,75,New Town
-2263,74,Kalikapur
-2264,71,Dalhousie BBD Bagh
-2265,74,Chowringhee
-2266,71,Mirza Ghalib Street
-2267,76,Kona Expressway
-2268,74,South 24 Parganas
-2269,71,Taltala
-2270,73,Phool Bagan
-2271,74,Park Circus
-2272,76,Shibpur
-2273,75,Parnasree Palli
-2274,74,Thakurpukur
-2275,76,Liluah
-2276,74,Lake Gardens
-2277,74,Golpark
-2278,74,Golf Green
-2279,73,Khardah
-2280,73,Hati Bagan
-2281,73,Maniktala
-2282,74,Kasba
-2283,74,Rabindranath Avenue
-2284,74,Santoshpur Survey Park
-2285,72,Baguiati
-2286,73,Kaikhali
-2287,78,Teghoria
-2288,73,Barasat
-2289,73,Bara Bazar
-2290,73,Girish Park
-2291,73,Sova Bazar
-2292,74,Baghajatin
-2293,75,Kestopur
-2294,75,Kidderpore
-2295,72,Topsia
-2296,73,North 24 Parganas
-2297,75,Minto Park
+"10","1","Greater Kailash - 1"
+"11","1","East of Kailash"
+"12","1","Green Park"
+"13","1","Defence Colony"
+"14","5","Khan Market"
+"15","1","Nizammudin"
+"16","5","Connaught Place"
+"17","5","Chanakyapuri"
+"18","2","Preet Vihar"
+"19","2","Mayur Vihar"
+"20","6","Kaushambhi"
+"21","6","Indirapuram"
+"22","3","Kamla Nagar"
+"23","3","Civil Lines"
+"24","3","Daryaganj"
+"25","4","Rajouri Garden"
+"26","4","Punjabi Bagh"
+"27","7","DLF Phase - 1"
+"28","7","Ambience Mall"
+"29","7","DLF Phase - 3"
+"30","8","Sector 16"
+"31","8","Sector 63"
+"32","9","Mathura Road"
+"33","9","Sector 37"
+"34","8","Sector 18"
+"35","1","Saket"
+"36","1","Vasant Kunj"
+"39","7","Mehrauli"
+"40","1","Nehru Place"
+"43","1","Greater Kailash - 2"
+"44","7","MG Road"
+"45","4","Raja Garden"
+"46","7","DLF Cyber City"
+"48","4","Subhash Nagar"
+"49","1","Mehrauli"
+"50","8","Sector 38A"
+"51","1","Malviya Nagar"
+"54","1","New Friends Colony"
+"55","1","Hauz Khas"
+"56","1","Vasant Vihar"
+"57","1","Satya Niketan"
+"58","1","South Extension - 2"
+"60","1","Lajpat Nagar - 2"
+"61","1","Kalkaji"
+"62","1","Jasola"
+"63","1","Lajpat Nagar - 4"
+"64","1","Aurobindo Marg"
+"65","1","Bhikaji Cama Place"
+"67","1","Safdarjung"
+"68","1","Chitranjan Park"
+"69","1","Khel Gaon Marg"
+"70","1","SDA"
+"71","1","Sainik Farms"
+"72","1","Jungpura"
+"73","1","Kailash Colony"
+"74","5","Sardar Patel Marg"
+"75","1","Suraj Kund"
+"76","1","MG Road"
+"77","1","Mahipalpur"
+"78","1","IGI Airport"
+"80","1","Sarita Vihar"
+"81","1","Yusuf Sarai"
+"82","1","Alaknanda"
+"83","1","Lajpat Nagar - 1"
+"84","1","RK Puram"
+"85","1","South Extension - 1"
+"86","1","Okhla Phase - 1"
+"87","1","Sarojini Nagar"
+"88","1","Geetanjali Enclave"
+"89","1","Munirka"
+"90","1","Okhla Phase - 2"
+"91","1","Panchsheel Park"
+"92","1","Friends Colony"
+"93","1","Okhla Phase - 3"
+"94","1","Qutab Institutional Area"
+"95","1","Shanti Niketan Marg"
+"96","1","Greater Kailash 3"
+"97","1","JNU"
+"98","1","Lajpat Nagar - 3"
+"99","5","Race Course"
+"100","1","Siri Fort Road"
+"101","1","Tughlakabad Institutional Area"
+"102","3","Rohini"
+"103","3","Pitampura"
+"105","3","Delhi University"
+"106","3","Shalimar Bagh"
+"107","3","Ashok Vihar Phase - 1"
+"109","3","Prashant Vihar"
+"110","3","Model Town 2"
+"111","5","Chandni Chowk"
+"112","3","Ashok Vihar Phase - 2"
+"113","3","Model Town 1"
+"115","3","Kashmiri Gate"
+"116","3","Model Town 3"
+"117","3","Wazirpur"
+"118","3","Ashok Vihar Phase - 3"
+"119","3","Azadpur"
+"120","3","GTB Nagar"
+"121","3","Vijay Nagar"
+"122","5","Jama Masjid"
+"124","5","Paharganj"
+"125","5","Lodhi Road"
+"126","5","Lodhi Colony"
+"127","5","Gole Market"
+"128","5","Pandara Road Market"
+"129","5","Mansingh Road"
+"130","5","Aurangzeb Road"
+"131","5","Sundar Nagar"
+"134","7","DLF Phase - 2"
+"135","7","Sector 14"
+"136","7","Sushant Lok"
+"138","7","Palam Vihar"
+"139","7","Sohna Road"
+"140","7","Sector 29"
+"141","7","Sector 15"
+"142","7","Sector 31"
+"143","7","Sector 53"
+"144","7","Sector 56"
+"145","7","Sector 54"
+"146","7","Udyog Vihar"
+"147","7","Sector 23"
+"148","7","Sector 39"
+"149","7","Sector 22"
+"150","7","Sector 4"
+"151","7","South City 2"
+"152","7","DLF Phase - 5"
+"153","7","Sector 50"
+"154","7","Sector 7"
+"155","7","South City 1"
+"156","7","Old Rly Road"
+"157","7","Sector 17"
+"158","7","Sadar Bazar"
+"159","7","Sector 44"
+"160","7","Sector 45"
+"161","7","Sector 43"
+"162","7","Golf Course Road"
+"163","7","Sector 8"
+"164","7","Ardee City"
+"165","7","Sector 12"
+"166","7","Sikandarpur"
+"167","4","Dwarka"
+"168","4","Janakpuri"
+"169","4","Vikaspuri"
+"170","5","Karol Bagh"
+"171","4","Paschim Vihar"
+"173","4","Jail Road"
+"174","4","Tagore Garden"
+"175","4","Tilak Nagar"
+"176","4","East Patel Nagar"
+"177","4","Naraina"
+"178","4","Uttam Nagar"
+"179","4","Kirti Nagar"
+"180","4","West Patel Nagar"
+"181","4","Palam"
+"182","4","Rajinder Nagar"
+"183","4","Delhi Cantt."
+"185","4","Rajendra Place"
+"186","4","Najafgarh"
+"187","4","Moti Nagar"
+"189","4","Lawrence Road"
+"190","4","Inderlok"
+"191","4","Mayapuri Phase - 1"
+"192","4","Mayapuri Phase - 2"
+"193","4","Nangloi"
+"194","4","South Patel Nagar"
+"195","4","Karampura"
+"196","2","Laxmi Nagar"
+"197","2","Mayur Vihar Phase - 1"
+"198","2","Shahadra"
+"200","2","Krishna Nagar"
+"201","2","Patparganj"
+"202","2","Vikas Marg"
+"203","2","IP Extension"
+"204","2","Mayur Vihar Phase - 3"
+"205","2","Dilshad Garden"
+"206","2","Shakarpur"
+"207","2","Chander Nagar"
+"208","2","Vasundhara Enclave"
+"209","2","Trilokpuri"
+"210","2","Dayanand Vihar"
+"211","2","Geeta Colony"
+"212","8","Greater Noida"
+"213","8","Sector 50"
+"214","8","Sector 62"
+"215","8","Sector 61"
+"216","8","Sector 25"
+"217","8","Sector 15"
+"218","8","Sector 27"
+"219","8","Sector 29"
+"221","8","Sector 110"
+"222","8","Sector 127"
+"223","8","Sector 11"
+"225","8","Sector 44"
+"226","8","Sector 26"
+"227","8","Sector 41"
+"228","8","Sector 58"
+"229","8","Sector 12"
+"230","8","Sector 55"
+"231","8","Sector 2"
+"232","8","Sector 28"
+"233","8","Sector 51"
+"234","8","Sector 22"
+"235","8","Sector 7"
+"236","8","Sector 93"
+"237","8","Sector 1"
+"238","8","Sector 17"
+"239","8","Sector 37"
+"240","8","Sector 49"
+"241","8","Sector 53"
+"242","8","Sector 83"
+"243","9","Sector 12"
+"244","9","Sector 15"
+"245","9","Sector 21"
+"247","9","NIT"
+"248","9","Sector 16"
+"249","9","Sector 10"
+"250","9","Sector 31"
+"251","9","Charmswood Village"
+"253","9","Badarpur border"
+"254","9","Sector 14"
+"255","9","Badkal Lake"
+"256","9","Ballabhgarh"
+"257","9","Sector 19"
+"258","9","Sector 29"
+"259","9","Sector 34"
+"260","9","Sector 11"
+"261","9","Sector 28"
+"262","9","Sector 46"
+"263","9","Sector 7"
+"264","9","Sector 3"
+"265","9","Sector 20"
+"266","9","Sector 30"
+"267","9","Sector 9"
+"269","6","Vaishali"
+"271","6","Raj Nagar"
+"272","6","Sahibabad"
+"273","6","Mohan Nagar"
+"274","6","Chander Nagar"
+"275","6","Ramprastha"
+"276","6","Surya Nagar"
+"277","6","Ambedkar Road"
+"278","6","Murad Nagar"
+"279","1","Hauz Khas Village"
+"280","1","Adchini"
+"281","1","Said Ul Ajaib"
+"282","4","Hari Nagar"
+"283","9","Suraj Kund"
+"284","7","DLF Phase 4"
+"286","5","Malcha Marg"
+"287","10","Breach Candy"
+"288","10","Byculla"
+"289","10","Charni Road"
+"290","10","Chowpatty"
+"291","10","Churchgate"
+"292","10","Colaba"
+"293","10","Cuffe Parade"
+"294","10","Dadar"
+"295","10","Fort"
+"296","10","Girgaum"
+"297","10","Grant Road"
+"298","10","Kalbadevi"
+"299","10","Kemps Corner"
+"300","10","Lower Parel"
+"301","10","Mahalaxmi"
+"302","10","Mahim"
+"303","10","Malabar Hill"
+"304","10","Marine Lines"
+"305","10","Mumbai CST Area"
+"306","10","Mumbai Central"
+"307","10","Nariman Point"
+"308","10","Parel"
+"309","10","Peddar Road"
+"310","10","Prabhadevi"
+"311","10","Tardeo"
+"312","10","Worli"
+"313","11","7 Bungalows"
+"314","11","Adarsh Nagar"
+"315","11","Andheri Lokhandwala"
+"316","11","Andheri West"
+"317","11","Andheri East"
+"318","11","Bandra East"
+"319","11","Bandra West"
+"320","11","Bhayandar"
+"321","11","Borivali East"
+"322","11","Borivali West"
+"323","11","Dahisar"
+"324","11","Gorai"
+"325","11","Goregaon East"
+"326","11","Goregaon West"
+"327","11","Jogeshwari"
+"328","11","Juhu"
+"329","11","Kandivali East"
+"330","11","Kandivali West"
+"331","11","Khar"
+"332","11","Malad East"
+"333","11","Malad West"
+"334","11","Marve"
+"335","11","Mira Road"
+"336","11","Oshiwara"
+"337","11","Santacruz East"
+"338","11","Santacruz West"
+"339","11","Vasai"
+"340","11","Versova"
+"341","11","Vile Parle East"
+"342","11","Vile Parle West"
+"343","12","Bhandup"
+"344","12","Chandivali"
+"345","12","Chembur"
+"346","12","Ghatkopar East"
+"347","12","Ghatkopar West"
+"348","12","Kurla"
+"349","12","Mahakali"
+"350","12","Marol"
+"351","12","Matunga"
+"352","12","Matunga West"
+"353","12","Mulund East"
+"354","12","Mulund West"
+"355","12","Powai"
+"356","12","Sakinaka"
+"357","12","Sion"
+"358","12","Trombay"
+"359","12","Vikhroli"
+"360","12","Wadala"
+"361","13","Airoli"
+"362","13","CBD-Belapur"
+"363","13","Ghansoli"
+"364","13","Kharghar"
+"365","13","Kopar Khairane"
+"366","13","Nerul"
+"367","13","Palm Beach Road"
+"368","13","Panvel"
+"369","13","Sanpada"
+"370","13","Seawoods"
+"371","13","Turbhe"
+"372","13","Vashi"
+"373","14","Dombivali"
+"374","14","Kalwa"
+"375","14","Kalyan"
+"376","14","Thane Area"
+"377","14","Ulhasnagar"
+"378","15","MG Road"
+"379","15","Lavelle Road"
+"380","15","Richmond Road"
+"381","15","Residency Road"
+"382","15","Infantary Road"
+"383","15","Brigade Road"
+"384","15","Ulsoor"
+"385","15","Cunningham Road"
+"386","15","Shanti Nagar"
+"387","15","Commercial Street"
+"388","15","Richmond Town"
+"389","15","Shivaji Nagar"
+"390","15","Church Street"
+"391","16","BTM Layout"
+"392","16","Jayanagar"
+"393","16","JP Nagar"
+"394","16","Koramangala"
+"395","16","Bellandur"
+"396","16","Sarjapur Road"
+"397","16","Bannerghatta Road"
+"398","16","Basavanagudi"
+"399","16","HSR Layout"
+"400","16","Banashankari"
+"401","16","Electronic City"
+"402","16","Ashok Nagar"
+"403","16","Doddakallasandra"
+"404","16","HanumanthaNagar"
+"405","16","Kasturba Road"
+"406","16","Magrath Road"
+"407","16","Nagrathpet"
+"408","17","Indiranagar"
+"409","17","Marathahalli"
+"410","17","Domlur"
+"411","17","Whitefield"
+"412","17","Old Madras Road"
+"413","17","Old Airport Road"
+"414","17","Jeevan Bhima Nagar"
+"415","17","Brookefields"
+"416","17","Kadugodi"
+"417","17","Vimanapura"
+"418","17","Dooravani Nagar"
+"419","17","Jayamahal Road"
+"420","17","Mahadevapura"
+"421","17","Byatarayanapura"
+"422","17","Krishnaraja Puram"
+"423","17","Thippasandra"
+"424","17","Varthur"
+"425","17","Ramamurthy Nagar"
+"426","18","Sanjay Nagar"
+"427","18","Frazer Town"
+"428","18","Kalyan Nagar"
+"429","18","Kammanahalli"
+"430","18","New BEL Road"
+"431","18","Banaswadi"
+"432","18","Nagawara"
+"433","18","Hebbal"
+"434","18","RT Nagar"
+"435","18","Yelahanka"
+"436","18","Sahakara Nagar"
+"437","18","Devanahalli"
+"438","18","Hennur"
+"439","18","HBR layout"
+"440","18","Kasturi Nagar"
+"441","18","Mathikere"
+"442","18","Nandhini Layout"
+"443","18","Ganga Nagar"
+"444","18","Jalahalli"
+"445","18","Sadashiva Nagar"
+"446","18","Maruthi Nagar"
+"447","18","St. Thomas Town"
+"448","18","Yeshwantpur"
+"449","19","Race Course Road"
+"450","19","Malleshwaram"
+"451","19","Mysore Road"
+"452","19","Sankey Road"
+"453","19","Sadashiv Nagar"
+"454","19","Rajajinagar"
+"455","19","Seshadripuram"
+"456","19","Rajarajeshwari Nagar"
+"457","19","Vijay Nagar"
+"458","19","Basaveshwara Nagar"
+"459","19","Gandhi Nagar"
+"460","19","Magadi Road"
+"461","19","Majestic"
+"462","19","Kengeri"
+"463","19","Nagarbhavi"
+"464","19","Mahalakshmipuram"
+"465","19","Tumkur Road"
+"466","19","Bidadi"
+"467","19","Vidyaranyapura"
+"468","7","Sector 30"
+"469","7","32nd Milestone"
+"470","7","Cyber City"
+"471","1","Anand Lok"
+"472","7","Sector 49"
+"473","22","Abhiramapuram"
+"474","22","Alwarpet"
+"475","22","Chepauk"
+"476","22","Chetpet"
+"477","22","Chintadripet"
+"478","22","Choolaimedu"
+"479","22","Egmore"
+"480","22","George Town"
+"481","22","Gopalapuram"
+"482","22","Kilpauk"
+"483","22","Kodambakkam"
+"484","22","Kotturpuram"
+"485","22","Mahalingapuram"
+"486","22","Mandavelli"
+"487","22","Mylapore"
+"488","22","Nandanam"
+"489","22","Nungambakkam"
+"490","22","Park Town"
+"491","22","Parrys"
+"492","22","Periamet"
+"493","22","Pudupet"
+"494","22","Purasavakkam"
+"495","22","R.A. Puram"
+"496","22","Royapettah"
+"497","22","Santhome"
+"498","22","Teynampet"
+"499","22","Thousand Lights"
+"500","22","Triplicane"
+"501","22","Vepery"
+"502","23","Kolathur"
+"503","23","Madhavaram"
+"504","23","Minjur"
+"505","23","Perambur"
+"506","23","Red Hills"
+"507","23","Royapuram"
+"508","23","Shenoy Nagar"
+"509","23","Sowcarpet"
+"510","23","Tiruvottiyur"
+"511","23","Tondiarpet"
+"512","23","Vyasarpadi"
+"513","23","Washermanpet"
+"514","24","Adambakkam"
+"515","24","Adyar"
+"516","24","Alandur"
+"517","24","Ashok Nagar"
+"518","24","Besant Nagar"
+"519","24","Chitlapakkam"
+"520","24","Chromepet"
+"521","24","East Coast Road"
+"522","24","Ekkattuthangal"
+"523","24","Gowrivakkam"
+"524","24","GST Road"
+"525","24","Guindy"
+"526","24","Indira Nagar"
+"527","24","Injambakkam"
+"528","24","Kanathur"
+"529","24","Kandanchavadi"
+"530","24","Karapakkam"
+"531","24","Keelkattalai"
+"532","24","KK Nagar"
+"533","24","Kottivakkam"
+"534","24","Madipakkam"
+"535","24","Mahabalipuram"
+"536","24","Manapakkam"
+"537","24","Medavakkam"
+"538","24","Meenambakkam"
+"539","24","MRC Nagar"
+"540","24","Muttukadu"
+"541","24","Nanganallur"
+"542","24","Navalur"
+"543","24","Neelankarai"
+"544","24","Padur"
+"545","24","Palavakkam"
+"546","24","Pallavaram"
+"547","24","Pallikaranai"
+"548","24","Pammal"
+"549","24","Perungalathur"
+"550","24","Perungudi"
+"551","24","Saidapet"
+"552","24","Selaiyur"
+"553","24","Semmencherry"
+"554","24","Sholinganallur"
+"555","24","Siruseri"
+"556","24","St. Thomas Mount"
+"557","24","Tambaram East"
+"558","24","Tharamani"
+"559","24","Thiruvanmiyur"
+"560","24","Thoraipakkam"
+"561","24","Thyagaraya Nagar"
+"562","24","Vandalur"
+"563","24","Velachery"
+"564","24","Vettuvankeni"
+"565","24","West Mambalam"
+"566","25","Alwarthirunagar"
+"567","25","Ambattur"
+"568","25","Aminjikarai"
+"569","25","Anakaputhur"
+"570","25","Anna Nagar"
+"571","25","Arumbakkam"
+"572","25","Avadi"
+"573","25","Ayanavaram"
+"574","25","Iyyapanthangal"
+"575","25","Kancheepuram"
+"576","25","Kattupakkam"
+"577","25","Koyambedu"
+"578","25","Maduravoyal"
+"579","25","Mogappair"
+"580","25","Nandambakkam"
+"581","25","Padi"
+"582","25","Poonamallee"
+"583","25","Porur"
+"584","25","Ramapuram"
+"585","25","Saligramam"
+"586","25","Sriperumbudur"
+"587","25","Thirumullaivoyal Colony"
+"588","25","Vadapalani"
+"589","25","Valasaravakkam"
+"590","25","Villivakkam"
+"591","25","Virugambakkam"
+"592","26","Abids"
+"593","26","Ameerpet"
+"594","26","Banjara Hills"
+"595","26","Basheerbagh"
+"596","26","Begumpet"
+"597","26","Himayath Nagar"
+"598","26","Hitech City"
+"599","26","Jubilee Hills"
+"600","26","Kavadiguda"
+"601","26","Khairatabad"
+"602","26","Lakdi-Ka-Pul"
+"603","26","Masab Tank"
+"604","26","Necklace Road"
+"605","26","Panjagutta"
+"606","26","Saifabad"
+"607","26","Sindhi Colony"
+"608","26","Somajiguda"
+"609","26","SR Nagar"
+"610","26","Sri Nagar"
+"611","26","Tank Bund"
+"612","26","Yousufguda"
+"613","27","Amberpet"
+"614","27","Chikkadpally"
+"615","27","Chilkal Guda"
+"616","27","Dammaiguda"
+"617","27","East Marredpalli"
+"618","27","Habsiguda"
+"619","27","Kapra"
+"620","27","Keesara"
+"621","27","Kothapet"
+"622","27","Malkajgiri"
+"623","27","Mallapur"
+"624","27","Mettu Guda"
+"625","27","Musheerbad"
+"626","27","Nacharam"
+"627","27","Nagole"
+"628","27","Padma Rao Nagar"
+"629","27","Ramanthapur"
+"630","27","RTC X Road"
+"631","27","Tarnaka"
+"632","27","Uppal"
+"633","27","Vidya Nagar"
+"634","27","Warasiguda"
+"635","28","A.S Rao Nagar"
+"636","28","Alwal"
+"637","28","Balanagar"
+"638","28","Bowenpally"
+"639","28","Jeedimetla"
+"640","28","Kompally"
+"641","28","Kukatpally"
+"642","28","Kushaiguda"
+"643","28","Moosapet"
+"644","28","Neredimet"
+"645","28","Nizampet"
+"646","28","Sainik Puri"
+"647","28","Sanath Nagar"
+"648","28","Shameerpet"
+"649","28","Sikh Village"
+"650","28","Trimulgherry"
+"651","28","West Marredpalli"
+"652","29","Karkhana"
+"653","29","MG Road"
+"654","29","Parade Grounds"
+"655","29","SD Road"
+"656","29","Secunderabad"
+"657","29","SP Road"
+"658","30","Attapur"
+"659","30","Begum Bazaar"
+"660","30","Chandrayana Gutta"
+"661","30","Charminar"
+"662","30","Dilsukh Nagar"
+"663","30","Falaknuma"
+"664","30","Ghansi Bazar"
+"665","30","Hyder Guda"
+"666","30","Kachiguda"
+"667","30","Karman Ghat"
+"668","30","Koti"
+"669","30","L B Nagar"
+"670","30","Malakpet"
+"671","30","Mallepalli North"
+"672","30","Meerpet"
+"673","30","Mehdipatnam"
+"674","30","Nallakunta"
+"675","30","Nampally"
+"676","30","Narayana Guda"
+"677","30","Rajendra Nagar"
+"678","30","Santosh Nagar"
+"679","30","Saroor Nagar West"
+"680","30","Shamshabad"
+"681","30","Sivarampalli"
+"682","30","Vanasthalipuram"
+"683","30","Yakutpura"
+"684","31","Bandlaguda"
+"685","31","Chanda Nagar"
+"686","31","Erragadda"
+"687","31","Gachibowli"
+"688","31","Kondapur"
+"689","31","Kothaguda"
+"690","31","Lingampally"
+"691","31","Madhapur"
+"692","31","Manikonda"
+"693","31","Miyapur"
+"694","31","Moti Nagar"
+"695","31","Tolichowki"
+"696","32","Bhawanipeth"
+"697","32","Budhwar Peth"
+"698","32","Bund Garden Road"
+"699","32","Camp"
+"700","32","MG Road"
+"701","32","Nana Peth"
+"702","32","Navi Peth"
+"703","32","Rasta Peth"
+"704","32","Raviwar Peth"
+"705","32","Sadashiv Peth"
+"706","32","Sasoon Road"
+"707","32","Shanivar Peth"
+"708","32","Shivaji Nagar"
+"709","32","Shukrawar Peth"
+"710","32","Station Road"
+"711","32","Wakad"
+"712","33","Alandi Road"
+"713","33","Chandan Nagar"
+"714","33","Fatima Nagar"
+"715","33","Hadapsar"
+"716","33","Kalyani Nagar"
+"717","33","Kharadi"
+"718","33","Koregaon Park"
+"719","33","Lohegaon"
+"720","33","Magarpatta City"
+"721","33","Mundhwa"
+"722","33","Nagar Road"
+"723","33","Viman Nagar"
+"724","33","Viman Nagar Road"
+"725","33","Vishrantwadi"
+"726","33","Wadgaon Sheri"
+"727","33","Wagholi"
+"728","33","Wanowari"
+"729","33","Yerwada"
+"730","34","Akurdi"
+"731","34","Bhosari"
+"732","34","Bopodi"
+"733","34","Chakan"
+"734","34","Chinchwad"
+"735","34","Dhole Patil Road"
+"736","34","Ghorpadi"
+"737","34","Hinjewadi"
+"738","34","Khadki"
+"739","34","Mumbai Pune Highway"
+"740","34","Nigdi"
+"741","34","Pimpale Gurav"
+"742","34","Pimple Saudagar"
+"743","34","Pimpri"
+"744","34","Pimpri Chinchawad Road"
+"745","34","Pradhikaran Nigdi"
+"746","34","Rahatani"
+"747","34","Ravet"
+"748","34","Tathawade"
+"749","34","Thergaon"
+"750","35","Ambegaon Area"
+"751","35","Anand Nagar"
+"752","35","Dapodi"
+"753","35","Dhankawdi"
+"754","35","Dhayari"
+"755","35","Karve Nagar"
+"756","35","Katraj"
+"757","35","Kondhwa"
+"758","35","Laxmi Road"
+"759","35","Loni Kalbhor"
+"760","35","Mukund Nagar"
+"761","35","Narhe"
+"762","35","NIBM Road"
+"763","35","Parvati"
+"764","35","Sahakar Nagar"
+"765","35","Sangamwadi"
+"766","35","Sangvi"
+"767","35","Satara Road"
+"768","35","Sinhagad Road"
+"769","35","Swargate"
+"770","35","Tilak Road"
+"771","35","Vadgaon Budrukh"
+"772","35","Wadgaon-Budruk"
+"773","35","Wanawadi"
+"774","36","Aundh"
+"775","36","Balewadi"
+"776","36","Baner"
+"777","36","Baner Road"
+"778","36","Bavdhan"
+"779","36","Bibwewadi"
+"780","36","Deccan Gymkhana"
+"781","36","Erandwane"
+"782","36","F.C. Road"
+"783","36","Ganeshkhind"
+"784","36","J.M.Road"
+"785","36","Kothrud"
+"786","36","Model Colony"
+"787","36","Narayan Peth"
+"788","36","Pashan"
+"789","36","Paud Road"
+"790","36","Pimple Nilakh"
+"791","36","Senapati Bapat Road"
+"792","36","Warje"
+"793","2","Mayur Vihar Phase - 2"
+"794","7","Cyber Hub"
+"1553","8","Sector 15"
+"1554","8","Sector 15 A"
+"1555","24","Old Mahabalipuram Road (OMR)"
+"1556","1","Okhla"
+"1557","17","Madhavanagar"
+"1558","7","Sector 39"
+"1560","36","Pune University"
+"1561","15","St. Marks Road"
+"1562","15","Vijay Mallya Road"
+"1565","17","Kalyan Nagar"
+"1566","16","Adugodi"
+"1567","16","Bangalore Mysore Highway"
+"1568","16","Bommanahalli"
+"1569","17","Cambridge Layout"
+"1570","16","Chamarajpet"
+"1571","19","Chandra Layout"
+"1572","16","Chikpete"
+"1573","17","Cox Town"
+"1574","17","CV Raman Nagar"
+"1575","18","Devarajivanahalli"
+"1576","16","Ejipura"
+"1577","15","High Grounds"
+"1578","16","Hosur Road"
+"1579","17","HRBR Layout"
+"1580","16","JC Road"
+"1581","17","Kadubisanahalli"
+"1582","17","Kaggadasapura"
+"1583","16","Kanakapura Road"
+"1584","17","Kodihalli"
+"1585","17","KR Puram"
+"1586","16","Kumaraswamy Layout"
+"1587","17","Kundalahalli"
+"1588","16","Madiwala"
+"1589","17","Murugeshpalya"
+"1590","17","Narayanapura"
+"1591","17","New Thippasandra"
+"1592","19","Peenya"
+"1593","15","Sampangirama Nagar"
+"1594","16","SG Palya"
+"1595","16","Singasandra"
+"1596","15","St Marks Road"
+"1597","16","Uttarahalli"
+"1598","15","Vasanth Nagar"
+"1599","15","Vittal Mallya Road"
+"1600","16","VV Puram"
+"1601","16","Wilson Garden"
+"1645","1","Aaya Nagar"
+"1646","3","Adarsh Nagar"
+"1647","5","Ajmeri Gate"
+"1648","3","Alipur"
+"1649","4","Anand Parbat"
+"1650","2","Anand Vihar"
+"1651","1","Andrews Ganj"
+"1652","3","Aruna Nagar"
+"1653","4","Bali Nagar"
+"1654","3","Bawana"
+"1655","3","Begampur"
+"1656","1","Ber Sarai"
+"1657","3","Budh Vihar"
+"1658","3","Burari"
+"1659","1","Chattarpur"
+"1660","5","Chawri Bazar"
+"1661","7","Civil Lines"
+"1662","6","Crossings Republik"
+"1663","6","Daulatpura"
+"1664","7","Delhi Gurgaon Expressway"
+"1665","7","DLF Golf Course Road"
+"1666","5","Dr Zakir Hussain Marg"
+"1667","6","Gandhi Nagar"
+"1668","1","Gautam Nagar"
+"1669","2","Gazipur"
+"1670","2","Gokalpur"
+"1671","9","Green Fields Colony"
+"1672","3","Gujranwala Town"
+"1673","7","IMT Manesar"
+"1674","1","INA"
+"1675","4","Inderpuri"
+"1676","5","ITO"
+"1677","3","Jahangirpuri"
+"1678","5","Janpath"
+"1679","4","Jhandewalan"
+"1680","2","Kalyan Puri"
+"1681","6","Kamla Nehru Nagar"
+"1682","1","Kapashera"
+"1683","2","Karawal Nagar"
+"1684","2","Karkardooma"
+"1685","6","Kavi Nagar"
+"1686","3","Keshav Puram"
+"1687","1","Khanpur"
+"1688","6","Lal Kuan"
+"1689","6","Lohia Nagar"
+"1690","6","Loni"
+"1691","6","Madhopura"
+"1692","2","Mandawali"
+"1693","3","Mandoli"
+"1694","4","Mangolpuri"
+"1695","4","Mansarovar Garden"
+"1696","1","Moti Bagh"
+"1697","3","Mukherjee Nagar"
+"1698","3","Mukundpur"
+"1699","4","Mundka"
+"1700","3","Narela"
+"1701","6","Naya Ganj"
+"1702","2","New Ashok Nagar"
+"1703","7","NH 8"
+"1704","7","Old Delhi Road"
+"1705","2","Pandav Nagar"
+"1706","6","Patel Nagar"
+"1707","4","Peeragarhi"
+"1708","5","Pragati Maidan"
+"1709","6","Pratap Vihar"
+"1710","4","Raj Nagar"
+"1711","6","Rajendra Nagar"
+"1712","1","Rajokri"
+"1713","4","Ramesh Nagar"
+"1714","1","Rangpuri"
+"1715","3","Rani Bagh"
+"1716","3","Sabzi Mandi"
+"1717","5","Sadar Bazar"
+"1718","1","Samalkha"
+"1719","3","Samaypur"
+"1720","1","Sangam Vihar"
+"1721","3","Sanjay Gandhi Transport Nagar"
+"1722","3","Sarup Nagar"
+"1723","8","Sector 10"
+"1724","7","Sector 10"
+"1725","8","Sector 102"
+"1726","8","Sector 104"
+"1727","8","Sector 120"
+"1728","8","Sector 125"
+"1729","7","Sector 13"
+"1730","8","Sector 132"
+"1731","8","Sector 135"
+"1732","8","Sector 142"
+"1733","8","Sector 144"
+"1734","9","Sector 15A"
+"1735","9","Sector 17"
+"1736","9","Sector 18"
+"1737","8","Sector 20"
+"1738","8","Sector 21"
+"1739","9","Sector 23"
+"1740","8","Sector 25A"
+"1741","7","Sector 26"
+"1742","8","Sector 3"
+"1743","7","Sector 3"
+"1744","8","Sector 30"
+"1745","8","Sector 31"
+"1746","8","Sector 32"
+"1747","7","Sector 32"
+"1748","7","Sector 33"
+"1749","8","Sector 34"
+"1750","8","Sector 35"
+"1751","9","Sector 35"
+"1752","7","Sector 37"
+"1753","8","Sector 38"
+"1754","7","Sector 38"
+"1755","8","Sector 39"
+"1756","7","Sector 40"
+"1757","8","Sector 40"
+"1758","8","Sector 45"
+"1759","7","Sector 46"
+"1760","7","Sector 47"
+"1761","8","Sector 48"
+"1762","7","Sector 48"
+"1763","9","Sector 49"
+"1764","8","Sector 5"
+"1765","7","Sector 51"
+"1766","7","Sector 52"
+"1767","8","Sector 52"
+"1768","7","Sector 57"
+"1769","8","Sector 59"
+"1770","7","Sector 6"
+"1771","8","Sector 6"
+"1772","8","Sector 66"
+"1773","8","Sector 72"
+"1774","9","Sector 7A"
+"1775","8","Sector 8"
+"1776","9","Sector 8"
+"1777","8","Sector 82"
+"1778","1","Shahpur Jat"
+"1779","4","Shakurpur"
+"1780","6","Shalimar Garden"
+"1781","3","Shastri Nagar"
+"1782","6","Shastri Nagar"
+"1783","1","Sheikh Sarai"
+"1784","4","Sultanpuri"
+"1785","2","Swasthya Vihar"
+"1786","4","Tri Nagar"
+"1787","6","Vasundhra"
+"1788","6","Vijay Nagar"
+"1789","2","Vinod Nagar"
+"1790","4","Vishnu Garden"
+"1791","2","Vivek Vihar"
+"1792","3","Wazirabad"
+"1793","3","Ashok Vihar"
+"1794","1","Badarpur"
+"1795","1","Khel Gaon"
+"1796","4","Mayapuri"
+"1797","3","Model Town"
+"1798","5","Pandara Road"
+"1799","7","Sushant Lok Phase 1"
+"1800","1","Tughlaqabad"
+"1801","4","Patel Nagar"
+"1802","10","Antop Hill"
+"1803","14","Bhiwandi"
+"1804","14","Boisar"
+"1805","10","Cumballa Hill"
+"1806","14","Diva"
+"1807","12","Elephanta Island"
+"1808","10","Haji Ali Road"
+"1809","13","Kamothe"
+"1810","12","Kanjurmarg West"
+"1811","11","Lonavala"
+"1812","10","Mandvi"
+"1813","10","Masjid Bunder"
+"1814","10","Mazgaon"
+"1815","14","Mira Bhayandar"
+"1816","14","Mumbai Pune Road"
+"1817","14","Mumbra"
+"1818","14","Nalasopara East"
+"1819","14","Nalasopara West"
+"1820","10","Sewri"
+"1821","14","Virar East"
+"1822","14","Virar West"
+"1823","12","Bhandup East"
+"1824","12","Bhandup West"
+"1825","14","Bhayandar East"
+"1826","14","Bhayandar West"
+"1827","10","Dadar East"
+"1828","10","Dadar West"
+"1829","11","Dahisar East"
+"1830","11","Dahisar West"
+"1831","14","Dombivli East"
+"1832","14","Dombivli West"
+"1833","11","Jogeshwari East"
+"1834","11","Jogeshwari West"
+"1835","14","Kalyan East"
+"1836","14","Kalyan West"
+"1837","11","Khar East"
+"1838","11","Khar West"
+"1839","12","Kurla East"
+"1840","12","Kurla West"
+"1841","14","Mira Road East"
+"1842","14","Thane East"
+"1843","14","Thane West"
+"1844","14","Vasai East"
+"1845","14","Vasai West"
+"1846","12","Vikhroli East"
+"1847","12","Vikhroli West"
+"1848","35","Ambegaon"
+"1849","34","Lonavala"
+"1850","36","Mulshi"
+"1851","95","Bapunagar"
+"1852","94","Ellis Bridge"
+"1853","94","Lal Darwaja"
+"1854","94","Law Garden"
+"1855","94","Navrangpura"
+"1856","94","Paldi"
+"1857","95","Bhadra"
+"1858","95","Hansol"
+"1859","94","Kalupur"
+"1860","95","Kankaria"
+"1861","95","Khanpur"
+"1862","95","Maninagar"
+"1863","95","Raipur"
+"1864","95","Rakhial"
+"1865","95","Shahibaug"
+"1866","39","Adalaj Gandhinagar"
+"1867","39","Gandhinagar"
+"1868","41","Satellite"
+"1869","41","Bodakdev"
+"1870","41","Drive in Road"
+"1871","41","Gurukul"
+"1872","41","Memnagar"
+"1873","41","Nehru Nagar"
+"1874","41","Panjrapole"
+"1875","41","S G Highway"
+"1876","41","Sarkhej"
+"1877","41","Thaltej"
+"1878","41","Vasna"
+"1879","41","Vastrapur"
+"1880","41","Vejalpur"
+"1881","41","Bopal"
+"1882","39","Sabarmati"
+"1883","39","Naranpura"
+"1884","94","Usmanpura"
+"1885","40","Danilimda"
+"1886","95","Nava Naroda"
+"1887","39","Sola"
+"1888","95","Dariapur"
+"1889","39","Chandkheda"
+"1890","39","New Wadaj"
+"1891","41","Sola Road"
+"1892","41","Juhapura"
+"1893","41","Ghatlodia"
+"1894","41","Gulbai Tekra"
+"1895","41","Ambawadi"
+"1896","94","Shahpur"
+"1897","94","Mirzapur"
+"1898","94","Khamasa"
+"1899","94","Raikhad"
+"1900","94","Sardar Patel Road"
+"1901","40","Jamalpur"
+"1902","40","Behrampura"
+"1903","94","Khadia"
+"1904","94","Sarangpur"
+"1905","94","Manek Chowk"
+"1906","40","Isanpur"
+"1907","95","Saraspur"
+"1908","95","Gomtipur"
+"1909","39","Meghani Nagar"
+"1910","95","Khokhra Mehmadabad"
+"1911","95","Odhav"
+"1912","95","Amraiwadi"
+"1913","95","Thakkarbapa Nagar"
+"1914","41","Prahlad Nagar"
+"1915","39","Gota"
+"1916","40","Vatva"
+"1917","40","Narol"
+"1918","39","Keshav Nagar"
+"1919","39","Naroda"
+"1920","39","Mehsana"
+"1921","95","Nikol"
+"1922","40","Bavla"
+"1923","39","Ranip"
+"1924","95","Vastral"
+"1925","39","Motera"
+"1926","39","Chandlodia"
+"1927","41","Hathijan"
+"1928","95","Ghodasar"
+"1929","39","Saijpur Bogha"
+"1930","41","Chanakyapuri"
+"1931","39","Kubernagar"
+"1932","39","Asarwa"
+"1933","41","Shyamal"
+"1934","95","Ashram Road"
+"1935","48","Sector 19"
+"1936","48","Sector 26"
+"1937","48","Sector 5"
+"1938","48","Sector 7"
+"1939","48","Sector 8"
+"1940","48","Sector 9"
+"1941","47","Sector 16"
+"1942","47","Sector 17"
+"1943","47","Sector 18"
+"1944","47","Sector 20"
+"1945","47","Sector 21"
+"1946","47","Sector 22"
+"1947","47","Sector 23"
+"1948","47","Sector 24"
+"1949","49","Naya Gaon"
+"1950","49","Sector 10"
+"1951","49","Sector 11"
+"1952","49","Sector 12"
+"1953","49","Sector 14"
+"1954","49","Sector 15"
+"1955","50","Industrial Area Phase 1"
+"1956","50","Industrial Area Phase 2"
+"1957","50","Manimajra"
+"1958","51","Mohali"
+"1959","50","Sector 27"
+"1960","50","Sector 28"
+"1961","50","Sector 29"
+"1962","50","Sector 30"
+"1963","50","Sector 31"
+"1964","50","Sector 32"
+"1965","50","Sector 33"
+"1966","50","Sector 44"
+"1967","50","Sector 45"
+"1968","50","Sector 46"
+"1969","50","Sector 47"
+"1970","50","Sector 48"
+"1971","50","Sector 49"
+"1972","51","Sector 25"
+"1973","51","Sector 34"
+"1974","51","Sector 35"
+"1975","51","Sector 36"
+"1976","51","Sector 37"
+"1977","51","Sector 38"
+"1978","51","Sector 40"
+"1979","51","Sector 41"
+"1980","51","Sector 42"
+"1981","51","Sector 43"
+"1982","51","Panchkula"
+"1983","51","Zirakpur"
+"1984","48","Daria"
+"1985","50","Behlana"
+"1986","51","Maloya"
+"1987","53","Sector 59"
+"1988","53","Sector 64"
+"1989","53","Sector 60"
+"1990","53","Sector 61"
+"1991","53","Kharar"
+"1992","53","Sector 70"
+"1993","53","Sector 125"
+"1994","53","Sector 55"
+"1995","53","Sector 65"
+"1996","53","Sector 71"
+"1997","53","Sector 67"
+"1998","52","Sector 9"
+"1999","52","Sector 20"
+"2000","52","Sector 5"
+"2001","52","Sector 10"
+"2002","52","Sector 16"
+"2003","52","Sector 11"
+"2004","52","Sector 8"
+"2005","52","Sector 14"
+"2006","52","Sector 15"
+"2007","52","Sector 7"
+"2008","42","Hall Bazar"
+"2009","42","Joshi Colony"
+"2010","42","INA Colony"
+"2011","45","Verka"
+"2012","45","Vallah"
+"2013","43","Ranjit Avenue"
+"2014","43","Gumtala"
+"2015","44","Katra Ahluwalia"
+"2016","44","Bharariwal"
+"2017","46","Chheharta"
+"2018","46","Pind Kale"
+"2019","42","G T Road"
+"2020","42","Majitha Road"
+"2021","54","Colva"
+"2022","54","Margao"
+"2023","54","Verna"
+"2024","54","Utorda"
+"2025","54","Canacona"
+"2026","54","Cavelossim"
+"2027","54","Majorda"
+"2028","54","Cansaulim"
+"2029","54","Bogmalo"
+"2030","54","Cortalim"
+"2031","54","Ponda"
+"2032","54","Betalbatim"
+"2033","54","Quepem"
+"2034","54","Benaulim"
+"2035","54","Agonda"
+"2036","55","Calangute"
+"2037","55","Arpora"
+"2038","55","Panaji"
+"2039","55","Candolim"
+"2040","55","Dona Paula"
+"2041","55","Baga"
+"2042","55","Mapusa"
+"2043","55","Anjuna"
+"2044","55","Alto Porvorim"
+"2045","55","Porvorim"
+"2046","55","Morjim"
+"2047","55","Pernem"
+"2048","55","Arambol"
+"2049","55","Miramar"
+"2050","55","Vagator"
+"2051","55","Bicholim"
+"2052","55","Old Goa"
+"2053","54","Varca"
+"2054","54","Palolem"
+"2055","55","Saligao"
+"2056","55","Bambolim"
+"2057","55","Siolim"
+"2058","55","Agassaim"
+"2059","55","Sanquelim"
+"2060","54","Vasco Da Gama"
+"2061","55","Assagao"
+"2062","55","Nerul"
+"2063","55","Sangolda"
+"2064","60","Pardesi Pura"
+"2065","60","New Palasia"
+"2066","60","Old Palasia"
+"2067","60","Chhatribagh"
+"2068","60","Navlakha"
+"2069","58","Dev Nagar"
+"2070","56","Rahu Kedi"
+"2071","56","Manglia"
+"2072","56","Vijay Nagar"
+"2073","57","Rau"
+"2074","57","Rajendra Nagar"
+"2075","59","Sangam Nagar"
+"2076","58","South Tukoganj"
+"2077","57","Pipliya Rao"
+"2078","56","Mahalakshmi Nagar"
+"2079","60","Rajwada"
+"2080","59","Bada Ganpati"
+"2081","57","Vinay Nagar"
+"2082","57","Sudama Nagar"
+"2083","57","Dwarkapuri"
+"2084","58","Tilak Nagar"
+"2085","58","Chhoti Gwaltoli"
+"2086","60","Roopram Nagar"
+"2087","59","Airport Road"
+"2088","56","Chandra Nagar"
+"2089","56","Marimata Square"
+"2090","61","Adarsh Nagar"
+"2091","61","Agra Road"
+"2092","65","Bais Godam"
+"2093","65","Bani Park"
+"2094","63","Bapu Nagar"
+"2095","63","Bhawani Singh Road"
+"2096","62","Brahmpuri"
+"2097","65","C Scheme"
+"2098","65","Chandpole"
+"2099","65","Chaura Rasta"
+"2100","64","Chitrakoot Scheme"
+"2101","65","Civil Lines"
+"2102","63","Durgapura"
+"2103","62","Gopalbari"
+"2104","63","Gopalpura"
+"2105","64","Hasan Pura"
+"2106","63","Jagatpura"
+"2107","61","Jawahar Nagar"
+"2108","62","Jhotwara"
+"2109","65","Johari Bazaar"
+"2110","64","Khatipura"
+"2111","65","Lal Kothi"
+"2112","63","Malviya Nagar"
+"2113","63","Mansarovar"
+"2114","64","Mirza Ismail Road"
+"2115","61","Narayan Singh Circle"
+"2116","65","Nehru Bazar"
+"2117","63","Pratap Nagar"
+"2118","61","Raja Park"
+"2119","61","Ramganj"
+"2120","63","Sanganer"
+"2121","62","Shastri Nagar"
+"2122","64","Shyam Nagar"
+"2123","65","Sindhi Camp"
+"2124","63","Sitapura"
+"2125","64","Sodala"
+"2126","65","Subhash Nagar"
+"2127","63","Tonk Phatak"
+"2128","63","Tonk Road"
+"2129","62","Tripolia Bazaar"
+"2130","64","Vaishali Nagar"
+"2131","62","Vidhyadhar Nagar"
+"2132","62","Vishwakarma Industrial Area"
+"2133","64","Ajmer Road"
+"2134","62","Amer Road"
+"2135","63","Kukas"
+"2136","64","Panchyawala"
+"2137","62","Amer"
+"2138","64","Nirman Nagar"
+"2139","63","NH 8"
+"2140","66","Downtown"
+"2141","66","General Ganj"
+"2142","66","Mirpur"
+"2143","66","Shastri Nagar"
+"2144","68","Gandhigram"
+"2145","68","Jajmau Sub Metro City"
+"2146","67","Shukla Ganj"
+"2147","70","Kidwai Nagar"
+"2148","69","Kalyanpur"
+"2149","69","Armapur Estate"
+"2150","69","Khyora"
+"2151","69","Nawabganj"
+"2152","67","Khalasi Line"
+"2153","67","Ashok Nagar"
+"2154","67","Kakadeo"
+"2155","79","Aminabad"
+"2156","79","Cantonment"
+"2157","79","Chowk"
+"2158","79","Indra Nagar"
+"2159","80","Kamta"
+"2160","80","Vibhuti Khand"
+"2161","81","Aliganj"
+"2162","81","Daulatganj"
+"2163","81","Jankipuram"
+"2164","82","Alambagh"
+"2165","82","Nilmatha"
+"2166","82","Sindhunagar"
+"2167","83","Charbagh"
+"2168","83","Devpur"
+"2169","83","Rajajipuram"
+"2170","79","Hazratganj"
+"2171","82","Krishna Nagar"
+"2172","80","Gomti Nagar"
+"2173","82","Ashiyana"
+"2174","79","Daliganj"
+"2175","81","Mahanagar"
+"2176","81","Khurram Nagar"
+"2177","79","Lalbagh"
+"2178","89","Mall Road"
+"2179","90","Sanjauli"
+"2180","91","Bemloe"
+"2181","91","Chotta Shimla"
+"2182","91","New Shimla"
+"2183","92","Totu"
+"2184","89","Lakkar Bazar"
+"2185","90","Dhalli"
+"2186","92","Tutikandi"
+"2187","89","Cart Road"
+"2188","89","National Highway 22"
+"2189","87","Civil Lines"
+"2190","87","Old Ludhiana"
+"2191","87","Dal Bazar"
+"2192","87","Miller Ganj"
+"2193","85","Focal Point"
+"2194","86","Salem Tabri"
+"2195","88","Model Town"
+"2196","84","Haibowal Kalan"
+"2197","85","Jamalpur Colony"
+"2198","86","Govind Pura"
+"2199","88","Shimlapuri"
+"2200","15","Ferozepur Road"
+"2201","88","Dugri"
+"2202","84","Hambran Road"
+"2203","85","Samrala Road"
+"2204","88","Pakhowal Road"
+"2205","88","BRS Nagar"
+"2206","73","B B D Bagh"
+"2207","73","Bowbazar"
+"2208","71","Chandni Chowk"
+"2209","71","Chittaranjan Avenue"
+"2210","71","Entally"
+"2211","71","Esplanade"
+"2212","71","Park Street"
+"2213","71","Shakespeare Sarani"
+"2214","78","Dumdum"
+"2215","72","Kankurgachhi"
+"2216","72","Lake Town"
+"2217","72","Rajarhat"
+"2218","72","Salt Lake"
+"2219","72","Tangra"
+"2220","73","Shyambazar"
+"2221","74","Alipore"
+"2222","74","Ballygunge"
+"2223","74","Bhawanipur"
+"2224","71","Camac Street"
+"2225","74","Elgin Road"
+"2226","74","Gariahat"
+"2227","74","Hazra"
+"2228","74","Jadavpur"
+"2229","74","Kalighat"
+"2230","74","New Alipore"
+"2231","74","Santoshpur"
+"2232","74","Tollygunge"
+"2233","73","Ultadanga"
+"2234","74","Garia"
+"2235","74","Rashbehari Avenue"
+"2236","73","Baranagar"
+"2237","74","Diamond Harbour Road"
+"2238","75","Howrah"
+"2239","74","Park Street"
+"2240","73","Bidhan Sarani"
+"2241","74","Jodhpur Park"
+"2242","74","Russel Street"
+"2243","72","Bangur Avenue"
+"2244","71","Ho Chi Minh Sarani"
+"2245","71","Dharmatala"
+"2246","74","JBS Haldane Avenue"
+"2247","74","Behala"
+"2248","73","MG Road"
+"2249","74","Southern Avenue"
+"2250","72","E.M Bypass"
+"2251","73","Jessore Road"
+"2252","74","Hindustan Park"
+"2253","71","Sarat Bose Road"
+"2254","78","Barrackpore"
+"2255","73","Belgharia"
+"2256","72","Beliaghata"
+"2257","74","AJC Bose Road"
+"2258","73","Sealdah"
+"2259","74","Dhakuria"
+"2260","73","College Street"
+"2261","71","New Market"
+"2262","75","New Town"
+"2263","74","Kalikapur"
+"2264","71","Dalhousie BBD Bagh"
+"2265","74","Chowringhee"
+"2266","71","Mirza Ghalib Street"
+"2267","76","Kona Expressway"
+"2268","74","South 24 Parganas"
+"2269","71","Taltala"
+"2270","73","Phool Bagan"
+"2271","74","Park Circus"
+"2272","76","Shibpur"
+"2273","75","Parnasree Palli"
+"2274","74","Thakurpukur"
+"2275","76","Liluah"
+"2276","74","Lake Gardens"
+"2277","74","Golpark"
+"2278","74","Golf Green"
+"2279","73","Khardah"
+"2280","73","Hati Bagan"
+"2281","73","Maniktala"
+"2282","74","Kasba"
+"2283","74","Rabindranath Avenue"
+"2284","74","Santoshpur Survey Park"
+"2285","72","Baguiati"
+"2286","73","Kaikhali"
+"2287","78","Teghoria"
+"2288","73","Barasat"
+"2289","73","Bara Bazar"
+"2290","73","Girish Park"
+"2291","73","Sova Bazar"
+"2292","74","Baghajatin"
+"2293","75","Kestopur"
+"2294","75","Kidderpore"
+"2295","72","Topsia"
+"2296","73","North 24 Parganas"
+"2297","75","Minto Park"
+"2298","39","Vaishno Devi Circle"
+"2299","31","Film Nagar"
+"2300","77","Joka"
+"2301","77","Falta"
+"2302","15","UB City"
+"2303","0","UB City"
+"2304","0","Greater Kailash - 4"
+"2305","0","Aaya Nagar "
+"2306","74","Prince Anwar Shah Road"
+"2307","0","Sector 86"
+"2308","0","Sector 86"
+"2309","0","Sector 86"
+"2310","0","test"
+"2311","0","test"
+"2312","0","test"
+"2313","9","Sector 86"
+"2314","1","Greater Kailash 4"
+"2315","74","Desapriya Park"
+"2316","2","Jhilmil Colony"
+"2317","74","Paddapukur"

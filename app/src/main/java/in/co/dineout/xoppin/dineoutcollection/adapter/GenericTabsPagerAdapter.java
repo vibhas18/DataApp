@@ -5,10 +5,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import in.co.dineout.xoppin.dineoutcollection.fragment.steps.ContactFragment;
+import in.co.dineout.xoppin.dineoutcollection.fragment.steps.CuisineFragment;
+import in.co.dineout.xoppin.dineoutcollection.fragment.steps.DetailFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.steps.ImageFragment;
-import in.co.dineout.xoppin.dineoutcollection.model.pages.Page;
+import in.co.dineout.xoppin.dineoutcollection.fragment.steps.NameAndDetailFragment;
+import in.co.dineout.xoppin.dineoutcollection.fragment.steps.TimingsFragment;
 
 /**
  * Created by suraj on 19/02/16.
@@ -16,20 +21,21 @@ import in.co.dineout.xoppin.dineoutcollection.model.pages.Page;
 public class GenericTabsPagerAdapter extends FragmentStatePagerAdapter {
     private int mCutOffPage;
     private Fragment mPrimaryItem;
-    private List<Page> mCurrentPageSequence;
-    public GenericTabsPagerAdapter(FragmentManager fm,List<Page> sequence) {
+    private List<Fragment> mCurrentPageSequence;
+    public GenericTabsPagerAdapter(FragmentManager fm) {
         super(fm);
-
-        mCurrentPageSequence = sequence;
+        mCurrentPageSequence = new ArrayList<>();
+        mCurrentPageSequence.add(NameAndDetailFragment.create());
+        mCurrentPageSequence.add(DetailFragment.create());
+        mCurrentPageSequence.add(ContactFragment.create());
+        mCurrentPageSequence.add(TimingsFragment.create());
+        mCurrentPageSequence.add(CuisineFragment.create());
+        mCurrentPageSequence.add(ImageFragment.create());
     }
 
     @Override
     public Fragment getItem(int i) {
-        if (i >= mCurrentPageSequence.size()) {
-            return ImageFragment.create("Image");
-        }
-
-        return mCurrentPageSequence.get(i).createFragment();
+        return mCurrentPageSequence.get(i);
     }
 
     @Override
@@ -54,24 +60,13 @@ public class GenericTabsPagerAdapter extends FragmentStatePagerAdapter {
         if (mCurrentPageSequence == null) {
             return 0;
         }
-        return Math.min(mCutOffPage + 1, mCurrentPageSequence.size() + 1);
+        return mCurrentPageSequence.size() ;
     }
 
-    public void setCutOffPage(int cutOffPage) {
-        if (cutOffPage < 0) {
-            cutOffPage = Integer.MAX_VALUE;
-        }
-        mCutOffPage = cutOffPage;
-        notifyDataSetChanged();
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return title[position];
     }
 
-    public int getCutOffPage() {
-        return mCutOffPage;
-    }
-
-    public void updateData(List<Page> sequence){
-        this.mCurrentPageSequence = sequence;
-        notifyDataSetChanged();
-    }
-
+    private String[] title = {"Basic","Type","Contact","Timing","Cuisine","Image"};
 }

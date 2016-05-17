@@ -35,7 +35,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.LocalityModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
-public class NameAndDetailFragment extends BaseStepFragment implements View.OnFocusChangeListener,TextWatcher {
+public class NameAndDetailFragment extends BaseStepFragment  {
     private static final String TAG = NameAndDetailFragment.class.getSimpleName();
 
     private EditText et_profile_name;
@@ -66,11 +66,9 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
 
 
 
-    public static NameAndDetailFragment create(String key) {
+    public static NameAndDetailFragment create() {
         NameAndDetailFragment fragment = new NameAndDetailFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_KEY,key);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -91,6 +89,12 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        saveDataForStep();
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView(getView());
@@ -98,7 +102,7 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
 
     private void refreshLocation() {
 
-        ((RootActivity)getActivity()).getLastKnownLocation();
+        ((RootActivity)getActivity()).fetchUserCurrentLocation();
         double lat = Double.parseDouble(DataPreferences.getCurrentLocationLat(getContext()));
         double lng = Double.parseDouble(DataPreferences.getCurrentLocationLong(getContext()));
 
@@ -188,11 +192,9 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
                         if (null != object) {
                             cityModel = (CityModel) object;
                             tv_city.setText(cityModel.getName());
-                            notifyChanges();
                         } else {
                             Toast.makeText(getActivity(), "City Not Selected", Toast.LENGTH_SHORT).show();
                         }
-                        notifyChanges();
                     }
                 });
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -218,7 +220,6 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
                         if (null != object) {
                             areaModel = (AreaModel) object;
                             tv_area.setText(areaModel.getName());
-                            notifyChanges();
                         } else {
                             Toast.makeText(getActivity(), "Area Not Selected", Toast.LENGTH_SHORT).show();
                         }
@@ -246,12 +247,10 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
                         if (null != object) {
                             localityModel = (LocalityModel) object;
                             tv_locality.setText(localityModel.getName());
-                            notifyChanges();
                         } else {
                             Toast.makeText(getActivity(), "Locality Not Selected", Toast.LENGTH_SHORT).show();
                         }
 
-                        notifyChanges();
                     }
                 });
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -269,7 +268,7 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
             }
         });
 
-        registerListener();
+//        registerListener();
 
 
     }
@@ -277,7 +276,6 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
     private void updateMap(){
 
 
-        notifyChanges();
         Picasso.with(getActivity()).load(Utils.getMapImageUrl(latitude, longitude, "")).fit().into(iv_map, new Callback() {
             @Override
             public void onSuccess() {
@@ -290,42 +288,17 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
             }
         });
     }
-
-    private void registerListener(){
-        et_profile_name.setOnFocusChangeListener(this);
-        et_screen_name_mobile.setOnFocusChangeListener(this);
-        et_restaurant_address.setOnFocusChangeListener(this);
-        et_restaurant_landmark.setOnFocusChangeListener(this);
-        et_pincode.setOnFocusChangeListener(this);
-        et_screen_name.setOnFocusChangeListener(this);
-    }
-
-    private void unregisterListener(){
-
-        et_profile_name.addTextChangedListener(null);
-        et_screen_name_mobile.addTextChangedListener(null);
-        et_restaurant_address.addTextChangedListener(null);
-        et_restaurant_landmark.addTextChangedListener(null);
-        et_pincode.addTextChangedListener(null);
-        et_screen_name.addTextChangedListener(null);
-    }
-
-    @Override
-    public void onStepChanged() {
-
-    }
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        registerListener();
-//    }
 //
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        unregisterListener();
+//    private void registerListener(){
+//        et_profile_name.addTextChangedListener(this);
+//        et_screen_name_mobile.addTextChangedListener(this);
+//        et_restaurant_address.addTextChangedListener(this);
+//        et_restaurant_landmark.addTextChangedListener(this);
+//        et_pincode.addTextChangedListener(this);
+//        et_screen_name.addTextChangedListener(this);
 //    }
+
+
 
     @Override
     public void saveDataForStep() {
@@ -334,7 +307,7 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
             return;
         }
         if (TextUtils.isEmpty(et_profile_name.getText().toString())) {
-            Toast.makeText(getActivity(), "To save the restaurant, you need to enter the name", Toast.LENGTH_LONG).show();
+            return;
         } else {
             //TODO do save and tan-tada-dan
             RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
@@ -433,11 +406,11 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
             }
         }
 
-        if (TextUtils.isEmpty(restaurant.getLatitude()) && TextUtils.isEmpty(restaurant.getLatitude())) {
+        if (restaurant.getLatitude() == 0 ||restaurant.getLatitude() == 0) {
             refreshLocation();
         } else {
-            latitude = Double.parseDouble(restaurant.getLatitude());
-            longitude = Double.parseDouble(restaurant.getLongitude());
+            latitude = restaurant.getLatitude();
+            longitude = restaurant.getLongitude();
 
             Picasso.with(getActivity()).load(Utils.getMapImageUrl(latitude, longitude, "")).fit().into(iv_map, new Callback() {
                 @Override
@@ -456,68 +429,27 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
 
     }
 
-    @Override
-    public boolean isDataValid() {
-
-        if(getActivity() == null)
-            return false;
-        if (TextUtils.isEmpty(et_profile_name.getText().toString())) {
-            return false;
-        } else if (TextUtils.isEmpty(et_profile_name.getText().toString().trim())) {
-                return false;
-
-        }else if (TextUtils.isEmpty(et_screen_name.getText().toString().trim())) {
-                return false;
-        } else if (TextUtils.isEmpty(et_screen_name_mobile.getText().toString().trim())) {
-                return false;
-        } else if (TextUtils.isEmpty(et_restaurant_address.getText().toString().trim())) {
-                return false;
-        } else if (TextUtils.isEmpty(et_restaurant_landmark.getText().toString().trim())) {
-                return false;
-        } else if (TextUtils.isEmpty(et_pincode.getText().toString().trim())) {
-                return false;
-        } else if (null == cityModel) {
-                return false;
-        } else if (null == areaModel) {
-                return false;
-        } else if (null == localityModel) {
-            return false;
-        }else if(latitude == 0 || longitude == 0 ){
-            return false;
-        }
-
-        saveDataForStep();
-        return true;
-    }
 
 
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mCallbacks = null;
-    }
-
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-
-        notifyChanges();
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-        notifyChanges();
-    }
+//    @Override
+//    public void onFocusChange(View v, boolean hasFocus) {
+//
+////        saveDataForStep();
+//    }
+//
+//    @Override
+//    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//    }
+//
+//    @Override
+//    public void onTextChanged(CharSequence s, int start, int before, int count) {
+//
+//    }
+//
+//    @Override
+//    public void afterTextChanged(Editable s) {
+//
+////        saveDataForStep();
+//    }
 }

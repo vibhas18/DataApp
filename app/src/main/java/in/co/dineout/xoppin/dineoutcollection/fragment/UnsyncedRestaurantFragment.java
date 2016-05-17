@@ -35,6 +35,8 @@ public class UnsyncedRestaurantFragment extends MasterDataFragment implements Vi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        setFragmentTitle("Restaurants waiting to be synced");
+
         ListView listView = (ListView) getView().findViewById(R.id.lv_list);
         View mSyncDispatcher = getView().findViewById(R.id.sync_container);
         mSyncDispatcher.setVisibility(View.VISIBLE);
@@ -47,7 +49,8 @@ public class UnsyncedRestaurantFragment extends MasterDataFragment implements Vi
     @Override
     public void onClick(View v) {
 
+        if(restaurantDetailListAdapter != null && restaurantDetailListAdapter.getCount() > 0){
         Intent intent = new Intent(getContext(), RestaurantBackgroundService.class);
-        getContext().startService(intent);
+        getContext().startService(intent);}
     }
 }

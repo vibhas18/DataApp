@@ -7,18 +7,15 @@
     android:orientation="vertical"
     tools:context="in.co.dineout.xoppin.dineoutcollection.activity.DashboardActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <include
+        layout="@layout/toolbar_fragment"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:title="Dashboard"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        android:layout_height="wrap_content"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,14 +89,6 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_assigned_count"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="10dp"
-                android:text="Loading.." />
 
             <Button
                 android:id="@+id/btn_assigned_tasks"
@@ -124,14 +113,6 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_pending_synced"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="10dp"
-                android:text="0" />
 
             <Button
                 android:id="@+id/btn_pending"
@@ -156,15 +137,6 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_editing_mode"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="10dp"
-                android:text="0" />
-
             <Button
                 android:id="@+id/btn_editing"
                 android:layout_width="match_parent"
@@ -188,14 +160,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_synced"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingLeft="30dp"
-                android:paddingRight="10dp"
-                android:text="0" />
+
 
             <Button
                 android:id="@+id/btn_synced"

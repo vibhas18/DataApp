@@ -281,7 +281,7 @@ public class RootActivity extends AppCompatActivity implements GoogleApiClient.C
                     mCurrentLocation = lastKnownLocation;
                     DataPreferences.updateCurrentLocation(this,lastKnownLocation);
                 }
-                fetchUserCurrentLocation();
+//                fetchUserCurrentLocation();
             }
             else {
                 grantLocationPermission(this);

@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -27,7 +26,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.HotelsModel;
 import in.co.dineout.xoppin.dineoutcollection.model.TagModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 
-public class DetailFragment extends BaseStepFragment implements View.OnFocusChangeListener,RadioGroup.OnCheckedChangeListener {
+public class DetailFragment extends BaseStepFragment  {
     private static final String TAG = DetailFragment.class.getSimpleName();
     public static final String TAG2 = DetailFragment.class.getCanonicalName();
 
@@ -87,11 +86,9 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
 
 
 
-    public static DetailFragment create(String key) {
+    public static DetailFragment create() {
         DetailFragment fragment = new DetailFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(ARG_KEY, key);
-        fragment.setArguments(bundle);
+
         return fragment;
     }
 
@@ -113,6 +110,13 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initView(getView());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        saveDataForStep();
     }
 
     private void initView(View view) {
@@ -169,7 +173,6 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
         initRestaurantSpinner();
         initHotelSpinner();
         populateViewFromData();
-        et_cft.setOnFocusChangeListener(this);
 
 
 
@@ -180,6 +183,7 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
         spn_restaurant.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(view != null && view.getTag() != null)
                 restaurantChain = (ChainModel) view.getTag();
             }
 
@@ -474,10 +478,6 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
 
 
 
-    @Override
-    public void onStepChanged() {
-
-    }
 
     @Override
     public void saveDataForStep() {
@@ -526,36 +526,6 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
 
     }
 
-    @Override
-    public boolean isDataValid() {
-
-        List<TagModel> tagList = getTags();
-        if (tagList == null) {
-            return false;
-        }
-        else if (tagList!= null && tagList.size() == 0) {
-            return false;
-        }
-
-        else if (TextUtils.isEmpty(et_cft.getText().toString().trim())) {
-            return false;
-        }
-
-        saveDataForStep();
-        return true;
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-
-        notifyChanges();
-    }
-
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-        notifyChanges();
-    }
 
     private class RestSpinnerAdapter extends ArrayAdapter<ChainModel> {
         public RestSpinnerAdapter(Context context, List<ChainModel> objects) {

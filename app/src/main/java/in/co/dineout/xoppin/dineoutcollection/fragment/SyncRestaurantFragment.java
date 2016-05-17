@@ -33,6 +33,7 @@ public class SyncRestaurantFragment extends MasterDataFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        setFragmentTitle("Synced Restaurants");
         ListView listView = (ListView) getView().findViewById(R.id.lv_list);
 
         restaurantDetailListAdapter = new RestaurantDetailListAdapter(getActivity(),

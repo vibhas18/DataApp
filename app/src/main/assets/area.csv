@@ -1,92 +1,92 @@
-1,0,South Delhi
-2,0,East Delhi
-3,0,North Delhi
-4,0,West Delhi
-5,0,Central Delhi
-6,0,Ghaziabad
-7,0,Gurgaon
-8,0,Noida
-9,0,Faridabad
-10,1,South Mumbai
-11,1,Western Suburbs
-12,1,Central Mumbai
-13,1,Navi Mumbai
-14,1,Thane Area
-15,2,Central Bangalore
-16,2,South Bangalore
-17,2,East Bangalore
-18,2,North Bangalore
-19,2,West Bangalore
-22,3,Central Chennai
-23,3,North Chennai
-24,3,South Chennai
-25,3,West Chennai
-26,4,Central Hyderabad
-27,4,East Hyderabad
-28,4,North Hyderabad
-29,4,Secunderabad
-30,4,South Hyderabad
-31,4,West Hyderabad
-32,5,Central Pune
-33,5,East Pune
-34,5,North Pune
-35,5,South Pune
-36,5,West Pune
-38,3,East Chennai
-39,7,North Ahmedabad
-40,7,South Ahmedabad
-41,7,West Ahmedabad
-42,16,Central Amritsar
-43,16,North Amritsar
-44,16,South Amritsar
-45,16,East Amritsar
-46,16,West Amritsar
-47,9,Central Chandigarh
-48,9,East Chandigarh
-49,9,North Chandigarh
-50,9,South Chandigarh
-51,9,West Chandigarh
-52,9,Panchkula
-53,9,Mohali
-54,8,South Goa
-55,8,North Goa
-56,11,North Indore
-57,11,South Indore
-58,11,East Indore
-59,11,West Indore
-60,11,Central Indore
-61,10,East Jaipur
-62,10,North Jaipur
-63,10,South Jaipur
-64,10,West Jaipur
-65,10,Central Jaipur
-66,12,Central Kanpur
-67,12,North Kanpur
-68,12,East Kanpur
-69,12,West Kanpur
-70,12,South Kanpur
-71,6,Central Kolkata
-72,6,East Kolkata
-73,6,North Kolkata
-74,6,South Kolkata
-75,6,West Kolkata
-76,6,Howrah
-77,6,24 Parganas South
-78,6,24 Parganas North
-79,13,Central Lucknow
-80,13,East Lucknow
-81,13,North Lucknow
-82,13,South Lucknow
-83,13,West Lucknow
-84,15,West Ludhiana
-85,15,East Ludhiana
-86,15,North Ludhiana
-87,15,Central Ludhiana
-88,15,South Ludhiana
-89,14,Central Shimla
-90,14,East Shimla
-91,14,South Shimla
-92,14,West Shimla
-93,0,NCR Greater Noida
-94,7,Central Ahmedabad
-95,7,East Ahmedabad
+"1","0","South Delhi"
+"2","0","East Delhi"
+"3","0","North Delhi"
+"4","0","West Delhi"
+"5","0","Central Delhi"
+"6","0","Ghaziabad"
+"7","0","Gurgaon"
+"8","0","Noida"
+"9","0","Faridabad"
+"10","1","South Mumbai"
+"11","1","Western Suburbs"
+"12","1","Central Mumbai"
+"13","1","Navi Mumbai"
+"14","1","Thane Area"
+"15","2","Central Bangalore"
+"16","2","South Bangalore"
+"17","2","East Bangalore"
+"18","2","North Bangalore"
+"19","2","West Bangalore"
+"22","3","Central Chennai"
+"23","3","North Chennai"
+"24","3","South Chennai"
+"25","3","West Chennai"
+"26","4","Central Hyderabad"
+"27","4","East Hyderabad"
+"28","4","North Hyderabad"
+"29","4","Secunderabad"
+"30","4","South Hyderabad"
+"31","4","West Hyderabad"
+"32","5","Central Pune"
+"33","5","East Pune"
+"34","5","North Pune"
+"35","5","South Pune"
+"36","5","West Pune"
+"38","3","East Chennai"
+"39","7","North Ahmedabad"
+"40","7","South Ahmedabad"
+"41","7","West Ahmedabad"
+"42","16","Central Amritsar"
+"43","16","North Amritsar"
+"44","16","South Amritsar"
+"45","16","East Amritsar"
+"46","16","West Amritsar"
+"47","9","Central Chandigarh"
+"48","9","East Chandigarh"
+"49","9","North Chandigarh"
+"50","9","South Chandigarh"
+"51","9","West Chandigarh"
+"52","9","Panchkula"
+"53","9","Mohali"
+"54","8","South Goa"
+"55","8","North Goa"
+"56","11","North Indore"
+"57","11","South Indore"
+"58","11","East Indore"
+"59","11","West Indore"
+"60","11","Central Indore"
+"61","10","East Jaipur"
+"62","10","North Jaipur"
+"63","10","South Jaipur"
+"64","10","West Jaipur"
+"65","10","Central Jaipur"
+"66","12","Central Kanpur"
+"67","12","North Kanpur"
+"68","12","East Kanpur"
+"69","12","West Kanpur"
+"70","12","South Kanpur"
+"71","6","Central Kolkata"
+"72","6","East Kolkata"
+"73","6","North Kolkata"
+"74","6","South Kolkata"
+"75","6","West Kolkata"
+"76","6","Howrah"
+"77","6","24 Parganas South"
+"78","6","24 Parganas North"
+"79","13","Central Lucknow"
+"80","13","East Lucknow"
+"81","13","North Lucknow"
+"82","13","South Lucknow"
+"83","13","West Lucknow"
+"84","15","West Ludhiana"
+"85","15","East Ludhiana"
+"86","15","North Ludhiana"
+"87","15","Central Ludhiana"
+"88","15","South Ludhiana"
+"89","14","Central Shimla"
+"90","14","East Shimla"
+"91","14","South Shimla"
+"92","14","West Shimla"
+"93","0","NCR Greater Noida"
+"94","7","Central Ahmedabad"
+"95","7","East Ahmedabad"

@@ -36,6 +36,7 @@ import java.util.Set;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.utils.MasterFragmentTransactionHelper;
+import in.co.dineout.xoppin.dineoutcollection.views.ProgressLoadingDialog;
 
 /**
  * Created by prateek.aggarwal on 5/5/16.
@@ -53,6 +54,7 @@ public class MasterDataFragment extends DialogFragment {
     // Arbitrary value; set it to some reasonable default
     private static final int DEFAULT_CHILD_ANIMATION_DURATION = 400;
     public static int NO_ANIMATION = -1;
+    private ProgressLoadingDialog progressDialog;
     private static String uptime = null;
     /**
      * is scrollable header scroll to top completely or not
@@ -71,6 +73,7 @@ public class MasterDataFragment extends DialogFragment {
      */
     private boolean childFragment;
     private String title;
+
 
     /*
      * to snapdeal logo by default other wise override {@code getLogo} and
@@ -681,19 +684,18 @@ public class MasterDataFragment extends DialogFragment {
 
     public void showLoadingDialog(final boolean dismissDialogOnBackPress) {
         // Check if Progress Dialog is NULL
-//        if (progressDialog == null) {
-//            // Instantiate Progress Dialog
-//            progressDialog = DOLoaderDialog.newInstance(dismissDialogOnBackPress);
-//        }
-//
-//        // Set Cancellable
-//        progressDialog.setCancelable(dismissDialogOnBackPress);
-//
-//        // Attach Progress Dialog to Fragment Manager
-//        if (!progressDialog.isVisible()) {
-//            progressDialog.show(getFragmentManager(), "progress");
-//        }
-        //MasterDataFragment.showFragment(getActivity().getSupportFragmentManager(),progressDialog);
+        if (progressDialog == null) {
+            // Instantiate Progress Dialog
+            progressDialog = ProgressLoadingDialog.newInstance(dismissDialogOnBackPress);
+        }
+
+        // Set Cancellable
+        progressDialog.setCancelable(dismissDialogOnBackPress);
+
+        // Attach Progress Dialog to Fragment Manager
+        if (!progressDialog.isVisible()) {
+            progressDialog.show(getFragmentManager(), "progress");
+        }
     }
 
     public void setFragmentTitle(String title) {
@@ -703,10 +705,10 @@ public class MasterDataFragment extends DialogFragment {
 
     public void hideLoadingDialog() {
         // Check if Progress Dialog is NULL
-//        if (progressDialog != null && progressDialog.isVisible()) {
-//            // Remove Progress Dialog
-//            progressDialog.dismissAllowingStateLoss();
-//        }
+        if (progressDialog != null && progressDialog.isVisible()) {
+            // Remove Progress Dialog
+            progressDialog.dismissAllowingStateLoss();
+        }
     }
 
     public void dismissDialogWithDelay(long ms) {

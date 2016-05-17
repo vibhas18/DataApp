@@ -1,9 +1,7 @@
 package in.co.dineout.xoppin.dineoutcollection.fragment.steps;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.RestContactModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.views.GcrrContactViewHelper;
 
-public class ContactFragment extends BaseStepFragment implements View.OnFocusChangeListener,TextWatcher {
+public class ContactFragment extends BaseStepFragment  {
 
     private EditText et_restaurant_website;
     private EditText et_restaurant_fb;
@@ -35,11 +33,9 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
     public ContactFragment() {
     }
 
-    public static ContactFragment create(String key) {
+    public static ContactFragment create() {
         ContactFragment fragment = new ContactFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_KEY,key);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -70,8 +66,7 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
 
         contactViews = new ArrayList<View>(5);
         populateViewFromData();
-        et_phone.setOnFocusChangeListener(this);
-        et_mobile.setOnFocusChangeListener(this);
+
         tv_add_gcrr_contacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,10 +78,8 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
         });
     }
 
-    @Override
-    public void onStepChanged() {
 
-    }
+
 
     @Override
     public void saveDataForStep() {
@@ -140,40 +133,5 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
 //        notifyChanges();
     }
 
-    @Override
-    public boolean isDataValid() {
 
-        if(getActivity() == null || getView() == null)
-            return false;
-        if (TextUtils.isEmpty(et_mobile.getText().toString().trim())) {
-            return false;
-        } else if (TextUtils.isEmpty(et_phone.getText().toString().trim())) {
-                return false;
-        }
-
-        saveDataForStep();
-        return true;
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        notifyChanges();
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-            notifyChanges();
-
-    }
 }

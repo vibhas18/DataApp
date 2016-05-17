@@ -108,6 +108,7 @@ public class LoginFragment extends MasterDataFragment implements View.OnClickLis
             DataPreferences.saveUser(getActivity(), Utils.getJsonObject(resp, "data"));
             Toast.makeText(getActivity(), Utils.getStringVal(resp, "message"), Toast.LENGTH_SHORT).show();
 
+           popBackStack(getActivity().getSupportFragmentManager());
             DashboardFragment fragment = DashboardFragment.newInstance();
             addToBackStack(getActivity(),fragment);
         }

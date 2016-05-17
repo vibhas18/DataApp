@@ -14,6 +14,7 @@ import android.widget.Toast;
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.adapter.RestaurantDetailListAdapter;
 import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 /**
@@ -39,6 +40,7 @@ public class EditingRestaurantFragment extends MasterDataFragment implements Ada
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        setFragmentTitle("Pending Restaurant");
         ListView listView = (ListView) getView().findViewById(R.id.lv_list);
 
         restaurantDetailListAdapter = new RestaurantDetailListAdapter(getActivity(),
@@ -78,8 +80,23 @@ public class EditingRestaurantFragment extends MasterDataFragment implements Ada
         alertDialog.setPositiveButton("Sync", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                Utils.sendToSync(getActivity(),restaurantDetailListAdapter.getItem(position));
-                Toast.makeText(getActivity().getApplicationContext(), "Sync Requested", Toast.LENGTH_SHORT).show();
+                RestaurantDetailsModel model = restaurantDetailListAdapter.getItem(position);
+
+                if(model != null){
+
+                    int index = model.validateRestaurant(getActivity());
+                    if(index == -1){
+                        Utils.sendToSync(getActivity(),restaurantDetailListAdapter.getItem(position));
+                        Toast.makeText(getActivity().getApplicationContext(), "Sync Requested", Toast.LENGTH_SHORT).show();
+                    }else{
+                        RestaurantFormFragment fragment = RestaurantFormFragment.
+                                newInstance(model,index);
+
+                        addToBackStack(getActivity(),fragment);
+                    }
+                }
+
+
             }
         });
 

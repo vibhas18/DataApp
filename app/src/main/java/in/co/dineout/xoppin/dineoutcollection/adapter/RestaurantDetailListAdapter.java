@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -18,16 +18,37 @@ import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsMo
 /**
  * Created by suraj on 13/03/16.
  */
-public class RestaurantDetailListAdapter extends ArrayAdapter<RestaurantDetailsModel> {
+public class RestaurantDetailListAdapter extends BaseAdapter {
+
+    private Context mContext;
+    private List<RestaurantDetailsModel> mRestModel;
     public RestaurantDetailListAdapter(Context context, List<RestaurantDetailsModel> restaurantDetailsModels) {
-        super(context, R.layout.row_restaurant_detail, restaurantDetailsModels);
+        this.mContext = context;
+        this.mRestModel = restaurantDetailsModels;
+    }
+
+    @Override
+    public int getCount() {
+        if(this.mRestModel == null)
+            return 0;
+        return this.mRestModel.size();
+    }
+
+    @Override
+    public RestaurantDetailsModel getItem(int position) {
+        return this.mRestModel.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if (null == convertView) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_restaurant_detail, null, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.row_restaurant_detail, null, false);
             viewHolder = getViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
@@ -49,6 +70,11 @@ public class RestaurantDetailListAdapter extends ArrayAdapter<RestaurantDetailsM
         }
 
         return convertView;
+    }
+
+    public void updateData(List<RestaurantDetailsModel> models){
+        this.mRestModel = models;
+        notifyDataSetChanged();
     }
 
     private static ViewHolder getViewHolder(View rowView) {

@@ -24,11 +24,9 @@ public class CuisineFragment extends BaseStepFragment {
     private ArrayList<CuisineModel> primaryCuisineModels;
     private ArrayList<CuisineModel> secondaryCuisineModels;
 
-    public static CuisineFragment create(String key) {
+    public static CuisineFragment create() {
         CuisineFragment fragment = new CuisineFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_KEY,key);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -44,6 +42,7 @@ public class CuisineFragment extends BaseStepFragment {
         initView(view);
         populateViewFromData();
     }
+
 
     private void initView(View view) {
         llPrimaryCuisine = (LinearLayout) view.findViewById(R.id.ll_primary_cuisine);
@@ -62,7 +61,6 @@ public class CuisineFragment extends BaseStepFragment {
 
 
                         updatePrimaryCuisineView();
-                        notifyChanges();
                     }
                 });
                 getActivity().getSupportFragmentManager().beginTransaction().add(android.R.id.content, fragment, CuisineListFragment.TAG2).addToBackStack(CuisineListFragment.TAG2).commitAllowingStateLoss();
@@ -77,7 +75,6 @@ public class CuisineFragment extends BaseStepFragment {
                     @Override
                     public void onCuisineSelected(ArrayList<CuisineModel> cuisines) {
                         upDateSecondaryCuisineView();
-                        notifyChanges();
                     }
                 });
                 getActivity().getSupportFragmentManager().beginTransaction().add(android.R.id.content, fragment, CuisineListFragment.TAG2).addToBackStack(CuisineListFragment.TAG2).commitAllowingStateLoss();
@@ -110,10 +107,6 @@ public class CuisineFragment extends BaseStepFragment {
         }
     }
 
-    @Override
-    public void onStepChanged() {
-
-    }
 
     @Override
     public void saveDataForStep() {
@@ -127,7 +120,6 @@ public class CuisineFragment extends BaseStepFragment {
         if (null != secondaryCuisineModels && secondaryCuisineModels.size() > 0) {
             restaurant.setSecondary_cuisine(secondaryCuisineModels);
         }
-//        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 
     @Override
@@ -143,19 +135,7 @@ public class CuisineFragment extends BaseStepFragment {
             secondaryCuisineModels.addAll(restaurant.getSecondary_cuisine());
             upDateSecondaryCuisineView();
         }
-//        notifyChanges();
     }
 
-    @Override
-    public boolean isDataValid() {
-        if (null != primaryCuisineModels && primaryCuisineModels.size() <= 0) {
-            return false;
-        }
-        else if (null != secondaryCuisineModels && secondaryCuisineModels.size() <= 0) {
-            return false;
-        }
 
-        saveDataForStep();
-        return true;
-    }
 }

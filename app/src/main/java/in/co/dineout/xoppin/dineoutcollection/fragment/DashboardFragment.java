@@ -46,13 +46,6 @@ public class DashboardFragment extends MasterDataFragment implements View.OnClic
         ((TextView) v.findViewById(R.id.tv_email)).setText(DataPreferences.getEmail(getContext()));
         ((TextView) v.findViewById(R.id.tv_assigned_city)).setText(DataPreferences.getAssignedCity(getContext()));
 
-//        ((TextView) v.findViewById(R.id.tv_editing_mode)).setText(
-//                DataDatabaseUtils.getInstance(getContext()).getPendingRestaurant().size());
-//        ((TextView) v.findViewById(R.id.tv_pending_synced)).setText("" +
-//                DataDatabaseUtils.getInstance(getContext()).getUnsynedRestaurant().size());
-//        ((TextView) v.findViewById(R.id.tv_synced)).setText("" +
-//                DataDatabaseUtils.getInstance(getContext()).getSynedRestaurant().size());
-
         v.findViewById(R.id.btn_assigned_tasks).setOnClickListener(this);
 
         v.findViewById(R.id.btn_pending).setOnClickListener(this);

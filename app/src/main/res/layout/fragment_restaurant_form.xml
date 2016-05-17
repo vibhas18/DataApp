@@ -6,72 +6,36 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-   <include
-       layout="@layout/toolbar_fragment"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"/>
+    <include
+        layout="@layout/toolbar_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
-    <LinearLayout
-        android:orientation="vertical"
+
+
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1" >
 
-        android:layout_weight="1">
-
-        <in.co.dineout.xoppin.dineoutcollection.views.StepPagerStrip
+        <android.support.v4.view.PagerTitleStrip
             android:id="@+id/strip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="8dp"
-            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-            android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-            android:gravity="left" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <View android:id="@+id/divider"
-            android:background="?android:attr/dividerHorizontal"
-            android:layout_height="1dp"
-            android:visibility="gone"
-            android:layout_width="match_parent" />
-
-        <LinearLayout
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="horizontal">
-
-            <Button
-                style="?android:attr/buttonBarButtonStyle"
-                android:background="@drawable/selectable_item_background"
-                android:id="@+id/prev_button"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/prev" />
-
-            <Button
-                style="?android:attr/buttonBarButtonStyle"
-                android:background="@drawable/selectable_item_background"
-                android:id="@+id/next_button"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="@string/next" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+            android:layout_gravity="top"
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+    </android.support.v4.view.ViewPager>
 
 
 
 </LinearLayout>
+
+
+

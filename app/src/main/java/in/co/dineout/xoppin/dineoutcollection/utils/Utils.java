@@ -130,9 +130,6 @@ public class Utils {
         DataDatabaseUtils.getInstance(context).saveRestaurantForSyncing(model.getRestaurantId() + "",
                 model.getRestaurantName(), model.getRestaurantJSONString());
 
-            DataDatabaseUtils.getInstance(context).saveRestaurantForSyncing(model.getRestaurantId() + "",
-                    model.getRestaurantName(), model.getRestaurantJSONString());
-
         Intent intent = new Intent(context, RestaurantIntentService.class);
         intent.putExtra("REST_ID", model.getRestaurantId());
         context.startService(intent);
