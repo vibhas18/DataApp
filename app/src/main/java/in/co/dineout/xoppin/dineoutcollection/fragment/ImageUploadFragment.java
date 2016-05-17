@@ -277,7 +277,7 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                DatabaseManager.getInstance().deleteSyncStatusModel(syncStatusModel);
+                DataDatabaseUtils.getInstance(getActivity()).deleteImage(syncStatusModel);
                 refreshAdapter();
                 dialog.dismiss();
             }
@@ -294,7 +294,7 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
             @Override
             public void onClick(View v) {
                 syncStatusModel.setCaption(etCaption.getText().toString().trim());
-//                DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
+                DataDatabaseUtils.getInstance(getActivity()).saveImageCaption(syncStatusModel);
                 refreshAdapter();
                 dialog.dismiss();
             }

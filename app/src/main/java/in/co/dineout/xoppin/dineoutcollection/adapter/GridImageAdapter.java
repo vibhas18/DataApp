@@ -3,6 +3,7 @@ package in.co.dineout.xoppin.dineoutcollection.adapter;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,11 @@ public class GridImageAdapter extends BaseAdapter {
         ImageStatusModel syncStatusModel = getItem(position);
 
 //        Picasso.with(mContext).load(syncStatusModel.getSyncedImageUrl()).into(imageView);
+        if(syncStatusModel.getImage_state().equalsIgnoreCase("new"))
         Picasso.with(mContext).load(Uri.fromFile(new File(syncStatusModel.getImageURI()))).into(imageView);
+        else if(!syncStatusModel.getImage_state().equalsIgnoreCase("new") && !TextUtils.isEmpty(syncStatusModel.getRemotePath())){
+            Picasso.with(mContext).load(syncStatusModel.getRemotePath()).into(imageView);
+        }
 
         tvCaption.setText(syncStatusModel.getCaption());
 

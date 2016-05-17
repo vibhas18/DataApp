@@ -8,11 +8,11 @@ import java.io.Serializable;
 public class RestContactModel implements Serializable {
     private static final long serialVersionUID = 6939084069144798461L;
 
-    private String phone_no;
-    private String gcrr_type;
-    private String au_email;
-    private String first_name;
-    private String last_name;
+    private String phone_no = "";
+    private String gcrr_type = "";
+    private String au_email = "";
+    private String first_name  ="";
+    private String last_name = "";
 
     public String getPhone_no() {
         return this.phone_no;

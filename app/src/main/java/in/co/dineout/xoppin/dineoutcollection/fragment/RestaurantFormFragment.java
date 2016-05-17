@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,8 +157,11 @@ public class RestaurantFormFragment extends MasterDataFragment implements ViewPa
     public void sendRestaurantForSyncing(){
 
         int index = restaurantDetailsModel.validateRestaurant(getActivity());
-        if(index == -1)
+        if(index == -1){
+
         Utils.sendToSync(getActivity(),restaurantDetailsModel);
+            popToHome(getActivity());
+        }
         else
             mPager.setCurrentItem(index);
     }

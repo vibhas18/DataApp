@@ -90,7 +90,9 @@ public class TasksListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvStatus.setText(data.optString("status"));
 
             tvEditing.setVisibility(View.VISIBLE);
+            tvEditing.setTag(restId);
             mRoot.setTag(restId);
+            tvEditing.setOnClickListener(this);
 
 
 
@@ -99,7 +101,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @Override
         public void onClick(View v) {
             if(mCallback != null){
-                mCallback.showTaskDetail((int)v.getId());
+                mCallback.showTaskDetail((int)v.getTag());
             }
         }
     }

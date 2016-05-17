@@ -17,12 +17,12 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 import in.co.dineout.xoppin.dineoutcollection.DineoutCollectApp;
 import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.database.ImageEntry;
 import in.co.dineout.xoppin.dineoutcollection.helper.SaveToTextLog;
 import in.co.dineout.xoppin.dineoutcollection.model.CuisineModel;
 import in.co.dineout.xoppin.dineoutcollection.model.FeatureModel;
@@ -157,7 +157,7 @@ public class RestaurantDetailsModel implements Serializable {
 
     public void updateScreenNameMobile(String name){
         try {
-            this.restaurant.put("screen_name_mobile",name);
+            this.restaurant.put("screen_name_mobile", name);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -814,11 +814,27 @@ public class RestaurantDetailsModel implements Serializable {
         try {
             String json = new Gson().toJson(contacts).toString();
 
-            JSONArray list = new JSONArray(Arrays.asList(contacts));
-            this.restaurant.put("contacts",json);
+            JSONArray list = new JSONArray();
+
+
+            for(RestContactModel models : contacts){
+
+                if(models != null){
+                JSONObject object = new JSONObject();
+                object.put("phone_no",models.getPhone_no());
+                object.put("gccr_type",models.getGcrr_type());
+                object.put("au_email",models.getAu_email());
+                object.put("first_name",models.getFirst_name());
+                object.put("last_name",models.getLast_name());
+                list.put(object);
+                }
+
+            }
+
+            this.restaurant.putOpt("contacts",list);
         }
         catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
@@ -894,6 +910,7 @@ public class RestaurantDetailsModel implements Serializable {
                     listType);
             return model;
         }catch (Exception e){
+            e.printStackTrace();
             return new ArrayList<>();
         }
     }
@@ -909,7 +926,7 @@ public class RestaurantDetailsModel implements Serializable {
                 object.put("cuisine_name",models.getCuisine_name());
                 list.put(object);
             }
-            this.restaurant.putOpt("primary_cuisine", json);
+            this.restaurant.putOpt("primary_cuisine", list);
         }
         catch (Exception e){
 
@@ -920,10 +937,11 @@ public class RestaurantDetailsModel implements Serializable {
 
         try{
             Type listType = new TypeToken<List<CuisineModel>>() {}.getType();
-            List<CuisineModel> model = new Gson().fromJson(this.restaurant.optJSONArray("contacts").toString(),
+            List<CuisineModel> model = new Gson().fromJson(this.restaurant.optJSONArray("secondary_cuisine").toString(),
                     listType);
             return model;
         }catch (Exception e){
+            e.printStackTrace();
             return new ArrayList<>();
         }
     }
@@ -941,7 +959,7 @@ public class RestaurantDetailsModel implements Serializable {
             this.restaurant.putOpt("secondary_cuisine", list);
         }
         catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
@@ -994,7 +1012,7 @@ public class RestaurantDetailsModel implements Serializable {
 
             }
 
-            this.restaurant.putOpt("menu_image", menu_image);
+            this.restaurant.putOpt("menu_image", list);
         }
         catch (Exception e){
 
@@ -1007,7 +1025,7 @@ public class RestaurantDetailsModel implements Serializable {
 
     public void setLocality_id(String locality_id) {
         try{
-            restaurant.put("locality_id",locality_id);
+            restaurant.put("locality_id", locality_id);
         }catch (Exception e){
 
         }
@@ -1031,15 +1049,17 @@ public class RestaurantDetailsModel implements Serializable {
                     , Toast.LENGTH_SHORT).show();
             return 2;
         }else if(!isCuisineValid()){
-            Toast.makeText(context, "Please provide all star mark field "
+            Toast.makeText(context, "Please provide primary and secondary cuisines. "
                     , Toast.LENGTH_SHORT).show();
-            return 3;
-        }else if((utils.hasProfileImages(this.getRestaurantId())
+            return 4;
+        }else if(!(utils.hasProfileImages(this.getRestaurantId())
                 && utils.hasMenuImages(this.getRestaurantId()))){
             Toast.makeText(context, "Please provide profile and menu images "
                     , Toast.LENGTH_SHORT).show();
             return 5;
         }
+        addMenuImages(context);
+        addProfileImages(context);
         return -1;
     }
 
@@ -1073,7 +1093,7 @@ public class RestaurantDetailsModel implements Serializable {
 
     private boolean isDetailValid(){
 
-        if (this.getTags().size() > 0) {
+        if (this.getTags().size() <= 0) {
             return false;
         }
 
@@ -1095,12 +1115,33 @@ public class RestaurantDetailsModel implements Serializable {
     }
 
     private boolean isCuisineValid(){
-        if (this.getPrimary_cuisine().size() > 0) {
+        if (this.getPrimary_cuisine().size() <= 0) {
             return false;
-        }else if (this.getSecondary_cuisine().size() > 0) {
+        }else if (this.getSecondary_cuisine().size() <= 0) {
             return false;
         }
         return true;
+    }
+
+    private void addMenuImages(Context context){
+
+        List<ImageStatusModel> mToUpload = new ArrayList<>();
+        mToUpload.addAll(DataDatabaseUtils.getInstance(context).
+                getPendingImage(getRestaurantId(), ImageEntry.MENU_IMAGE));
+        mToUpload.addAll(DataDatabaseUtils.getInstance(context).
+                getSyncedImage(getRestaurantId(), ImageEntry.MENU_IMAGE));
+
+        setMenu_image(mToUpload);
+    }
+
+    private void addProfileImages(Context context){
+
+        List<ImageStatusModel> mToUpload = new ArrayList<>();
+        mToUpload.addAll(DataDatabaseUtils.getInstance(context).
+                getPendingImage(getRestaurantId(), ImageEntry.PROFILE_IMAGE));
+        mToUpload.addAll(DataDatabaseUtils.getInstance(context).
+                getSyncedImage(getRestaurantId(), ImageEntry.PROFILE_IMAGE));
+        setProfile_image(mToUpload);
     }
 
 

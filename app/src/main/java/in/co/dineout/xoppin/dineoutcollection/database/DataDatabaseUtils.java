@@ -413,17 +413,47 @@ public class DataDatabaseUtils {
 
     }
 
-    public void saveImageForSyncing(String resId,ImageStatusModel model){
+    public void saveImageCaption(ImageStatusModel model){
+
+        SQLiteDatabase database = mHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ImageEntry.IMAGE_CAPTION, model.getCaption());
+        values.put(ImageEntry.IMAGE_STATUS,SYNC_READY);
+
+        String selection = ImageEntry._ID+" =?";
+        String[] where = {String.valueOf(model.getId())};
+        database.update(ImageEntry.TABLE_NAME, values, selection, where);
+        if(database.isOpen())
+            database.close();
+
+    }
+
+    public void deleteImage(ImageStatusModel model){
+
+        SQLiteDatabase database = mHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ImageEntry.IMAGE_STATE, "deleted");
+        values.put(ImageEntry.IMAGE_STATUS,SYNC_READY);
+
+        String selection = ImageEntry.IMAGE_PATH+" =? AND "+ImageEntry.IMAGE_TYPE+" =? AND "+RestaurantEntry.REST_ID+" =?";
+        String[] where = {model.getRemotePath(),String.valueOf(model.getType()),model.getRestaurantId()};
+        database.update(ImageEntry.TABLE_NAME, values, selection, where);
+        if(database.isOpen())
+            database.close();
+
+    }
+
+    public void saveImageForSyncing(String resId,ImageStatusModel model,int status){
 
         SQLiteDatabase database = mHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(ImageEntry.IMAGE_PATH,model.getRemotePath());
         values.put(ImageEntry.IMAGE_TYPE,model.getType());
         values.put(RestaurantEntry.REST_ID,resId);
-
+        values.put(ImageEntry.IMAGE_CAPTION,model.getCaption());
         values.put(ImageEntry.IMAGE_GILD,model.getGil_id());
         values.put(ImageEntry.IMAGE_STATE,model.getImage_state());
-        values.put(ImageEntry.IMAGE_STATUS,DataDatabaseUtils.SYNC_READY);
+        values.put(ImageEntry.IMAGE_STATUS,status);
 
         database.insert(ImageEntry.TABLE_NAME, null, values);
         if(database.isOpen())
@@ -463,7 +493,7 @@ public class DataDatabaseUtils {
             if(statusModel != null){
 
                 statusModel.setType(type);
-                saveImageForSyncing(resId,statusModel);
+                saveImageForSyncing(resId,statusModel,SYNCED);
             }
         }
     }
@@ -519,6 +549,7 @@ public class DataDatabaseUtils {
 
         String[] projection = {
 
+                ImageEntry._ID,
                 ImageEntry.IMAGE_URI,
                 ImageEntry.IMAGE_CAPTION,
                 ImageEntry.IMAGE_PATH,
@@ -546,6 +577,7 @@ public class DataDatabaseUtils {
 
             do{
                 ImageStatusModel model = new ImageStatusModel();
+                model.setId(c.getInt(c.getColumnIndex(ImageEntry._ID)));
                 model.setRestaurantId(c.getString(c.getColumnIndex(RestaurantEntry.REST_ID)));
                 model.setType(c.getInt(c.getColumnIndex(ImageEntry.IMAGE_TYPE)));
                 model.setCaption(c.getString(c.getColumnIndex(ImageEntry.IMAGE_CAPTION)));

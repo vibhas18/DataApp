@@ -3,20 +3,28 @@ package in.co.dineout.xoppin.dineoutcollection.views;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
+import in.co.dineout.xoppin.dineoutcollection.fragment.GenericListSingleSelectFragment;
+import in.co.dineout.xoppin.dineoutcollection.handler.StaticDataHandler;
+import in.co.dineout.xoppin.dineoutcollection.model.CityModel;
+import in.co.dineout.xoppin.dineoutcollection.model.GenericModel;
 import in.co.dineout.xoppin.dineoutcollection.model.RestContactModel;
 
 /**
  * Created by Suraj on 22-02-2016.
  */
-public class GcrrContactViewHelper {
+public class GcrrContactViewHelper implements View.OnClickListener {
 
     public static View getGcrrContactView(final Context context, RestContactModel restContactModel) {
         final View view = LayoutInflater.from(context).inflate(R.layout.view_gcrr_contact, null, false);
@@ -47,6 +55,29 @@ public class GcrrContactViewHelper {
 
                     alertDialogBuilder.create().show();
                 }
+            }
+        });
+
+        ((TextView) view.findViewById(R.id.tv_gcrr_type)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) StaticDataHandler.getInstance().getStaticDataModel().getCity(), "Select City");
+                fragment.setCallbacks(new GenericListSingleSelectFragment.Callbacks() {
+                    @Override
+                    public void onItemClicked(GenericModel object) {
+
+                        if (null != object) {
+                            CityModel cityModel = (CityModel) object;
+                            ((TextView)v).setText(cityModel.getName());
+                        } else {
+                            Toast.makeText(context, "City Not Selected", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                ((FragmentActivity)context).getSupportFragmentManager().beginTransaction()
+                        .add(android.R.id.content, fragment, GenericListSingleSelectFragment.TAG2)
+                        .addToBackStack(GenericListSingleSelectFragment.TAG2)
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -104,4 +135,8 @@ public class GcrrContactViewHelper {
     }
 
 
+    @Override
+    public void onClick(final View v) {
+
+    }
 }

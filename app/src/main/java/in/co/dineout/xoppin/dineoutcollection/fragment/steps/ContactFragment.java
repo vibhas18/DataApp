@@ -107,6 +107,7 @@ public class ContactFragment extends BaseStepFragment  {
         if (null != contactViews && contactViews.size() > 0) {
             ArrayList<RestContactModel> contactModels = new ArrayList<>(5);
             for (View cView : contactViews) {
+
                 contactModels.add(GcrrContactViewHelper.getRestContactFromView(cView));
             }
             restaurant.setContacts(contactModels);
