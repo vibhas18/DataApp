@@ -5,25 +5,12 @@ import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.util.Map;
-
-import in.co.dineout.xoppin.dineoutcollection.DineoutCollectApp;
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.helper.LoginHelper;
-import in.co.dineout.xoppin.dineoutcollection.helper.ObjectMapperFactory;
 import in.co.dineout.xoppin.dineoutcollection.model.ChainModel;
 import in.co.dineout.xoppin.dineoutcollection.model.CityModel;
 import in.co.dineout.xoppin.dineoutcollection.model.HotelsModel;
@@ -56,14 +43,10 @@ public class StaticDataHandler {
         try {
             JSONObject staticJson = new JSONObject(staticJsonString);
             JSONObject dataJson = Utils.getJsonObject(staticJson, "data");
-            staticDataModel = ObjectMapperFactory.getObjectMapper().readValue(dataJson.toString(), StaticDataModel.class);
+            staticDataModel = new Gson().fromJson(dataJson.toString(),StaticDataModel.class);
         } catch (JSONException e) {
             e.printStackTrace();
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -81,41 +64,41 @@ public class StaticDataHandler {
     }
 
     public void updateStaticData(final Context context) {
-        // Tag used to cancel the request
-        String TAG_REQUEST_STATIC_DATA = "TAG_REQUEST_STATIC_DATA";
-
-        String url = "http://laravel.dineoutdeals.in/index.php/api/default-enum";
-
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                url, null,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
-
-                        if (!TextUtils.isEmpty(response.toString())) {
-                            PreferenceManager.getDefaultSharedPreferences(context)
-                                    .edit().putString(KEY_STATIC_DATA, response.toString()).commit();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = LoginHelper.getDefaultHeaders(context);
-                headers.putAll(super.getHeaders());
-                return headers;
-            }
-        };
-
-        DineoutCollectApp.getInstance().addToRequestQueue(jsonObjReq, TAG_REQUEST_STATIC_DATA);
+//        // Tag used to cancel the request
+//        String TAG_REQUEST_STATIC_DATA = "TAG_REQUEST_STATIC_DATA";
+//
+//        String url = "http://laravel.dineoutdeals.in/index.php/api/default-enum";
+//
+//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+//                url, null,
+//                new Response.Listener<JSONObject>() {
+//
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        Log.d(TAG, response.toString());
+//
+//                        if (!TextUtils.isEmpty(response.toString())) {
+//                            PreferenceManager.getDefaultSharedPreferences(context)
+//                                    .edit().putString(KEY_STATIC_DATA, response.toString()).commit();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                VolleyLog.d(TAG, "Error: " + error.getMessage());
+//            }
+//        }) {
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String, String> headers = com.example.datanetworkmodule.DataPreferences.getDefaultHeaders(context);
+//                headers.putAll(super.getHeaders());
+//                return headers;
+//            }
+//        };
+//
+//        DineoutCollectApp.getInstance().addToRequestQueue(jsonObjReq, TAG_REQUEST_STATIC_DATA);
     }
 
     public CityModel getCityModelForId(int id) {

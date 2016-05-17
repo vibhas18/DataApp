@@ -12,5 +12,5 @@
 
 
     <string name="submit_confirm_message">Do you want to send data for syncing?</string>
-    <string name="submit_confirm_button">Place order</string>
+    <string name="submit_confirm_button">Sync</string>
 </resources>

@@ -1,7 +1,6 @@
 package in.co.dineout.xoppin.dineoutcollection.fragment.steps;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.activity.ImageUploadListActivity;
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.database.ImageEntry;
+import in.co.dineout.xoppin.dineoutcollection.fragment.ImageUploadFragment;
+import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
-import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.SyncStatusModel;
 
 public class ImageFragment extends BaseStepFragment {
 
@@ -55,28 +54,27 @@ public class ImageFragment extends BaseStepFragment {
         tvAddMenuImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ImageUploadListActivity.class);
-                i.setAction(ImageUploadListActivity.ACTION_MENU_IMAGES);
-                i.putExtra(ImageUploadListActivity.RESTAURANT_DETAIL_ID, ((RestaurantFormActivity) getActivity()).getRestaurantDetailsModel().getId());
-                startActivity(i);
+
+                ImageUploadFragment fragment = ImageUploadFragment.newInstance(
+                        ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel().getRestaurantId(), ImageEntry.MENU_IMAGE);
+                addToBackStack(getActivity(),fragment);
             }
         });
 
         tvAddProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ImageUploadListActivity.class);
-                i.setAction(ImageUploadListActivity.ACTION_PROFILE_IMAGES);
-                i.putExtra(ImageUploadListActivity.RESTAURANT_DETAIL_ID, ((RestaurantFormActivity) getActivity()).getRestaurantDetailsModel().getId());
-                i.putExtra(ImageUploadListActivity.RESTAURANT_NAME, ((RestaurantFormActivity) getActivity()).getRestaurantDetailsModel().getRestaurantName());
-                startActivity(i);
+
+                ImageUploadFragment fragment = ImageUploadFragment.newInstance(
+                        ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel().getRestaurantId(), ImageEntry.PROFILE_IMAGE);
+                addToBackStack(getActivity(),fragment);
             }
         });
 
         tv_sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((RestaurantFormActivity)getActivity()).getRestaurantDetailsModel().sendToSync(getActivity());
+//                ((RestaurantFormActivity)getActivity()).getRestaurantDetailsModel().sendToSync(getActivity());
             }
         });
 
@@ -95,9 +93,10 @@ public class ImageFragment extends BaseStepFragment {
 
     @Override
     public void populateViewFromData() {
-        RestaurantDetailsModel restaurantDetailsModel = ((RestaurantFormActivity) getActivity()).getRestaurantDetailsModel();
-        tvProfileImageCount.setText("" + DatabaseManager.getInstance().getImageCountForTypeAndRestaurant(restaurantDetailsModel.getId(), SyncStatusModel.PROFILE));
-        tvMenuImagesCount.setText("" + DatabaseManager.getInstance().getImageCountForTypeAndRestaurant(restaurantDetailsModel.getId(), SyncStatusModel.MENU));
+        RestaurantDetailsModel restaurantDetailsModel = ((RestaurantFormFragment) getParentFragment()).getRestaurantDetailsModel();
+        tvProfileImageCount.setText(DataDatabaseUtils.getInstance(getActivity()).getPendingImage(restaurantDetailsModel.getRestaurantId(),ImageEntry.PROFILE_IMAGE).size()+"");
+        tvMenuImagesCount.setText(DataDatabaseUtils.getInstance(getActivity()).getPendingImage(restaurantDetailsModel.getRestaurantId(),ImageEntry.MENU_IMAGE).size()+"");
+
     }
 
     @Override

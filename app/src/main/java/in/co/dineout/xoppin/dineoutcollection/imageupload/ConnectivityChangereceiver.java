@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import in.co.dineout.xoppin.dineoutcollection.service.RestaurantBackgroundService;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 /**
@@ -15,7 +16,7 @@ public class ConnectivityChangereceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i("ConnectivityChanged", "Connectivity changed completed");
         if (Utils.isConnected(context)) {
-            Intent intent1 = new Intent(context, BackgroundSyncService.class);
+            Intent intent1 = new Intent(context, RestaurantBackgroundService.class);
 //            intent1.setAction("in.co.dineout.xoppin.dineoutcollection.imageupload.BackgroundSyncService");
             context.startService(intent1);
         } else {

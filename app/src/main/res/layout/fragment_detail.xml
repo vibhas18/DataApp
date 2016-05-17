@@ -93,7 +93,7 @@
             android:text="Features"
             android:textSize="12sp" />
 
-        <LinearLayout
+        <RadioGroup
             android:id="@+id/ll_features"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:text="Serves Alcohol" />
 
-        </LinearLayout>
+        </RadioGroup>
 
         <TextView
             android:id="@+id/tv_tags_label"
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <RadioGroup
                 android:id="@+id/ll_tags"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -260,9 +260,10 @@
                     android:layout_height="wrap_content"
                     android:text="Dineout Plus" />
 
-            </LinearLayout>
+            </RadioGroup>
 
-            <LinearLayout
+            <RadioGroup
+                android:id="@+id/ll_tag_second"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -365,7 +366,7 @@
                     android:text="Dinner Buffet" />
 
 
-            </LinearLayout>
+            </RadioGroup>
         </LinearLayout>
 
 

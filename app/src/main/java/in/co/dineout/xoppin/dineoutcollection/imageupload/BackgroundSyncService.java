@@ -6,27 +6,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import in.co.dineout.xoppin.dineoutcollection.DineoutCollectApp;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
-import in.co.dineout.xoppin.dineoutcollection.helper.LoginHelper;
-import in.co.dineout.xoppin.dineoutcollection.helper.ObjectMapperFactory;
-import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.SyncStatusModel;
-import in.co.dineout.xoppin.dineoutcollection.utils.DineoutPostRequest;
-import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 /**
  * Created by suraj on 14/03/16.
@@ -55,17 +35,17 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
     }
 
     private void executeUpload() {
-        SyncStatusModel syncStatusModel = DatabaseManager.getInstance().getNextSyncModel();
-        if (null == syncStatusModel) {
-            return;
-        }
-
-        if (!syncStatusModel.getType().equalsIgnoreCase(SyncStatusModel.DATA)) {
-            AmazonS3Handler.getInstance().uploadImage(syncStatusModel, this);
-        } else {
-            //start for restaurant data post
-            saveRestaurant(syncStatusModel);
-        }
+//        SyncStatusModel syncStatusModel = DatabaseManager.getInstance().getNextSyncModel();
+//        if (null == syncStatusModel) {
+//            return;
+//        }
+//
+//        if (!syncStatusModel.getType().equalsIgnoreCase(SyncStatusModel.DATA)) {
+//            AmazonS3Handler.getInstance().uploadImage(syncStatusModel, this);
+//        } else {
+//            //start for restaurant data post
+//            saveRestaurant(syncStatusModel);
+//        }
 
     }
 
@@ -85,95 +65,96 @@ public class BackgroundSyncService extends Service implements SyncStatusCallback
     }
 
     private void saveRestaurant(final SyncStatusModel syncStatusModel) {
-        String TAG_POST_RETAURANT = "TAG_POST_RETAURANT";
-
-        final RestaurantDetailsModel restaurantDetailsModel = DatabaseManager.getInstance().getRestaurantDetailModelForId(syncStatusModel.getRestaurantDetailId());
-
-        String url = "http://laravel.dineoutdeals.in/index.php/api/save-resturant";
-
-        Response.Listener<JSONObject> respListener = new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
-
-
-                if(response != null){
-                    try{
-                        if (null != response && Utils.getStringVal(response, "message").equalsIgnoreCase("Login successful")) {
-                            //update db
-                            syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                            DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
-
-                            restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                            DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-            }
-        };
-
-
-        final JSONObject jsonObject = new JSONObject();
-        Map<String,String> param = new HashMap<>();
+//        String TAG_POST_RETAURANT = "TAG_POST_RETAURANT";
 //
-        try {
-            String data = ObjectMapperFactory.getObjectMapper().writeValueAsString(restaurantDetailsModel.prepareRestaurantFoSyncing());
-           Log.d(TAG,"----> "+data);
-            param.put("resturant", data);
-            jsonObject.put("resturant", data);
+//        final RestaurantDetailsModel restaurantDetailsModel = DatabaseManager.getInstance().getRestaurantDetailModelForId(syncStatusModel.getRestaurantDetailId());
+//
+//        String url = "http://laravel.dineoutdeals.in/index.php/api/save-resturant";
+//
+//        Response.Listener<JSONObject> respListener = new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//                Log.d(TAG, response.toString());
+//
+//
+//                if(response != null){
+//                    try{
+//                        if (null != response && Utils.getStringVal(response, "message").equalsIgnoreCase("Login successful")) {
+//                            //update db
+//                            syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+//                            DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
+//
+//                            restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+//                            DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
+//                        }
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        };
+//
+//        Response.ErrorListener errorListener = new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                VolleyLog.d(TAG, "Error: " + error.getMessage());
+//            }
+//        };
+//
+//
+//        final JSONObject jsonObject = new JSONObject();
+//        Map<String,String> param = new HashMap<>();
+////
+//        try {
+//            String data = ObjectMapperFactory.getObjectMapper().writeValueAsString(restaurantDetailsModel.prepareRestaurantFoSyncing());
+//           Log.d(TAG,"----> "+data);
+//            param.put("resturant", data);
+//            jsonObject.put("resturant", data);
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//
+//
+//        DineoutPostRequest stringRequest = new DineoutPostRequest(Request.Method.POST, url,param,
+//                com.example.datanetworkmodule.DataPreferences.getDefaultHeaders(getBaseContext()),new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//
+//                if(response != null){
+//                    try{
+//                        JSONObject resp = new JSONObject(response);
+//                        if (null != response && Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")) {
+//                            //update db
+//                            syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+//                            DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
+//
+//                            restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
+//                            DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
+//                        }
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//            }
+//        },errorListener);
+//
+//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, jsonObject, respListener, errorListener) {
+//
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                return com.example.datanetworkmodule.DataPreferences.getDefaultHeaders(getBaseContext());
+//            }
+//        };
+//
+//        // Adding request to request queue
+//        DineoutCollectApp.getInstance().addToRequestQueue(jsonObjReq, TAG_POST_RETAURANT);
+//    }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
-        DineoutPostRequest stringRequest = new DineoutPostRequest(Request.Method.POST, url,param,
-                LoginHelper.getDefaultHeaders(getBaseContext()),new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                if(response != null){
-                    try{
-                        JSONObject resp = new JSONObject(response);
-                        if (null != response && Utils.getStringVal(resp, "message").equalsIgnoreCase("Login successful")) {
-                            //update db
-                            syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                            DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
-
-                            restaurantDetailsModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                            DatabaseManager.getInstance().createOrUpdateRestaurantDetailsModel(restaurantDetailsModel);
-                        }
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        },errorListener);
-
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, url, jsonObject, respListener, errorListener) {
-
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                return LoginHelper.getDefaultHeaders(getBaseContext());
-            }
-        };
-
-        // Adding request to request queue
-        DineoutCollectApp.getInstance().addToRequestQueue(jsonObjReq, TAG_POST_RETAURANT);
     }
-
 }

@@ -1,7 +1,9 @@
 package in.co.dineout.xoppin.dineoutcollection.fragment.steps;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +14,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
+import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.model.RestContactModel;
-import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.views.GcrrContactViewHelper;
 
-public class ContactFragment extends BaseStepFragment implements View.OnFocusChangeListener {
+public class ContactFragment extends BaseStepFragment implements View.OnFocusChangeListener,TextWatcher {
 
     private EditText et_restaurant_website;
     private EditText et_restaurant_fb;
@@ -47,11 +49,12 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
         return inflater.inflate(R.layout.fragment_contact, container, false);
     }
 
+
+
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initView(view);
-        populateViewFromData();
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView(getView());
     }
 
     private void initView(View view) {
@@ -60,21 +63,22 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
         et_phone = (EditText) view.findViewById(R.id.et_phone);
         et_mobile = (EditText) view.findViewById(R.id.et_mobile);
 
-        et_phone.setOnFocusChangeListener(this);
-        et_mobile.setOnFocusChangeListener(this);
+
         ll_gcrr_contact = (LinearLayout) view.findViewById(R.id.ll_gcrr_contact);
 
         tv_add_gcrr_contacts = (TextView) view.findViewById(R.id.tv_add_gcrr_contacts);
 
         contactViews = new ArrayList<View>(5);
-
+        populateViewFromData();
+        et_phone.setOnFocusChangeListener(this);
+        et_mobile.setOnFocusChangeListener(this);
         tv_add_gcrr_contacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 View gcrrContactView = GcrrContactViewHelper.getGcrrContactView(getActivity(), null);
                 contactViews.add(gcrrContactView);
                 ll_gcrr_contact.addView(gcrrContactView);
-                notifyChanges();
+//                notifyChanges();
             }
         });
     }
@@ -89,7 +93,7 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
 
         if(getActivity() == null)
             return;
-        Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
 
         if (!TextUtils.isEmpty(et_restaurant_website.getText().toString().trim())) {
             restaurant.setWebsite(et_restaurant_website.getText().toString().trim());
@@ -114,12 +118,12 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
             }
             restaurant.setContacts(contactModels);
         }
-        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
+//        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 
     @Override
     public void populateViewFromData() {
-        Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
         et_restaurant_website.setText(restaurant.getWebsite());
         et_restaurant_fb.setText(restaurant.getFb_page_url());
         et_mobile.setText(restaurant.getMobile_number());
@@ -132,18 +136,21 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
                 ll_gcrr_contact.addView(gcrrContactView);
             }
         }
+
+//        notifyChanges();
     }
 
     @Override
     public boolean isDataValid() {
+
+        if(getActivity() == null || getView() == null)
+            return false;
         if (TextUtils.isEmpty(et_mobile.getText().toString().trim())) {
             return false;
         } else if (TextUtils.isEmpty(et_phone.getText().toString().trim())) {
                 return false;
         }
-        else if (null == contactViews || (contactViews!= null && contactViews.size() <= 0) ){
-           return false;
-        }
+
         saveDataForStep();
         return true;
     }
@@ -151,5 +158,22 @@ public class ContactFragment extends BaseStepFragment implements View.OnFocusCha
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         notifyChanges();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+            notifyChanges();
+
     }
 }

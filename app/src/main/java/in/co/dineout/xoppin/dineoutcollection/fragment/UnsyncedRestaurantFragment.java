@@ -1,27 +1,22 @@
 package in.co.dineout.xoppin.dineoutcollection.fragment;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
 import in.co.dineout.xoppin.dineoutcollection.adapter.RestaurantDetailListAdapter;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.service.RestaurantBackgroundService;
 
 /**
  * Created by prateek.aggarwal on 5/6/16.
  */
-public class UnsyncedRestaurantFragment extends MasterDataFragment implements AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener {
-
+public class UnsyncedRestaurantFragment extends MasterDataFragment implements View.OnClickListener {
 
     private RestaurantDetailListAdapter restaurantDetailListAdapter;
 
@@ -41,61 +36,18 @@ public class UnsyncedRestaurantFragment extends MasterDataFragment implements Ad
         super.onActivityCreated(savedInstanceState);
 
         ListView listView = (ListView) getView().findViewById(R.id.lv_list);
-
+        View mSyncDispatcher = getView().findViewById(R.id.sync_container);
+        mSyncDispatcher.setVisibility(View.VISIBLE);
+        mSyncDispatcher.setOnClickListener(this);
         restaurantDetailListAdapter = new RestaurantDetailListAdapter(getActivity(),
-                DatabaseManager.getInstance().getAllUnSyncedRestaurants());
-
+                DataDatabaseUtils.getInstance(getContext()).getUnsynedRestaurant());
         listView.setAdapter(restaurantDetailListAdapter);
-        listView.setOnItemLongClickListener(this);
-        listView.setOnItemClickListener(this);
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onClick(View v) {
 
-        showRestaurantDetail(position);
-    }
-
-    private void showRestaurantDetail(int position){
-        Intent i = new Intent(getActivity(), RestaurantFormActivity.class);
-        i.setAction(RestaurantFormActivity.ACTION_UPDATE_RESTAURANT);
-        i.putExtra(RestaurantFormActivity.KEY_RESTAURANT_DETAILS_DATA_ID, restaurantDetailListAdapter.getItem(position).getId());
-        startActivity(i);
-    }
-
-    @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-
-        // Setting Dialog Title
-        alertDialog.setTitle("Confirm Syncing...");
-
-        // Setting Dialog Message
-        alertDialog.setMessage("Are you sure you want Sync this? Once it is sent to sync it cannot be edited.");
-
-        // Setting Positive "Yes" Button
-        alertDialog.setPositiveButton("Sync", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                if (restaurantDetailListAdapter.getItem(position).sendToSync(getActivity())) {
-                    Toast.makeText(getActivity().getApplicationContext(), "Sync Requested", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity().getApplicationContext(), "Cannot Sync Enter Mandatory data first", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        // Setting Negative "NO" Button
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getActivity().getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-                dialog.cancel();
-            }
-        });
-
-        // Showing Alert Message
-        alertDialog.show();
-        
-        return true;
+        Intent intent = new Intent(getContext(), RestaurantBackgroundService.class);
+        getContext().startService(intent);
     }
 }

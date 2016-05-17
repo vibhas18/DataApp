@@ -1,78 +1,117 @@
 package in.co.dineout.xoppin.dineoutcollection.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
-import in.co.dineout.xoppin.dineoutcollection.model.AssignedTaskModel;
 
 /**
  * Created by suraj on 06/02/16.
  */
-public class TasksListAdapter extends ArrayAdapter<AssignedTaskModel> {
+public class TasksListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final String TAG = TasksListAdapter.class.getSimpleName();
 
-    public TasksListAdapter(Context context, ArrayList<AssignedTaskModel> assignedTaskModels) {
-        super(context, R.layout.row_task_list, assignedTaskModels);
+    private Context mContext;
+    private JSONArray mTasksList;
+    private TaskDetailCallback mCallback;
+    public TasksListAdapter(Context context,JSONArray taskList,TaskDetailCallback callback){
+        this.mContext = context;
+        this.mTasksList = taskList;
+        this.mCallback = callback;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder;
-        if (null == convertView) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_task_list, parent, false);
-            viewHolder = getViewHolder(convertView);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-        }
-
-        AssignedTaskModel taskModel = getItem(position);
-        if (taskModel.getR_id() != -1) {
-            viewHolder.tvRestName.setText("(" + taskModel.getR_id() + ") " + taskModel.getProfile_name());
-        } else {
-            viewHolder.tvRestName.setText(taskModel.getProfile_name());
-        }
-
-        viewHolder.tvLocality.setText(taskModel.getLocality_name());
-        viewHolder.tvTaskDetail.setText(taskModel.getTask_details());
-        viewHolder.tvPriority.setText(taskModel.getPriority());
-        viewHolder.tvStatus.setText(taskModel.getStatus());
-
-        if (DatabaseManager.getInstance().getRestaurantDetailsModelForRestaurantId(taskModel.getR_id()) != null) {
-            viewHolder.tvEditing.setVisibility(View.VISIBLE);
-        } else {
-            viewHolder.tvEditing.setVisibility(View.GONE);
-        }
-
-        return convertView;
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new TaskViewHolder(LayoutInflater.from(mContext).inflate(R.layout.row_task_list,parent,false));
     }
 
-    private ViewHolder getViewHolder(View rowView) {
-        ViewHolder viewHolder = new ViewHolder();
-        viewHolder.tvRestName = (TextView) rowView.findViewById(R.id.tv_rest_name);
-        viewHolder.tvStatus = (TextView) rowView.findViewById(R.id.tv_status);
-        viewHolder.tvPriority = (TextView) rowView.findViewById(R.id.tv_priority);
-        viewHolder.tvTaskDetail = (TextView) rowView.findViewById(R.id.tv_task_detail);
-        viewHolder.tvLocality = (TextView) rowView.findViewById(R.id.tv_locality);
-        viewHolder.tvEditing = (TextView) rowView.findViewById(R.id.tv_editing);
-        return viewHolder;
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+
+        JSONObject tasks = this.mTasksList.optJSONObject(position);
+        if(tasks != null){
+            ((TaskViewHolder)holder).updateData(tasks);
+        }
     }
 
-    private class ViewHolder {
+    @Override
+    public int getItemCount() {
+
+        if(this.mTasksList != null)
+            return this.mTasksList.length();
+        return 0;
+    }
+
+    private class TaskViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView tvRestName;
         private TextView tvStatus;
         private TextView tvPriority;
         private TextView tvTaskDetail;
         private TextView tvLocality;
         private TextView tvEditing;
+        private View mRoot;
+
+        public TaskViewHolder(View itemView) {
+            super(itemView);
+            initializeView(itemView);
+        }
+
+        private void initializeView(View v){
+
+            mRoot = v;
+            tvRestName = (TextView) v.findViewById(R.id.tv_rest_name);
+            tvStatus = (TextView) v.findViewById(R.id.tv_status);
+            tvPriority = (TextView) v.findViewById(R.id.tv_priority);
+            tvTaskDetail = (TextView) v.findViewById(R.id.tv_task_detail);
+            tvLocality = (TextView) v.findViewById(R.id.tv_locality);
+            tvEditing = (TextView) v.findViewById(R.id.tv_editing);
+        }
+
+        public void updateData(JSONObject data){
+
+            int restId = data.optInt("r_id",-1);
+            if (restId != -1) {
+                tvRestName.setText("(" + restId + ") " + data.optString("profile_name"));
+            } else {
+                tvRestName.setText(data.optString("profile_name"));
+            }
+
+            tvLocality.setText(data.optString("locality_name"));
+            tvTaskDetail.setText(data.optString("task_details"));
+            tvPriority.setText(data.optString("priority"));
+            tvStatus.setText(data.optString("status"));
+
+            tvEditing.setVisibility(View.VISIBLE);
+            mRoot.setTag(restId);
+
+
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(mCallback != null){
+                mCallback.showTaskDetail((int)v.getId());
+            }
+        }
+    }
+
+    public void updateAdapter(JSONArray object){
+        this.mTasksList = object;
+        notifyDataSetChanged();
+    }
+
+    public interface TaskDetailCallback{
+
+        public void showTaskDetail(int id);
     }
 
 

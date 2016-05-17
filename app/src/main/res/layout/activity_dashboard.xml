@@ -152,6 +152,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:text="Restaurants In Edit Mode"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_editing_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="10dp"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btn_editing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/shp_white_click_border"
+                android:padding="10dp"
+                android:text="Edit Restaurants"
+                android:textColor="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
                 android:text="Synced Count"
                 android:textColor="@color/black"
                 android:textSize="18sp" />

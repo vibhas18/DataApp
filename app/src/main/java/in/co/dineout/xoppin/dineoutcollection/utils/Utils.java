@@ -1,6 +1,7 @@
 package in.co.dineout.xoppin.dineoutcollection.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
@@ -17,6 +18,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
+import in.co.dineout.xoppin.dineoutcollection.service.RestaurantIntentService;
 
 /**
  * Created by suraj on 03/02/16.
@@ -115,5 +120,22 @@ public class Utils {
                 + latitude + "," + longitude +
                 "&zoom=15&size=520x260&markers=color:red%7Clabel:" + charForPointer + "%7C"
                 + latitude + "," + longitude;
+    }
+
+
+    public static void sendToSync(Context context , RestaurantDetailsModel model){
+
+
+        if(model != null){
+        DataDatabaseUtils.getInstance(context).saveRestaurantForSyncing(model.getRestaurantId() + "",
+                model.getRestaurantName(), model.getRestaurantJSONString());
+
+            DataDatabaseUtils.getInstance(context).saveRestaurantForSyncing(model.getRestaurantId() + "",
+                    model.getRestaurantName(), model.getRestaurantJSONString());
+
+        Intent intent = new Intent(context, RestaurantIntentService.class);
+        intent.putExtra("REST_ID", model.getRestaurantId());
+        context.startService(intent);
+        }
     }
 }

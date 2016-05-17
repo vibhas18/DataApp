@@ -30,7 +30,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.DataMainActivity"
+            android:name=".activity.RootActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,22 +38,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.DashboardActivity"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.TasksActivity"
-            android:label="My Tasks"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.RestaurantFormActivity"
-            android:label="Restaurant Form"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".activity.SyncStateListActivity" />
 
         <receiver android:name=".imageupload.BootCompletedReceiver">
             <intent-filter>
@@ -74,7 +58,21 @@
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
             android:enabled="true" />
 
-        <activity android:name=".activity.ImageUploadListActivity"></activity>
+        <service
+            android:name="in.co.dineout.xoppin.dineoutcollection.service.RestaurantIntentService"
+           android:exported="false" >
+            <intent-filter>
+                <action android:name="in.co.dineout.xoppin.dineoutcollection.utils.UPLOAD" />
+            </intent-filter>
+        </service>
+
+
+        <service
+            android:name="in.co.dineout.xoppin.dineoutcollection.service.RestaurantBackgroundService"
+            android:exported="false" >
+
+        </service>
+
     </application>
 
 </manifest>

@@ -17,4 +17,22 @@ public class CuisineModel implements Serializable {
     public void setCuisine_name(String cuisine_name) {
         this.cuisine_name = cuisine_name;
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+
+       CuisineModel model = (CuisineModel)o;
+        return this.cuisine_name.equalsIgnoreCase(model.cuisine_name);
+    }
+
+    @Override
+    public int hashCode() {
+        return this.cuisine_name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

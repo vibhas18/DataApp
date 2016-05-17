@@ -1,75 +1,45 @@
 package in.co.dineout.xoppin.dineoutcollection.fragment;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.dineout.android.volley.Request;
+import com.dineout.android.volley.Response;
+import com.dineout.android.volley.VolleyError;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Map;
+import java.lang.reflect.Type;
+import java.util.List;
 
-import in.co.dineout.xoppin.dineoutcollection.DineoutCollectApp;
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
 import in.co.dineout.xoppin.dineoutcollection.adapter.TasksListAdapter;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
-import in.co.dineout.xoppin.dineoutcollection.helper.LoginHelper;
-import in.co.dineout.xoppin.dineoutcollection.helper.ObjectMapperFactory;
-import in.co.dineout.xoppin.dineoutcollection.model.AssignedTaskModel;
-import in.co.dineout.xoppin.dineoutcollection.model.AssignedTasks;
-import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.model.ImageStatusModel;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 
 /**
  * Created by suraj on 06/02/16.
+ * Modified by Prateek 12/05/16
  */
-public class TaskListFragment extends MasterDataFragment {
-    private static final String TAG = TaskListFragment.class.getSimpleName();
-    public static final String TAG2 = TaskListFragment.class.getCanonicalName();
-
-    private static final String KEY_MODE = "KEY_MODE";
-    private static final String KEY_DATA = "KEY_DATA";
-
-
-    private ListView lvAssignedTasks;
+public class TaskListFragment extends MasterDataFragment implements Response.Listener<JSONObject>,Response.ErrorListener,TasksListAdapter.TaskDetailCallback
+{
+    private RecyclerView lvAssignedTasks;
     private TasksListAdapter tasksListAdapter;
-    private ArrayList<AssignedTaskModel> assignedTaskModels;
+    private final int ASSIGNED_TASK_REQUEST = 101;
+    private final int DETAIL_REQUEST = 102;
 
-    private enum Mode {
-        FROM_LIST, FETCH_NEW
-    }
 
     public static TaskListFragment newInstance() {
         TaskListFragment fragment = new TaskListFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(KEY_MODE, Mode.FETCH_NEW);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
-
-
-    public static TaskListFragment newInstance(ArrayList<AssignedTaskModel> assignedTaskModels) {
-        TaskListFragment fragment = new TaskListFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(KEY_MODE, Mode.FROM_LIST);
-        bundle.putSerializable(KEY_DATA, assignedTaskModels);
-        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -82,161 +52,84 @@ public class TaskListFragment extends MasterDataFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        assignedTaskModels = new ArrayList<>(10);
-        tasksListAdapter = new TasksListAdapter(getActivity(), assignedTaskModels);
 
-        lvAssignedTasks = (ListView) view.findViewById(R.id.lv_tasks_list);
+        lvAssignedTasks = (RecyclerView) view.findViewById(R.id.lv_tasks_list);
+        lvAssignedTasks.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        tasksListAdapter = new TasksListAdapter(getActivity(),null,this);
         lvAssignedTasks.setAdapter(tasksListAdapter);
-
-        if (getArguments().getSerializable(KEY_MODE) == Mode.FROM_LIST) {
-            (view.findViewById(R.id.inform_text)).setVisibility(View.GONE);
-            (view.findViewById(R.id.lv_tasks_list)).setVisibility(View.VISIBLE);
-            assignedTaskModels.addAll((ArrayList<AssignedTaskModel>) getArguments().getSerializable(KEY_DATA));
-            tasksListAdapter.notifyDataSetChanged();
-        } else {
-            initiateRequestForAssignedTasks();
-        }
-
-        lvAssignedTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                initiateRequestForRestaurantDetail(assignedTaskModels.get(position).getR_id());
-            }
-        });
-
+        initiateRequestForAssignedTasks();
     }
 
     private void initiateRequestForAssignedTasks() {
-        String TAG_REQUEST_ASSIGNED_TASK = "TAG_REQUEST_ASSIGNED_TASK";
 
-        String url = "http://laravel.dineoutdeals.in/index.php/api/task-assigned";
-
-        Response.Listener<JSONObject> respListener = new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
-                //parse and update list
-                AssignedTasks assignedTasks = null;
-                try {
-                    assignedTasks = ObjectMapperFactory.getObjectMapper()
-                            .readValue(response.getJSONObject("data").toString(), AssignedTasks.class);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                if (null != assignedTasks && assignedTasks.getTask_list() != null && assignedTasks.getTask_list().size() > 0) {
-                    if (null != getView()) {
-                        (getView().findViewById(R.id.inform_text)).setVisibility(View.GONE);
-                        (getView().findViewById(R.id.lv_tasks_list)).setVisibility(View.VISIBLE);
-
-                        assignedTaskModels.addAll(assignedTasks.getTask_list());
-                        tasksListAdapter.notifyDataSetChanged();
-                    }
-                } else {
-                    if (null != getView()) {
-                        (getView().findViewById(R.id.inform_text)).setVisibility(View.VISIBLE);
-                        ((TextView) getView().findViewById(R.id.inform_text)).setText("No Assigned Tasks found");
-                    }
-                }
-            }
-        };
-
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                if (null != getView()) {
-                    (getView().findViewById(R.id.inform_text)).setVisibility(View.VISIBLE);
-                    ((TextView) getView().findViewById(R.id.inform_text)).setText("Some Error occurred, Contact Tech Support");
-                }
-            }
-        };
-
-
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, url, null, respListener, errorListener) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = LoginHelper.getDefaultHeaders(getActivity());
-                headers.putAll(super.getHeaders());
-                return headers;
-            }
-        };
-
-        DineoutCollectApp.getInstance().addToRequestQueue(jsonObjReq, TAG_REQUEST_ASSIGNED_TASK);
+        showLoadingDialog(false);
+        getNetworkManager().jsonRequestGet(ASSIGNED_TASK_REQUEST, "task-assigned",
+                null, this, this, false);
     }
+
 
     private void initiateRequestForRestaurantDetail(final int restaurantId) {
-        String TAG_REQUEST_RESTAURANT_DETAIL = "TAG_REQUEST_RESTAURANT_DETAIL";
 
-        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading Restaurant..");
-        progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(true);
-
-        String url = "http://laravel.dineoutdeals.in/index.php/api/resturant-details/" + restaurantId;
-
-        Response.Listener<JSONObject> respListener = new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                if (null != getActivity() && null != progressDialog) {
-                    progressDialog.dismiss();
-                }
-                Log.d(TAG, response.toString());
-                //parse and update list
-                Restaurant restaurant = null;
-                try {
-                    restaurant = ObjectMapperFactory.getObjectMapper()
-                            .readValue(response.getJSONObject("data").toString(), Restaurant.class);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                if (null != restaurant) {
-                    if (null != getActivity()) {
-                        if (DatabaseManager.getInstance().getRestaurantDetailsModelForRestaurantId(restaurant.getR_id()) != null) {
-                            Intent i = new Intent(getActivity(), RestaurantFormActivity.class);
-                            i.setAction(RestaurantFormActivity.ACTION_UPDATE_RESTAURANT_FROM_ASSIGNED);
-                            i.putExtra(RestaurantFormActivity.KEY_RESTAURANT_DETAILS_DATA_ID, restaurant.getR_id());
-                            startActivity(i);
-                        } else {
-                            Intent i = new Intent(getActivity(), RestaurantFormActivity.class);
-                            i.setAction(RestaurantFormActivity.ACTION_UPDATE_ASSIGNED_RESTAURANT);
-                            i.putExtra(RestaurantFormActivity.KEY_RESTAURANT_DATA, restaurant);
-                            startActivity(i);
-                        }
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Error occured while fetching restaurant for ID "
-                            + restaurantId + " contact tech support if problem persists", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-
-        Response.ErrorListener errorListener = new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                if (null != getView()) {
-                    (getView().findViewById(R.id.inform_text)).setVisibility(View.VISIBLE);
-                    ((TextView) getView().findViewById(R.id.inform_text)).setText("Some Error occurred, Contact Tech Support");
-                }
-            }
-        };
-
-
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, url, null, respListener, errorListener) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = LoginHelper.getDefaultHeaders(getActivity());
-                headers.putAll(super.getHeaders());
-                return headers;
-            }
-        };
-
-        DineoutCollectApp.getInstance().addToRequestQueue(jsonObjReq, TAG_REQUEST_RESTAURANT_DETAIL);
-        progressDialog.show();
+        String url = "resturant-details/" + restaurantId;
+        showLoadingDialog(false);
+        getNetworkManager().jsonRequestGet(DETAIL_REQUEST, url,
+                null, this, this, false);
     }
+
+    @Override
+    public void onErrorResponse(Request request, VolleyError error) {
+
+        hideLoadingDialog();
+    }
+
+    @Override
+    public void onResponse(Request<JSONObject> request, JSONObject responseObject, Response<JSONObject> response) {
+
+        if(getActivity() == null)
+            return;
+        hideLoadingDialog();
+        if(request.getIdentifier() == ASSIGNED_TASK_REQUEST && responseObject != null){
+
+            if(responseObject.optInt("status") == 1){
+                JSONArray array = responseObject.optJSONObject("data").optJSONArray("task_list");
+                tasksListAdapter.updateAdapter(array);
+            }
+
+        }else if(request.getIdentifier() == DETAIL_REQUEST && responseObject != null){
+
+            if(responseObject.optInt("status") == 1){
+                JSONObject data = responseObject.optJSONObject("data");
+                RestaurantDetailsModel model = new RestaurantDetailsModel(data.toString());
+                model.setMode(DataDatabaseUtils.PENDING);
+                saveImage(data);
+                DataDatabaseUtils.getInstance(getContext()).
+                        saveRestaurantForEditing(model.getRestaurantId()
+                                , model.getRestaurantName(), model.getRestaurantJSONString());
+
+                RestaurantFormFragment fragment = RestaurantFormFragment.newInstance(model);
+                addToBackStack(getActivity(),fragment);
+            }
+        }
+    }
+
+    private void saveImage(JSONObject data){
+
+        String id = data.optString("r_id");
+        Type listType = new TypeToken<List<ImageStatusModel>>() {}.getType();
+        List<ImageStatusModel> profileImages = new Gson().fromJson(data.optJSONArray("profile_image").toString(), listType);
+        List<ImageStatusModel> menuImages = new Gson().fromJson(data.optJSONArray("menu_image").toString(), listType);
+
+        DataDatabaseUtils.getInstance(getContext()).saveMenuImage(menuImages,id);
+        DataDatabaseUtils.getInstance(getContext()).saveProfileImage(profileImages,id);
+
+    }
+
+    @Override
+    public void showTaskDetail(int id) {
+
+        initiateRequestForRestaurantDetail(id);
+    }
+
 
 }

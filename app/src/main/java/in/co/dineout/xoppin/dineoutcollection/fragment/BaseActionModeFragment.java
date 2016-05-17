@@ -8,8 +8,6 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
-
 /**
  * Created by suraj on 19/02/16.
  */
@@ -28,12 +26,12 @@ public abstract class BaseActionModeFragment extends Fragment implements ActionM
     }
 
     private void setupActionMode() {
-        if (getActivity() instanceof RestaurantFormActivity) {
-            ActionMode actionMode = ((RestaurantFormActivity) getActivity()).getActionMode();
-            if (actionMode != null) {
-                actionMode.setTag(Boolean.TRUE);
-            }
-        }
+//        if (getActivity() instanceof RestaurantFormActivity) {
+//            ActionMode actionMode = ((RestaurantFormActivity) getActivity()).getActionMode();
+//            if (actionMode != null) {
+//                actionMode.setTag(Boolean.TRUE);
+//            }
+//        }
 
         actionMode = getActivity().startActionMode(this);
     }

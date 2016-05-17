@@ -18,10 +18,11 @@ import android.widget.TimePicker;
 import java.util.Date;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
+import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.model.OpenTimingDaysModel;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.TimingModel;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 public class TimingsFragment extends BaseStepFragment {
@@ -264,7 +265,7 @@ public class TimingsFragment extends BaseStepFragment {
 
     @Override
     public void saveDataForStep() {
-        Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
+        Restaurant restaurant = new Restaurant();
         if (restaurant.getOpen_timing() == null) {
             restaurant.setOpen_timing(new OpenTimingDaysModel());
         }
@@ -408,12 +409,12 @@ public class TimingsFragment extends BaseStepFragment {
             timingModel.setState("closed");
             restaurant.getOpen_timing().setSaturday(timingModel);
         }
-        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
+//        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 
     @Override
     public void populateViewFromData() {
-        Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
         if(null == restaurant.getOpen_timing()) {
             Log.wtf(TAG, "null openTiming");
             return;
@@ -478,7 +479,14 @@ public class TimingsFragment extends BaseStepFragment {
 
     @Override
     public boolean isDataValid() {
+
         return false;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        saveDataForStep();
     }
 
     public static class TimePickerFragment extends DialogFragment implements

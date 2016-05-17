@@ -1,8 +1,6 @@
 package com.example.datanetworkmodule;
 
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Handler;
@@ -121,33 +119,8 @@ public class DineoutNetworkManager
 
 
     public HashMap<String, String> getHeaders(Context context) {
-        headers = new HashMap<String, String>();
-        PackageInfo pInfo;
 
-        try {
-            pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-
-            headers.put(AppConstant.DEFAULT_HEADER_APP_VERSION, pInfo.versionName);
-            headers.put(AppConstant.DEFAULT_HEADER_DEVICE_ID, DOPreferences.getDeviceId(context));
-            headers.put(AppConstant.DEFAULT_HEADER_DEVICE_ID_1, DOPreferences.getGoogleAdId(context));
-            headers.put(AppConstant.DEFAULT_HEADER_DEVICE_ID_2, DOPreferences.getImei(context));
-            headers.put(AppConstant.DEFAULT_HEADER_DEVICE_TOKEN, DOPreferences.getGcmRegistrationToken(context));
-            headers.put(AppConstant.DEFAULT_HEADER_DEVICE_TYPE, AppConstant.DEVICE_TYPE);
-            headers.put(AppConstant.DEFAULT_HEADER_CITY_ID, DOPreferences.getCityId(context));
-            headers.put(AppConstant.DEFAULT_HEADER_DINER_ID, DOPreferences.getDinerId(context) != null ?
-                    DOPreferences.getDinerId(context) : null);
-            headers.put(AppConstant.DEFAULT_HEADER_DEVICE_LATITUDE, DOPreferences.getCurrentLatitude(context));
-            headers.put(AppConstant.DEFAULT_HEADER_DEVICE_LONGITUDE, DOPreferences.getCurrentLongitude(context));
-            headers.put(AppConstant.DEFAULT_HEADER_ENTITY_LATITUDE, DOPreferences.getELatitude(context));
-            headers.put(AppConstant.DEFAULT_HEADER_ENTITY_LONGITUDE, DOPreferences.getELongitude(context));
-            headers.put(AppConstant.ACCEPT_ENCODING, "gzip");
-
-            if (!TextUtils.isEmpty(DOPreferences.getAuthKey(context))) {
-                headers.put(AppConstant.DEFAULT_HEADER_AUTH_KEY, DOPreferences.getAuthKey(context));
-            }
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
+        headers = DataPreferences.getDefaultHeaders(context);
 
         return (HashMap<String, String>) DineoutNetworkManager.headers.clone();
     }

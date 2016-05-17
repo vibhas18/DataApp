@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
@@ -19,7 +19,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsMo
  * Created by suraj on 13/03/16.
  */
 public class RestaurantDetailListAdapter extends ArrayAdapter<RestaurantDetailsModel> {
-    public RestaurantDetailListAdapter(Context context, ArrayList<RestaurantDetailsModel> restaurantDetailsModels) {
+    public RestaurantDetailListAdapter(Context context, List<RestaurantDetailsModel> restaurantDetailsModels) {
         super(context, R.layout.row_restaurant_detail, restaurantDetailsModels);
     }
 

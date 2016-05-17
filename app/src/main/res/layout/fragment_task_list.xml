@@ -10,15 +10,15 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Loading..."
+        android:visibility="gone"
         android:textSize="18sp" />
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/lv_tasks_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:divider="@null"
         android:scrollbars="none"
-        android:visibility="gone" />
+        />
 
 </LinearLayout>

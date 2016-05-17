@@ -13,10 +13,10 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.SyncStatusModel;
+import in.co.dineout.xoppin.dineoutcollection.model.ImageStatusModel;
 
 /**
  * Created by suraj on 14/03/16.
@@ -25,9 +25,9 @@ public class GridImageAdapter extends BaseAdapter {
     private static final String TAG = GridImageAdapter.class.getSimpleName();
 
     private Context mContext;
-    private ArrayList<SyncStatusModel> mSyncStatusModels;
+    private List<ImageStatusModel> mSyncStatusModels;
 
-    public GridImageAdapter(@NonNull Context context, @NonNull ArrayList<SyncStatusModel> syncStatusModels) {
+    public GridImageAdapter(@NonNull Context context, @NonNull List<ImageStatusModel> syncStatusModels) {
         mContext = context;
         mSyncStatusModels = syncStatusModels;
     }
@@ -38,7 +38,7 @@ public class GridImageAdapter extends BaseAdapter {
     }
 
     @Override
-    public SyncStatusModel getItem(int position) {
+    public ImageStatusModel getItem(int position) {
         return mSyncStatusModels.get(position);
     }
 
@@ -55,19 +55,14 @@ public class GridImageAdapter extends BaseAdapter {
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.iv_image);
         TextView tvCaption = (TextView) convertView.findViewById(R.id.tv_caption);
-        TextView tvStatus = (TextView) convertView.findViewById(R.id.tv_status);
 
 
-        SyncStatusModel syncStatusModel = getItem(position);
+        ImageStatusModel syncStatusModel = getItem(position);
 
-        if (syncStatusModel.isPreSynced()) {
-            Picasso.with(mContext).load(syncStatusModel.getSyncedImageUrl()).into(imageView);
-        } else {
-            Picasso.with(mContext).load(Uri.fromFile(new File(syncStatusModel.getImageLocalPath()))).into(imageView);
-        }
+//        Picasso.with(mContext).load(syncStatusModel.getSyncedImageUrl()).into(imageView);
+        Picasso.with(mContext).load(Uri.fromFile(new File(syncStatusModel.getImageURI()))).into(imageView);
 
-        tvCaption.setText(syncStatusModel.getImageCaption());
-        tvStatus.setText(syncStatusModel.getSync_status().name());
+        tvCaption.setText(syncStatusModel.getCaption());
 
         return convertView;
     }

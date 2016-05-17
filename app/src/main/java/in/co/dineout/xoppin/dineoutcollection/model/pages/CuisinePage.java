@@ -31,9 +31,12 @@ public class CuisinePage extends Page {
 
     @Override
     public boolean isCompleted() {
-        if(mFragment != null)
-            return mFragment.isDataValid();
-
+        try{
+            if(mFragment != null)
+                return mFragment.isDataValid();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return false;
     }
 }

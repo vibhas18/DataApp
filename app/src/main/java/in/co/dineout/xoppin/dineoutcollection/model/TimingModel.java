@@ -1,14 +1,10 @@
 package in.co.dineout.xoppin.dineoutcollection.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.io.Serializable;
 
 /**
  * Created by suraj on 04/02/16.
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class TimingModel implements Serializable {
     private static final long serialVersionUID = -7141378558786661652L;
 

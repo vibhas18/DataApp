@@ -10,10 +10,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
 import in.co.dineout.xoppin.dineoutcollection.fragment.CuisineListFragment;
+import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.model.CuisineModel;
-import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 
 public class CuisineFragment extends BaseStepFragment {
     public static final String TAG2 = CuisineFragment.class.getCanonicalName();
@@ -59,6 +59,8 @@ public class CuisineFragment extends BaseStepFragment {
                 fragment.setCallbacks(new CuisineListFragment.Callbacks() {
                     @Override
                     public void onCuisineSelected(final ArrayList<CuisineModel> cuisines) {
+
+
                         updatePrimaryCuisineView();
                         notifyChanges();
                     }
@@ -118,19 +120,19 @@ public class CuisineFragment extends BaseStepFragment {
 
         if(getActivity() == null)
             return;
-        Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
         if (null != primaryCuisineModels && primaryCuisineModels.size() > 0) {
             restaurant.setPrimary_cuisine(primaryCuisineModels);
         }
         if (null != secondaryCuisineModels && secondaryCuisineModels.size() > 0) {
             restaurant.setSecondary_cuisine(secondaryCuisineModels);
         }
-        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
+//        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 
     @Override
     public void populateViewFromData() {
-        Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
 
         if (restaurant.getPrimary_cuisine() != null && restaurant.getPrimary_cuisine().size() > 0) {
             primaryCuisineModels.addAll(restaurant.getPrimary_cuisine());
@@ -141,6 +143,7 @@ public class CuisineFragment extends BaseStepFragment {
             secondaryCuisineModels.addAll(restaurant.getSecondary_cuisine());
             upDateSecondaryCuisineView();
         }
+//        notifyChanges();
     }
 
     @Override

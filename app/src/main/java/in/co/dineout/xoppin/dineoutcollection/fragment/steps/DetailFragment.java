@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,15 +19,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
+import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.handler.StaticDataHandler;
 import in.co.dineout.xoppin.dineoutcollection.model.ChainModel;
 import in.co.dineout.xoppin.dineoutcollection.model.FeatureModel;
 import in.co.dineout.xoppin.dineoutcollection.model.HotelsModel;
-import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.TagModel;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 
-public class DetailFragment extends BaseStepFragment implements View.OnFocusChangeListener {
+public class DetailFragment extends BaseStepFragment implements View.OnFocusChangeListener,RadioGroup.OnCheckedChangeListener {
     private static final String TAG = DetailFragment.class.getSimpleName();
     public static final String TAG2 = DetailFragment.class.getCanonicalName();
 
@@ -79,6 +80,7 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
     private CheckBox cb_plus;
 
 
+
     //elements
     private ChainModel restaurantChain = null;
     private HotelsModel hotelsModel = null;
@@ -88,7 +90,7 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
     public static DetailFragment create(String key) {
         DetailFragment fragment = new DetailFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(ARG_KEY,key);
+        bundle.putString(ARG_KEY, key);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -103,8 +105,14 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(view);
-        populateViewFromData();
+
+
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView(getView());
     }
 
     private void initView(View view) {
@@ -113,7 +121,6 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
 
         et_restaurant_description = (EditText) view.findViewById(R.id.et_restaurant_description);
         et_cft = (EditText) view.findViewById(R.id.et_cft);
-        et_cft.setOnFocusChangeListener(this);
 
         //features
         cb_smoking = (CheckBox) view.findViewById(R.id.cb_smoking);
@@ -123,6 +130,7 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
         cb_valet = (CheckBox) view.findViewById(R.id.cb_valet);
         cb_home = (CheckBox) view.findViewById(R.id.cb_home);
         cb_alcohol = (CheckBox) view.findViewById(R.id.cb_alcohol);
+
 
         //tags
         cb_bar = (CheckBox) view.findViewById(R.id.cb_bar);
@@ -160,8 +168,13 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
 
         initRestaurantSpinner();
         initHotelSpinner();
+        populateViewFromData();
+        et_cft.setOnFocusChangeListener(this);
+
+
 
     }
+
 
     private void initRestaurantSpinner() {
         spn_restaurant.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -197,7 +210,7 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
         spn_hotel.setAdapter(hotelSpinnerAdapter);
     }
 
-    private void setTags(ArrayList<TagModel> tagModels) {
+    private void setTags(List<TagModel> tagModels) {
         if (null == tagModels || tagModels.size() == 0) {
             return;
         }
@@ -404,7 +417,7 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
         return tagsList;
     }
 
-    private void setFeatures(ArrayList<FeatureModel> features) {
+    private void setFeatures(List<FeatureModel> features) {
         if (features == null || features.size() == 0) {
             return;
         }
@@ -460,6 +473,7 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
     }
 
 
+
     @Override
     public void onStepChanged() {
 
@@ -470,7 +484,7 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
 
         if(getActivity() == null)
             return;
-        Restaurant restaurant = ((RestaurantFormActivity) (getActivity())).getRestaurant();
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
         if (hotelsModel != null) {
             restaurant.setHotel_id(hotelsModel.getHotel_id());
         }
@@ -485,12 +499,12 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
         }
         restaurant.setTags(getTags());
         restaurant.setFeatures(getFeatures());
-        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
+//        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 
     @Override
     public void populateViewFromData() {
-        Restaurant restaurant = ((RestaurantFormActivity) (getActivity())).getRestaurant();
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
 
         int hotelPosition = StaticDataHandler.getInstance().getHotelChainPositionForId(restaurant.getHotel_id());
         if (hotelPosition != -1) {
@@ -507,6 +521,8 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
 
         setTags(restaurant.getTags());
         setFeatures(restaurant.getFeatures());
+//        notifyChanges();
+
 
     }
 
@@ -531,6 +547,12 @@ public class DetailFragment extends BaseStepFragment implements View.OnFocusChan
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
+
+        notifyChanges();
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
 
         notifyChanges();
     }

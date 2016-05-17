@@ -2,29 +2,35 @@ package in.co.dineout.xoppin.dineoutcollection.fragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
-import org.json.JSONObject;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.adapter.GenericTabsPagerAdapter;
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.database.ImageEntry;
 import in.co.dineout.xoppin.dineoutcollection.model.AbstractWizardModel;
+import in.co.dineout.xoppin.dineoutcollection.model.ImageStatusModel;
 import in.co.dineout.xoppin.dineoutcollection.model.PageFragmentCallbacks;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.RestaurantWizardModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.model.pages.ModelCallbacks;
 import in.co.dineout.xoppin.dineoutcollection.model.pages.Page;
+import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 import in.co.dineout.xoppin.dineoutcollection.views.StepPagerStrip;
 
 /**
@@ -43,7 +49,7 @@ public class RestaurantFormFragment extends MasterDataFragment implements PageFr
 
     private GenericTabsPagerAdapter mPagerAdapter;
 
-    private RestaurantDetailsModel restaurantDetailsModel = new RestaurantDetailsModel("test");
+    private RestaurantDetailsModel restaurantDetailsModel =null;
 
     private ViewPager mPager;
 
@@ -59,10 +65,15 @@ public class RestaurantFormFragment extends MasterDataFragment implements PageFr
     private StepPagerStrip mStepPagerStrip;
 
 
-    public static RestaurantFormFragment newInstance(JSONObject restDetail,String id){
+    public static RestaurantFormFragment newInstance(RestaurantDetailsModel model){
+
+        if(model == null)
+            model = new RestaurantDetailsModel();
+
 
         RestaurantFormFragment fragment = new RestaurantFormFragment();
-       return fragment;
+        fragment.restaurantDetailsModel = model;
+        return fragment;
     }
 
     @Nullable
@@ -79,6 +90,8 @@ public class RestaurantFormFragment extends MasterDataFragment implements PageFr
         }
 
         initializeView(getView());
+        onPageTreeChanged();
+        updateBottomBar();
     }
 
     private void initializeView(View v){
@@ -100,6 +113,19 @@ public class RestaurantFormFragment extends MasterDataFragment implements PageFr
     @Override
     public void onPageDataChanged(Page page) {
 
+        int previous = mPager.getCurrentItem();
+        if (page.isRequired()) {
+            if (recalculateCutOffPage()) {
+//                mPagerAdapter.notifyDataSetChanged();
+                mPager.setCurrentItem(previous);
+                updateBottomBar();
+            }
+        }
+    }
+
+    @Override
+    public Page onGetPage(String key) {
+        return mWizardModel.findByKey(key);
     }
 
     @Override
@@ -112,10 +138,7 @@ public class RestaurantFormFragment extends MasterDataFragment implements PageFr
         updateBottomBar();
     }
 
-    @Override
-    public Page onGetPage(String key) {
-        return null;
-    }
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -142,6 +165,13 @@ public class RestaurantFormFragment extends MasterDataFragment implements PageFr
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+
+        saveRestaurantForEditing();
+    }
+
+    @Override
     public void onClick(View v) {
         if(v == mNextButton){
             handleNextAction();
@@ -152,18 +182,36 @@ public class RestaurantFormFragment extends MasterDataFragment implements PageFr
 
     private void handleNextAction(){
 
-        if (mPager.getCurrentItem() == mCurrentPageSequence.size()) {
-            DialogFragment dg = new DialogFragment() {
-                @Override
-                public Dialog onCreateDialog(Bundle savedInstanceState) {
-                    return new AlertDialog.Builder(getActivity())
-                            .setMessage(R.string.submit_confirm_message)
-                            .setPositiveButton(R.string.submit_confirm_button, null)
-                            .setNegativeButton(android.R.string.cancel, null)
-                            .create();
-                }
-            };
-            dg.show(getActivity().getSupportFragmentManager(), "place_order_dialog");
+        if (mPager.getCurrentItem() == mCurrentPageSequence.size() ) {
+
+            DataDatabaseUtils utils = DataDatabaseUtils.getInstance(getActivity());
+            if(utils.hasProfileImages(restaurantDetailsModel.getRestaurantId())
+                    && utils.hasMenuImages(restaurantDetailsModel.getRestaurantId())){
+
+                addMenuImages();
+                addProfileImages();
+
+                DialogFragment dg = new DialogFragment() {
+                    @Override
+                    public Dialog onCreateDialog(Bundle savedInstanceState) {
+                        return new AlertDialog.Builder(getActivity())
+                                .setMessage(R.string.submit_confirm_message)
+                                .setPositiveButton(R.string.submit_confirm_button, new Dialog.OnClickListener(){
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        sendRestaurantForSyncing();
+                                        getActivity().getSupportFragmentManager().popBackStackImmediate();
+                                    }
+                                })
+                                .setNegativeButton(android.R.string.cancel, null)
+                                .create();
+                    }
+                };
+                dg.show(getActivity().getSupportFragmentManager(), "sync_data_dialog");
+            }else{
+                Toast.makeText(getActivity(),"Please add profile and menu images", Toast.LENGTH_LONG).show();
+            }
         } else {
             if (mEditingAfterReview) {
                 mPager.setCurrentItem(mPagerAdapter.getCount() - 1);
@@ -243,11 +291,48 @@ public class RestaurantFormFragment extends MasterDataFragment implements PageFr
     }
 
     public Restaurant getRestaurant() {
-        return restaurantDetailsModel.getRestaurant();
+        return null;
+    }
+
+
+    public void saveRestaurantForEditing(){
+
+        if(restaurantDetailsModel.getMode() == DataDatabaseUtils.PENDING
+                && !TextUtils.isEmpty(restaurantDetailsModel.getRestaurantName()))
+            DataDatabaseUtils.getInstance(getActivity()).saveRestaurantForEditing(restaurantDetailsModel.getRestaurantId()+"",
+                    restaurantDetailsModel.getRestaurantName(),restaurantDetailsModel.getRestaurantJSONString());
+    }
+
+
+    public void sendRestaurantForSyncing(){
+
+        Utils.sendToSync(getActivity(),restaurantDetailsModel);
     }
 
     public RestaurantDetailsModel getRestaurantDetailsModel() {
         return restaurantDetailsModel;
+    }
+
+    private void addMenuImages(){
+
+        List<ImageStatusModel> mToUpload = new ArrayList<>();
+        mToUpload.addAll(DataDatabaseUtils.getInstance(getActivity()).
+                getPendingImage(restaurantDetailsModel.getRestaurantId(), ImageEntry.MENU_IMAGE));
+        mToUpload.addAll(DataDatabaseUtils.getInstance(getActivity()).
+                getSyncedImage(restaurantDetailsModel.getRestaurantId(), ImageEntry.MENU_IMAGE));
+
+        restaurantDetailsModel.setMenu_image(mToUpload);
+    }
+
+    private void addProfileImages(){
+
+        List<ImageStatusModel> mToUpload = new ArrayList<>();
+        mToUpload.addAll(DataDatabaseUtils.getInstance(getActivity()).
+                getPendingImage(restaurantDetailsModel.getRestaurantId(), ImageEntry.PROFILE_IMAGE));
+        mToUpload.addAll(DataDatabaseUtils.getInstance(getActivity()).
+                getSyncedImage(restaurantDetailsModel.getRestaurantId(), ImageEntry.PROFILE_IMAGE));
+
+        restaurantDetailsModel.setProfile_image(mToUpload);
     }
 
 }

@@ -5,11 +5,10 @@ import android.location.Location;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
+import com.dineout.android.volley.Request;
+import com.dineout.android.volley.RequestQueue;
+import com.dineout.android.volley.toolbox.Volley;
 
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
 import in.co.dineout.xoppin.dineoutcollection.handler.StaticDataHandler;
 import in.co.dineout.xoppin.dineoutcollection.helper.LocationUtils;
 import in.co.dineout.xoppin.dineoutcollection.imageupload.AmazonS3Handler;
@@ -32,7 +31,7 @@ public class DineoutCollectApp extends Application {
         mInstance = this;
 
         StaticDataHandler.init(this);
-        DatabaseManager.init(this);
+//        DatabaseManager.init(this);
         AmazonS3Handler.init(this);
 
         LocationUtils.getInstance(getApplicationContext()).getLastLocation(new LocationUtils.LocationCallbacks() {
@@ -60,7 +59,8 @@ public class DineoutCollectApp extends Application {
 
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext(), null,
+                    Volley.DEFAULT_CACHE_DIR, 3, true, false);
         }
 
         return mRequestQueue;

@@ -1,8 +1,7 @@
 package in.co.dineout.xoppin.dineoutcollection.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
  * Created by suraj on 04/02/16.
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Restaurant implements Serializable {
     private static final long serialVersionUID = 5811714197689706376L;
 
@@ -46,7 +44,7 @@ public class Restaurant implements Serializable {
     private int is_prepaid; //todo
     private int cost_per_cover;
     private int ww; //todo
-    @JsonProperty("3e3")
+    @SerializedName("3e3")
     private int a3e3; //todo
     private String payment_mode;
     private int company_id; //todo

@@ -15,7 +15,6 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import java.io.File;
 
 import in.co.dineout.xoppin.dineoutcollection.DineoutCollectApp;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.SyncStatusModel;
 
@@ -42,6 +41,7 @@ public class AmazonS3Handler {
         s3Client = new AmazonS3Client(new BasicAWSCredentials(ACCESS_ID, ACCESS_SECRET));
         s3Client.setRegion(Region.getRegion(Regions.AP_SOUTHEAST_1));
         transferUtility = new TransferUtility(s3Client, DineoutCollectApp.getInstance().getApplicationContext());
+
     }
 
     public static AmazonS3Handler getInstance() {
@@ -50,6 +50,8 @@ public class AmazonS3Handler {
 
     public void uploadImage(final SyncStatusModel syncStatusModel, final SyncStatusCallbacks syncStatusCallbacks) {
         Log.i("test uploadImage", syncStatusModel.getImageKey() + "  test");
+
+
         TransferObserver transferObserver = transferUtility.upload(BUCKET_NAME, syncStatusModel.getImageKey(), new File(syncStatusModel.getImageLocalPath()));
         transferObserver.setTransferListener(new TransferListener() {
             @Override
@@ -58,7 +60,7 @@ public class AmazonS3Handler {
                 if (state.equals(TransferState.COMPLETED)) {
                     Log.i("test uploadCompleted", syncStatusModel.getImageKey() + "  test");
                     syncStatusModel.setSync_status(RestaurantDetailsModel.SYNC_STATUS.SYNCED);
-                    DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
+//                    DatabaseManager.getInstance().createOrUpdateSyncStatusModel(syncStatusModel);
                     syncStatusCallbacks.onSyncCompleted();
                 }
             }

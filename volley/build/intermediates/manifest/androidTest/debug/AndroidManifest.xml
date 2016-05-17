@@ -3,7 +3,7 @@
     package="com.dineout.android.volley.test" >
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="21"
         android:targetSdkVersion="23" />
 
     <instrumentation

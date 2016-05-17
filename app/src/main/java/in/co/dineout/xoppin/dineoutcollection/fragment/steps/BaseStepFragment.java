@@ -2,15 +2,16 @@ package in.co.dineout.xoppin.dineoutcollection.fragment.steps;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 
+import in.co.dineout.xoppin.dineoutcollection.fragment.MasterDataFragment;
+import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.model.PageFragmentCallbacks;
 import in.co.dineout.xoppin.dineoutcollection.model.pages.Page;
 
 /**
  * Created by Suraj on 22-02-2016.
  */
-public abstract class BaseStepFragment extends Fragment {
+public abstract class BaseStepFragment extends MasterDataFragment {
 
     protected  static final String ARG_KEY = "key";
     public abstract void onStepChanged();
@@ -35,15 +36,16 @@ public abstract class BaseStepFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 
-        if (!(activity instanceof PageFragmentCallbacks)) {
-            throw new ClassCastException("Activity must implement PageFragmentCallbacks");
+        if (getParentFragment()==null) {
+            throw new ClassCastException("ParentFragment must be there and should implement PageFragmentCallbacks");
         }
 
-        mCallbacks = (PageFragmentCallbacks) activity;
+        mCallbacks = (PageFragmentCallbacks) ((RestaurantFormFragment)getParentFragment());
     }
 
-    protected void notifyChanges(){
+    protected synchronized void notifyChanges(){
 
+        if(getActivity() != null)
         mPage.notifyDataChanged();
 
     }

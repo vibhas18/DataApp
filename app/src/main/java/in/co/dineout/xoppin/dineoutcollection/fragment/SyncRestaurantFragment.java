@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.adapter.RestaurantDetailListAdapter;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
 
 /**
  * Created by prateek.aggarwal on 5/6/16.
@@ -36,7 +36,7 @@ public class SyncRestaurantFragment extends MasterDataFragment {
         ListView listView = (ListView) getView().findViewById(R.id.lv_list);
 
         restaurantDetailListAdapter = new RestaurantDetailListAdapter(getActivity(),
-                DatabaseManager.getInstance().getAllSyncedRestaurants());
+                DataDatabaseUtils.getInstance(getContext()).getSynedRestaurant());
 
         listView.setAdapter(restaurantDetailListAdapter);
     }

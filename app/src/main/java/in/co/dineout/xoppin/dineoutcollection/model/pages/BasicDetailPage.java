@@ -31,8 +31,12 @@ public class BasicDetailPage extends Page {
 
     @Override
     public boolean isCompleted() {
-        if(mBasicDetailFragment != null)
-        return mBasicDetailFragment.isDataValid();
+        try{
+            if(mBasicDetailFragment != null)
+                return mBasicDetailFragment.isDataValid();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         return false;
     }

@@ -16,12 +16,11 @@ import in.co.dineout.xoppin.dineoutcollection.model.pages.Page;
 public class GenericTabsPagerAdapter extends FragmentStatePagerAdapter {
     private int mCutOffPage;
     private Fragment mPrimaryItem;
-private List<Page> mCurrentPageSequence;
+    private List<Page> mCurrentPageSequence;
     public GenericTabsPagerAdapter(FragmentManager fm,List<Page> sequence) {
         super(fm);
-        this.notifyDataSetChanged();
 
-
+        mCurrentPageSequence = sequence;
     }
 
     @Override
@@ -63,6 +62,7 @@ private List<Page> mCurrentPageSequence;
             cutOffPage = Integer.MAX_VALUE;
         }
         mCutOffPage = cutOffPage;
+        notifyDataSetChanged();
     }
 
     public int getCutOffPage() {

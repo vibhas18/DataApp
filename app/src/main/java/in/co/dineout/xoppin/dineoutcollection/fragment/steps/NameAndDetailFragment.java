@@ -2,7 +2,6 @@ package in.co.dineout.xoppin.dineoutcollection.fragment.steps;
 
 
 import android.content.DialogInterface;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -17,25 +16,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.datanetworkmodule.DataPreferences;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.activity.RestaurantFormActivity;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
+import in.co.dineout.xoppin.dineoutcollection.activity.RootActivity;
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
 import in.co.dineout.xoppin.dineoutcollection.fragment.GenericListSingleSelectFragment;
+import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.handler.StaticDataHandler;
-import in.co.dineout.xoppin.dineoutcollection.helper.LocationUtils;
 import in.co.dineout.xoppin.dineoutcollection.model.CityModel;
 import in.co.dineout.xoppin.dineoutcollection.model.GenericModel;
-import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.AreaModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.LocalityModel;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
-public class NameAndDetailFragment extends BaseStepFragment implements View.OnFocusChangeListener {
+public class NameAndDetailFragment extends BaseStepFragment implements View.OnFocusChangeListener,TextWatcher {
     private static final String TAG = NameAndDetailFragment.class.getSimpleName();
 
     private EditText et_profile_name;
@@ -85,47 +85,28 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(view);
-        populateViewFromData();
+       ;
 
 
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView(getView());
+    }
+
     private void refreshLocation() {
-        LocationUtils.getInstance(getActivity()).getLastLocation(new LocationUtils.LocationCallbacks() {
-            @Override
-            public void onLocationReq() {
 
-            }
+        ((RootActivity)getActivity()).getLastKnownLocation();
+        double lat = Double.parseDouble(DataPreferences.getCurrentLocationLat(getContext()));
+        double lng = Double.parseDouble(DataPreferences.getCurrentLocationLong(getContext()));
 
-            @Override
-            public void onLocationRec(Location l) {
-                if (null == getActivity() || isRemoving()) {
-                    return;
-                }
-                Toast.makeText(getActivity(), "Location Recieved", Toast.LENGTH_SHORT).show();
-                latitude = l.getLatitude();
-                longitude = l.getLongitude();
-                notifyChanges();
-                Picasso.with(getActivity()).load(Utils.getMapImageUrl(latitude, longitude, "")).fit().into(iv_map, new Callback() {
-                    @Override
-                    public void onSuccess() {
-                        Log.i(TAG, "address Image Loaded");
-                    }
+        if(lat > 0 && lng > 0 ){
+            latitude = lat;
+            longitude = lng;
+        }
 
-                    @Override
-                    public void onError() {
-                        Log.e(TAG, "address image not loaded");
-                    }
-                });
-
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
     }
 
     private void initView(View view) {
@@ -136,12 +117,6 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
         et_restaurant_landmark = (EditText) view.findViewById(R.id.et_restaurant_landmark);
         et_pincode = (EditText) view.findViewById(R.id.et_pincode);
 
-        et_profile_name.setOnFocusChangeListener(this);
-        et_screen_name_mobile.setOnFocusChangeListener(this);
-        et_restaurant_address.setOnFocusChangeListener(this);
-        et_restaurant_landmark.setOnFocusChangeListener(this);
-        et_pincode.setOnFocusChangeListener(this);
-        et_screen_name.setOnFocusChangeListener(this);
 
         tv_city = (TextView) view.findViewById(R.id.tv_city);
         tv_area = (TextView) view.findViewById(R.id.tv_area);
@@ -174,25 +149,11 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
                                     @Override
                                     public void onClick(DialogInterface dialog,
                                                         int which) {
-                                        try {
+
                                             latitude = Double.parseDouble(latText.getText().toString().trim());
                                             longitude = Double.parseDouble(lonText.getText().toString().trim());
+                                            updateMap();
 
-                                            notifyChanges();
-                                            Picasso.with(getActivity()).load(Utils.getMapImageUrl(latitude, longitude, "")).fit().into(iv_map, new Callback() {
-                                                @Override
-                                                public void onSuccess() {
-                                                    Log.i(TAG, "address Image Loaded");
-                                                }
-
-                                                @Override
-                                                public void onError() {
-                                                    Log.e(TAG, "address image not loaded");
-                                                }
-                                            });
-                                        } catch (Exception e) {
-                                            Toast.makeText(getActivity(), "Please enter only valit lat & long", Toast.LENGTH_SHORT).show();
-                                        }
                                     }
 
                                 }).setNegativeButton("Cancel", null).show();
@@ -227,6 +188,7 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
                         if (null != object) {
                             cityModel = (CityModel) object;
                             tv_city.setText(cityModel.getName());
+                            notifyChanges();
                         } else {
                             Toast.makeText(getActivity(), "City Not Selected", Toast.LENGTH_SHORT).show();
                         }
@@ -248,17 +210,19 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
                     return;
                 }
 
-                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) DatabaseManager.getInstance().getAreaForCityId(cityModel.getCity_id()), "Select Area");
+                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.
+                        newInstance((ArrayList) DataDatabaseUtils.getInstance(getContext()).getAreaForCityId(cityModel.getCity_id() + ""), "Select Area");
                 fragment.setCallbacks(new GenericListSingleSelectFragment.Callbacks() {
                     @Override
                     public void onItemClicked(GenericModel object) {
                         if (null != object) {
                             areaModel = (AreaModel) object;
                             tv_area.setText(areaModel.getName());
+                            notifyChanges();
                         } else {
                             Toast.makeText(getActivity(), "Area Not Selected", Toast.LENGTH_SHORT).show();
                         }
-                        notifyChanges();
+
                     }
                 });
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -275,13 +239,14 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
                     Toast.makeText(getActivity(), "Select Area First", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) DatabaseManager.getInstance().getLocalityForAreaId(areaModel.getId()), "Select Locality");
+                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) DataDatabaseUtils.getInstance(getContext()).getLocalityForAreaId(areaModel.getParentId() + ""), "Select Locality");
                 fragment.setCallbacks(new GenericListSingleSelectFragment.Callbacks() {
                     @Override
                     public void onItemClicked(GenericModel object) {
                         if (null != object) {
                             localityModel = (LocalityModel) object;
                             tv_locality.setText(localityModel.getName());
+                            notifyChanges();
                         } else {
                             Toast.makeText(getActivity(), "Locality Not Selected", Toast.LENGTH_SHORT).show();
                         }
@@ -296,6 +261,7 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
             }
         });
 
+        populateViewFromData();
         tv_refresh_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -303,12 +269,63 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
             }
         });
 
+        registerListener();
+
+
+    }
+
+    private void updateMap(){
+
+
+        notifyChanges();
+        Picasso.with(getActivity()).load(Utils.getMapImageUrl(latitude, longitude, "")).fit().into(iv_map, new Callback() {
+            @Override
+            public void onSuccess() {
+                Log.i(TAG, "address Image Loaded");
+            }
+
+            @Override
+            public void onError() {
+                Log.e(TAG, "address image not loaded");
+            }
+        });
+    }
+
+    private void registerListener(){
+        et_profile_name.setOnFocusChangeListener(this);
+        et_screen_name_mobile.setOnFocusChangeListener(this);
+        et_restaurant_address.setOnFocusChangeListener(this);
+        et_restaurant_landmark.setOnFocusChangeListener(this);
+        et_pincode.setOnFocusChangeListener(this);
+        et_screen_name.setOnFocusChangeListener(this);
+    }
+
+    private void unregisterListener(){
+
+        et_profile_name.addTextChangedListener(null);
+        et_screen_name_mobile.addTextChangedListener(null);
+        et_restaurant_address.addTextChangedListener(null);
+        et_restaurant_landmark.addTextChangedListener(null);
+        et_pincode.addTextChangedListener(null);
+        et_screen_name.addTextChangedListener(null);
     }
 
     @Override
     public void onStepChanged() {
 
     }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        registerListener();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        unregisterListener();
+//    }
 
     @Override
     public void saveDataForStep() {
@@ -320,55 +337,55 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
             Toast.makeText(getActivity(), "To save the restaurant, you need to enter the name", Toast.LENGTH_LONG).show();
         } else {
             //TODO do save and tan-tada-dan
-            Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
+            RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
 
             if (!TextUtils.isEmpty(et_profile_name.getText().toString().trim())) {
-                restaurant.setProfile_name(et_profile_name.getText().toString().trim());
-                ((RestaurantFormActivity) getActivity()).getRestaurantDetailsModel().setRestaurantName(et_profile_name.getText().toString().trim());
+                restaurant.updateProfileName(et_profile_name.getText().toString().trim());
+//                ((RestaurantFormActivity) getActivity()).getRestaurantDetailsModel().setRestaurantName(et_profile_name.getText().toString().trim());
             }
 
             if (!TextUtils.isEmpty(et_screen_name.getText().toString().trim())) {
-                restaurant.setScreen_name(et_screen_name.getText().toString().trim());
+                restaurant.updateScreenName(et_screen_name.getText().toString().trim());
             }
 
             if (!TextUtils.isEmpty(et_screen_name_mobile.getText().toString().trim())) {
-                restaurant.setScreen_name_mobile(et_screen_name_mobile.getText().toString().trim());
+                restaurant.updateScreenNameMobile(et_screen_name_mobile.getText().toString().trim());
             }
 
             if (!TextUtils.isEmpty(et_restaurant_address.getText().toString().trim())) {
-                restaurant.setAddress(et_restaurant_address.getText().toString().trim());
+                restaurant.updateAddress(et_restaurant_address.getText().toString().trim());
             }
 
             if (!TextUtils.isEmpty(et_restaurant_landmark.getText().toString().trim())) {
-                restaurant.setLandmark(et_restaurant_landmark.getText().toString().trim());
+                restaurant.updateLandmark(et_restaurant_landmark.getText().toString().trim());
             }
 
             if (!TextUtils.isEmpty(et_pincode.getText().toString().trim())) {
-                restaurant.setPincode(et_pincode.getText().toString().trim());
+                restaurant.updatePinCode(et_pincode.getText().toString().trim());
             }
 
             if (null != cityModel) {
-                restaurant.setCity_id("" + cityModel.getCity_id());
+                restaurant.updateCityId("" + cityModel.getCity_id());
             }
 
             if (null != areaModel) {
-                restaurant.setArea_id("" + areaModel.getId());
+                restaurant.updateAreaId("" + areaModel.getId());
             }
 
             if (null != localityModel) {
-                restaurant.setLocality_id("" + localityModel.getId());
+                restaurant.updateLocalityId("" + localityModel.getId());
             }
 
-            restaurant.setLatitude("" + latitude);
-            restaurant.setLongitude("" + longitude);
+            restaurant.updateLatitude("" + latitude);
+            restaurant.updateLongitude("" + longitude);
 
-            ((RestaurantFormActivity) getActivity()).saveRestaurantModel();
+//            ((RestaurantFormActivity) getActivity()).saveRestaurantModel();
         }
     }
 
     @Override
     public void populateViewFromData() {
-        Restaurant restaurant = ((RestaurantFormActivity) getActivity()).getRestaurant();
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
 
         if (!TextUtils.isEmpty(restaurant.getProfile_name())) {
             et_profile_name.setText(restaurant.getProfile_name());
@@ -403,14 +420,14 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
         }
 
         if (!TextUtils.isEmpty(restaurant.getArea_id())) {
-            areaModel = DatabaseManager.getInstance().getAreaForId(restaurant.getArea_id());
+            areaModel = DataDatabaseUtils.getInstance(getContext()).getAreaForId(restaurant.getArea_id());
             if (null != areaModel) {
                 tv_area.setText(areaModel.getName());
             }
         }
 
         if (!TextUtils.isEmpty(restaurant.getLocality_id())) {
-            localityModel = DatabaseManager.getInstance().getLocalityForId(restaurant.getLocality_id());
+            localityModel = DataDatabaseUtils.getInstance(getContext()).getLocalityForId(restaurant.getLocality_id());
             if (null != localityModel) {
                 tv_locality.setText(localityModel.getName());
             }
@@ -435,10 +452,15 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
             });
         }
 
+//        notifyChanges();
+
     }
 
     @Override
     public boolean isDataValid() {
+
+        if(getActivity() == null)
+            return false;
         if (TextUtils.isEmpty(et_profile_name.getText().toString())) {
             return false;
         } else if (TextUtils.isEmpty(et_profile_name.getText().toString().trim())) {
@@ -460,6 +482,8 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
                 return false;
         } else if (null == localityModel) {
             return false;
+        }else if(latitude == 0 || longitude == 0 ){
+            return false;
         }
 
         saveDataForStep();
@@ -477,6 +501,22 @@ public class NameAndDetailFragment extends BaseStepFragment implements View.OnFo
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
+
+        notifyChanges();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
 
         notifyChanges();
     }

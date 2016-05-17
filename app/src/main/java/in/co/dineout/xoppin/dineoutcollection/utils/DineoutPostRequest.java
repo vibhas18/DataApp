@@ -1,9 +1,9 @@
 package in.co.dineout.xoppin.dineoutcollection.utils;
 
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
+import com.dineout.android.volley.AuthFailureError;
+import com.dineout.android.volley.Response;
+import com.dineout.android.volley.toolbox.StringRequest;
 
 import java.util.Map;
 

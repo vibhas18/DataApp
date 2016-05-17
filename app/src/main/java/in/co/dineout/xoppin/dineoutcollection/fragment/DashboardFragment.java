@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.datanetworkmodule.DataPreferences;
+
 import in.co.dineout.xoppin.dineoutcollection.R;
-import in.co.dineout.xoppin.dineoutcollection.database.DatabaseManager;
-import in.co.dineout.xoppin.dineoutcollection.helper.LoginHelper;
-import in.co.dineout.xoppin.dineoutcollection.model.MreModel;
 
 /**
  * Created by prateek.aggarwal on 5/5/16.
@@ -18,6 +17,12 @@ import in.co.dineout.xoppin.dineoutcollection.model.MreModel;
 public class DashboardFragment extends MasterDataFragment implements View.OnClickListener {
 
 
+
+    public static DashboardFragment newInstance(){
+
+        DashboardFragment fragment = new DashboardFragment();
+        return fragment;
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,22 +33,25 @@ public class DashboardFragment extends MasterDataFragment implements View.OnClic
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MreModel user = LoginHelper.getUser(getActivity());
-        if(user != null){
-            initializeView(getView(),user);
+        setFragmentTitle("Dashboard");
+        if(DataPreferences.getUserId(getActivity()) != null){
+            initializeView(getView());
         }
     }
     
-    private void initializeView(View v,MreModel user){
+    private void initializeView(View v){
 
-        ((TextView) v.findViewById(R.id.tv_name)).setText(user.getFirstName() + " " + user.getLastName());
-        ((TextView) v.findViewById(R.id.tv_email)).setText(user.getEmail());
-        ((TextView) v.findViewById(R.id.tv_assigned_city)).setText(user.getAssignedCity());
+        ((TextView) v.findViewById(R.id.tv_name)).setText(DataPreferences.getFirstName(getContext())
+                + " " + DataPreferences.getFirstName(getContext()));
+        ((TextView) v.findViewById(R.id.tv_email)).setText(DataPreferences.getEmail(getContext()));
+        ((TextView) v.findViewById(R.id.tv_assigned_city)).setText(DataPreferences.getAssignedCity(getContext()));
 
-        ((TextView) v.findViewById(R.id.tv_pending_synced)).setText("" +
-                DatabaseManager.getInstance().getAllUnSyncedRestaurants().size());
-        ((TextView) v.findViewById(R.id.tv_synced)).setText("" +
-                DatabaseManager.getInstance().getAllSyncedRestaurants().size());
+//        ((TextView) v.findViewById(R.id.tv_editing_mode)).setText(
+//                DataDatabaseUtils.getInstance(getContext()).getPendingRestaurant().size());
+//        ((TextView) v.findViewById(R.id.tv_pending_synced)).setText("" +
+//                DataDatabaseUtils.getInstance(getContext()).getUnsynedRestaurant().size());
+//        ((TextView) v.findViewById(R.id.tv_synced)).setText("" +
+//                DataDatabaseUtils.getInstance(getContext()).getSynedRestaurant().size());
 
         v.findViewById(R.id.btn_assigned_tasks).setOnClickListener(this);
 
@@ -52,10 +60,9 @@ public class DashboardFragment extends MasterDataFragment implements View.OnClic
         v.findViewById(R.id.btn_synced).setOnClickListener(this);
 
         v.findViewById(R.id.btn_new_rest).setOnClickListener(this);
+        v.findViewById(R.id.btn_editing).setOnClickListener(this);
 
 
-
-//        initiateRequestForAssignedTasks();
     }
 
     @Override
@@ -64,7 +71,7 @@ public class DashboardFragment extends MasterDataFragment implements View.OnClic
 
             case R.id.btn_new_rest:
             {
-                RestaurantFormFragment fragment = RestaurantFormFragment.newInstance(null,null);
+                RestaurantFormFragment fragment = RestaurantFormFragment.newInstance(null);
                 addToBackStack(getActivity(),fragment);
             }
                 break;
@@ -86,6 +93,12 @@ public class DashboardFragment extends MasterDataFragment implements View.OnClic
                 addToBackStack(getActivity(), fragment);
             }
             break;
+            case R.id.btn_editing:
+            {
+                EditingRestaurantFragment fragment = EditingRestaurantFragment.newInstance();
+                addToBackStack(getActivity(), fragment);
+                break;
+            }
         }
     }
 }
