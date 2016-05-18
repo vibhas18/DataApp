@@ -127,6 +127,7 @@ public class Utils {
 
 
         if(model != null){
+            Toast.makeText(context,"Sync initiated",Toast.LENGTH_SHORT).show();
         DataDatabaseUtils.getInstance(context).saveRestaurantForSyncing(model.getRestaurantId() + "",
                 model.getRestaurantName(), model.getRestaurantJSONString());
 

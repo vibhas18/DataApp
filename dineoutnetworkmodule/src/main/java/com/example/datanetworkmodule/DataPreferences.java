@@ -51,21 +51,6 @@ public class DataPreferences {
 
     }
 
-
-
-    public static void logout(Context context) {
-        saveLoginState(context, false);
-        PreferenceManager.getDefaultSharedPreferences(context).edit().remove(KEY_MRE_DETAILS).commit();
-    }
-//
-//    "user_id": 13,
-//            "first_name": "a21",
-//            "last_name": "",
-//            "email": "a@100.com",
-//            "contact_email": "a@100.com",
-//            "assigned_city": "Mumbai",
-//            "contact_number": "9122312121",
-
     public static String getUserId(Context context){
         return  getPreference(context).getString(PARAM_CRE_ID,null);
     }
@@ -81,10 +66,26 @@ public class DataPreferences {
             edit.putString(PARAM_CRE_EMAIL, userJsonObject.optString("email"));
             edit.putString(PARAM_CRE_PHONE, userJsonObject.optString("contact_number"));
             edit.putString(PARAM_AUTH_TOKEN, userJsonObject.optString("user_token"));
+            edit.putString(PARAM_ASSIGNED_CITY,userJsonObject.optString("assigned_city"));
 
 
             edit.commit();
         }
+    }
+
+    public static void logoutUser(Context context){
+
+        SharedPreferences.Editor edit = getPreference(context).edit();
+
+        edit.putString(PARAM_CRE_ID, "");
+        edit.putString(PARAM_CRE_FIRST_NAME, "");
+        edit.putString(PARAM_CRE_LAST_NAME,"");
+        edit.putString(PARAM_CRE_EMAIL, "");
+        edit.putString(PARAM_CRE_PHONE, "");
+        edit.putString(PARAM_AUTH_TOKEN, "");
+
+
+        edit.commit();
     }
 
     public static String getFirstName(Context context){

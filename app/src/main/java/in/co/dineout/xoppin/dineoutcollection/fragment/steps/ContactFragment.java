@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
-import in.co.dineout.xoppin.dineoutcollection.model.RestContactModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.views.GcrrContactViewHelper;
 
@@ -104,14 +103,14 @@ public class ContactFragment extends BaseStepFragment  {
             restaurant.setPhone(et_phone.getText().toString().trim());
         }
 
-        if (null != contactViews && contactViews.size() > 0) {
-            ArrayList<RestContactModel> contactModels = new ArrayList<>(5);
-            for (View cView : contactViews) {
-
-                contactModels.add(GcrrContactViewHelper.getRestContactFromView(cView));
-            }
-            restaurant.setContacts(contactModels);
-        }
+//        if (null != contactViews && contactViews.size() > 0) {
+//            ArrayList<RestContactModel> contactModels = new ArrayList<>(5);
+//            for (View cView : contactViews) {
+//
+//                contactModels.add(GcrrContactViewHelper.getRestContactFromView(cView));
+//            }
+//            restaurant.setContacts(contactModels);
+//        }
 //        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 
@@ -123,13 +122,13 @@ public class ContactFragment extends BaseStepFragment  {
         et_mobile.setText(restaurant.getMobile_number());
         et_phone.setText(restaurant.getPhone());
 
-        if (null != restaurant.getContacts()) {
-            for (RestContactModel restContactModel : restaurant.getContacts()) {
-                View gcrrContactView = GcrrContactViewHelper.getGcrrContactView(getActivity(), restContactModel);
-                contactViews.add(gcrrContactView);
-                ll_gcrr_contact.addView(gcrrContactView);
-            }
-        }
+//        if (null != restaurant.getContacts()) {
+//            for (RestContactModel restContactModel : restaurant.getContacts()) {
+//                View gcrrContactView = GcrrContactViewHelper.getGcrrContactView(getActivity(), restContactModel);
+//                contactViews.add(gcrrContactView);
+//                ll_gcrr_contact.addView(gcrrContactView);
+//            }
+//        }
 
 //        notifyChanges();
     }

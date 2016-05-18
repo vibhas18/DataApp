@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.example.datanetworkmodule.DataPreferences;
@@ -53,7 +54,7 @@ public class RootActivity extends AppCompatActivity implements GoogleApiClient.C
 
         setContentView(R.layout.activity_root);
         MasterDataFragment fragment = null;
-        if(DataPreferences.getUserId(this) != null){
+        if(!TextUtils.isEmpty(DataPreferences.getUserId(this)) ){
             fragment = DashboardFragment.newInstance();
             initializeGoogleApiClient();
         }else{

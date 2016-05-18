@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.adapter.RestaurantDetailListAdapter;
@@ -50,6 +51,7 @@ public class UnsyncedRestaurantFragment extends MasterDataFragment implements Vi
     public void onClick(View v) {
 
         if(restaurantDetailListAdapter != null && restaurantDetailListAdapter.getCount() > 0){
+            Toast.makeText(getActivity(),"Sync initiated",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getContext(), RestaurantBackgroundService.class);
         getContext().startService(intent);}
     }

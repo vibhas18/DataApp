@@ -1040,7 +1040,7 @@ public class RestaurantDetailsModel implements Serializable {
                    , Toast.LENGTH_SHORT).show();
             return 0;
         }else if(!isDetailValid()){
-            Toast.makeText(context, "Please provide all star mark field "
+            Toast.makeText(context, "Please provide all star mark field and tags for restaurant."
                     , Toast.LENGTH_SHORT).show();
             return 1;
         }

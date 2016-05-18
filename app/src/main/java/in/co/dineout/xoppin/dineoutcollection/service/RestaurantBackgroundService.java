@@ -21,6 +21,7 @@ public class RestaurantBackgroundService extends Service {
 
 
         List<RestaurantDetailsModel> models = DataDatabaseUtils.getInstance(getBaseContext()).getUnsynedRestaurant();
+        initiateSyncing(models);
         return START_STICKY;
     }
 

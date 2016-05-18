@@ -7,10 +7,28 @@
     android:orientation="vertical"
     tools:context="in.co.dineout.xoppin.dineoutcollection.activity.DashboardActivity">
 
-    <include
-        layout="@layout/toolbar_fragment"
+    <android.support.v7.widget.Toolbar
+
+        android:id="@+id/toolbar_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:gravity="center_vertical"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+
+        <Button
+            android:id="@+id/logout_option"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Logout"
+            android:textColor="@color/white"
+            android:background="@android:color/transparent"
+            android:layout_gravity="right|center_vertical"
+            />
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"

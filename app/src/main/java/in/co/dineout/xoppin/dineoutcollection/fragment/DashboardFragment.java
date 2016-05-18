@@ -2,6 +2,7 @@ package in.co.dineout.xoppin.dineoutcollection.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class DashboardFragment extends MasterDataFragment implements View.OnClic
     private void initializeView(View v){
 
         ((TextView) v.findViewById(R.id.tv_name)).setText(DataPreferences.getFirstName(getContext())
-                + " " + DataPreferences.getFirstName(getContext()));
+                + " " + DataPreferences.getLastName(getContext()));
         ((TextView) v.findViewById(R.id.tv_email)).setText(DataPreferences.getEmail(getContext()));
         ((TextView) v.findViewById(R.id.tv_assigned_city)).setText(DataPreferences.getAssignedCity(getContext()));
 
@@ -54,6 +55,7 @@ public class DashboardFragment extends MasterDataFragment implements View.OnClic
 
         v.findViewById(R.id.btn_new_rest).setOnClickListener(this);
         v.findViewById(R.id.btn_editing).setOnClickListener(this);
+        v.findViewById(R.id.logout_option).setOnClickListener(this);
 
 
     }
@@ -90,6 +92,16 @@ public class DashboardFragment extends MasterDataFragment implements View.OnClic
             {
                 EditingRestaurantFragment fragment = EditingRestaurantFragment.newInstance();
                 addToBackStack(getActivity(), fragment);
+                break;
+            }
+            case R.id.logout_option:
+            {
+
+                FragmentActivity activity = getActivity();
+                DataPreferences.logoutUser(getContext());
+               activity.getSupportFragmentManager().popBackStackImmediate();
+                LoginFragment fragment = LoginFragment.newInstance();
+                addToBackStack(activity,fragment);
                 break;
             }
         }

@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/prateek.aggarwal/dineout_android_data-collection/app/build/intermediates/exploded-aar/dineout_android_data-collection/datanetworkmodule/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4f322c1a6b6c66ec5542dbfd70894ef52547a476">
+        <dex dex="/Users/prateek.aggarwal/dineout_android_data-collection/app/build/intermediates/pre-dexed/debug/dineout_android_data-collection-datanetworkmodule-unspecified_3733efc03fe19152895b214610051d2b4669cf7e.jar" />
+    </item>
+
+</items>
