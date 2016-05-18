@@ -41,6 +41,7 @@ public class RestaurantFormFragment extends MasterDataFragment implements ViewPa
     private PagerTitleStrip mStepPagerStrip;
     private int mCurrentCount = -1;
 
+    private int mPrevious;
     public static RestaurantFormFragment newInstance(RestaurantDetailsModel model){
 
         if(model == null)
@@ -90,7 +91,9 @@ public class RestaurantFormFragment extends MasterDataFragment implements ViewPa
 
         if(mCurrentCount > 0){
 
+            mPrevious = mCurrentCount;
             mPager.setCurrentItem(mCurrentCount);
+
         }
 
 //        mNextButton = (Button) v.findViewById(R.id.next_button);
@@ -107,9 +110,13 @@ public class RestaurantFormFragment extends MasterDataFragment implements ViewPa
 
     }
 
+
     @Override
     public void onPageSelected(int position) {
 
+//        if(mPagerAdapter.getItem(position) != null){
+//            ((BaseStepFragment)mPagerAdapter.getItem(position)).saveDataForStep();
+//        }
 
 
     }

@@ -402,6 +402,7 @@ public class DataDatabaseUtils {
         ContentValues values = new ContentValues();
         values.put(ImageEntry.IMAGE_URI,uri);
         values.put(ImageEntry.IMAGE_TYPE,type);
+        values.put(ImageEntry.IMAGE_CAPTION,"");
         values.put(RestaurantEntry.REST_ID,restId);
         values.put(ImageEntry.IMAGE_PATH,""+"http://d2932g54ef2vds.cloudfront.net/"+key+".jpeg");
         values.put(ImageEntry.IMAGE_STATUS,DataDatabaseUtils.SYNC_READY);

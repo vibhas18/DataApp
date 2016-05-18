@@ -507,8 +507,15 @@ public class DetailFragment extends BaseStepFragment  {
                 restaurant.setCost_for_2(0);
 
         }
+        if(getTags() != null && getTags().size()>0 )
         restaurant.setTags(getTags());
+        else
+        restaurant.setTags(new ArrayList<TagModel>());
+
+        if(getFeatures() != null && getFeatures().size()>0)
         restaurant.setFeatures(getFeatures());
+        else
+            restaurant.setFeatures(new ArrayList<FeatureModel>());
 //        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 

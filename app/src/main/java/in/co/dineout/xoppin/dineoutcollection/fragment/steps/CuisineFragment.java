@@ -116,9 +116,13 @@ public class CuisineFragment extends BaseStepFragment {
         RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
         if (null != primaryCuisineModels && primaryCuisineModels.size() > 0) {
             restaurant.setPrimary_cuisine(primaryCuisineModels);
+        }else{
+            restaurant.setPrimary_cuisine(new ArrayList<CuisineModel>());
         }
         if (null != secondaryCuisineModels && secondaryCuisineModels.size() > 0) {
             restaurant.setSecondary_cuisine(secondaryCuisineModels);
+        }else{
+            restaurant.setSecondary_cuisine(new ArrayList<CuisineModel>());
         }
     }
 
