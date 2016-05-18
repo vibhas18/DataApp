@@ -222,18 +222,18 @@ public class DataDatabaseUtils {
     }
 
     public void saveRestaurantForSyncing(String id,String name,String json){
-        saveRestaurant(id,name,json,SYNC_READY);
+        saveRestaurant(id, name, json, SYNC_READY);
     }
 
     public void saveRestaurantForEditing(String id,String name,String json){
-        saveRestaurant(id,name,json,PENDING);
+        saveRestaurant(id, name, json, PENDING);
     }
 
     public void updateRestaurantForId(String id,String json,int mode){
 
         SQLiteDatabase database = mHelper.getWritableDatabase();
 
-        String selection = RestaurantEntry.REST_ID+" LIKE ?";
+        String selection = RestaurantEntry.REST_ID+" =?";
         ContentValues values = new ContentValues();
         values.put(RestaurantEntry.REST_JSON,json);
 
@@ -293,8 +293,8 @@ public class DataDatabaseUtils {
 
         String sortOrder =
                 RestaurantEntry.REST_NAME + " DESC";
-        String selection = RestaurantEntry.REST_MODE+"=?";
-        String[] mode = {SYNC_READY+""};
+        String selection = RestaurantEntry.REST_MODE+" =?";
+        String[] mode = {String.valueOf(SYNC_READY)};
 
         return getRestaurantList(projection,selection,mode,sortOrder);
     }
@@ -430,17 +430,83 @@ public class DataDatabaseUtils {
 
     public void deleteImage(ImageStatusModel model){
 
-        SQLiteDatabase database = mHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(ImageEntry.IMAGE_STATE, "deleted");
-        values.put(ImageEntry.IMAGE_STATUS,SYNC_READY);
 
-        String selection = ImageEntry.IMAGE_PATH+" =? AND "+ImageEntry.IMAGE_TYPE+" =? AND "+RestaurantEntry.REST_ID+" =?";
-        String[] where = {model.getRemotePath(),String.valueOf(model.getType()),model.getRestaurantId()};
-        database.update(ImageEntry.TABLE_NAME, values, selection, where);
+        SQLiteDatabase database = mHelper.getWritableDatabase();
+
+        if(model != null && model.getImage_state().equalsIgnoreCase("old")){
+
+            ContentValues values = new ContentValues();
+
+            values.put(ImageEntry.IMAGE_STATE, "remove");
+            values.put(ImageEntry.IMAGE_STATUS,SYNC_READY);
+            String selection = ImageEntry._ID+" =?";
+            String[] where = {String.valueOf(model.getId())};
+            database.update(ImageEntry.TABLE_NAME, values, selection, where);
+
+        }else if(model != null &&  model.getGil_id() == 0 && model.getImage_state().equalsIgnoreCase("new")){
+            String selection = ImageEntry._ID+" =?";
+            String[] where = {String.valueOf(model.getId())};
+            database.delete(ImageEntry.TABLE_NAME,selection,where);
+        }
+
+
         if(database.isOpen())
             database.close();
 
+    }
+
+    private ImageStatusModel getImageForId(int id){
+
+        SQLiteDatabase database = mHelper.getReadableDatabase();
+
+        String[] projection = {
+
+                ImageEntry._ID,
+                ImageEntry.IMAGE_URI,
+                ImageEntry.IMAGE_CAPTION,
+                ImageEntry.IMAGE_PATH,
+                ImageEntry.IMAGE_STATUS,
+                ImageEntry.IMAGE_TYPE,
+                ImageEntry.IMAGE_GILD,
+                ImageEntry.IMAGE_STATE,
+                RestaurantEntry.REST_ID,
+
+        };
+
+        String selection = ImageEntry._ID+" =?";
+        String[] where = {String.valueOf(id)};
+
+        Cursor c = database.query(
+                ImageEntry.TABLE_NAME,
+                projection,
+                selection,
+                where,
+                null,
+                null,
+                null
+        );
+
+
+        if(c.moveToFirst()){
+            ImageStatusModel model = new ImageStatusModel();
+            model.setId(c.getInt(c.getColumnIndex(ImageEntry._ID)));
+            model.setRestaurantId(c.getString(c.getColumnIndex(RestaurantEntry.REST_ID)));
+            model.setType(c.getInt(c.getColumnIndex(ImageEntry.IMAGE_TYPE)));
+            model.setCaption(c.getString(c.getColumnIndex(ImageEntry.IMAGE_CAPTION)));
+            model.setImageURI(c.getString(c.getColumnIndex(ImageEntry.IMAGE_URI)));
+            model.setRemotePath(c.getString(c.getColumnIndex(ImageEntry.IMAGE_PATH)));
+            model.setImage_state(c.getString(c.getColumnIndex(ImageEntry.IMAGE_STATE)));
+            model.setGil_id(c.getInt(c.getColumnIndex(ImageEntry.IMAGE_GILD)));
+
+            return model;
+
+        }
+
+        if(!c.isClosed())
+            c.close();
+        if(database.isOpen())
+            database.close();
+        return null;
     }
 
     public void saveImageForSyncing(String resId,ImageStatusModel model,int status){
@@ -462,7 +528,7 @@ public class DataDatabaseUtils {
     }
 
     public void saveProfileImage(String uri ,String resId,String key){
-        saveImageForSyncing(uri, resId, ImageEntry.PROFILE_IMAGE,key);
+        saveImageForSyncing(uri, resId, ImageEntry.PROFILE_IMAGE, key);
     }
 
     public void saveProfileImage(List<ImageStatusModel> model,String resId){
@@ -513,6 +579,12 @@ public class DataDatabaseUtils {
         markRestaurantState(id,PENDING);
     }
 
+    public void markRestaurantUnsynced(String id){
+
+        markRestaurantState(id,DataDatabaseUtils.SYNC_READY);
+    }
+
+
     public static DataDatabaseUtils getInstance(Context context){
 
         if(mSingleton == null)
@@ -525,8 +597,9 @@ public class DataDatabaseUtils {
 
     public List<ImageStatusModel> getPendingImage(String restId,int type){
 
-        String selection = RestaurantEntry.REST_ID +" =? AND "+ImageEntry.IMAGE_TYPE+" =?"+" AND "+ImageEntry.IMAGE_STATUS + " =?";
-        String[] where = {restId, String.valueOf(type),String.valueOf(DataDatabaseUtils.SYNC_READY)};
+        String selection = RestaurantEntry.REST_ID +" =? AND "+ImageEntry.IMAGE_TYPE+" =?"+" AND "
+                +ImageEntry.IMAGE_STATUS + " =? AND "+ImageEntry.IMAGE_STATE+" !=?";
+        String[] where = {restId, String.valueOf(type),String.valueOf(DataDatabaseUtils.SYNC_READY),"remove"};
 
         return getImageList(selection,where);
 

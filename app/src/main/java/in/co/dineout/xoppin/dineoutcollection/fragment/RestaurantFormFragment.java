@@ -158,8 +158,7 @@ public class RestaurantFormFragment extends MasterDataFragment implements ViewPa
 
         int index = restaurantDetailsModel.validateRestaurant(getActivity());
         if(index == -1){
-
-        Utils.sendToSync(getActivity(),restaurantDetailsModel);
+            Utils.sendToSync(getActivity(), restaurantDetailsModel);
             popToHome(getActivity());
         }
         else

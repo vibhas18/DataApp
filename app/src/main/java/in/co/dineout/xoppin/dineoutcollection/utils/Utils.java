@@ -127,13 +127,13 @@ public class Utils {
 
 
         if(model != null){
-            Toast.makeText(context,"Sync initiated",Toast.LENGTH_SHORT).show();
-        DataDatabaseUtils.getInstance(context).saveRestaurantForSyncing(model.getRestaurantId() + "",
-                model.getRestaurantName(), model.getRestaurantJSONString());
+            DataDatabaseUtils.getInstance(context).saveRestaurantForSyncing(model.getRestaurantId(),
+                    model.getRestaurantName(), model.getRestaurantJSONString());
+            Toast.makeText(context, "Sync initiated", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, RestaurantIntentService.class);
+            intent.putExtra("REST_ID", model.getRestaurantId());
+            context.startService(intent);
 
-        Intent intent = new Intent(context, RestaurantIntentService.class);
-        intent.putExtra("REST_ID", model.getRestaurantId());
-        context.startService(intent);
         }
     }
 }

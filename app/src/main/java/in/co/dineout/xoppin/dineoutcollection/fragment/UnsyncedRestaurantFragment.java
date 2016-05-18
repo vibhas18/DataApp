@@ -52,7 +52,9 @@ public class UnsyncedRestaurantFragment extends MasterDataFragment implements Vi
 
         if(restaurantDetailListAdapter != null && restaurantDetailListAdapter.getCount() > 0){
             Toast.makeText(getActivity(),"Sync initiated",Toast.LENGTH_SHORT).show();
+
         Intent intent = new Intent(getContext(), RestaurantBackgroundService.class);
-        getContext().startService(intent);}
+        getContext().startService(intent);
+        popToHome(getActivity());}
     }
 }

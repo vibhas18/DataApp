@@ -93,6 +93,7 @@ public class RestaurantUploadHandler  {
         @Override
         public void onErrorResponse(Request request, VolleyError error) {
 
+            DataDatabaseUtils.getInstance(mContext).markRestaurantUnsynced(mRestID);
         }
     };
 

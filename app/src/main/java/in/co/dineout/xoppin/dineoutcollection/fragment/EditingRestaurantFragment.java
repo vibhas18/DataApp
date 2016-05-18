@@ -40,7 +40,7 @@ public class EditingRestaurantFragment extends MasterDataFragment implements Ada
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setFragmentTitle("Pending Restaurant");
+        setFragmentTitle("Restaurant In Edit Mode");
         ListView listView = (ListView) getView().findViewById(R.id.lv_list);
 
         restaurantDetailListAdapter = new RestaurantDetailListAdapter(getActivity(),
@@ -50,6 +50,10 @@ public class EditingRestaurantFragment extends MasterDataFragment implements Ada
         listView.setOnItemClickListener(this);
         listView.setOnItemLongClickListener(this);
 
+    }
+
+    private void refreshAdapter(){
+        restaurantDetailListAdapter.updateData(DataDatabaseUtils.getInstance(getContext()).getPendingRestaurant());
     }
 
     @Override
@@ -87,7 +91,7 @@ public class EditingRestaurantFragment extends MasterDataFragment implements Ada
                     int index = model.validateRestaurant(getActivity());
                     if(index == -1){
                         Utils.sendToSync(getActivity(),restaurantDetailListAdapter.getItem(position));
-                        Toast.makeText(getActivity().getApplicationContext(), "Sync Requested", Toast.LENGTH_SHORT).show();
+                        refreshAdapter();
                     }else{
                         RestaurantFormFragment fragment = RestaurantFormFragment.
                                 newInstance(model,index);

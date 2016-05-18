@@ -786,12 +786,13 @@ public class RestaurantDetailsModel implements Serializable {
 
     public void setOpen_timing(OpenTimingDaysModel open_timing) {
 
+
         String json = new Gson().toJson(open_timing).toString();
         try {
-            this.restaurant.put("open_timing",json);
+            this.restaurant.putOpt("open_timing",new JSONObject(json));
         }
         catch (Exception e){
-
+            e.printStackTrace();
         }
 
     }
@@ -1045,7 +1046,7 @@ public class RestaurantDetailsModel implements Serializable {
             return 1;
         }
         else if(!isContactValid()){
-            Toast.makeText(context, "Please provide all star mark field "
+            Toast.makeText(context, "Please provide phone and mobile number."
                     , Toast.LENGTH_SHORT).show();
             return 2;
         }else if(!isCuisineValid()){

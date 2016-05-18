@@ -20,7 +20,6 @@ import java.util.Date;
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.model.OpenTimingDaysModel;
-import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.TimingModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
@@ -261,9 +260,10 @@ public class TimingsFragment extends BaseStepFragment {
 
     @Override
     public void saveDataForStep() {
-        Restaurant restaurant = new Restaurant();
-        if (restaurant.getOpen_timing() == null) {
-            restaurant.setOpen_timing(new OpenTimingDaysModel());
+        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
+        OpenTimingDaysModel model = new OpenTimingDaysModel();
+        if (restaurant.getOpen_timing() != null) {
+            model = restaurant.getOpen_timing();
         }
 
         if (sw_monday.isChecked()) {
@@ -279,11 +279,11 @@ public class TimingsFragment extends BaseStepFragment {
             } else {
                 timingModel.setEn_time("00:00:00");
             }
-            restaurant.getOpen_timing().setSunday(timingModel);
+           model.setSunday(timingModel);
         } else {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("closed");
-            restaurant.getOpen_timing().setSunday(timingModel);
+           model.setSunday(timingModel);
         }
 
         if (sw_tuesday.isChecked()) {
@@ -299,11 +299,11 @@ public class TimingsFragment extends BaseStepFragment {
             } else {
                 timingModel.setEn_time("00:00:00");
             }
-            restaurant.getOpen_timing().setMonday(timingModel);
+           model.setMonday(timingModel);
         } else {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("closed");
-            restaurant.getOpen_timing().setMonday(timingModel);
+           model.setMonday(timingModel);
         }
 
         if (sw_wed.isChecked()) {
@@ -319,11 +319,11 @@ public class TimingsFragment extends BaseStepFragment {
             } else {
                 timingModel.setEn_time("00:00:00");
             }
-            restaurant.getOpen_timing().setTuesday(timingModel);
+           model.setTuesday(timingModel);
         } else {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("closed");
-            restaurant.getOpen_timing().setTuesday(timingModel);
+           model.setTuesday(timingModel);
         }
 
         if (sw_thu.isChecked()) {
@@ -339,11 +339,11 @@ public class TimingsFragment extends BaseStepFragment {
             } else {
                 timingModel.setEn_time("00:00:00");
             }
-            restaurant.getOpen_timing().setWednesday(timingModel);
+           model.setWednesday(timingModel);
         } else {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("closed");
-            restaurant.getOpen_timing().setWednesday(timingModel);
+           model.setWednesday(timingModel);
         }
 
         if (sw_fri.isChecked()) {
@@ -359,11 +359,11 @@ public class TimingsFragment extends BaseStepFragment {
             } else {
                 timingModel.setEn_time("00:00:00");
             }
-            restaurant.getOpen_timing().setThursday(timingModel);
+           model.setThursday(timingModel);
         } else {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("closed");
-            restaurant.getOpen_timing().setThursday(timingModel);
+           model.setThursday(timingModel);
         }
 
         if (sw_sat.isChecked()) {
@@ -379,11 +379,11 @@ public class TimingsFragment extends BaseStepFragment {
             } else {
                 timingModel.setEn_time("00:00:00");
             }
-            restaurant.getOpen_timing().setFriday(timingModel);
+           model.setFriday(timingModel);
         } else {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("closed");
-            restaurant.getOpen_timing().setFriday(timingModel);
+           model.setFriday(timingModel);
         }
 
         if (sw_sun.isChecked()) {
@@ -399,12 +399,13 @@ public class TimingsFragment extends BaseStepFragment {
             } else {
                 timingModel.setEn_time("00:00:00");
             }
-            restaurant.getOpen_timing().setSaturday(timingModel);
+           model.setSaturday(timingModel);
         } else {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("closed");
-            restaurant.getOpen_timing().setSaturday(timingModel);
+           model.setSaturday(timingModel);
         }
+        restaurant.setOpen_timing(model);
 //        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 

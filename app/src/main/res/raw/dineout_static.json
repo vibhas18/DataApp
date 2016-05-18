@@ -551,6 +551,11 @@
     "hotels": [
       {
         "city_id": 0,
+        "name": "No Mall",
+        "hotel_id": 0
+      },
+      {
+        "city_id": 0,
         "name": "1 MG Mall",
         "hotel_id": 82
       },
@@ -7826,6 +7831,12 @@
       }
     ],
     "chain": [
+
+      {
+        "city_id": 0,
+        "restaurant_name": "No Chain",
+        "restaurant_chain_id": 0
+      },
       {
         "city_id": 0,
         "restaurant_name": " Cake Castle",
