@@ -315,39 +315,55 @@ public class NameAndDetailFragment extends BaseStepFragment  {
             if (!TextUtils.isEmpty(et_profile_name.getText().toString().trim())) {
                 restaurant.updateProfileName(et_profile_name.getText().toString().trim());
 //                ((RestaurantFormActivity) getActivity()).getRestaurantDetailsModel().setRestaurantName(et_profile_name.getText().toString().trim());
+            }else{
+                restaurant.updateProfileName("");
             }
 
             if (!TextUtils.isEmpty(et_screen_name.getText().toString().trim())) {
                 restaurant.updateScreenName(et_screen_name.getText().toString().trim());
+            }else{
+                restaurant.updateScreenName("");
             }
 
             if (!TextUtils.isEmpty(et_screen_name_mobile.getText().toString().trim())) {
                 restaurant.updateScreenNameMobile(et_screen_name_mobile.getText().toString().trim());
+            }else{
+                restaurant.updateScreenNameMobile("");
             }
 
             if (!TextUtils.isEmpty(et_restaurant_address.getText().toString().trim())) {
                 restaurant.updateAddress(et_restaurant_address.getText().toString().trim());
+            }else{
+                restaurant.updateAddress("");
             }
 
             if (!TextUtils.isEmpty(et_restaurant_landmark.getText().toString().trim())) {
                 restaurant.updateLandmark(et_restaurant_landmark.getText().toString().trim());
+            }else{
+                restaurant.updateLandmark("");
             }
 
             if (!TextUtils.isEmpty(et_pincode.getText().toString().trim())) {
                 restaurant.updatePinCode(et_pincode.getText().toString().trim());
+            }else{
+                restaurant.updatePinCode("");
             }
 
             if (null != cityModel) {
                 restaurant.updateCityId("" + cityModel.getCity_id());
+            }else{
+                restaurant.updateCityId("");
             }
 
             if (null != areaModel) {
                 restaurant.updateAreaId("" + areaModel.getId());
+            }else{
+                restaurant.updateAreaId("");
             }
 
             if (null != localityModel) {
                 restaurant.updateLocalityId("" + localityModel.getId());
-            }
+            }else{restaurant.updateAreaId("");}
 
             restaurant.updateLatitude("" + latitude);
             restaurant.updateLongitude("" + longitude);

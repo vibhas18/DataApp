@@ -2,5 +2,5 @@
 <resources xmlns:ns1="http://schemas.android.com/tools">
     <string name="app_name">DataNetworkModule</string>
     <string name="base_url">http://laravel.dineoutdeals.in/index.php/api/</string>
-    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">ecafb58d-e045-417c-9e02-165e1bf51cfe</string>
+    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">59dab5b6-dd18-46b2-b838-ba0ac6a793cc</string>
 </resources>

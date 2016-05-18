@@ -487,15 +487,25 @@ public class DetailFragment extends BaseStepFragment  {
         RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
         if (hotelsModel != null) {
             restaurant.setHotel_id(hotelsModel.getHotel_id());
+        }else{
+            restaurant.setHotel_id(-1);
         }
         if (restaurantChain != null) {
             restaurant.setRestaurant_chain_id(restaurantChain.getRestaurant_chain_id());
+        }else{
+                restaurant.setRestaurant_chain_id(-1);
+
         }
         if (!TextUtils.isEmpty(et_restaurant_description.getText().toString().trim())) {
             restaurant.setDescription(et_restaurant_description.getText().toString().trim());
+        }else{
+            restaurant.setDescription("");
         }
         if (!TextUtils.isEmpty(et_cft.getText().toString().trim())) {
             restaurant.setCost_for_2(Integer.parseInt(et_cft.getText().toString().trim()));
+        }else{
+                restaurant.setCost_for_2(0);
+
         }
         restaurant.setTags(getTags());
         restaurant.setFeatures(getFeatures());

@@ -89,18 +89,26 @@ public class ContactFragment extends BaseStepFragment  {
 
         if (!TextUtils.isEmpty(et_restaurant_website.getText().toString().trim())) {
             restaurant.setWebsite(et_restaurant_website.getText().toString().trim());
+        }else{
+            restaurant.setWebsite("");
         }
 
         if (!TextUtils.isEmpty(et_restaurant_fb.getText().toString().trim())) {
             restaurant.setFb_page_url(et_restaurant_fb.getText().toString().trim());
+        }else{
+            restaurant.setFb_page_url("");
         }
 
         if (!TextUtils.isEmpty(et_mobile.getText().toString().trim())) {
             restaurant.setMobile_number(et_mobile.getText().toString().trim());
+        }else{
+                restaurant.setMobile_number("");
         }
 
         if (!TextUtils.isEmpty(et_phone.getText().toString().trim())) {
             restaurant.setPhone(et_phone.getText().toString().trim());
+        }else{
+            restaurant.setPhone("");
         }
 
 //        if (null != contactViews && contactViews.size() > 0) {
