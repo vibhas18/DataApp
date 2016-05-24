@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -65,6 +66,8 @@ public class GenericListSingleSelectFragment extends BaseActionModeFragment {
             });
 
 
+        }else{
+            Toast.makeText(getActivity(),"No Area available for this city",Toast.LENGTH_SHORT).show();
         }
 
     }
