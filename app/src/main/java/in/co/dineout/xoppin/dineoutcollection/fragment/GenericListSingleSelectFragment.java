@@ -51,17 +51,22 @@ public class GenericListSingleSelectFragment extends BaseActionModeFragment {
         final ArrayList<GenericModel> objectArrayList = (ArrayList<GenericModel>) getArguments().getSerializable(KEY_DATA_LIST);
 
         ListView listView = (ListView) view.findViewById(R.id.listView);
-        MyAdapter adapter = new MyAdapter(getActivity(), objectArrayList);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (null != callbacks) {
-                    callbacks.onItemClicked(objectArrayList.get(position));
-                    getActionMode().finish();
+        if (objectArrayList != null) {
+            MyAdapter adapter = new MyAdapter(getActivity(), objectArrayList);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (null != callbacks) {
+                        callbacks.onItemClicked(objectArrayList.get(position));
+                        getActionMode().finish();
+                    }
                 }
-            }
-        });
+            });
+
+
+        }
+
     }
 
     private static class MyAdapter extends ArrayAdapter<GenericModel> {

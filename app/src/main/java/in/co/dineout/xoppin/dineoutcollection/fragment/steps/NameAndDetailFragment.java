@@ -240,7 +240,7 @@ public class NameAndDetailFragment extends BaseStepFragment  {
                     Toast.makeText(getActivity(), "Select Area First", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) DataDatabaseUtils.getInstance(getContext()).getLocalityForAreaId(areaModel.getParentId() + ""), "Select Locality");
+                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) DataDatabaseUtils.getInstance(getContext()).getLocalityForAreaId(areaModel.getId() + ""), "Select Locality");
                 fragment.setCallbacks(new GenericListSingleSelectFragment.Callbacks() {
                     @Override
                     public void onItemClicked(GenericModel object) {
