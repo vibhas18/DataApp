@@ -404,7 +404,7 @@ public class DataDatabaseUtils {
         values.put(ImageEntry.IMAGE_TYPE,type);
         values.put(ImageEntry.IMAGE_CAPTION,"");
         values.put(RestaurantEntry.REST_ID,restId);
-        values.put(ImageEntry.IMAGE_PATH,""+"http://d2932g54ef2vds.cloudfront.net/"+key+".jpeg");
+        values.put(ImageEntry.IMAGE_PATH,""+"http://d3tfancs2fcmmi.cloudfront.net/"+key+".jpeg");
         values.put(ImageEntry.IMAGE_STATUS,DataDatabaseUtils.SYNC_READY);
         values.put(ImageEntry.IMAGE_GILD,"0");
         values.put(ImageEntry.IMAGE_STATE,"new");

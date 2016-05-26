@@ -25,10 +25,15 @@ public class ImageUploadHandler  {
 
     private static final String TAG = ImageUploadHandler.class.getSimpleName();
 
-    public static final String BUCKET_NAME = "dineout-images";
-    private static final String ACCESS_ID = "AKIAJIDYAQM2B6XN6FCA";
-    private static final String ACCESS_SECRET = "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";
+//    public static final String BUCKET_NAME = "dineout-images";
+//    private static final String ACCESS_ID = "AKIAJIDYAQM2B6XN6FCA";
+//    private static final String ACCESS_SECRET = "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";
 //    private static final String S3_REGION = "ap-southeast-1";
+
+
+    public static final String BUCKET_NAME = "dineout-images-prod";
+    private static final String ACCESS_ID = "AKIAJYTYHSZU3VBSNOPA";
+    private static final String ACCESS_SECRET = "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";
 
     private TransferUtility transferUtility;
     private AmazonS3Client s3Client;
@@ -45,7 +50,7 @@ public class ImageUploadHandler  {
         mToUpload.addAll(DataDatabaseUtils.getInstance(context).getPendingImage(id, ImageEntry.PROFILE_IMAGE));
 
         s3Client = new AmazonS3Client(new BasicAWSCredentials(ACCESS_ID, ACCESS_SECRET));
-        s3Client.setRegion(Region.getRegion(Regions.AP_SOUTHEAST_1));
+        s3Client.setRegion(Region.getRegion(Regions.US_WEST_2));
         transferUtility = new TransferUtility(s3Client, DineoutCollectApp.getInstance().getApplicationContext());
 
     }
@@ -74,7 +79,7 @@ public class ImageUploadHandler  {
         public void onStateChanged(int id, TransferState state) {
 
             if (state.equals(TransferState.COMPLETED)) {
-                String url  = "http://d2932g54ef2vds.cloudfront.net" + "/"+mImageModel.getKey()+".jpeg";
+                String url  = "http://d3tfancs2fcmmi.cloudfront.net" + "/"+mImageModel.getKey()+".jpeg";
                 DataDatabaseUtils.getInstance(mContext).markImageStateSynced(mImageModel.getId(),
                        url);
 

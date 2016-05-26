@@ -59,7 +59,7 @@ public class ImageStatusModel implements Serializable {
         }
         else if(!TextUtils.isEmpty(key)){
 
-           path = "http://d2932g54ef2vds.cloudfront.net" + "/"+key;
+           path = "http://d3tfancs2fcmmi.cloudfront.net" + "/"+key;
 
         }
         return path.contains(".jpg.jpeg")?path.replace(".jpg.jpeg",".jpeg"):path;
@@ -93,7 +93,7 @@ public class ImageStatusModel implements Serializable {
 
         if(!TextUtils.isEmpty(getRemotePath())){
 
-            String url = "http://d2932g54ef2vds.cloudfront.net/";
+            String url = "http://d3tfancs2fcmmi.cloudfront.net/";
             String path = getRemotePath().replaceAll(url,"");
             this.key = path.replaceAll(".jpeg", "");
             return key;

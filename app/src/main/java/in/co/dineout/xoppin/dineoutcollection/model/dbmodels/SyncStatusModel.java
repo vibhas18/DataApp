@@ -188,7 +188,7 @@ public class SyncStatusModel implements Serializable {
 
         imageModel.setGil_id(0);
         imageModel.setImage_caption(imageCaption == null ? "" : imageCaption);
-        imageModel.setImage_name("http://d2932g54ef2vds.cloudfront.net" + "/" + imageKey );
+        imageModel.setImage_name("http://d3tfancs2fcmmi.cloudfront.net" + "/" + imageKey );
         imageModel.setImage_state("new");
         return imageModel;
     }

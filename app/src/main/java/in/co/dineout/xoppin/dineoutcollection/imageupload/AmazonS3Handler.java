@@ -24,10 +24,10 @@ import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.SyncStatusModel;
 public class AmazonS3Handler {
     private static final String TAG = AmazonS3Handler.class.getSimpleName();
 
-    public static final String BUCKET_NAME = "dineout-images";
-    private static final String ACCESS_ID = "AKIAJIDYAQM2B6XN6FCA";
-    private static final String ACCESS_SECRET = "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";
-//    private static final String S3_REGION = "ap-southeast-1";
+    public static final String BUCKET_NAME = "dineout-images-prod";
+    private static final String ACCESS_ID = "AKIAJYTYHSZU3VBSNOPA";
+    private static final String ACCESS_SECRET = "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";
+//    private static final String S3_REGION = "ap-x-1";
 
     private static AmazonS3Handler amazonS3Handler;
     private TransferUtility transferUtility;
@@ -39,7 +39,7 @@ public class AmazonS3Handler {
 
     private AmazonS3Handler(Context context) {
         s3Client = new AmazonS3Client(new BasicAWSCredentials(ACCESS_ID, ACCESS_SECRET));
-        s3Client.setRegion(Region.getRegion(Regions.AP_SOUTHEAST_1));
+        s3Client.setRegion(Region.getRegion(Regions.US_WEST_2));
         transferUtility = new TransferUtility(s3Client, DineoutCollectApp.getInstance().getApplicationContext());
 
     }
