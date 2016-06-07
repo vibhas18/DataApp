@@ -1,6 +1,7 @@
 package in.co.dineout.xoppin.dineoutcollection.utils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
@@ -67,7 +68,11 @@ public class ImageUploadHandler  {
 
     private void uploadImage(final ImageStatusModel model){
 
+        if(model == null)
+            return;
 
+        if(TextUtils.isEmpty(model.getImageURI()) || TextUtils.isEmpty(model.getKey()))
+            return;
         String key = model.getKey();
         if(!(key.contains(".jpeg") || key.contains(".jpg"))){
             key += ".jpg";
