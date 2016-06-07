@@ -28,6 +28,7 @@ public class RestaurantUploadHandler  {
     private int mToUploadCount;
     private Context mContext;
     private ImageUploadHandler imageUploadHandler;
+    private RestaurantDetailsModel mRestModel;
     public RestaurantUploadHandler(Context context,String id){
 
         mContext = context;
@@ -52,6 +53,11 @@ public class RestaurantUploadHandler  {
         String jsonRest = getSavedRestaurant(id);
         if(TextUtils.isEmpty(jsonRest))
             return;
+
+        mRestModel = new RestaurantDetailsModel(jsonRest);
+        if(mRestModel.validateRestaurantWithoutToast(mContext) != -1)
+            return;
+
         DineoutNetworkManager manager = DineoutNetworkManager.newInstance(mContext, "");
         Map<String,String> param = new HashMap<>();
         param.put("resturant",jsonRest);
@@ -93,7 +99,12 @@ public class RestaurantUploadHandler  {
         @Override
         public void onErrorResponse(Request request, VolleyError error) {
 
-            DataDatabaseUtils.getInstance(mContext).markRestaurantUnsynced(mRestID);
+
+
+            if(mRestModel.validateRestaurantWithoutToast(mContext) == -1)
+                DataDatabaseUtils.getInstance(mContext).markRestaurantUnsynced(mRestID);
+            else
+                DataDatabaseUtils.getInstance(mContext).markRestaurantPending(mRestID);
         }
     };
 

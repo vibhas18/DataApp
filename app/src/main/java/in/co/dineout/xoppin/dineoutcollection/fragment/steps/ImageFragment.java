@@ -91,8 +91,8 @@ public class ImageFragment extends BaseStepFragment {
     @Override
     public void populateViewFromData() {
         RestaurantDetailsModel restaurantDetailsModel = ((RestaurantFormFragment) getParentFragment()).getRestaurantDetailsModel();
-        tvProfileImageCount.setText(DataDatabaseUtils.getInstance(getActivity()).getPendingImage(restaurantDetailsModel.getRestaurantId(),ImageEntry.PROFILE_IMAGE).size()+"");
-        tvMenuImagesCount.setText(DataDatabaseUtils.getInstance(getActivity()).getPendingImage(restaurantDetailsModel.getRestaurantId(),ImageEntry.MENU_IMAGE).size()+"");
+        tvProfileImageCount.setText(DataDatabaseUtils.getInstance(getActivity()).getPendingImage(restaurantDetailsModel.getRestaurantId(),ImageEntry.PROFILE_IMAGE).size()+" pending images");
+        tvMenuImagesCount.setText(DataDatabaseUtils.getInstance(getActivity()).getPendingImage(restaurantDetailsModel.getRestaurantId(),ImageEntry.MENU_IMAGE).size()+" pending images");
 
     }
 

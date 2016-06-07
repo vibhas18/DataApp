@@ -1004,7 +1004,9 @@ public class RestaurantDetailsModel implements Serializable {
             JSONArray list = new JSONArray();
             for(ImageStatusModel models : menu_image){
 
+
                 JSONObject object = new JSONObject();
+
                 object.put("image_name",models.getRemotePath());
                 object.put("image_state",models.getImage_state());
                 object.put("image_caption",models.getCaption());
@@ -1032,6 +1034,27 @@ public class RestaurantDetailsModel implements Serializable {
         }
     }
 
+
+    public int validateRestaurantWithoutToast(Context context){
+
+        DataDatabaseUtils utils = DataDatabaseUtils.getInstance(context);
+
+        if(!isBasicDetailValid()){
+            return 0;
+        }else if(!isDetailValid()){
+            return 1;
+        }
+        else if(!isContactValid()){
+            return 2;
+        }else if(!isCuisineValid()){
+            return 4;
+        }else if(!(utils.hasProfileImages(this.getRestaurantId())
+                && utils.hasMenuImages(this.getRestaurantId()))){
+            return 5;
+        }
+
+        return -1;
+    }
     public int validateRestaurant(Context context){
 
         DataDatabaseUtils utils = DataDatabaseUtils.getInstance(context);
@@ -1134,6 +1157,8 @@ public class RestaurantDetailsModel implements Serializable {
 
         setMenu_image(mToUpload);
     }
+
+
 
     private void addProfileImages(Context context){
 

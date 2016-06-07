@@ -88,11 +88,7 @@ public class NameAndDetailFragment extends BaseStepFragment  {
 
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        saveDataForStep();
-    }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

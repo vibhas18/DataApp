@@ -20,9 +20,11 @@ public class RestaurantIntentService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if(intent != null){
         mRestId = intent.getStringExtra("REST_ID");
         mHandler = new RestaurantUploadHandler(getApplicationContext(),mRestId);
         mHandler.initialize();
+        }
         return START_STICKY;
     }
 

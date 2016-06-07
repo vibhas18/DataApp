@@ -61,8 +61,14 @@ public class ImageStatusModel implements Serializable {
 
            path = "http://d3tfancs2fcmmi.cloudfront.net" + "/"+key;
 
+
+
+
         }
-        return path.contains(".jpg.jpeg")?path.replace(".jpg.jpeg",".jpeg"):path;
+
+        if(!(path.contains(".jpg") || path.contains(".jpeg")))
+            path += ".jpg";
+        return path.contains(".jpg.jpeg")?path.replace(".jpg.jpeg",".jpg"):path;
     }
 
     public void setRemotePath(String remotePath) {
@@ -95,7 +101,7 @@ public class ImageStatusModel implements Serializable {
 
             String url = "http://d3tfancs2fcmmi.cloudfront.net/";
             String path = getRemotePath().replaceAll(url,"");
-            this.key = path.replaceAll(".jpeg", "");
+            this.key = path.replaceAll(".jpg", "");
             return key;
         }
 

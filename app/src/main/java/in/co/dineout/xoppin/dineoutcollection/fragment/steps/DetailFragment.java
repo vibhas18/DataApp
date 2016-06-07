@@ -112,12 +112,7 @@ public class DetailFragment extends BaseStepFragment  {
         initView(getView());
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
 
-        saveDataForStep();
-    }
 
     private void initView(View view) {
         spn_restaurant = (Spinner) view.findViewById(R.id.spn_restaurant);

@@ -269,26 +269,6 @@ public class TimingsFragment extends BaseStepFragment {
         if (sw_monday.isChecked()) {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("open");
-            if (!TextUtils.isEmpty(tv_sunday_open.getText().toString().trim())) {
-                timingModel.setSt_time(tv_sunday_open.getText().toString().trim());
-            } else {
-                timingModel.setSt_time("00:00:00");
-            }
-            if (!TextUtils.isEmpty(tv_sunday_close.getText().toString().trim())) {
-                timingModel.setEn_time(tv_sunday_close.getText().toString().trim());
-            } else {
-                timingModel.setEn_time("00:00:00");
-            }
-           model.setSunday(timingModel);
-        } else {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("closed");
-           model.setSunday(timingModel);
-        }
-
-        if (sw_tuesday.isChecked()) {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("open");
             if (!TextUtils.isEmpty(tv_monday_open.getText().toString().trim())) {
                 timingModel.setSt_time(tv_monday_open.getText().toString().trim());
             } else {
@@ -306,7 +286,7 @@ public class TimingsFragment extends BaseStepFragment {
            model.setMonday(timingModel);
         }
 
-        if (sw_wed.isChecked()) {
+        if (sw_tuesday.isChecked()) {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("open");
             if (!TextUtils.isEmpty(tv_tuesday_open.getText().toString().trim())) {
@@ -326,7 +306,7 @@ public class TimingsFragment extends BaseStepFragment {
            model.setTuesday(timingModel);
         }
 
-        if (sw_thu.isChecked()) {
+        if (sw_wed.isChecked()) {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("open");
             if (!TextUtils.isEmpty(tv_wednesday_open.getText().toString().trim())) {
@@ -346,7 +326,7 @@ public class TimingsFragment extends BaseStepFragment {
            model.setWednesday(timingModel);
         }
 
-        if (sw_fri.isChecked()) {
+        if (sw_thu.isChecked()) {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("open");
             if (!TextUtils.isEmpty(tv_thursday_open.getText().toString().trim())) {
@@ -366,7 +346,7 @@ public class TimingsFragment extends BaseStepFragment {
            model.setThursday(timingModel);
         }
 
-        if (sw_sat.isChecked()) {
+        if (sw_fri.isChecked()) {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("open");
             if (!TextUtils.isEmpty(tv_friday_open.getText().toString().trim())) {
@@ -386,7 +366,7 @@ public class TimingsFragment extends BaseStepFragment {
            model.setFriday(timingModel);
         }
 
-        if (sw_sun.isChecked()) {
+        if (sw_sat.isChecked()) {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("open");
             if (!TextUtils.isEmpty(tv_saturday_open.getText().toString().trim())) {
@@ -404,6 +384,26 @@ public class TimingsFragment extends BaseStepFragment {
             TimingModel timingModel = new TimingModel();
             timingModel.setState("closed");
            model.setSaturday(timingModel);
+        }
+
+        if (sw_sun.isChecked()) {
+            TimingModel timingModel = new TimingModel();
+            timingModel.setState("open");
+            if (!TextUtils.isEmpty(tv_sunday_open.getText().toString().trim())) {
+                timingModel.setSt_time(tv_sunday_open.getText().toString().trim());
+            } else {
+                timingModel.setSt_time("00:00:00");
+            }
+            if (!TextUtils.isEmpty(tv_sunday_close.getText().toString().trim())) {
+                timingModel.setEn_time(tv_sunday_close.getText().toString().trim());
+            } else {
+                timingModel.setEn_time("00:00:00");
+            }
+           model.setSunday(timingModel);
+        } else {
+            TimingModel timingModel = new TimingModel();
+            timingModel.setState("closed");
+           model.setSunday(timingModel);
         }
         restaurant.setOpen_timing(model);
 //        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
@@ -478,7 +478,7 @@ public class TimingsFragment extends BaseStepFragment {
     @Override
     public void onStop() {
         super.onStop();
-        saveDataForStep();
+//        saveDataForStep();
     }
 
     public static class TimePickerFragment extends DialogFragment implements

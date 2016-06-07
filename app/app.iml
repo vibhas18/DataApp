@@ -90,13 +90,13 @@
     <orderEntry type="library" exported="" name="ormlite-core-4.49-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
     <orderEntry type="library" exported="" name="ormlite-android-4.49-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="aws-android-sdk-core-2.2.16" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-23.2.1" level="project" />
-    <orderEntry type="library" exported="" name="aws-android-sdk-cognito-2.2.16" level="project" />
+    <orderEntry type="library" exported="" name="aws-android-sdk-cognito-2.2.18" level="project" />
     <orderEntry type="library" exported="" name="okhttp-2.5.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.6.0" level="project" />
-    <orderEntry type="library" exported="" name="aws-android-sdk-ddb-2.2.16" level="project" />
-    <orderEntry type="library" exported="" name="aws-android-sdk-s3-2.2.16" level="project" />
+    <orderEntry type="library" exported="" name="aws-android-sdk-core-2.2.18" level="project" />
+    <orderEntry type="library" exported="" name="aws-android-sdk-ddb-2.2.18" level="project" />
+    <orderEntry type="library" exported="" name="aws-android-sdk-s3-2.2.18" level="project" />
     <orderEntry type="module" module-name="datanetworkmodule" exported="" />
   </component>
 </module>

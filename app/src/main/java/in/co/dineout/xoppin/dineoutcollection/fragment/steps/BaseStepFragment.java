@@ -14,7 +14,7 @@ public abstract class BaseStepFragment extends MasterDataFragment {
     @Override
     public void onStop() {
         super.onStop();
-        saveDataForStep();
+//        saveDataForStep();
     }
 
 

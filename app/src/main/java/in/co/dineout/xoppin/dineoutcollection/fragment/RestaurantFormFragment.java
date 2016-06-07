@@ -16,6 +16,7 @@ import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.adapter.GenericTabsPagerAdapter;
 import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
 import in.co.dineout.xoppin.dineoutcollection.database.ImageEntry;
+import in.co.dineout.xoppin.dineoutcollection.fragment.steps.BaseStepFragment;
 import in.co.dineout.xoppin.dineoutcollection.model.ImageStatusModel;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
@@ -86,7 +87,9 @@ public class RestaurantFormFragment extends MasterDataFragment implements ViewPa
 
         mPagerAdapter = new GenericTabsPagerAdapter(getChildFragmentManager());
         mPager = (ViewPager) v.findViewById(R.id.pager);
+
         mPager.setAdapter(mPagerAdapter);
+
         mStepPagerStrip = (PagerTitleStrip) v.findViewById(R.id.strip);
 
         if(mCurrentCount > 0){
@@ -95,6 +98,7 @@ public class RestaurantFormFragment extends MasterDataFragment implements ViewPa
             mPager.setCurrentItem(mCurrentCount);
 
         }
+        mPager.setOnPageChangeListener(this);
 
 //        mNextButton = (Button) v.findViewById(R.id.next_button);
 //        mPrevButton = (Button) v.findViewById(R.id.prev_button);
@@ -114,11 +118,10 @@ public class RestaurantFormFragment extends MasterDataFragment implements ViewPa
     @Override
     public void onPageSelected(int position) {
 
-//        if(mPagerAdapter.getItem(position) != null){
-//            ((BaseStepFragment)mPagerAdapter.getItem(position)).saveDataForStep();
-//        }
-
-
+        if(mPagerAdapter.getItem(mPrevious) != null){
+            ((BaseStepFragment)mPagerAdapter.getItem(mPrevious)).saveDataForStep();
+        }
+        mPrevious = position;
     }
 
     @Override

@@ -31,7 +31,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
@@ -308,9 +310,28 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
 
 
         gridImageAdapter = new GridImageAdapter(getActivity(),
-                DataDatabaseUtils.getInstance(getActivity()).getPendingImage(mRestId, mImageType));
+                getImageData());
         gridView.setAdapter(gridImageAdapter);
         gridImageAdapter.notifyDataSetChanged();
+    }
+
+    private List<ImageStatusModel> getImageData(){
+
+        List<ImageStatusModel> data = new ArrayList<>();
+
+       List<ImageStatusModel> pending =
+               DataDatabaseUtils.getInstance(getActivity()).getPendingImage(mRestId, mImageType);
+        if(pending != null && pending.size()>0){
+            data.addAll(pending);
+        }
+
+        List<ImageStatusModel> synced = DataDatabaseUtils.getInstance(getActivity()).getSyncedImage(mRestId,mImageType);
+        if(synced != null && synced.size()>0){
+            data.addAll(synced);
+        }
+
+        return data;
+
     }
     private void initializeView(View v){
 

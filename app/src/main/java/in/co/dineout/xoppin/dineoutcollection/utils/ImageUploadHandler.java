@@ -37,6 +37,7 @@ public class ImageUploadHandler  {
 
     private TransferUtility transferUtility;
     private AmazonS3Client s3Client;
+    private String mRestId;
     private Context mContext;
     private Stack<ImageStatusModel> mToUpload = new Stack<>();
 
@@ -46,6 +47,7 @@ public class ImageUploadHandler  {
 
 
         mContext = context;
+        mRestId = id;
         mToUpload.addAll(DataDatabaseUtils.getInstance(context).getPendingImage(id, ImageEntry.MENU_IMAGE));
         mToUpload.addAll(DataDatabaseUtils.getInstance(context).getPendingImage(id, ImageEntry.PROFILE_IMAGE));
 
@@ -57,13 +59,21 @@ public class ImageUploadHandler  {
 
     public void initialize(){
 
-        uploadImage(mToUpload.pop());
+        if(!mToUpload.empty())
+            uploadImage(mToUpload.pop());
+        else
+            DataDatabaseUtils.getInstance(mContext).markRestaurantPending(mRestId);
     }
 
     private void uploadImage(final ImageStatusModel model){
 
+
+        String key = model.getKey();
+        if(!(key.contains(".jpeg") || key.contains(".jpg"))){
+            key += ".jpg";
+        }
         com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver transferObserver = transferUtility
-                .upload(BUCKET_NAME, model.getKey(), new File(model.getKey()));
+                .upload(BUCKET_NAME, key, new File(model.getImageURI()));
         transferObserver.setTransferListener(new TransferObserver(model));
     }
 
@@ -79,7 +89,7 @@ public class ImageUploadHandler  {
         public void onStateChanged(int id, TransferState state) {
 
             if (state.equals(TransferState.COMPLETED)) {
-                String url  = "http://d3tfancs2fcmmi.cloudfront.net" + "/"+mImageModel.getKey()+".jpeg";
+                String url  = "http://d3tfancs2fcmmi.cloudfront.net" + "/"+mImageModel.getKey();
                 DataDatabaseUtils.getInstance(mContext).markImageStateSynced(mImageModel.getId(),
                        url);
 
