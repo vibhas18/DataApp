@@ -4,6 +4,9 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
+
+import com.example.datanetworkmodule.DineoutNetworkManager;
 
 import java.util.List;
 
@@ -16,6 +19,16 @@ import in.co.dineout.xoppin.dineoutcollection.utils.RestaurantUploadHandler;
  */
 public class RestaurantBackgroundService extends Service {
 
+
+   private DineoutNetworkManager manager;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        manager = DineoutNetworkManager.newInstance(getBaseContext(), "");
+
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -25,13 +38,20 @@ public class RestaurantBackgroundService extends Service {
         return START_STICKY;
     }
 
-    private void initiateSyncing(List<RestaurantDetailsModel> model){
+    private synchronized void initiateSyncing(List<RestaurantDetailsModel> model){
 
         if(model != null && model.size()>0){
 
             for(RestaurantDetailsModel detailsModel : model){
 
-                new RestaurantUploadHandler(getBaseContext(),detailsModel.getRestaurantId()).initialize();
+                RestaurantUploadHandler handler =
+                        new RestaurantUploadHandler(getBaseContext(),detailsModel.getRestaurantId(),manager);
+                Log.d("Background","Name ===== >> "+detailsModel.getProfile_name());
+                if(detailsModel.getMode() == DataDatabaseUtils.SYNC_READY){
+                        handler.initialize();
+                    DataDatabaseUtils.getInstance(getBaseContext()).
+                            markRestaurantSyncProgress(detailsModel.getRestaurantId());
+                }
             }
         }
     }

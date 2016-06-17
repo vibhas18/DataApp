@@ -41,13 +41,14 @@ public class ImageUploadHandler  {
     private String mRestId;
     private Context mContext;
     private Stack<ImageStatusModel> mToUpload = new Stack<>();
+    private ImageUploadCallback mCallback;
 
 
-
-    public ImageUploadHandler(Context context,String id){
+    public ImageUploadHandler(Context context,String id,ImageUploadCallback callback){
 
 
         mContext = context;
+        mCallback = callback;
         mRestId = id;
         mToUpload.addAll(DataDatabaseUtils.getInstance(context).getPendingImage(id, ImageEntry.MENU_IMAGE));
         mToUpload.addAll(DataDatabaseUtils.getInstance(context).getPendingImage(id, ImageEntry.PROFILE_IMAGE));
@@ -62,8 +63,12 @@ public class ImageUploadHandler  {
 
         if(!mToUpload.empty())
             uploadImage(mToUpload.pop());
-        else
-            DataDatabaseUtils.getInstance(mContext).markRestaurantPending(mRestId);
+        else{
+            if(mCallback != null){
+                mCallback.initiateSaveRestaurant();
+            }
+        }
+
     }
 
     private void uploadImage(final ImageStatusModel model){
@@ -94,16 +99,22 @@ public class ImageUploadHandler  {
         public void onStateChanged(int id, TransferState state) {
 
             if (state.equals(TransferState.COMPLETED)) {
-                String url  = "http://d3tfancs2fcmmi.cloudfront.net" + "/"+mImageModel.getKey();
+                String url  = "http://d3tfancs2fcmmi.cloudfront.net" + "/"+mImageModel.getKey()+".jpg";
                 DataDatabaseUtils.getInstance(mContext).markImageStateSynced(mImageModel.getId(),
-                       url);
+                        url);
 
+                if(mToUpload.isEmpty() ){
+                    mCallback.initiateSaveRestaurant();
+
+                }
                 if(!mToUpload.empty()){
                     uploadImage(mToUpload.pop());
                 }
 
-
             }
+
+
+
         }
 
         @Override
@@ -114,7 +125,12 @@ public class ImageUploadHandler  {
         @Override
         public void onError(int id, Exception ex) {
 
-            mToUpload.push(mImageModel);
+            if(!Utils.isConnected(mContext)){
+                mToUpload.push(mImageModel);
+                DataDatabaseUtils.getInstance(mContext).markRestaurantUnsynced(mRestId);
+            }
+
+
         }
     }
 }

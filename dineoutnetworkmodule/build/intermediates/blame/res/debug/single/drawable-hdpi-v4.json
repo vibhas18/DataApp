@@ -212,12 +212,12 @@
         "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable-hdpi-v4/abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/debug/drawable-hdpi-v4/common_signin_btn_icon_disabled_light.9.png",
-        "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.1.0/res/drawable-hdpi/common_signin_btn_icon_disabled_light.9.png"
-    },
-    {
         "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/debug/drawable-hdpi-v4/powered_by_google_dark.png",
         "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.1.0/res/drawable-hdpi/powered_by_google_dark.png"
+    },
+    {
+        "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/debug/drawable-hdpi-v4/common_signin_btn_icon_disabled_light.9.png",
+        "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.1.0/res/drawable-hdpi/common_signin_btn_icon_disabled_light.9.png"
     },
     {
         "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/debug/drawable-hdpi-v4/common_signin_btn_text_disabled_dark.9.png",

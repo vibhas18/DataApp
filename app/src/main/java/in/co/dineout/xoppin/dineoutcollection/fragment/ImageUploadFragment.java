@@ -39,7 +39,6 @@ import java.util.Locale;
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.adapter.GridImageAdapter;
 import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
-import in.co.dineout.xoppin.dineoutcollection.database.ImageEntry;
 import in.co.dineout.xoppin.dineoutcollection.model.ImageStatusModel;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
@@ -121,9 +120,8 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
             }
 
 
-            if (mImageType == ImageEntry.MENU_IMAGE) {
-                mImageStatusModel.setKey("restaurant_" + Utils.cleanIt(mRestId) + "_" + new Date().getTime() + ".jpg");
-            }
+            mImageStatusModel.setKey("restaurant_" + Utils.cleanIt(mRestId) + "_" + new Date().getTime() + ".jpg");
+
 
             mImageStatusModel.setImageURI(filePath);
             DataDatabaseUtils.getInstance(getContext()).saveImageForSyncing(filePath,
@@ -310,7 +308,7 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
 
 
         gridImageAdapter = new GridImageAdapter(getActivity(),
-                getImageData());
+                DataDatabaseUtils.getInstance(getActivity()).getPendingImage(mRestId, mImageType));
         gridView.setAdapter(gridImageAdapter);
         gridImageAdapter.notifyDataSetChanged();
     }

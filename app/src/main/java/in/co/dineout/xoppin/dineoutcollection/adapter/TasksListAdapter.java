@@ -89,10 +89,15 @@ public class TasksListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvPriority.setText(data.optString("priority"));
             tvStatus.setText(data.optString("status"));
 
-            tvEditing.setVisibility(View.VISIBLE);
-            tvEditing.setTag(restId);
-            mRoot.setTag(restId);
-            tvEditing.setOnClickListener(this);
+            if(!tvStatus.getText().toString().equalsIgnoreCase("submitted")){
+                tvEditing.setVisibility(View.VISIBLE);
+                tvEditing.setTag(restId);
+                mRoot.setTag(restId);
+                tvEditing.setOnClickListener(this);
+                mRoot.setOnClickListener(this);
+            }else{
+                tvEditing.setVisibility(View.GONE);
+            }
 
 
 

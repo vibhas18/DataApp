@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.dineout.android.volley.Request;
 import com.dineout.android.volley.Response;
@@ -71,7 +72,7 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
 
         showLoadingDialog(false);
         getNetworkManager().jsonRequestGet(ASSIGNED_TASK_REQUEST, "task-assigned",
-                null, this, this, false);
+                null, this, this, true);
     }
 
 
@@ -79,8 +80,25 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
 
         String url = "resturant-details/" + restaurantId;
         showLoadingDialog(false);
+
         getNetworkManager().jsonRequestGet(DETAIL_REQUEST, url,
-                null, this, this, false);
+                null, this, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(Request request, VolleyError error) {
+                        hideLoadingDialog();
+                        RestaurantDetailsModel local = DataDatabaseUtils.getInstance(getContext()).getRestaurantModelForId(restaurantId+"");
+                        if(local == null){
+                            Toast.makeText(getContext(),"Check your network connection",Toast.LENGTH_SHORT).show();
+                            return;
+                        }else if(local != null && local.getMode() == DataDatabaseUtils.SYNCED){
+                            Toast.makeText(getContext(),"Restaurant already synced",Toast.LENGTH_SHORT).show();
+
+                            return;
+                        }
+                        RestaurantFormFragment fragment = RestaurantFormFragment.newInstance(local);
+                        addToBackStack(getActivity(),fragment);
+                    }
+                }, true);
     }
 
     @Override
@@ -108,11 +126,16 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
                 JSONObject data = responseObject.optJSONObject("data");
                 RestaurantDetailsModel model = new RestaurantDetailsModel(data.toString());
                 model.setMode(DataDatabaseUtils.PENDING);
-                saveImage(data);
-                DataDatabaseUtils.getInstance(getContext()).
-                        saveRestaurantForEditing(model.getRestaurantId()
-                                , model.getRestaurantName(), model.getRestaurantJSONString());
-
+                RestaurantDetailsModel local = DataDatabaseUtils.getInstance(getContext()).getRestaurantModelForId(model.getRestaurantId());
+                if(local == null){
+                    saveImage(data);
+                    DataDatabaseUtils.getInstance(getContext()).
+                            saveRestaurantForEditing(model.getRestaurantId()
+                                    , model.getRestaurantName(), model.getRestaurantJSONString());
+                }else if(local.getMode() != DataDatabaseUtils.SYNCED ){
+                    DataDatabaseUtils.getInstance(getContext()).markRestaurantPending(model.getRestaurantId());
+                    model = local;
+                }
                 RestaurantFormFragment fragment = RestaurantFormFragment.newInstance(model);
                 addToBackStack(getActivity(),fragment);
             }

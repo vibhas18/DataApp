@@ -65,7 +65,7 @@ public class SaveToTextLog {
 
                 String data = date.toString() + "\n:" + logs + "\n\n\n\n\n";
 
-                Log.i("suraj", "saving in log " + data);
+                Log.i("prateek", "saving in log " + data);
 
                 FileWriter writer = new FileWriter(new File(Environment.getExternalStorageDirectory() + "/DineoutCollection/" + restaurantName, filename));
                 writer.append(data);

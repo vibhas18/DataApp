@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 /**
@@ -15,6 +16,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i("BootCompletedReceiver", "Boot completed");
         if (Utils.isConnected(context)) {
+            DataDatabaseUtils.getInstance(context).markProgressToReady();
             context.startService(new Intent(context, BackgroundSyncService.class));
         }
     }

@@ -24,6 +24,7 @@ public class DataDatabaseUtils {
     public static final int SYNC_READY = 1;
     public static final int PENDING =0;
     public static final int SYNCED = 2;
+    public static final int SYNC_PROGRESS = 3;
 
     private DataDatabaseUtils(Context context){
 
@@ -209,7 +210,7 @@ public class DataDatabaseUtils {
 
         RestaurantDetailsModel model = getRestaurantModelForId(id);
         SQLiteDatabase db = mHelper.getWritableDatabase();
-        if(model == null){
+        if(model == null ){
             db.insert(RestaurantEntry.TABLE_NAME,"null",values);
         }else{
 
@@ -282,7 +283,7 @@ public class DataDatabaseUtils {
         return null;
     }
 
-    public List<RestaurantDetailsModel> getUnsynedRestaurant(){
+    public synchronized List<RestaurantDetailsModel> getUnsynedRestaurant(){
 
         String[] projection ={
                 RestaurantEntry.REST_ID,
@@ -293,8 +294,8 @@ public class DataDatabaseUtils {
 
         String sortOrder =
                 RestaurantEntry.REST_NAME + " DESC";
-        String selection = RestaurantEntry.REST_MODE+" =?";
-        String[] mode = {String.valueOf(SYNC_READY)};
+        String selection = RestaurantEntry.REST_MODE+" =? OR "+RestaurantEntry.REST_MODE+" =?";
+        String[] mode = {String.valueOf(SYNC_READY),String.valueOf(SYNC_PROGRESS)};
 
         return getRestaurantList(projection,selection,mode,sortOrder);
     }
@@ -404,7 +405,7 @@ public class DataDatabaseUtils {
         values.put(ImageEntry.IMAGE_TYPE,type);
         values.put(ImageEntry.IMAGE_CAPTION,"");
         values.put(RestaurantEntry.REST_ID,restId);
-        values.put(ImageEntry.IMAGE_PATH,""+"http://d3tfancs2fcmmi.cloudfront.net/"+key+".jpeg");
+        values.put(ImageEntry.IMAGE_PATH,""+"http://d3tfancs2fcmmi.cloudfront.net/"+key+".jpg");
         values.put(ImageEntry.IMAGE_STATUS,DataDatabaseUtils.SYNC_READY);
         values.put(ImageEntry.IMAGE_GILD,"0");
         values.put(ImageEntry.IMAGE_STATE,"new");
@@ -419,6 +420,7 @@ public class DataDatabaseUtils {
         SQLiteDatabase database = mHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(ImageEntry.IMAGE_CAPTION, model.getCaption());
+        if(model.getImage_state().equalsIgnoreCase("new"))
         values.put(ImageEntry.IMAGE_STATUS,SYNC_READY);
 
         String selection = ImageEntry._ID+" =?";
@@ -439,7 +441,6 @@ public class DataDatabaseUtils {
             ContentValues values = new ContentValues();
 
             values.put(ImageEntry.IMAGE_STATE, "remove");
-            values.put(ImageEntry.IMAGE_STATUS,SYNC_READY);
             String selection = ImageEntry._ID+" =?";
             String[] where = {String.valueOf(model.getId())};
             database.update(ImageEntry.TABLE_NAME, values, selection, where);
@@ -580,6 +581,11 @@ public class DataDatabaseUtils {
         markRestaurantState(id,PENDING);
     }
 
+    public void markRestaurantSyncProgress(String id){
+
+        markRestaurantState(id,SYNC_PROGRESS);
+    }
+
     public void markRestaurantUnsynced(String id){
 
         markRestaurantState(id,DataDatabaseUtils.SYNC_READY);
@@ -672,6 +678,33 @@ public class DataDatabaseUtils {
         if(database.isOpen())
             database.close();
         return list;
+    }
+
+
+    public void markProgressToReady(){
+
+       List<RestaurantDetailsModel> unsynced = getUnsynedRestaurant();
+        for(RestaurantDetailsModel model:unsynced){
+            if(model != null && model.getMode() == SYNC_PROGRESS){
+                markRestaurantUnsynced(model.getRestaurantId());
+            }
+        }
+    }
+
+    public void deleteSyncedImagesForRestaurant(String id){
+
+
+
+        SQLiteDatabase database = mHelper.getWritableDatabase();
+
+        String selection = RestaurantEntry.REST_ID+" =? AND "+ImageEntry.IMAGE_STATUS +" =?";
+        String[] where = {String.valueOf(id),String.valueOf(DataDatabaseUtils.SYNCED)};
+        database.delete(ImageEntry.TABLE_NAME,selection,where);
+
+
+
+        if(database.isOpen())
+            database.close();
     }
 
 }

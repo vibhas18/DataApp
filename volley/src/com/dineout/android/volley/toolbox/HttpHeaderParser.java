@@ -48,7 +48,7 @@ public class HttpHeaderParser {
 
 		long cacheAbs = 0;
 
-		long softCacheAbs;
+		long softCacheAbs = 0;
 		boolean hasCacheControl = false;
 
 		String serverEtag = null;
@@ -100,20 +100,33 @@ public class HttpHeaderParser {
 		String contentType = response.headers.get("Content-Type");
 		if (!contentType.contains("image")) {
 
-//			String softCache = headers.get("soft_cache");// 3000000
-//			String hardCache = headers.get("hard_cache");// /6000000
+			String softCache = headers.get("Cache-Duration-Soft");// 3000000
+			String hardCache = headers.get("Cache-Duration-Hard");// /6000000
 
 			String cache=headers.get("Cache-Duration");
-			if (!TextUtils.isEmpty(cache)) {
+			if (!TextUtils.isEmpty(hardCache)) {
 				int cacheDelay = 0;
 				try {
-					cacheDelay = Integer.parseInt(cache)* 1000;
+					cacheDelay = Integer.parseInt(hardCache)* 1000;
 				} catch (Exception e) {
 					cacheDelay = 0;
 				}
 				cacheAbs = now + cacheDelay;
 			} else {
 				cacheAbs = now + 0;
+			}
+
+
+			if (!TextUtils.isEmpty(softCache)) {
+				int cacheDelay = 0;
+				try {
+					cacheDelay = Integer.parseInt(softCache)* 1000;
+				} catch (Exception e) {
+					cacheDelay = 0;
+				}
+				softCacheAbs = now + cacheDelay;
+			} else {
+				softCacheAbs = now + 0;
 			}
 
 
@@ -126,7 +139,7 @@ public class HttpHeaderParser {
 		Cache.Entry entry = new Cache.Entry();
 		entry.data = response.networkData;
 		entry.etag = serverEtag;
-		entry.softTtl = cacheAbs;
+		entry.softTtl = softCacheAbs;
 
 		entry.ttl = cacheAbs;
 		entry.serverDate = serverDate;

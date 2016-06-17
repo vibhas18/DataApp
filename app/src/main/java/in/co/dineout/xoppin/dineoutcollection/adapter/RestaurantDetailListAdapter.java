@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 
 /**
@@ -63,7 +64,7 @@ public class RestaurantDetailListAdapter extends BaseAdapter {
         String reportDate = df.format(getItem(position).getCreatedFetchedDate());
         viewHolder.tv_date.setText("Created on " + reportDate);
 
-        if (getItem(position).getSync_status() == RestaurantDetailsModel.SYNC_STATUS.IN_PROCESS) {
+        if (getItem(position).getMode() == DataDatabaseUtils.SYNC_PROGRESS) {
             viewHolder.progressBar.setVisibility(View.VISIBLE);
         } else {
             viewHolder.progressBar.setVisibility(View.GONE);

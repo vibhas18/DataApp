@@ -172,6 +172,9 @@ public class RootActivity extends AppCompatActivity implements GoogleApiClient.C
                 }
             }
         });
+
+//        LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locRequest,
+//                RootActivity.this);
     }
 
 
@@ -276,9 +279,7 @@ public class RootActivity extends AppCompatActivity implements GoogleApiClient.C
         if (checkLocationPermission(getApplicationContext())) {
             if (googleApiClient != null) {
                 Location lastKnownLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-
                 if (lastKnownLocation != null) {
-
                     mCurrentLocation = lastKnownLocation;
                     DataPreferences.updateCurrentLocation(this,lastKnownLocation);
                 }
@@ -301,6 +302,8 @@ public class RootActivity extends AppCompatActivity implements GoogleApiClient.C
 
     private void initializeGoogleApiClient(){
         if (googleApiClient == null) {
+
+
             googleApiClient = new GoogleApiClient.Builder(getApplicationContext())
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)

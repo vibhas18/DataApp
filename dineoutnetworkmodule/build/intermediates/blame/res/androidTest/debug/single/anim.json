@@ -16,10 +16,6 @@
         "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/anim/abc_shrink_fade_out_from_bottom.xml"
     },
     {
-        "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/androidTest/debug/anim/design_bottom_sheet_slide_in.xml",
-        "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.android.support/design/23.2.1/res/anim/design_bottom_sheet_slide_in.xml"
-    },
-    {
         "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/androidTest/debug/anim/abc_slide_in_top.xml",
         "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/anim/abc_slide_in_top.xml"
     },
@@ -58,9 +54,5 @@
     {
         "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/androidTest/debug/anim/design_snackbar_in.xml",
         "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.android.support/design/23.2.1/res/anim/design_snackbar_in.xml"
-    },
-    {
-        "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/androidTest/debug/anim/design_bottom_sheet_slide_out.xml",
-        "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.android.support/design/23.2.1/res/anim/design_bottom_sheet_slide_out.xml"
     }
 ]

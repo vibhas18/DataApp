@@ -1150,8 +1150,7 @@ public class RestaurantDetailsModel implements Serializable {
     private void addMenuImages(Context context){
 
         List<ImageStatusModel> mToUpload = new ArrayList<>();
-        mToUpload.addAll(DataDatabaseUtils.getInstance(context).
-                getPendingImage(getRestaurantId(), ImageEntry.MENU_IMAGE));
+
         mToUpload.addAll(DataDatabaseUtils.getInstance(context).
                 getSyncedImage(getRestaurantId(), ImageEntry.MENU_IMAGE));
 
@@ -1163,8 +1162,7 @@ public class RestaurantDetailsModel implements Serializable {
     private void addProfileImages(Context context){
 
         List<ImageStatusModel> mToUpload = new ArrayList<>();
-        mToUpload.addAll(DataDatabaseUtils.getInstance(context).
-                getPendingImage(getRestaurantId(), ImageEntry.PROFILE_IMAGE));
+
         mToUpload.addAll(DataDatabaseUtils.getInstance(context).
                 getSyncedImage(getRestaurantId(), ImageEntry.PROFILE_IMAGE));
         setProfile_image(mToUpload);

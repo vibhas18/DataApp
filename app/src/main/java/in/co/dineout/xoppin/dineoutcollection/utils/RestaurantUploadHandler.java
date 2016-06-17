@@ -15,12 +15,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.helper.SaveToTextLog;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 
 /**
  * Created by prateek.aggarwal on 5/13/16.
  */
-public class RestaurantUploadHandler  {
+public class RestaurantUploadHandler implements ImageUploadCallback  {
 
 
     private String mRestID;
@@ -29,39 +30,45 @@ public class RestaurantUploadHandler  {
     private Context mContext;
     private ImageUploadHandler imageUploadHandler;
     private RestaurantDetailsModel mRestModel;
-    public RestaurantUploadHandler(Context context,String id){
+    private DineoutNetworkManager mManager;
+    public RestaurantUploadHandler(Context context,String id,DineoutNetworkManager manager){
 
         mContext = context;
         mRestID = id;
-        imageUploadHandler = new ImageUploadHandler(context,id);
+        imageUploadHandler = new ImageUploadHandler(context,id,this);
+        mManager = manager;
+
     }
 
-    public void initialize(){
+    public synchronized void initialize(){
 
-        saveRestaurant(mRestID);
+
         imageUploadHandler.initialize();
+//        saveRestaurant(mRestID);
     }
 
-    private void saveRestaurant(String id){
+    private synchronized void saveRestaurant(String id){
 
         if(TextUtils.isEmpty(id) )
             return;
 
         if(!Utils.isConnected(mContext))
             return;
-
         String jsonRest = getSavedRestaurant(id);
         if(TextUtils.isEmpty(jsonRest))
             return;
-
         mRestModel = new RestaurantDetailsModel(jsonRest);
-        if(mRestModel.validateRestaurantWithoutToast(mContext) != -1)
-            return;
 
-        DineoutNetworkManager manager = DineoutNetworkManager.newInstance(mContext, "");
-        Map<String,String> param = new HashMap<>();
-        param.put("resturant",jsonRest);
-        manager.stringRequestPost(101,"save-resturant",param,mRespListener,mErroListener,false);
+            if(mRestModel.validateRestaurantWithoutToast(mContext) != -1)
+                return;
+            else
+                mRestModel.validateRestaurant(mContext);
+
+            Map<String,String> param = new HashMap<>();
+            param.put("resturant",jsonRest);
+            mManager.stringRequestPost(Integer.valueOf(mRestModel.getRestaurantId()),
+                    "save-resturant",param,mRespListener,mErroListener,false);
+
     }
 
     private String getSavedRestaurant(String id){
@@ -83,7 +90,9 @@ public class RestaurantUploadHandler  {
                     JSONObject resp = new JSONObject(responseObject);
                     if(resp.optInt("status") == 1){
 
+                        SaveToTextLog.saveLogData(mRestModel.getRestaurantName(),mRestModel.getRestaurantJSONString(),mContext);
                         DataDatabaseUtils.getInstance(mContext).markRestaurantSynced(mRestID);
+                        DataDatabaseUtils.getInstance(mContext).deleteSyncedImagesForRestaurant(mRestID);
                     }else{
                         DataDatabaseUtils.getInstance(mContext).markRestaurantPending(mRestID);
 
@@ -99,8 +108,6 @@ public class RestaurantUploadHandler  {
         @Override
         public void onErrorResponse(Request request, VolleyError error) {
 
-
-
             if(mRestModel.validateRestaurantWithoutToast(mContext) == -1)
                 DataDatabaseUtils.getInstance(mContext).markRestaurantUnsynced(mRestID);
             else
@@ -109,4 +116,22 @@ public class RestaurantUploadHandler  {
     };
 
 
+    @Override
+    public void initiateSaveRestaurant() {
+
+        String jsonRest = getSavedRestaurant(mRestID);
+        if(TextUtils.isEmpty(jsonRest))
+            return;
+
+        mRestModel = new RestaurantDetailsModel(jsonRest);
+        if(mRestModel.validateRestaurantWithoutToast(mContext) != -1)
+            return;
+        else{
+            mRestModel.validateRestaurant(mContext);
+            DataDatabaseUtils.getInstance(mContext).saveRestaurantForSyncing(mRestID, mRestModel.getRestaurantName(), mRestModel.getRestaurantJSONString());
+
+        }
+
+        saveRestaurant(mRestID);
+    }
 }

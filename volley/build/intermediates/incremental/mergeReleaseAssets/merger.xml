@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/prateek.aggarwal/dineout_android_data-collection/volley/assets"/></dataSet><dataSet config="release"><source path="/Users/prateek.aggarwal/dineout_android_data-collection/volley/src/release/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/prateek.aggarwal/dineout_android_data-collection/volley/assets"/><source path="/Users/prateek.aggarwal/dineout_android_data-collection/volley/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/prateek.aggarwal/dineout_android_data-collection/volley/src/release/assets"/></dataSet></merger>
