@@ -66,7 +66,7 @@ public class RestaurantUploadHandler implements ImageUploadCallback  {
 
             Map<String,String> param = new HashMap<>();
             param.put("resturant",jsonRest);
-            mManager.stringRequestPost(Integer.valueOf(mRestModel.getRestaurantId()),
+            mManager.stringRequestPost(900,
                     "save-resturant",param,mRespListener,mErroListener,false);
 
     }

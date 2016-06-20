@@ -66,6 +66,7 @@
                 android:imeOptions="flagNoExtractUi"
                 android:inputType="phone"
                 android:lines="2"
+                android:maxLength="12"
                 android:nextFocusDown="@+id/submit"
                 android:singleLine="true"
                 android:textColorHint="#e7e7e7" />
@@ -89,6 +90,7 @@
                 android:lines="2"
                 android:nextFocusDown="@+id/submit"
                 android:singleLine="true"
+                android:maxLength="12"
                 android:textColorHint="#e7e7e7" />
 
         </android.support.design.widget.TextInputLayout>
