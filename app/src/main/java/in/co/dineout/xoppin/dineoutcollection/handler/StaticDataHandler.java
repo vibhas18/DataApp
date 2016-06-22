@@ -10,6 +10,8 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.model.ChainModel;
 import in.co.dineout.xoppin.dineoutcollection.model.CityModel;
@@ -23,7 +25,7 @@ import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 public class StaticDataHandler {
     private static final String TAG = StaticDataHandler.class.getSimpleName();
 
-    private static final String KEY_STATIC_DATA = "KEY_STATIC_DATA";
+    public static final String KEY_STATIC_DATA = "KEY_STATIC_DATA";
 
     private static StaticDataHandler staticDataHandler;
     private StaticDataModel staticDataModel;
@@ -61,6 +63,19 @@ public class StaticDataHandler {
 
     public StaticDataModel getStaticDataModel() {
         return this.staticDataModel;
+    }
+
+    public ArrayList<CityModel> getMainCity(){
+        ArrayList<CityModel> target = new ArrayList<>();
+        ArrayList<CityModel> cityModels = getStaticDataModel().getCity();
+        for(int i=0 ;i<cityModels.size();i++){
+
+            CityModel model = cityModels.get(i);
+            if(model != null && model.getParent_id() == -1){
+                target.add(model);
+            }
+        }
+        return target;
     }
 
     public void updateStaticData(final Context context) {
@@ -103,7 +118,7 @@ public class StaticDataHandler {
 
     public CityModel getCityModelForId(int id) {
         for (CityModel cityModel : getStaticDataModel().getCity()) {
-            if (cityModel.getCity_id() == id) {
+            if (cityModel.getCity_id() == id && cityModel.getParent_id() == -1) {
                 return cityModel;
             }
         }
@@ -137,6 +152,43 @@ public class StaticDataHandler {
         }
         return -1;
     }
+
+    public ArrayList<CityModel> getSubCityListForCity(int id){
+
+        ArrayList<CityModel> subCityList = new ArrayList<>();
+        ArrayList<CityModel> cityList = getStaticDataModel().getCity();
+        for(int i = 0;i<cityList.size();i++){
+
+            CityModel model = cityList.get(i);
+            if(model != null && model.getParent_id() == id ){
+                subCityList.add(model);
+            }
+        }
+        if(subCityList.size() == 0){
+        CityModel model = new CityModel();
+        model.setName("No sub city");
+        model.setCity_id(-1);
+        subCityList.add(model);}
+        return subCityList;
+    }
+
+    public CityModel getSubCityForCity(int id,int cityId){
+
+        ArrayList<CityModel> cityList = getStaticDataModel().getCity();
+        for(int i = 0;i<cityList.size();i++){
+
+            CityModel model = cityList.get(i);
+            if(model != null && model.getParent_id() == id && model.getCity_id() == cityId){
+                return model;
+            }
+        }
+
+        CityModel model = new CityModel();
+        model.setName("No sub city");
+        model.setCity_id(-1);
+        return model;
+    }
+
 
     public int getHotelChainPositionForId(int id) {
         for (int i = 0; i < getStaticDataModel().getHotels().size(); i++) {

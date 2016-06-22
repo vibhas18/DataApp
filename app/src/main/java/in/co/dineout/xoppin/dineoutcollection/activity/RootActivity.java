@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
@@ -16,6 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.dineout.android.volley.Request;
+import com.dineout.android.volley.Response;
+import com.dineout.android.volley.VolleyError;
 import com.example.datanetworkmodule.DataPreferences;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -29,10 +34,13 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
+import org.json.JSONObject;
+
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.fragment.DashboardFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.LoginFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.MasterDataFragment;
+import in.co.dineout.xoppin.dineoutcollection.handler.StaticDataHandler;
 import in.co.dineout.xoppin.dineoutcollection.utils.MasterFragmentTransactionHelper;
 
 /**
@@ -377,6 +385,34 @@ public class RootActivity extends AppCompatActivity implements GoogleApiClient.C
             // Show dialog using GooglePlayServicesUtil.getErrorDialog()
 //            showErrorDialog(result.getErrorCode());
             mResolvingError = true;
+        }
+    }
+
+
+    public Response.Listener getEnumListener(){
+        return new EnumListeners();
+    }
+
+    public Response.ErrorListener getEnumErrorListener(){
+        return new EnumListeners();
+    }
+
+    private class EnumListeners implements Response.Listener<JSONObject>,Response.ErrorListener{
+
+        @Override
+        public void onErrorResponse(Request request, VolleyError error) {
+
+        }
+
+        @Override
+        public void onResponse(Request<JSONObject> request, JSONObject responseObject, Response<JSONObject> response) {
+
+            if(responseObject != null && responseObject.optString("status").equalsIgnoreCase("1")){
+
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(RootActivity.this).edit();
+                editor.putString(StaticDataHandler.KEY_STATIC_DATA,responseObject.toString());
+                editor.commit();
+            }
         }
     }
 }

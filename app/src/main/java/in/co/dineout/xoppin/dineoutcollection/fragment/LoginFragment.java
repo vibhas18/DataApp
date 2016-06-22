@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
+import in.co.dineout.xoppin.dineoutcollection.activity.RootActivity;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
 /**
@@ -108,7 +109,11 @@ public class LoginFragment extends MasterDataFragment implements View.OnClickLis
             DataPreferences.saveUser(getActivity(), Utils.getJsonObject(resp, "data"));
             Toast.makeText(getActivity(), Utils.getStringVal(resp, "message"), Toast.LENGTH_SHORT).show();
 
+            getNetworkManager().jsonRequestGet(901,"default-enum",null,((RootActivity)getActivity()).getEnumListener(),
+                    ((RootActivity)getActivity()).getEnumErrorListener(),true);
+
            popBackStack(getActivity().getSupportFragmentManager());
+
             DashboardFragment fragment = DashboardFragment.newInstance();
             addToBackStack(getActivity(),fragment);
         }

@@ -41,8 +41,132 @@
         "city_id": 7,
         "name": "Ahmedabad",
         "parent_id": -1
+      },
+      {
+        "city_id": 8,
+        "name": "Goa",
+        "parent_id": -1
+      },
+      {
+        "city_id": 9,
+        "name": "Chandigarh",
+        "parent_id": -1
+      },
+      {
+        "city_id": 10,
+        "name": "Jaipur",
+        "parent_id": -1
+      },
+      {
+        "city_id": 11,
+        "name": "Indore",
+        "parent_id": -1
+      },
+      {
+        "city_id": 12,
+        "name": "Kanpur",
+        "parent_id": -1
+      },
+      {
+        "city_id": 13,
+        "name": "Lucknow",
+        "parent_id": -1
+      },
+      {
+        "city_id": 14,
+        "name": "Shimla",
+        "parent_id": -1
+      },
+      {
+        "city_id": 15,
+        "name": "Ludhiana",
+        "parent_id": -1
+      },
+      {
+        "city_id": 16,
+        "name": "Amritsar",
+        "parent_id": -1
+      },
+      {
+        "city_id": 17,
+        "name": "Faridabad",
+        "parent_id": 0
+      },
+      {
+        "city_id": 18,
+        "name": "Gurgaon",
+        "parent_id": 0
+      },
+      {
+        "city_id": 19,
+        "name": "Noida",
+        "parent_id": 0
+      },
+      {
+        "city_id": 20,
+        "name": "ghaziabad",
+        "parent_id": 0
+      },
+      {
+        "city_id": 21,
+        "name": "Thane",
+        "parent_id": 1
+      },
+      {
+        "city_id": 22,
+        "name": "Vasai",
+        "parent_id": 1
+      },
+      {
+        "city_id": 23,
+        "name": "Secundarabad",
+        "parent_id": 4
+      },
+      {
+        "city_id": 24,
+        "name": "Lonavla",
+        "parent_id": 5
+      },
+      {
+        "city_id": 25,
+        "name": "DAIMOND HARBOUR",
+        "parent_id": 6
+      },
+      {
+        "city_id": 26,
+        "name": "Durgapur",
+        "parent_id": 6
+      },
+      {
+        "city_id": 27,
+        "name": "Zirakpur",
+        "parent_id": 9
+      },
+      {
+        "city_id": 28,
+        "name": "Panchkula",
+        "parent_id": 9
+      },
+      {
+        "city_id": 29,
+        "name": "Mohali",
+        "parent_id": 9
+      },
+      {
+        "city_id": 30,
+        "name": "Bilochi",
+        "parent_id": 10
+      },
+      {
+        "city_id": 31,
+        "name": "Kukas",
+        "parent_id": 10
+      },
+      {
+        "city_id": 32,
+        "name": "Navi Mumbai",
+        "parent_id": 1
       }
-
     ],
     "gcrr_type": [
       {
@@ -56,6 +180,9 @@
       },
       {
         "gcrr_type": "owner"
+      },
+      {
+        "gcrr_type": "payment"
       },
       {
         "gcrr_type": "recon"
@@ -75,100 +202,180 @@
     ],
     "tags": [
       {
-        "tag_name": "Bar"
+        "tag_name": "Bar",
+        "is_internal": 0
       },
       {
-        "tag_name": "Romantic"
+        "tag_name": "Romantic",
+        "is_internal": 0
       },
       {
-        "tag_name": "5 Star"
+        "tag_name": "5 Star",
+        "is_internal": 0
       },
       {
-        "tag_name": "Breakfast"
+        "tag_name": "Breakfast",
+        "is_internal": 0
       },
       {
-        "tag_name": "Candle Light Dinner"
+        "tag_name": "Candle Light Dinner",
+        "is_internal": 0
       },
       {
-        "tag_name": "Fine Dining"
+        "tag_name": "Fine Dining",
+        "is_internal": 0
       },
       {
-        "tag_name": "Happy Hours"
+        "tag_name": "Happy Hours",
+        "is_internal": 0
       },
       {
-        "tag_name": "Hookah"
+        "tag_name": "Hookah",
+        "is_internal": 0
       },
       {
-        "tag_name": "Live Music"
+        "tag_name": "Live Music",
+        "is_internal": 0
       },
       {
-        "tag_name": "Lounge"
+        "tag_name": "Lounge",
+        "is_internal": 0
       },
       {
-        "tag_name": "Microbrewery"
+        "tag_name": "Microbrewery",
+        "is_internal": 0
       },
       {
-        "tag_name": "Outdoor Seating"
+        "tag_name": "Outdoor Seating",
+        "is_internal": 0
       },
       {
-        "tag_name": "Private Dining Available"
+        "tag_name": "Private Dining Available",
+        "is_internal": 0
       },
       {
-        "tag_name": "Pub"
+        "tag_name": "Pub",
+        "is_internal": 0
       },
       {
-        "tag_name": "Screening"
+        "tag_name": "Screening",
+        "is_internal": 0
       },
       {
-        "tag_name": "Seafood"
+        "tag_name": "Seafood",
+        "is_internal": 0
       },
       {
-        "tag_name": "Sunday Brunch"
+        "tag_name": "Sunday Brunch",
+        "is_internal": 0
       },
       {
-        "tag_name": "Buffet"
+        "tag_name": "Buffet",
+        "is_internal": 0
       },
       {
-        "tag_name": "Roof Top"
+        "tag_name": "Roof Top",
+        "is_internal": 0
       },
       {
-        "tag_name": "Cafe"
+        "tag_name": "Cafe",
+        "is_internal": 0
       },
       {
-        "tag_name": "Kids Friendly"
+        "tag_name": "Kids Friendly",
+        "is_internal": 0
       },
       {
-        "tag_name": "Luxury Dining"
+        "tag_name": "Luxury Dining",
+        "is_internal": 0
       },
       {
-        "tag_name": "Carlsberg"
+        "tag_name": "Dance Floor",
+        "is_internal": 0
       },
       {
-        "tag_name": "Dance Floor"
+        "tag_name": "Dog Friendly",
+        "is_internal": 0
       },
       {
-        "tag_name": "Dog Friendly"
+        "tag_name": "Karaoke",
+        "is_internal": 0
       },
       {
-        "tag_name": "Karaoke"
+        "tag_name": "Poolside",
+        "is_internal": 0
       },
       {
-        "tag_name": "Poolside"
+        "tag_name": "Sea Facing",
+        "is_internal": 0
       },
       {
-        "tag_name": "Sea Facing"
+        "tag_name": "Lunch Buffet",
+        "is_internal": 0
       },
       {
-        "tag_name": "Lunch Buffet"
+        "tag_name": "Dinner Buffet",
+        "is_internal": 0
       },
       {
-        "tag_name": "Dinner Buffet"
+        "tag_name": "Pure Veg",
+        "is_internal": 0
       },
       {
-        "tag_name": "Pure Veg"
+        "tag_name": "Dineout Plus",
+        "is_internal": 0
       },
       {
-        "tag_name": "Dineout Plus"
+        "tag_name": "Amex Offer",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "New year Deals",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "Valentine's Day",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "T20 World Cup",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "Smartpay",
+        "is_internal": 1
+      },
+      {
+        "tag_name": "ICC Twenty20 World Cup Live Screening",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "IPL Cricket Match Live Screening",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "Barbeque & Grill",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "Navratri Events And Deals",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "Game of Thrones",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "Kids Friendly",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "Restaurants of the Week",
+        "is_internal": 0
+      },
+      {
+        "tag_name": "Midnight Buffet",
+        "is_internal": 0
       }
     ],
     "features": [
@@ -422,14 +629,21 @@
       },
       {
         "cuisine_name": "Odia"
+      },
+      {
+        "cuisine_name": "Iranian"
+      },
+      {
+        "cuisine_name": "Irish"
+      },
+      {
+        "cuisine_name": "Caribbean"
+      },
+      {
+        "cuisine_name": "Australian"
       }
     ],
     "hotels": [
-      {
-        "city_id": 0,
-        "name": "No Mall",
-        "hotel_id": 0
-      },
       {
         "city_id": 0,
         "name": "1 MG Mall",
@@ -593,17 +807,17 @@
       {
         "city_id": 0,
         "name": "Aloft Hotel",
-        "hotel_id": 86
-      },
-      {
-        "city_id": 0,
-        "name": "Aloft Hotel",
         "hotel_id": 291
       },
       {
         "city_id": 0,
         "name": "Aloft Hotel",
         "hotel_id": 1339
+      },
+      {
+        "city_id": 0,
+        "name": "Aloft Hotel",
+        "hotel_id": 86
       },
       {
         "city_id": 0,
@@ -643,12 +857,12 @@
       {
         "city_id": 0,
         "name": "Ambience Mall",
-        "hotel_id": 409
+        "hotel_id": 645
       },
       {
         "city_id": 0,
         "name": "Ambience Mall",
-        "hotel_id": 645
+        "hotel_id": 409
       },
       {
         "city_id": 0,
@@ -708,22 +922,22 @@
       {
         "city_id": 0,
         "name": "Ansal Plaza Mall",
-        "hotel_id": 1155
-      },
-      {
-        "city_id": 0,
-        "name": "Ansal Plaza Mall",
-        "hotel_id": 410
-      },
-      {
-        "city_id": 0,
-        "name": "Ansal Plaza Mall",
         "hotel_id": 542
       },
       {
         "city_id": 0,
         "name": "Ansal Plaza Mall",
+        "hotel_id": 1155
+      },
+      {
+        "city_id": 0,
+        "name": "Ansal Plaza Mall",
         "hotel_id": 646
+      },
+      {
+        "city_id": 0,
+        "name": "Ansal Plaza Mall",
+        "hotel_id": 410
       },
       {
         "city_id": 0,
@@ -858,11 +1072,6 @@
       {
         "city_id": 0,
         "name": "Bangalore Central Mall",
-        "hotel_id": 1376
-      },
-      {
-        "city_id": 0,
-        "name": "Bangalore Central Mall",
         "hotel_id": 94
       },
       {
@@ -874,6 +1083,11 @@
         "city_id": 0,
         "name": "Bangalore Central Mall",
         "hotel_id": 96
+      },
+      {
+        "city_id": 0,
+        "name": "Bangalore Central Mall",
+        "hotel_id": 1376
       },
       {
         "city_id": 0,
@@ -1048,12 +1262,12 @@
       {
         "city_id": 0,
         "name": "Central Mall",
-        "hotel_id": 740
+        "hotel_id": 1449
       },
       {
         "city_id": 0,
         "name": "Central Mall",
-        "hotel_id": 1449
+        "hotel_id": 740
       },
       {
         "city_id": 0,
@@ -1153,17 +1367,22 @@
       {
         "city_id": 0,
         "name": "Citrus Hotel",
-        "hotel_id": 1186
+        "hotel_id": 652
       },
       {
         "city_id": 0,
         "name": "Citrus Hotel",
-        "hotel_id": 652
+        "hotel_id": 1186
       },
       {
         "city_id": 0,
         "name": "City Centre 2 Mall",
         "hotel_id": 920
+      },
+      {
+        "city_id": 0,
+        "name": "City Centre Mall",
+        "hotel_id": 921
       },
       {
         "city_id": 0,
@@ -1174,11 +1393,6 @@
         "city_id": 0,
         "name": "City Centre Mall",
         "hotel_id": 741
-      },
-      {
-        "city_id": 0,
-        "name": "City Centre Mall",
-        "hotel_id": 921
       },
       {
         "city_id": 0,
@@ -1278,12 +1492,12 @@
       {
         "city_id": 0,
         "name": "Country Inn & Suites By Carlson",
-        "hotel_id": 996
+        "hotel_id": 544
       },
       {
         "city_id": 0,
         "name": "Country Inn & Suites By Carlson",
-        "hotel_id": 1384
+        "hotel_id": 577
       },
       {
         "city_id": 0,
@@ -1293,17 +1507,7 @@
       {
         "city_id": 0,
         "name": "Country Inn & Suites By Carlson",
-        "hotel_id": 417
-      },
-      {
-        "city_id": 0,
-        "name": "Country Inn & Suites By Carlson",
-        "hotel_id": 544
-      },
-      {
-        "city_id": 0,
-        "name": "Country Inn & Suites By Carlson",
-        "hotel_id": 577
+        "hotel_id": 1384
       },
       {
         "city_id": 0,
@@ -1319,6 +1523,16 @@
         "city_id": 0,
         "name": "Country Inn & Suites By Carlson",
         "hotel_id": 658
+      },
+      {
+        "city_id": 0,
+        "name": "Country Inn & Suites By Carlson",
+        "hotel_id": 417
+      },
+      {
+        "city_id": 0,
+        "name": "Country Inn & Suites By Carlson",
+        "hotel_id": 996
       },
       {
         "city_id": 0,
@@ -1342,11 +1556,6 @@
       },
       {
         "city_id": 0,
-        "name": "Courtyard by Marriott Hotel",
-        "hotel_id": 997
-      },
-      {
-        "city_id": 0,
         "name": "Courtyard By Marriott Hotel",
         "hotel_id": 1188
       },
@@ -1359,6 +1568,11 @@
         "city_id": 0,
         "name": "Courtyard By Marriott Hotel",
         "hotel_id": 1190
+      },
+      {
+        "city_id": 0,
+        "name": "Courtyard by Marriott Hotel",
+        "hotel_id": 997
       },
       {
         "city_id": 0,
@@ -1398,6 +1612,16 @@
       {
         "city_id": 0,
         "name": "Crowne Plaza",
+        "hotel_id": 1158
+      },
+      {
+        "city_id": 0,
+        "name": "Crowne Plaza",
+        "hotel_id": 662
+      },
+      {
+        "city_id": 0,
+        "name": "Crowne Plaza",
         "hotel_id": 421
       },
       {
@@ -1409,16 +1633,6 @@
         "city_id": 0,
         "name": "Crowne Plaza",
         "hotel_id": 423
-      },
-      {
-        "city_id": 0,
-        "name": "Crowne Plaza",
-        "hotel_id": 662
-      },
-      {
-        "city_id": 0,
-        "name": "Crowne Plaza",
-        "hotel_id": 1158
       },
       {
         "city_id": 0,
@@ -1533,12 +1747,12 @@
       {
         "city_id": 0,
         "name": "DLF City Center Mall",
-        "hotel_id": 429
+        "hotel_id": 665
       },
       {
         "city_id": 0,
         "name": "DLF City Center Mall",
-        "hotel_id": 665
+        "hotel_id": 429
       },
       {
         "city_id": 0,
@@ -1554,6 +1768,11 @@
         "city_id": 0,
         "name": "DLF Galleria",
         "hotel_id": 673
+      },
+      {
+        "city_id": 0,
+        "name": "DLF Mall of India",
+        "hotel_id": 1627
       },
       {
         "city_id": 0,
@@ -1808,12 +2027,12 @@
       {
         "city_id": 0,
         "name": "Fortune Inn Grazia",
-        "hotel_id": 1159
+        "hotel_id": 546
       },
       {
         "city_id": 0,
         "name": "Fortune Inn Grazia",
-        "hotel_id": 546
+        "hotel_id": 1159
       },
       {
         "city_id": 0,
@@ -1998,12 +2217,12 @@
       {
         "city_id": 0,
         "name": "Ginger Hotel",
-        "hotel_id": 122
+        "hotel_id": 582
       },
       {
         "city_id": 0,
         "name": "Ginger Hotel",
-        "hotel_id": 582
+        "hotel_id": 122
       },
       {
         "city_id": 0,
@@ -2243,12 +2462,12 @@
       {
         "city_id": 0,
         "name": "Holiday Inn Hotel",
-        "hotel_id": 1014
+        "hotel_id": 1202
       },
       {
         "city_id": 0,
         "name": "Holiday Inn Hotel",
-        "hotel_id": 1202
+        "hotel_id": 1014
       },
       {
         "city_id": 0,
@@ -2968,12 +3187,12 @@
       {
         "city_id": 0,
         "name": "Hotel Ramada",
-        "hotel_id": 864
+        "hotel_id": 1607
       },
       {
         "city_id": 0,
         "name": "Hotel Ramada",
-        "hotel_id": 1607
+        "hotel_id": 864
       },
       {
         "city_id": 0,
@@ -3348,11 +3567,6 @@
       {
         "city_id": 0,
         "name": "Hyatt Regency",
-        "hotel_id": 452
-      },
-      {
-        "city_id": 0,
-        "name": "Hyatt Regency",
         "hotel_id": 683
       },
       {
@@ -3362,13 +3576,18 @@
       },
       {
         "city_id": 0,
-        "name": "Hyatt Regency Hotel",
-        "hotel_id": 345
+        "name": "Hyatt Regency",
+        "hotel_id": 452
       },
       {
         "city_id": 0,
         "name": "Hyatt Regency Hotel",
         "hotel_id": 1040
+      },
+      {
+        "city_id": 0,
+        "name": "Hyatt Regency Hotel",
+        "hotel_id": 345
       },
       {
         "city_id": 0,
@@ -3398,12 +3617,12 @@
       {
         "city_id": 0,
         "name": "IBIS Hotel",
-        "hotel_id": 453
+        "hotel_id": 684
       },
       {
         "city_id": 0,
         "name": "IBIS Hotel",
-        "hotel_id": 684
+        "hotel_id": 453
       },
       {
         "city_id": 0,
@@ -3463,12 +3682,12 @@
       {
         "city_id": 0,
         "name": "Inorbit Mall",
-        "hotel_id": 1220
+        "hotel_id": 152
       },
       {
         "city_id": 0,
         "name": "Inorbit Mall",
-        "hotel_id": 152
+        "hotel_id": 1220
       },
       {
         "city_id": 0,
@@ -3628,22 +3847,22 @@
       {
         "city_id": 0,
         "name": "JW Marriott Hotel",
-        "hotel_id": 1052
-      },
-      {
-        "city_id": 0,
-        "name": "JW Marriott Hotel",
-        "hotel_id": 1221
-      },
-      {
-        "city_id": 0,
-        "name": "JW Marriott Hotel",
         "hotel_id": 1301
       },
       {
         "city_id": 0,
         "name": "JW Marriott Hotel",
+        "hotel_id": 1052
+      },
+      {
+        "city_id": 0,
+        "name": "JW Marriott Hotel",
         "hotel_id": 158
+      },
+      {
+        "city_id": 0,
+        "name": "JW Marriott Hotel",
+        "hotel_id": 1221
       },
       {
         "city_id": 0,
@@ -3693,12 +3912,7 @@
       {
         "city_id": 0,
         "name": "Keys Hotel",
-        "hotel_id": 159
-      },
-      {
-        "city_id": 0,
-        "name": "Keys Hotel",
-        "hotel_id": 1222
+        "hotel_id": 1545
       },
       {
         "city_id": 0,
@@ -3708,7 +3922,12 @@
       {
         "city_id": 0,
         "name": "Keys Hotel",
-        "hotel_id": 1545
+        "hotel_id": 159
+      },
+      {
+        "city_id": 0,
+        "name": "Keys Hotel",
+        "hotel_id": 1222
       },
       {
         "city_id": 0,
@@ -3828,22 +4047,22 @@
       {
         "city_id": 0,
         "name": "Le Meridien",
-        "hotel_id": 463
-      },
-      {
-        "city_id": 0,
-        "name": "Le Meridien",
         "hotel_id": 701
       },
       {
         "city_id": 0,
-        "name": "Le Meridien Hotel",
-        "hotel_id": 161
+        "name": "Le Meridien",
+        "hotel_id": 463
       },
       {
         "city_id": 0,
         "name": "Le Meridien Hotel",
         "hotel_id": 884
+      },
+      {
+        "city_id": 0,
+        "name": "Le Meridien Hotel",
+        "hotel_id": 161
       },
       {
         "city_id": 0,
@@ -3893,6 +4112,11 @@
       {
         "city_id": 0,
         "name": "Lemon Tree Hotel",
+        "hotel_id": 772
+      },
+      {
+        "city_id": 0,
+        "name": "Lemon Tree Hotel",
         "hotel_id": 275
       },
       {
@@ -3903,7 +4127,7 @@
       {
         "city_id": 0,
         "name": "Lemon Tree Hotel",
-        "hotel_id": 772
+        "hotel_id": 1464
       },
       {
         "city_id": 0,
@@ -3912,18 +4136,13 @@
       },
       {
         "city_id": 0,
-        "name": "Lemon Tree Hotel",
-        "hotel_id": 1464
+        "name": "Lemon Tree Premier",
+        "hotel_id": 690
       },
       {
         "city_id": 0,
         "name": "Lemon Tree Premier",
         "hotel_id": 464
-      },
-      {
-        "city_id": 0,
-        "name": "Lemon Tree Premier",
-        "hotel_id": 690
       },
       {
         "city_id": 0,
@@ -4167,11 +4386,6 @@
       },
       {
         "city_id": 0,
-        "name": "Mercure Hotel",
-        "hotel_id": 780
-      },
-      {
-        "city_id": 0,
         "name": "Merlin Homeland Mall",
         "hotel_id": 952
       },
@@ -4208,7 +4422,7 @@
       {
         "city_id": 0,
         "name": "MGF Metropolitan Mall",
-        "hotel_id": 472
+        "hotel_id": 890
       },
       {
         "city_id": 0,
@@ -4218,7 +4432,7 @@
       {
         "city_id": 0,
         "name": "MGF Metropolitan Mall",
-        "hotel_id": 890
+        "hotel_id": 472
       },
       {
         "city_id": 0,
@@ -4508,12 +4722,12 @@
       {
         "city_id": 0,
         "name": "Pacific Mall",
-        "hotel_id": 477
+        "hotel_id": 556
       },
       {
         "city_id": 0,
         "name": "Pacific Mall",
-        "hotel_id": 556
+        "hotel_id": 477
       },
       {
         "city_id": 0,
@@ -4863,16 +5077,6 @@
       {
         "city_id": 0,
         "name": "Radisson Blu",
-        "hotel_id": 484
-      },
-      {
-        "city_id": 0,
-        "name": "Radisson Blu",
-        "hotel_id": 485
-      },
-      {
-        "city_id": 0,
-        "name": "Radisson Blu",
         "hotel_id": 557
       },
       {
@@ -4887,23 +5091,18 @@
       },
       {
         "city_id": 0,
+        "name": "Radisson Blu",
+        "hotel_id": 484
+      },
+      {
+        "city_id": 0,
+        "name": "Radisson Blu",
+        "hotel_id": 485
+      },
+      {
+        "city_id": 0,
         "name": "Radisson Blu Chennai City Centre",
         "hotel_id": 367
-      },
-      {
-        "city_id": 0,
-        "name": "Radisson Blu Hotel",
-        "hotel_id": 50
-      },
-      {
-        "city_id": 0,
-        "name": "Radisson Blu Hotel",
-        "hotel_id": 1246
-      },
-      {
-        "city_id": 0,
-        "name": "Radisson Blu Hotel",
-        "hotel_id": 1473
       },
       {
         "city_id": 0,
@@ -4913,7 +5112,22 @@
       {
         "city_id": 0,
         "name": "Radisson Blu Hotel",
+        "hotel_id": 50
+      },
+      {
+        "city_id": 0,
+        "name": "Radisson Blu Hotel",
         "hotel_id": 1606
+      },
+      {
+        "city_id": 0,
+        "name": "Radisson Blu Hotel",
+        "hotel_id": 1473
+      },
+      {
+        "city_id": 0,
+        "name": "Radisson Blu Hotel",
+        "hotel_id": 1246
       },
       {
         "city_id": 0,
@@ -5202,6 +5416,11 @@
       },
       {
         "city_id": 0,
+        "name": "Royalton Hotel",
+        "hotel_id": 780
+      },
+      {
+        "city_id": 0,
         "name": "S Hotel",
         "hotel_id": 188
       },
@@ -5298,12 +5517,12 @@
       {
         "city_id": 0,
         "name": "Satyam Cineplex",
-        "hotel_id": 490
+        "hotel_id": 1311
       },
       {
         "city_id": 0,
         "name": "Satyam Cineplex",
-        "hotel_id": 1311
+        "hotel_id": 490
       },
       {
         "city_id": 0,
@@ -5313,12 +5532,12 @@
       {
         "city_id": 0,
         "name": "Sayaji Hotel",
-        "hotel_id": 1252
+        "hotel_id": 1476
       },
       {
         "city_id": 0,
         "name": "Sayaji Hotel",
-        "hotel_id": 1476
+        "hotel_id": 1252
       },
       {
         "city_id": 0,
@@ -5663,12 +5882,12 @@
       {
         "city_id": 0,
         "name": "Svenska Design Hotel",
-        "hotel_id": 200
+        "hotel_id": 1102
       },
       {
         "city_id": 0,
         "name": "Svenska Design Hotel",
-        "hotel_id": 1102
+        "hotel_id": 200
       },
       {
         "city_id": 0,
@@ -5978,17 +6197,17 @@
       {
         "city_id": 0,
         "name": "The Gateway Hotel",
-        "hotel_id": 212
-      },
-      {
-        "city_id": 0,
-        "name": "The Gateway Hotel",
         "hotel_id": 383
       },
       {
         "city_id": 0,
         "name": "The Gateway Hotel",
         "hotel_id": 967
+      },
+      {
+        "city_id": 0,
+        "name": "The Gateway Hotel",
+        "hotel_id": 212
       },
       {
         "city_id": 0,
@@ -6073,12 +6292,12 @@
       {
         "city_id": 0,
         "name": "The Lalit Hotel",
-        "hotel_id": 509
+        "hotel_id": 903
       },
       {
         "city_id": 0,
         "name": "The Lalit Hotel",
-        "hotel_id": 903
+        "hotel_id": 509
       },
       {
         "city_id": 0,
@@ -6128,17 +6347,17 @@
       {
         "city_id": 0,
         "name": "The Lemon Tree Hotel",
+        "hotel_id": 1355
+      },
+      {
+        "city_id": 0,
+        "name": "The Lemon Tree Hotel",
         "hotel_id": 217
       },
       {
         "city_id": 0,
         "name": "The Lemon Tree Hotel",
         "hotel_id": 218
-      },
-      {
-        "city_id": 0,
-        "name": "The Lemon Tree Hotel",
-        "hotel_id": 1355
       },
       {
         "city_id": 0,
@@ -6203,12 +6422,12 @@
       {
         "city_id": 0,
         "name": "The Oberoi Hotel",
-        "hotel_id": 220
+        "hotel_id": 1120
       },
       {
         "city_id": 0,
         "name": "The Oberoi Hotel",
-        "hotel_id": 1120
+        "hotel_id": 220
       },
       {
         "city_id": 0,
@@ -6253,11 +6472,6 @@
       {
         "city_id": 0,
         "name": "The Park Hotel",
-        "hotel_id": 222
-      },
-      {
-        "city_id": 0,
-        "name": "The Park Hotel",
         "hotel_id": 515
       },
       {
@@ -6268,12 +6482,17 @@
       {
         "city_id": 0,
         "name": "The Park Hotel",
+        "hotel_id": 1152
+      },
+      {
+        "city_id": 0,
+        "name": "The Park Hotel",
         "hotel_id": 970
       },
       {
         "city_id": 0,
         "name": "The Park Hotel",
-        "hotel_id": 1152
+        "hotel_id": 222
       },
       {
         "city_id": 0,
@@ -6333,16 +6552,6 @@
       {
         "city_id": 0,
         "name": "The Pride Hotel",
-        "hotel_id": 972
-      },
-      {
-        "city_id": 0,
-        "name": "The Pride Hotel",
-        "hotel_id": 1269
-      },
-      {
-        "city_id": 0,
-        "name": "The Pride Hotel",
         "hotel_id": 1335
       },
       {
@@ -6354,6 +6563,16 @@
         "city_id": 0,
         "name": "The Pride Hotel",
         "hotel_id": 387
+      },
+      {
+        "city_id": 0,
+        "name": "The Pride Hotel",
+        "hotel_id": 972
+      },
+      {
+        "city_id": 0,
+        "name": "The Pride Hotel",
+        "hotel_id": 1269
       },
       {
         "city_id": 0,
@@ -6643,22 +6862,22 @@
       {
         "city_id": 0,
         "name": "Trident Hotel",
-        "hotel_id": 399
-      },
-      {
-        "city_id": 0,
-        "name": "Trident Hotel",
-        "hotel_id": 723
-      },
-      {
-        "city_id": 0,
-        "name": "Trident Hotel",
         "hotel_id": 816
       },
       {
         "city_id": 0,
         "name": "Trident Hotel",
         "hotel_id": 908
+      },
+      {
+        "city_id": 0,
+        "name": "Trident Hotel",
+        "hotel_id": 399
+      },
+      {
+        "city_id": 0,
+        "name": "Trident Hotel",
+        "hotel_id": 723
       },
       {
         "city_id": 0,
@@ -6777,6 +6996,21 @@
       },
       {
         "city_id": 0,
+        "name": "Vivanta by Taj",
+        "hotel_id": 540
+      },
+      {
+        "city_id": 0,
+        "name": "Vivanta By Taj",
+        "hotel_id": 1574
+      },
+      {
+        "city_id": 0,
+        "name": "Vivanta by Taj",
+        "hotel_id": 726
+      },
+      {
+        "city_id": 0,
         "name": "Vivanta By Taj",
         "hotel_id": 239
       },
@@ -6793,22 +7027,7 @@
       {
         "city_id": 0,
         "name": "Vivanta by Taj",
-        "hotel_id": 540
-      },
-      {
-        "city_id": 0,
-        "name": "Vivanta by Taj",
-        "hotel_id": 726
-      },
-      {
-        "city_id": 0,
-        "name": "Vivanta by Taj",
         "hotel_id": 1272
-      },
-      {
-        "city_id": 0,
-        "name": "Vivanta By Taj",
-        "hotel_id": 1574
       },
       {
         "city_id": 0,
@@ -6838,12 +7057,12 @@
       {
         "city_id": 0,
         "name": "Vivanta By Taj Hotel",
-        "hotel_id": 641
+        "hotel_id": 818
       },
       {
         "city_id": 0,
         "name": "Vivanta By Taj Hotel",
-        "hotel_id": 818
+        "hotel_id": 641
       },
       {
         "city_id": 0,
@@ -6883,12 +7102,12 @@
       {
         "city_id": 0,
         "name": "Wave Mall",
-        "hotel_id": 1500
+        "hotel_id": 1555
       },
       {
         "city_id": 0,
         "name": "Wave Mall",
-        "hotel_id": 1555
+        "hotel_id": 1500
       },
       {
         "city_id": 0,
@@ -7707,12 +7926,6 @@
       }
     ],
     "chain": [
-
-      {
-        "city_id": 0,
-        "restaurant_name": "No Chain",
-        "restaurant_chain_id": 0
-      },
       {
         "city_id": 0,
         "restaurant_name": " Cake Castle",
@@ -8012,6 +8225,11 @@
         "city_id": 0,
         "restaurant_name": "Barbeque Nation",
         "restaurant_chain_id": 95
+      },
+      {
+        "city_id": 0,
+        "restaurant_name": "Barcelos",
+        "restaurant_chain_id": 2850
       },
       {
         "city_id": 0,
@@ -8335,6 +8553,11 @@
       },
       {
         "city_id": 0,
+        "restaurant_name": "Carl's Jr.",
+        "restaurant_chain_id": 2854
+      },
+      {
+        "city_id": 0,
         "restaurant_name": "CCW - Chinese Chaat On Wheels",
         "restaurant_chain_id": 609
       },
@@ -8517,6 +8740,16 @@
         "city_id": 0,
         "restaurant_name": "Citrus Cafe",
         "restaurant_chain_id": 1748
+      },
+      {
+        "city_id": 0,
+        "restaurant_name": "Citrus Cafe - Lemon Tree Hotel",
+        "restaurant_chain_id": 2853
+      },
+      {
+        "city_id": 0,
+        "restaurant_name": "Citrus Cafe - Lemon Tree Premier",
+        "restaurant_chain_id": 2852
       },
       {
         "city_id": 0,
@@ -9107,6 +9340,11 @@
         "city_id": 0,
         "restaurant_name": "Handi X-Press",
         "restaurant_chain_id": 2188
+      },
+      {
+        "city_id": 0,
+        "restaurant_name": "Happy Hakka",
+        "restaurant_chain_id": 2851
       },
       {
         "city_id": 0,
@@ -10000,8 +10238,8 @@
       },
       {
         "city_id": 0,
-        "restaurant_name": "Om Sweets",
-        "restaurant_chain_id": 555
+        "restaurant_name": "Om Sweets and Snacks",
+        "restaurant_chain_id": 2855
       },
       {
         "city_id": 0,
@@ -10705,7 +10943,7 @@
       },
       {
         "city_id": 0,
-        "restaurant_name": "Slounge",
+        "restaurant_name": "Slounge - Lemon Tree Premier",
         "restaurant_chain_id": 1208
       },
       {
@@ -12045,6 +12283,11 @@
       },
       {
         "city_id": 1,
+        "restaurant_name": "Carter's Express",
+        "restaurant_chain_id": 2856
+      },
+      {
+        "city_id": 1,
         "restaurant_name": "Celebrations Fine Confections",
         "restaurant_chain_id": 1226
       },
@@ -12725,7 +12968,7 @@
       },
       {
         "city_id": 1,
-        "restaurant_name": "Harry's",
+        "restaurant_name": "Harry's Bar",
         "restaurant_chain_id": 2683
       },
       {
@@ -13680,7 +13923,7 @@
       },
       {
         "city_id": 1,
-        "restaurant_name": "O15â€™s Cafe By Avneet Bagga",
+        "restaurant_name": "O15's Cafe By Avneet Bagga",
         "restaurant_chain_id": 1484
       },
       {
@@ -15485,6 +15728,11 @@
       },
       {
         "city_id": 2,
+        "restaurant_name": "Burger King",
+        "restaurant_chain_id": 469
+      },
+      {
+        "city_id": 2,
         "restaurant_name": "Byblos",
         "restaurant_chain_id": 2831
       },
@@ -15700,7 +15948,7 @@
       },
       {
         "city_id": 2,
-        "restaurant_name": "Citrus Cafe",
+        "restaurant_name": "Citrus Cafe - Lemon Tree Hotel",
         "restaurant_chain_id": 1748
       },
       {
@@ -16965,7 +17213,7 @@
       },
       {
         "city_id": 2,
-        "restaurant_name": "Slounge",
+        "restaurant_name": "Slounge - Lemon Tree Hotel",
         "restaurant_chain_id": 1208
       },
       {
@@ -17232,6 +17480,11 @@
         "city_id": 2,
         "restaurant_name": "The Bakery World",
         "restaurant_chain_id": 1542
+      },
+      {
+        "city_id": 2,
+        "restaurant_name": "The Beer Cafe",
+        "restaurant_chain_id": 164
       },
       {
         "city_id": 2,
@@ -18875,6 +19128,11 @@
       },
       {
         "city_id": 3,
+        "restaurant_name": "Starbucks",
+        "restaurant_chain_id": 65
+      },
+      {
+        "city_id": 3,
         "restaurant_name": "Starke's",
         "restaurant_chain_id": 670
       },
@@ -19540,6 +19798,11 @@
       },
       {
         "city_id": 4,
+        "restaurant_name": "Dunkin' Donuts ",
+        "restaurant_chain_id": 160
+      },
+      {
+        "city_id": 4,
         "restaurant_name": "Eatmor",
         "restaurant_chain_id": 953
       },
@@ -19662,6 +19925,11 @@
         "city_id": 4,
         "restaurant_name": "Hotel Rumaan",
         "restaurant_chain_id": 2427
+      },
+      {
+        "city_id": 4,
+        "restaurant_name": "Hotel Shadab",
+        "restaurant_chain_id": 2816
       },
       {
         "city_id": 4,
@@ -20077,11 +20345,6 @@
         "city_id": 4,
         "restaurant_name": "Shadab",
         "restaurant_chain_id": 2331
-      },
-      {
-        "city_id": 4,
-        "restaurant_name": "Shadab",
-        "restaurant_chain_id": 2816
       },
       {
         "city_id": 4,
@@ -23085,18 +23348,18 @@
       },
       {
         "city_id": 7,
-        "restaurant_name": "Citrus Cafe",
+        "restaurant_name": "Citrus Cafe - Lemon Tree Hotel",
         "restaurant_chain_id": 1748
       },
       {
         "city_id": 7,
         "restaurant_name": "City Corner",
-        "restaurant_chain_id": 915
+        "restaurant_chain_id": 916
       },
       {
         "city_id": 7,
         "restaurant_name": "City Corner",
-        "restaurant_chain_id": 916
+        "restaurant_chain_id": 915
       },
       {
         "city_id": 7,

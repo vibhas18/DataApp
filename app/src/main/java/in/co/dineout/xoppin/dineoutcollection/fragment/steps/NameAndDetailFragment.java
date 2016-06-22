@@ -48,6 +48,7 @@ public class NameAndDetailFragment extends BaseStepFragment  {
     private TextView tv_city;
     private TextView tv_area;
     private TextView tv_locality;
+    private TextView tv_subcity;
 
     private TextView tv_refresh_address;
 
@@ -57,6 +58,7 @@ public class NameAndDetailFragment extends BaseStepFragment  {
     private CityModel cityModel;
     private AreaModel areaModel;
     private LocalityModel localityModel;
+    private CityModel subCityModel;
 
     private double latitude;
     private double longitude;
@@ -79,15 +81,6 @@ public class NameAndDetailFragment extends BaseStepFragment  {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_name_and_detail, container, false);
     }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-       ;
-
-
-    }
-
 
 
     @Override
@@ -116,6 +109,7 @@ public class NameAndDetailFragment extends BaseStepFragment  {
         et_restaurant_address = (EditText) view.findViewById(R.id.et_restaurant_address);
         et_restaurant_landmark = (EditText) view.findViewById(R.id.et_restaurant_landmark);
         et_pincode = (EditText) view.findViewById(R.id.et_pincode);
+        tv_subcity = (TextView)view.findViewById(R.id.tv_sub_city);
 
 
         tv_city = (TextView) view.findViewById(R.id.tv_city);
@@ -177,10 +171,38 @@ public class NameAndDetailFragment extends BaseStepFragment  {
             }
         });
 
+        tv_subcity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                if(cityModel == null){
+                    Toast.makeText(getActivity(),"Please select city first",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) StaticDataHandler.getInstance().getSubCityListForCity(cityModel.getCity_id()), "Select City");
+                fragment.setCallbacks(new GenericListSingleSelectFragment.Callbacks() {
+                    @Override
+                    public void onItemClicked(GenericModel object) {
+
+                        if (null != object) {
+                            subCityModel = (CityModel) object;
+                            tv_subcity.setText(subCityModel.getName());
+                        } else {
+                            Toast.makeText(getActivity(), "Sub City Not Selected", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .add(android.R.id.content, fragment, GenericListSingleSelectFragment.TAG2)
+                        .addToBackStack(GenericListSingleSelectFragment.TAG2)
+                        .commitAllowingStateLoss();
+            }
+        });
         tv_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) StaticDataHandler.getInstance().getStaticDataModel().getCity(), "Select City");
+                GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.newInstance((ArrayList) StaticDataHandler.getInstance().getMainCity(), "Select City");
                 fragment.setCallbacks(new GenericListSingleSelectFragment.Callbacks() {
                     @Override
                     public void onItemClicked(GenericModel object) {
@@ -208,8 +230,10 @@ public class NameAndDetailFragment extends BaseStepFragment  {
                     return;
                 }
 
+                int id = cityModel.getParent_id() == -1 ? cityModel.getCity_id() : cityModel.getParent_id();
+
                 GenericListSingleSelectFragment fragment = GenericListSingleSelectFragment.
-                        newInstance((ArrayList) DataDatabaseUtils.getInstance(getContext()).getAreaForCityId(cityModel.getCity_id() + ""), "Select Area");
+                        newInstance((ArrayList) DataDatabaseUtils.getInstance(getContext()).getAreaForCityId(id + ""), "Select Area");
                 fragment.setCallbacks(new GenericListSingleSelectFragment.Callbacks() {
                     @Override
                     public void onItemClicked(GenericModel object) {
@@ -346,20 +370,34 @@ public class NameAndDetailFragment extends BaseStepFragment  {
             }
 
             if (null != cityModel) {
-                restaurant.updateCityId("" + cityModel.getCity_id());
+
+                restaurant.updateCityId(cityModel);
             }else{
-                restaurant.updateCityId("");
+                CityModel model = new CityModel();
+                model.setCity_id(-1);
+                model.setName("");
+                restaurant.updateCityId(model);
             }
 
             if (null != areaModel) {
-                restaurant.updateAreaId("" + areaModel.getId());
+                restaurant.updateAreaId( areaModel);
             }else{
-                restaurant.updateAreaId("");
+                AreaModel model = new AreaModel();
+                model.setId(-1);
+                model.setName("");
+                restaurant.updateAreaId(model);
             }
 
+            restaurant.updateSubCityId(subCityModel);
+
             if (null != localityModel) {
-                restaurant.updateLocalityId("" + localityModel.getId());
-            }else{restaurant.updateAreaId("");}
+                restaurant.updateLocalityId( localityModel);
+            }else{
+                AreaModel model = new AreaModel();
+                model.setId(-1);
+                model.setName("");
+                restaurant.updateAreaId(areaModel);
+            }
 
             restaurant.updateLatitude("" + latitude);
             restaurant.updateLongitude("" + longitude);
@@ -398,10 +436,16 @@ public class NameAndDetailFragment extends BaseStepFragment  {
 
 
         if (!TextUtils.isEmpty(restaurant.getCity_id())) {
+
+            int subCityId = restaurant.getSubCityId();
             cityModel = StaticDataHandler.getInstance().getCityModelForId(Integer.parseInt(restaurant.getCity_id()));
+           subCityModel = StaticDataHandler.getInstance().getSubCityForCity(Integer.valueOf(restaurant.getCity_id()),restaurant.getSubCityId());
             if (null != cityModel) {
                 tv_city.setText(cityModel.getName());
             }
+
+            if(null != subCityModel)
+                tv_subcity.setText(subCityModel.getName());
         }
 
         if (!TextUtils.isEmpty(restaurant.getArea_id())) {

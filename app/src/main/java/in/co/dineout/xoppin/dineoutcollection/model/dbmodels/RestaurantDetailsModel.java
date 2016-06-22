@@ -24,6 +24,7 @@ import in.co.dineout.xoppin.dineoutcollection.DineoutCollectApp;
 import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
 import in.co.dineout.xoppin.dineoutcollection.database.ImageEntry;
 import in.co.dineout.xoppin.dineoutcollection.helper.SaveToTextLog;
+import in.co.dineout.xoppin.dineoutcollection.model.CityModel;
 import in.co.dineout.xoppin.dineoutcollection.model.CuisineModel;
 import in.co.dineout.xoppin.dineoutcollection.model.FeatureModel;
 import in.co.dineout.xoppin.dineoutcollection.model.ImageStatusModel;
@@ -51,6 +52,7 @@ public class RestaurantDetailsModel implements Serializable {
         this.restaurantId = "new"+new Date().getTime();
         try {
             restaurant.put("r_id",restaurantId);
+            restaurant.put("is_ff",0);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -188,18 +190,37 @@ public class RestaurantDetailsModel implements Serializable {
         }
     }
 
-    public void updateCityId(String id){
+    public void updateCityId(CityModel model){
         try {
-            this.restaurant.put("city_id",id);
+
+                this.restaurant.put("city_id",model.getCity_id());
+
+
+            this.restaurant.put("city_name",model.getName());
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateAreaId(String id){
+    public void updateSubCityId(CityModel model){
+        try{
+
+            if(model != null)
+                this.restaurant.put("sub_city_id",model.getCity_id());
+            else
+                this.restaurant.put("sub_city_id",-1);
+        }catch (JSONException e){
+
+        }
+    }
+
+    public void updateAreaId(AreaModel model){
 
         try {
-            this.restaurant.put("area_id",id);
+            this.restaurant.put("area_id",model.getId());
+            this.restaurant.put("area_name",model.getName());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -222,9 +243,10 @@ public class RestaurantDetailsModel implements Serializable {
     }
 
 
-    public void updateLocalityId(String id){
+    public void updateLocalityId(LocalityModel model){
         try {
-            this.restaurant.put("locality_id",id);
+            this.restaurant.put("locality_id",model.getId());
+            this.restaurant.put("locality_name",model.getName());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -659,19 +681,20 @@ public class RestaurantDetailsModel implements Serializable {
     }
 
     public String getCity_id() {
-        return restaurant.optString("city_id");
+        return restaurant.optString("city_id","").equalsIgnoreCase("-1")?"":restaurant.optString("city_id");
     }
 
     public void setCity_id(String city_id) {
         try{
             restaurant.put("city_id",city_id);
+
         }catch (Exception e){
 
         }
     }
 
     public String getArea_id() {
-        return restaurant.optString("area_id");
+        return restaurant.optString("area_id","").equalsIgnoreCase("-1")?"":restaurant.optString("area_id");
     }
 
     public void setArea_id(String area_id) {
@@ -725,6 +748,10 @@ public class RestaurantDetailsModel implements Serializable {
 
     public int getHotel_id() {
         return restaurant.optInt("hotel_id");
+    }
+
+    public int getSubCityId() {
+        return restaurant.optInt("sub_city_id");
     }
 
     public void setHotel_id(int hotel_id) {
@@ -821,13 +848,13 @@ public class RestaurantDetailsModel implements Serializable {
             for(RestContactModel models : contacts){
 
                 if(models != null){
-                JSONObject object = new JSONObject();
-                object.put("phone_no",models.getPhone_no());
-                object.put("gccr_type",models.getGcrr_type());
-                object.put("au_email",models.getAu_email());
-                object.put("first_name",models.getFirst_name());
-                object.put("last_name",models.getLast_name());
-                list.put(object);
+                    JSONObject object = new JSONObject();
+                    object.put("phone_no",models.getPhone_no());
+                    object.put("gccr_type",models.getGcrr_type());
+                    object.put("au_email",models.getAu_email());
+                    object.put("first_name",models.getFirst_name());
+                    object.put("last_name",models.getLast_name());
+                    list.put(object);
                 }
 
             }
@@ -887,7 +914,7 @@ public class RestaurantDetailsModel implements Serializable {
     public void setFeatures(List<FeatureModel> features) {
 
         try {
-          String json = new Gson().toJson(features).toString();
+            String json = new Gson().toJson(features).toString();
 
             JSONArray list = new JSONArray();
             for(FeatureModel models : features){
@@ -1023,7 +1050,8 @@ public class RestaurantDetailsModel implements Serializable {
     }
 
     public String getLocality_id() {
-        return restaurant.optString("locality_id");
+        return restaurant.optString("locality_id","")
+                .equalsIgnoreCase("-1")?"":restaurant.optString("locality_id");
     }
 
     public void setLocality_id(String locality_id) {
@@ -1061,7 +1089,7 @@ public class RestaurantDetailsModel implements Serializable {
 
         if(!isBasicDetailValid()){
             Toast.makeText(context, "Please provide all star mark field "
-                   , Toast.LENGTH_SHORT).show();
+                    , Toast.LENGTH_SHORT).show();
             return 0;
         }else if(!isDetailValid()){
             Toast.makeText(context, "Please provide all star mark field and tags for restaurant."

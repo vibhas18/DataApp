@@ -518,6 +518,8 @@ public class DetailFragment extends BaseStepFragment  {
     public void populateViewFromData() {
         RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
 
+        if(restaurant == null)
+            return;
         int hotelPosition = StaticDataHandler.getInstance().getHotelChainPositionForId(restaurant.getHotel_id());
         if (hotelPosition != -1) {
             spn_hotel.setSelection(hotelPosition);

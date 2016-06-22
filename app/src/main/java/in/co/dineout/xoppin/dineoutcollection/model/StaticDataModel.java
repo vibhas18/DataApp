@@ -72,4 +72,7 @@ public class StaticDataModel implements Serializable {
     public void setChain(ArrayList<ChainModel> chain) {
         this.chain = chain;
     }
+
+
+
 }
