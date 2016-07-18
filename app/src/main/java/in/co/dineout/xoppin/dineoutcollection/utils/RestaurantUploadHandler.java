@@ -58,6 +58,7 @@ public class RestaurantUploadHandler implements ImageUploadCallback  {
         if(TextUtils.isEmpty(jsonRest))
             return;
         mRestModel = new RestaurantDetailsModel(jsonRest);
+        mRestModel.setRestaurantId(mRestID);
 
             if(mRestModel.validateRestaurantWithoutToast(mContext) != -1)
                 return;
@@ -92,7 +93,7 @@ public class RestaurantUploadHandler implements ImageUploadCallback  {
 
                         SaveToTextLog.saveLogData(mRestModel.getRestaurantName(),mRestModel.getRestaurantJSONString(),mContext);
                         DataDatabaseUtils.getInstance(mContext).markRestaurantSynced(mRestID);
-                        DataDatabaseUtils.getInstance(mContext).deleteSyncedImagesForRestaurant(mRestID);
+//                        DataDatabaseUtils.getInstance(mContext).deleteSyncedImagesForRestaurant(mRestID);
                     }else{
                         DataDatabaseUtils.getInstance(mContext).markRestaurantPending(mRestID);
 
@@ -124,11 +125,13 @@ public class RestaurantUploadHandler implements ImageUploadCallback  {
             return;
 
         mRestModel = new RestaurantDetailsModel(jsonRest);
+        mRestModel.setRestaurantId(mRestID);
         if(mRestModel.validateRestaurantWithoutToast(mContext) != -1)
             return;
         else{
             mRestModel.validateRestaurant(mContext);
-            DataDatabaseUtils.getInstance(mContext).saveRestaurantForSyncing(mRestID, mRestModel.getRestaurantName(), mRestModel.getRestaurantJSONString());
+            DataDatabaseUtils.getInstance(mContext).
+                    saveRestaurantForSyncing(mRestID, mRestModel.getRestaurantName(), mRestModel.getRestaurantJSONString());
 
         }
 

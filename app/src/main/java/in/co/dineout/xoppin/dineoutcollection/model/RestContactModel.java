@@ -9,7 +9,7 @@ public class RestContactModel implements Serializable {
     private static final long serialVersionUID = 6939084069144798461L;
 
     private String phone_no = "";
-    private String gcrr_type = "";
+    private String gccr_type = "";
     private String au_email = "";
     private String first_name  ="";
     private String last_name = "";
@@ -23,11 +23,11 @@ public class RestContactModel implements Serializable {
     }
 
     public String getGcrr_type() {
-        return this.gcrr_type;
+        return this.gccr_type;
     }
 
     public void setGcrr_type(String gcrr_type) {
-        this.gcrr_type = gcrr_type;
+        this.gccr_type = gcrr_type;
     }
 
     public String getAu_email() {

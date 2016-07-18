@@ -2,19 +2,14 @@ package in.co.dineout.xoppin.dineoutcollection.fragment;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.graphics.RectF;
-import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -93,172 +84,61 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-
         String filePath = null;
         boolean fetchedImage = false;
+
         if(resultCode == Activity.RESULT_OK) {
+            mImageStatusModel.setKey("restaurant_" + Utils.cleanIt(mRestId) + "_" + new Date().getTime() + ".jpg");
+
             if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
             }
             if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK && fileUri != null) {
-                fetchedImage = true;
                 filePath = fileUri.getPath();
             } else if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
-                fetchedImage = true;
-                Cursor cursor = getContext().getContentResolver().query(data.getData(),
-                        new String[]{DATA}, null, null, null);
-                cursor.moveToFirst();
-                File file = new File(cursor.getString(cursor.getColumnIndex(DATA)));
-                cursor.close();
-                filePath = file.getAbsolutePath();
+                handleGalleryResult(data);
             }
 
-            if (fetchedImage) {
-                //Try to compress image...
-                boolean status = compressImage(filePath);
-            }
-
-
-            mImageStatusModel.setKey("restaurant_" + Utils.cleanIt(mRestId) + "_" + new Date().getTime() + ".jpg");
-
-
-            mImageStatusModel.setImageURI(filePath);
-            DataDatabaseUtils.getInstance(getContext()).saveImageForSyncing(filePath,
-                    mRestId, mImageType, mImageStatusModel.getKey());
 
             refreshAdapter();
         }
-
-
     }
 
-    public Bitmap resizeImage(String pathOfInputImage, String pathOfOutputImage, int dstWidth, int dstHeight) {
-        try {
-            int inWidth = 0;
-            int inHeight = 0;
 
-            InputStream in = new FileInputStream(pathOfInputImage);
-            ExifInterface exif = new ExifInterface(pathOfInputImage);
-            int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+    private void handleGalleryResult(Intent data){
 
-            // decode image size (decode metadata only, not the whole image)
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeStream(in, null, options);
-            in.close();
-            in = null;
+        String filePath = null;
+        if(data.getClipData() != null){
 
-            // save width and height
-            inWidth = options.outWidth;
-            inHeight = options.outHeight;
+            for(int i=0 ;i<data.getClipData().getItemCount();i++){
 
-            // decode full image pre-resized
-            in = new FileInputStream(pathOfInputImage);
-            options = new BitmapFactory.Options();
-            // calc rought re-size (this is no exact resize)
-            options.inSampleSize = Math.max(inWidth / dstWidth, inHeight / dstHeight);
-            // decode full image
-            Bitmap roughBitmap = BitmapFactory.decodeStream(in, null, options);
-
-            // calc exact destination size
-            Matrix m = new Matrix();
-            RectF inRect = new RectF(0, 0, roughBitmap.getWidth(), roughBitmap.getHeight());
-            RectF outRect = new RectF(0, 0, dstWidth, dstHeight);
-            m.setRectToRect(inRect, outRect, Matrix.ScaleToFit.CENTER);
-            float[] values = new float[9];
-            m.getValues(values);
-
-            // resize bitmap
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(roughBitmap, (int) (roughBitmap.getWidth() * values[0]), (int) (roughBitmap.getHeight() * values[4]), true);
-            if (roughBitmap != resizedBitmap) {
-                roughBitmap.recycle();
-            }
-
-            resizedBitmap = rotateBitmap(resizedBitmap, orientation);
-            // save image
-            try {
-                // check possible image corruption
-                if (resizedBitmap.getByteCount() >= 1000) {
-                    FileOutputStream out = new FileOutputStream(pathOfOutputImage);
-                    resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 85, out);
-                    return resizedBitmap;
+                ClipData.Item item = data.getClipData().getItemAt(i);
+                if(item != null && item.getUri()!= null){
+                    addPickedImageFilePath(item.getUri());
                 }
-            } catch (Exception e) {
-                Log.e("Image", e.getMessage(), e);
             }
-        } catch (IOException e) {
-            Log.e("Image", e.getMessage(), e);
+
+        }else{
+            addPickedImageFilePath(data.getData());
+
         }
-        return null;
     }
 
-    public static Bitmap rotateBitmap(Bitmap bitmap, int orientation) {
+    private void addPickedImageFilePath(Uri uri){
 
-        try {
-            Matrix matrix = new Matrix();
-            switch (orientation) {
-                case ExifInterface.ORIENTATION_NORMAL:
-                    return bitmap;
-                case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
-                    matrix.setScale(-1, 1);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_180:
-                    matrix.setRotate(180);
-                    break;
-                case ExifInterface.ORIENTATION_FLIP_VERTICAL:
-                    matrix.setRotate(180);
-                    matrix.postScale(-1, 1);
-                    break;
-                case ExifInterface.ORIENTATION_TRANSPOSE:
-                    matrix.setRotate(90);
-                    matrix.postScale(-1, 1);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_90:
-                    matrix.setRotate(90);
-                    break;
-                case ExifInterface.ORIENTATION_TRANSVERSE:
-                    matrix.setRotate(-90);
-                    matrix.postScale(-1, 1);
-                    break;
-                case ExifInterface.ORIENTATION_ROTATE_270:
-                    matrix.setRotate(-90);
-                    break;
-                default:
-                    return bitmap;
-            }
-            try {
-                Bitmap bmRotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-                bitmap.recycle();
-                return bmRotated;
-            } catch (OutOfMemoryError e) {
-                e.printStackTrace();
-                // return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            //return null;
-        }
-        return bitmap;
+        Cursor cursor = getContext().getContentResolver().query(uri,
+                new String[]{DATA}, null, null, null);
+        cursor.moveToFirst();
+        File file = new File(cursor.getString(cursor.getColumnIndex(DATA)));
+        cursor.close();
+        String filePath = file.getAbsolutePath();
+        mImageStatusModel.setImageURI(filePath);
+        DataDatabaseUtils.getInstance(getContext()).saveImageForSyncing(filePath,
+                mRestId, mImageType, mImageStatusModel.getKey());
     }
 
 
 
-    public boolean compressImage(String imageLoc) {
-        Bitmap bm = null;
-        try {
-            bm = resizeImage(imageLoc, imageLoc, 1920, 1080);
-            if (bm != null) {
-                bm.recycle();
-                bm = null;
-                return true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
-    }
 
     protected void showLoginDialog(final ImageStatusModel syncStatusModel) {
         // custom dialog
@@ -371,6 +251,7 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
 
             mImageStatusModel = new ImageStatusModel();
             Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+           pickPhoto.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
             startActivityForResult(pickPhoto, PICK_IMAGE);
         }
     }

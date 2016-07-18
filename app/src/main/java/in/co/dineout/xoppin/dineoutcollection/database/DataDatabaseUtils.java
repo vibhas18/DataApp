@@ -273,6 +273,7 @@ public class DataDatabaseUtils {
 
             RestaurantDetailsModel model = new RestaurantDetailsModel(c.getString(c.getColumnIndex(RestaurantEntry.REST_JSON)));
             model.setMode(c.getInt(c.getColumnIndex(RestaurantEntry.REST_MODE)));
+            model.setRestaurantId(c.getString(c.getColumnIndex(RestaurantEntry.REST_ID)));
             return model;
         }
 
@@ -357,6 +358,7 @@ public class DataDatabaseUtils {
                 RestaurantDetailsModel model = new RestaurantDetailsModel(c.getString(c.getColumnIndex(RestaurantEntry.REST_JSON)));
 
                 model.setMode(c.getInt(c.getColumnIndex(RestaurantEntry.REST_MODE)));
+                model.setRestaurantId(c.getString(c.getColumnIndex(RestaurantEntry.REST_ID)));
 
                 list.add(model);
             }while (c.moveToNext());

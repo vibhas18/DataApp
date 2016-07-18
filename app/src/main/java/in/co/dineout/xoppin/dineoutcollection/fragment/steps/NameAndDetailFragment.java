@@ -393,10 +393,10 @@ public class NameAndDetailFragment extends BaseStepFragment  {
             if (null != localityModel) {
                 restaurant.updateLocalityId( localityModel);
             }else{
-                AreaModel model = new AreaModel();
+                LocalityModel model = new LocalityModel();
                 model.setId(-1);
                 model.setName("");
-                restaurant.updateAreaId(areaModel);
+                restaurant.updateLocalityId(model);
             }
 
             restaurant.updateLatitude("" + latitude);

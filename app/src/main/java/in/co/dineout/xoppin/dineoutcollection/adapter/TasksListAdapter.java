@@ -11,6 +11,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import in.co.dineout.xoppin.dineoutcollection.R;
+import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
+import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 
 /**
  * Created by suraj on 06/02/16.
@@ -88,14 +90,23 @@ public class TasksListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvTaskDetail.setText(data.optString("task_details"));
             tvPriority.setText(data.optString("priority"));
             tvStatus.setText(data.optString("status"));
+            int taskId = data.optInt("task_deail_id");
+            int mode = DataDatabaseUtils.PENDING;
+            RestaurantDetailsModel model = DataDatabaseUtils.getInstance(mContext).
+                    getRestaurantModelForId(taskId+"");
+            if(model != null){
+                mode = model.getMode();
+            }
 
-            if(!tvStatus.getText().toString().equalsIgnoreCase("submitted")){
+            if(!tvStatus.getText().toString().equalsIgnoreCase("submitted") &&
+                 mode == DataDatabaseUtils.PENDING  ){
                 tvEditing.setVisibility(View.VISIBLE);
-                tvEditing.setTag(restId);
-                mRoot.setTag(restId);
+                tvEditing.setTag(data);
+                mRoot.setTag(data);
                 tvEditing.setOnClickListener(this);
                 mRoot.setOnClickListener(this);
             }else{
+                tvStatus.setText("submitted");
                 tvEditing.setVisibility(View.GONE);
             }
 
@@ -106,7 +117,12 @@ public class TasksListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         @Override
         public void onClick(View v) {
             if(mCallback != null){
-                mCallback.showTaskDetail((int)v.getTag());
+
+                JSONObject data = (JSONObject) v.getTag();
+                int rId = data.optInt("r_id");
+                int taskId = data.optInt("task_deail_id");
+
+                mCallback.showTaskDetail(rId,taskId);
             }
         }
     }
@@ -118,7 +134,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public interface TaskDetailCallback{
 
-        public void showTaskDetail(int id);
+        public void showTaskDetail(int id,int taskid);
     }
 
 

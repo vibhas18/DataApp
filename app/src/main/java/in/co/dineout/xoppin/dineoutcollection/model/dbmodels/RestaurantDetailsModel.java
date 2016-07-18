@@ -1076,7 +1076,7 @@ public class RestaurantDetailsModel implements Serializable {
             return 2;
         }else if(!isCuisineValid()){
             return 4;
-        }else if(!(utils.hasProfileImages(this.getRestaurantId())
+        }else if( !(utils.hasProfileImages(this.getRestaurantId())
                 && utils.hasMenuImages(this.getRestaurantId()))){
             return 5;
         }
@@ -1097,14 +1097,14 @@ public class RestaurantDetailsModel implements Serializable {
             return 1;
         }
         else if(!isContactValid()){
-            Toast.makeText(context, "Please provide phone and mobile number."
+            Toast.makeText(context, "Please provide mobile number."
                     , Toast.LENGTH_SHORT).show();
             return 2;
         }else if(!isCuisineValid()){
-            Toast.makeText(context, "Please provide primary and secondary cuisines. "
+            Toast.makeText(context, "Please provide primary cuisine. "
                     , Toast.LENGTH_SHORT).show();
             return 4;
-        }else if(!(utils.hasProfileImages(this.getRestaurantId())
+        }else if( !(utils.hasProfileImages(this.getRestaurantId())
                 && utils.hasMenuImages(this.getRestaurantId()))){
             Toast.makeText(context, "Please provide profile and menu images "
                     , Toast.LENGTH_SHORT).show();
@@ -1113,6 +1113,27 @@ public class RestaurantDetailsModel implements Serializable {
         addMenuImages(context);
         addProfileImages(context);
         return -1;
+    }
+
+    private boolean checkForImages(DataDatabaseUtils utils){
+
+//        try {
+//
+//            if(this.restaurant.optJSONArray("profile_image").length() > 0 &&
+//                    this.restaurant.optJSONArray("menu_image").length() > 0){
+//                return true;
+//            }else if(utils.getPendingImage(this.getRestaurantId(),ImageEntry.PROFILE_IMAGE).size()>0
+//                    && utils.getPendingImage(this.getRestaurantId(),ImageEntry.MENU_IMAGE).size()>0)
+//            return this.restaurant.optJSONArray("profile_image").length() > 0 &&
+//                    this.restaurant.optJSONArray("menu_image").length() > 0;
+//
+//        }
+//        catch (Exception e){
+//
+//            return false;
+//        }
+
+        return false;
     }
 
 
@@ -1160,18 +1181,20 @@ public class RestaurantDetailsModel implements Serializable {
 
         if (TextUtils.isEmpty(this.getMobile_number()) ) {
             return false;
-        }else if(TextUtils.isEmpty(this.getPhone())){
-            return false;
         }
+//        else if(TextUtils.isEmpty(this.getPhone())){
+//            return false;
+//        }
         return true;
     }
 
     private boolean isCuisineValid(){
         if (this.getPrimary_cuisine().size() <= 0) {
             return false;
-        }else if (this.getSecondary_cuisine().size() <= 0) {
-            return false;
         }
+//        else if (this.getSecondary_cuisine().size() <= 0) {
+//            return false;
+//        }
         return true;
     }
 

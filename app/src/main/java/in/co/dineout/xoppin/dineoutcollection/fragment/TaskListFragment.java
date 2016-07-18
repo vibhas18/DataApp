@@ -37,6 +37,7 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
     private TasksListAdapter tasksListAdapter;
     private final int ASSIGNED_TASK_REQUEST = 101;
     private final int DETAIL_REQUEST = 102;
+    private int mSelectedTask ;
 
 
     public static TaskListFragment newInstance() {
@@ -86,7 +87,7 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
                     @Override
                     public void onErrorResponse(Request request, VolleyError error) {
                         hideLoadingDialog();
-                        RestaurantDetailsModel local = DataDatabaseUtils.getInstance(getContext()).getRestaurantModelForId(restaurantId+"");
+                        RestaurantDetailsModel local = DataDatabaseUtils.getInstance(getContext()).getRestaurantModelForId(mSelectedTask+"");
                         if(local == null){
                             Toast.makeText(getContext(),"Check your network connection",Toast.LENGTH_SHORT).show();
                             return;
@@ -107,6 +108,29 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
         hideLoadingDialog();
     }
 
+    private JSONArray removeSubmittedEntries(JSONArray src){
+
+        JSONArray target = new JSONArray();
+
+        for(int i=0;i<src.length();i++){
+
+            JSONObject task = src.optJSONObject(i);
+            if(task != null){
+
+                String id = task.optString("task_deail_id");
+                RestaurantDetailsModel model = DataDatabaseUtils.getInstance(getActivity()).getRestaurantModelForId(id);
+                int mode =DataDatabaseUtils.PENDING;
+                if(model != null)
+                    mode = model.getMode();
+
+                if(mode == DataDatabaseUtils.PENDING){
+                    target.put(task);
+                }
+            }
+        }
+        return target;
+    }
+
     @Override
     public void onResponse(Request<JSONObject> request, JSONObject responseObject, Response<JSONObject> response) {
 
@@ -115,8 +139,12 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
         hideLoadingDialog();
         if(request.getIdentifier() == ASSIGNED_TASK_REQUEST && responseObject != null){
 
+
+
             if(responseObject.optInt("status") == 1){
                 JSONArray array = responseObject.optJSONObject("data").optJSONArray("task_list");
+                if(response.isCachedResponse())
+                    array = removeSubmittedEntries(array);
                 tasksListAdapter.updateAdapter(array);
             }
 
@@ -126,7 +154,9 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
                 JSONObject data = responseObject.optJSONObject("data");
                 RestaurantDetailsModel model = new RestaurantDetailsModel(data.toString());
                 model.setMode(DataDatabaseUtils.PENDING);
-                RestaurantDetailsModel local = DataDatabaseUtils.getInstance(getContext()).getRestaurantModelForId(model.getRestaurantId());
+                model.setRestaurantId(mSelectedTask+"");
+                RestaurantDetailsModel local = DataDatabaseUtils.getInstance(getContext())
+                        .getRestaurantModelForId(model.getRestaurantId());
                 if(local == null){
                     saveImage(data);
                     DataDatabaseUtils.getInstance(getContext()).
@@ -144,7 +174,7 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
 
     private void saveImage(JSONObject data){
 
-        String id = data.optString("r_id");
+        String id = mSelectedTask+"";
         Type listType = new TypeToken<List<ImageStatusModel>>() {}.getType();
         List<ImageStatusModel> profileImages = new Gson().fromJson(data.optJSONArray("profile_image").toString(), listType);
         List<ImageStatusModel> menuImages = new Gson().fromJson(data.optJSONArray("menu_image").toString(), listType);
@@ -155,8 +185,9 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
     }
 
     @Override
-    public void showTaskDetail(int id) {
+    public void showTaskDetail(int id,int taskId) {
 
+        mSelectedTask = taskId;
         initiateRequestForRestaurantDetail(id);
     }
 
