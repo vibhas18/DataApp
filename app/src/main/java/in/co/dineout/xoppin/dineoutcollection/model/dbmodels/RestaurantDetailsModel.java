@@ -18,7 +18,10 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import in.co.dineout.xoppin.dineoutcollection.DineoutCollectApp;
 import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
@@ -32,6 +35,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.OpenTimingDaysModel;
 import in.co.dineout.xoppin.dineoutcollection.model.RestContactModel;
 import in.co.dineout.xoppin.dineoutcollection.model.Restaurant;
 import in.co.dineout.xoppin.dineoutcollection.model.TagModel;
+import in.co.dineout.xoppin.dineoutcollection.model.TimingModel;
 
 /**
  * Created by suraj on 18/02/16.
@@ -800,6 +804,15 @@ public class RestaurantDetailsModel implements Serializable {
         }
     }
 
+
+    public Map<String,TimingModel> getSlotOpenTiming(){
+
+        Map<String, TimingModel> retMap = new Gson().fromJson(this.restaurant.optJSONObject("open_timing").toString(),
+                new TypeToken<LinkedHashMap<String, TimingModel>>() {}.getType());
+
+        return retMap;
+
+    }
     public OpenTimingDaysModel getOpen_timing() {
 
         try{
@@ -822,6 +835,33 @@ public class RestaurantDetailsModel implements Serializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void setSlotTimings(Map<String,TimingModel> map){
+
+        if(map != null){
+
+            Iterator<String> iterator = map.keySet().iterator();
+            JSONObject openTiming = new JSONObject();
+            while (iterator.hasNext()){
+
+                String key = iterator.next();
+                TimingModel model = map.get(key);
+                JSONObject value = new JSONObject();
+                if(model != null){
+                    try{
+                        value.put("state",model.getState());
+                        value.put("st_time",new JSONArray(model.getSt_time()));
+                        value.put("en_time",new JSONArray(model.getEn_time()));
+                        openTiming.put(key,value);
+
+                    }catch (Exception e){
+
+                    }
+                }
+            }
+
+        }
     }
 
     public List<RestContactModel> getContacts() {

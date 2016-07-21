@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.dineout.android.volley.Request;
@@ -26,18 +29,24 @@ import in.co.dineout.xoppin.dineoutcollection.adapter.TasksListAdapter;
 import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
 import in.co.dineout.xoppin.dineoutcollection.model.ImageStatusModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
+import in.co.dineout.xoppin.dineoutcollection.views.SearchView;
 
 /**
  * Created by suraj on 06/02/16.
  * Modified by Prateek 12/05/16
  */
-public class TaskListFragment extends MasterDataFragment implements Response.Listener<JSONObject>,Response.ErrorListener,TasksListAdapter.TaskDetailCallback
+public class TaskListFragment extends MasterDataFragment implements Response.Listener<JSONObject>,Response.ErrorListener,
+        TasksListAdapter.TaskDetailCallback,SearchView.SearchCallback,View.OnClickListener
 {
     private RecyclerView lvAssignedTasks;
     private TasksListAdapter tasksListAdapter;
     private final int ASSIGNED_TASK_REQUEST = 101;
     private final int DETAIL_REQUEST = 102;
     private int mSelectedTask ;
+    private JSONArray mTaskArray;
+    private SearchView mSearchView;
+    private View mSearchContainer;
+
 
 
     public static TaskListFragment newInstance() {
@@ -55,12 +64,18 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mSearchContainer = view.findViewById(R.id.search_container);
         lvAssignedTasks = (RecyclerView) view.findViewById(R.id.lv_tasks_list);
         lvAssignedTasks.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        mSearchView = (SearchView)view.findViewById(R.id.search_view);
         tasksListAdapter = new TasksListAdapter(getActivity(),null,this);
         lvAssignedTasks.setAdapter(tasksListAdapter);
+
+        mSearchView.setSearchCallback(this);
+        view.findViewById(R.id.search_task_menu).setOnClickListener(this);
         initiateRequestForAssignedTasks();
+        mSearchContainer.setOnClickListener(this);
     }
 
     @Override
@@ -145,6 +160,8 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
                 JSONArray array = responseObject.optJSONObject("data").optJSONArray("task_list");
                 if(response.isCachedResponse())
                     array = removeSubmittedEntries(array);
+
+                mTaskArray = array;
                 tasksListAdapter.updateAdapter(array);
             }
 
@@ -191,5 +208,114 @@ public class TaskListFragment extends MasterDataFragment implements Response.Lis
         initiateRequestForRestaurantDetail(id);
     }
 
+    @Override
+    public void searchByLocalityAndPriority(String key,String priority){
 
+       searchByKeyAndPriority("locality_name",key,priority);
+        mSearchContainer.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void clearSearch(){
+
+        tasksListAdapter.updateAdapter(mTaskArray);
+        mSearchContainer.setVisibility(View.GONE);
+    }
+
+    private void searchByKeyAndPriority(String key,String query,String priority){
+
+        JSONArray temp = new JSONArray();
+        if(!TextUtils.isEmpty(query)){
+
+            for(int i=0;i<mTaskArray.length();i++){
+
+                JSONObject value  = mTaskArray.optJSONObject(i);
+                if(value != null && value.optString(key,"").toLowerCase().contains(query.toLowerCase())){
+                    temp.put(value);
+                }
+            }
+        }
+
+        if(!TextUtils.isEmpty(priority)){
+            temp = searchByPriority(priority,!TextUtils.isEmpty(query) ? temp:mTaskArray);
+        }
+        tasksListAdapter.updateAdapter(temp);
+    }
+
+    @Override
+    public void searchByNameAndPriority(String key,String priority){
+
+        searchByKeyAndPriority("profile_name",key,priority);
+        mSearchContainer.setVisibility(View.GONE);
+
+    }
+
+//    @Override
+//    public void searchByPriority(String priority) {
+//
+//    }
+
+    private JSONArray searchByPriority(String priority,JSONArray src){
+
+        JSONArray temp = new JSONArray();
+
+        for(int i=0;i<src.length();i++){
+
+            JSONObject value  = src.optJSONObject(i);
+            if(value != null && value.optString("priority","").toLowerCase().contains(priority.toLowerCase())){
+                temp.put(value);
+            }
+        }
+        return temp;
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
+//       showSearchView();
+        int visibility = mSearchContainer.getVisibility();
+        mSearchContainer.setVisibility(visibility == View.VISIBLE? View.GONE : View.VISIBLE);
+    }
+
+    private void showSearchView(){
+
+        int visibility = mSearchView.getVisibility();
+
+        if(visibility== View.VISIBLE){
+
+            Animation slide_down = AnimationUtils.loadAnimation(getActivity(),
+                    R.anim.slide_up);
+            slide_down.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+
+                    mSearchView.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            mSearchView.startAnimation(slide_down);
+
+
+        }else if(visibility == View.GONE){
+
+            mSearchView.setVisibility(View.VISIBLE);
+            Animation slide_down = AnimationUtils.loadAnimation(getActivity(),
+                    R.anim.slide_down);
+
+            mSearchView.startAnimation(slide_down);
+        }
+
+
+
+    }
 }

@@ -95,6 +95,9 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
             }
             if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_OK && fileUri != null) {
                 filePath = fileUri.getPath();
+                mImageStatusModel.setImageURI(filePath);
+                DataDatabaseUtils.getInstance(getContext()).saveImageForSyncing(filePath,
+                        mRestId, mImageType, mImageStatusModel.getKey());
             } else if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
                 handleGalleryResult(data);
             }

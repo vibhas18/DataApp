@@ -20,7 +20,6 @@ import java.util.Date;
 import in.co.dineout.xoppin.dineoutcollection.R;
 import in.co.dineout.xoppin.dineoutcollection.fragment.RestaurantFormFragment;
 import in.co.dineout.xoppin.dineoutcollection.model.OpenTimingDaysModel;
-import in.co.dineout.xoppin.dineoutcollection.model.TimingModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 import in.co.dineout.xoppin.dineoutcollection.utils.Utils;
 
@@ -266,212 +265,212 @@ public class TimingsFragment extends BaseStepFragment {
             model = restaurant.getOpen_timing();
         }
 
-        if (sw_monday.isChecked()) {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("open");
-            if (!TextUtils.isEmpty(tv_monday_open.getText().toString().trim())) {
-                timingModel.setSt_time(tv_monday_open.getText().toString().trim());
-            } else {
-                timingModel.setSt_time("00:00:00");
-            }
-            if (!TextUtils.isEmpty(tv_monday_close.getText().toString().trim())) {
-                timingModel.setEn_time(tv_monday_close.getText().toString().trim());
-            } else {
-                timingModel.setEn_time("00:00:00");
-            }
-           model.setMonday(timingModel);
-        } else {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("closed");
-           model.setMonday(timingModel);
-        }
-
-        if (sw_tuesday.isChecked()) {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("open");
-            if (!TextUtils.isEmpty(tv_tuesday_open.getText().toString().trim())) {
-                timingModel.setSt_time(tv_tuesday_open.getText().toString().trim());
-            } else {
-                timingModel.setSt_time("00:00:00");
-            }
-            if (!TextUtils.isEmpty(tv_tuesday_close.getText().toString().trim())) {
-                timingModel.setEn_time(tv_tuesday_close.getText().toString().trim());
-            } else {
-                timingModel.setEn_time("00:00:00");
-            }
-           model.setTuesday(timingModel);
-        } else {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("closed");
-           model.setTuesday(timingModel);
-        }
-
-        if (sw_wed.isChecked()) {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("open");
-            if (!TextUtils.isEmpty(tv_wednesday_open.getText().toString().trim())) {
-                timingModel.setSt_time(tv_wednesday_open.getText().toString().trim());
-            } else {
-                timingModel.setSt_time("00:00:00");
-            }
-            if (!TextUtils.isEmpty(tv_wednesday_close.getText().toString().trim())) {
-                timingModel.setEn_time(tv_wednesday_close.getText().toString().trim());
-            } else {
-                timingModel.setEn_time("00:00:00");
-            }
-           model.setWednesday(timingModel);
-        } else {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("closed");
-           model.setWednesday(timingModel);
-        }
-
-        if (sw_thu.isChecked()) {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("open");
-            if (!TextUtils.isEmpty(tv_thursday_open.getText().toString().trim())) {
-                timingModel.setSt_time(tv_thursday_open.getText().toString().trim());
-            } else {
-                timingModel.setSt_time("00:00:00");
-            }
-            if (!TextUtils.isEmpty(tv_thursday_close.getText().toString().trim())) {
-                timingModel.setEn_time(tv_thursday_close.getText().toString().trim());
-            } else {
-                timingModel.setEn_time("00:00:00");
-            }
-           model.setThursday(timingModel);
-        } else {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("closed");
-           model.setThursday(timingModel);
-        }
-
-        if (sw_fri.isChecked()) {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("open");
-            if (!TextUtils.isEmpty(tv_friday_open.getText().toString().trim())) {
-                timingModel.setSt_time(tv_friday_open.getText().toString().trim());
-            } else {
-                timingModel.setSt_time("00:00:00");
-            }
-            if (!TextUtils.isEmpty(tv_friday_close.getText().toString().trim())) {
-                timingModel.setEn_time(tv_friday_close.getText().toString().trim());
-            } else {
-                timingModel.setEn_time("00:00:00");
-            }
-           model.setFriday(timingModel);
-        } else {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("closed");
-           model.setFriday(timingModel);
-        }
-
-        if (sw_sat.isChecked()) {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("open");
-            if (!TextUtils.isEmpty(tv_saturday_open.getText().toString().trim())) {
-                timingModel.setSt_time(tv_saturday_open.getText().toString().trim());
-            } else {
-                timingModel.setSt_time("00:00:00");
-            }
-            if (!TextUtils.isEmpty(tv_saturday_close.getText().toString().trim())) {
-                timingModel.setEn_time(tv_saturday_close.getText().toString().trim());
-            } else {
-                timingModel.setEn_time("00:00:00");
-            }
-           model.setSaturday(timingModel);
-        } else {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("closed");
-           model.setSaturday(timingModel);
-        }
-
-        if (sw_sun.isChecked()) {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("open");
-            if (!TextUtils.isEmpty(tv_sunday_open.getText().toString().trim())) {
-                timingModel.setSt_time(tv_sunday_open.getText().toString().trim());
-            } else {
-                timingModel.setSt_time("00:00:00");
-            }
-            if (!TextUtils.isEmpty(tv_sunday_close.getText().toString().trim())) {
-                timingModel.setEn_time(tv_sunday_close.getText().toString().trim());
-            } else {
-                timingModel.setEn_time("00:00:00");
-            }
-           model.setSunday(timingModel);
-        } else {
-            TimingModel timingModel = new TimingModel();
-            timingModel.setState("closed");
-           model.setSunday(timingModel);
-        }
-        restaurant.setOpen_timing(model);
+//        if (sw_monday.isChecked()) {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("open");
+//            if (!TextUtils.isEmpty(tv_monday_open.getText().toString().trim())) {
+//                timingModel.setSt_time(tv_monday_open.getText().toString().trim());
+//            } else {
+//                timingModel.setSt_time("00:00:00");
+//            }
+//            if (!TextUtils.isEmpty(tv_monday_close.getText().toString().trim())) {
+//                timingModel.setEn_time(tv_monday_close.getText().toString().trim());
+//            } else {
+//                timingModel.setEn_time("00:00:00");
+//            }
+//           model.setMonday(timingModel);
+//        } else {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("closed");
+//           model.setMonday(timingModel);
+//        }
+//
+//        if (sw_tuesday.isChecked()) {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("open");
+//            if (!TextUtils.isEmpty(tv_tuesday_open.getText().toString().trim())) {
+//                timingModel.setSt_time(tv_tuesday_open.getText().toString().trim());
+//            } else {
+//                timingModel.setSt_time("00:00:00");
+//            }
+//            if (!TextUtils.isEmpty(tv_tuesday_close.getText().toString().trim())) {
+//                timingModel.setEn_time(tv_tuesday_close.getText().toString().trim());
+//            } else {
+//                timingModel.setEn_time("00:00:00");
+//            }
+//           model.setTuesday(timingModel);
+//        } else {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("closed");
+//           model.setTuesday(timingModel);
+//        }
+//
+//        if (sw_wed.isChecked()) {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("open");
+//            if (!TextUtils.isEmpty(tv_wednesday_open.getText().toString().trim())) {
+//                timingModel.setSt_time(tv_wednesday_open.getText().toString().trim());
+//            } else {
+//                timingModel.setSt_time("00:00:00");
+//            }
+//            if (!TextUtils.isEmpty(tv_wednesday_close.getText().toString().trim())) {
+//                timingModel.setEn_time(tv_wednesday_close.getText().toString().trim());
+//            } else {
+//                timingModel.setEn_time("00:00:00");
+//            }
+//           model.setWednesday(timingModel);
+//        } else {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("closed");
+//           model.setWednesday(timingModel);
+//        }
+//
+//        if (sw_thu.isChecked()) {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("open");
+//            if (!TextUtils.isEmpty(tv_thursday_open.getText().toString().trim())) {
+//                timingModel.setSt_time(tv_thursday_open.getText().toString().trim());
+//            } else {
+//                timingModel.setSt_time("00:00:00");
+//            }
+//            if (!TextUtils.isEmpty(tv_thursday_close.getText().toString().trim())) {
+//                timingModel.setEn_time(tv_thursday_close.getText().toString().trim());
+//            } else {
+//                timingModel.setEn_time("00:00:00");
+//            }
+//           model.setThursday(timingModel);
+//        } else {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("closed");
+//           model.setThursday(timingModel);
+//        }
+//
+//        if (sw_fri.isChecked()) {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("open");
+//            if (!TextUtils.isEmpty(tv_friday_open.getText().toString().trim())) {
+//                timingModel.setSt_time(tv_friday_open.getText().toString().trim());
+//            } else {
+//                timingModel.setSt_time("00:00:00");
+//            }
+//            if (!TextUtils.isEmpty(tv_friday_close.getText().toString().trim())) {
+//                timingModel.setEn_time(tv_friday_close.getText().toString().trim());
+//            } else {
+//                timingModel.setEn_time("00:00:00");
+//            }
+//           model.setFriday(timingModel);
+//        } else {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("closed");
+//           model.setFriday(timingModel);
+//        }
+//
+//        if (sw_sat.isChecked()) {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("open");
+//            if (!TextUtils.isEmpty(tv_saturday_open.getText().toString().trim())) {
+//                timingModel.setSt_time(tv_saturday_open.getText().toString().trim());
+//            } else {
+//                timingModel.setSt_time("00:00:00");
+//            }
+//            if (!TextUtils.isEmpty(tv_saturday_close.getText().toString().trim())) {
+//                timingModel.setEn_time(tv_saturday_close.getText().toString().trim());
+//            } else {
+//                timingModel.setEn_time("00:00:00");
+//            }
+//           model.setSaturday(timingModel);
+//        } else {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("closed");
+//           model.setSaturday(timingModel);
+//        }
+//
+//        if (sw_sun.isChecked()) {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("open");
+//            if (!TextUtils.isEmpty(tv_sunday_open.getText().toString().trim())) {
+//                timingModel.setSt_time(tv_sunday_open.getText().toString().trim());
+//            } else {
+//                timingModel.setSt_time("00:00:00");
+//            }
+//            if (!TextUtils.isEmpty(tv_sunday_close.getText().toString().trim())) {
+//                timingModel.setEn_time(tv_sunday_close.getText().toString().trim());
+//            } else {
+//                timingModel.setEn_time("00:00:00");
+//            }
+//           model.setSunday(timingModel);
+//        } else {
+//            TimingModel timingModel = new TimingModel();
+//            timingModel.setState("closed");
+//           model.setSunday(timingModel);
+//        }
+//        restaurant.setOpen_timing(model);
 //        ((RestaurantFormActivity)getActivity()).saveRestaurantModel();
     }
 
     @Override
     public void populateViewFromData() {
-        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
-        if(null == restaurant.getOpen_timing()) {
-            Log.wtf(TAG, "null openTiming");
-            return;
-        }
-
-        if (restaurant.getOpen_timing().getSunday().getState().equalsIgnoreCase("open")) {
-            sw_sun.setChecked(true);
-            tv_sunday_open.setText(restaurant.getOpen_timing().getSunday().getSt_time());
-            tv_sunday_close.setText(restaurant.getOpen_timing().getSunday().getEn_time());
-        } else {
-            sw_sun.setChecked(false);
-        }
-
-        if (restaurant.getOpen_timing().getMonday().getState().equalsIgnoreCase("open")) {
-            sw_monday.setChecked(true);
-            tv_monday_open.setText(restaurant.getOpen_timing().getMonday().getSt_time());
-            tv_monday_close.setText(restaurant.getOpen_timing().getMonday().getEn_time());
-        } else {
-            sw_monday.setChecked(false);
-        }
-
-        if (restaurant.getOpen_timing().getTuesday().getState().equalsIgnoreCase("open")) {
-            sw_tuesday.setChecked(true);
-            tv_tuesday_open.setText(restaurant.getOpen_timing().getTuesday().getSt_time());
-            tv_tuesday_close.setText(restaurant.getOpen_timing().getTuesday().getEn_time());
-        } else {
-            sw_tuesday.setChecked(false);
-        }
-
-        if (restaurant.getOpen_timing().getWednesday().getState().equalsIgnoreCase("open")) {
-            sw_wed.setChecked(true);
-            tv_wednesday_open.setText(restaurant.getOpen_timing().getWednesday().getSt_time());
-            tv_wednesday_close.setText(restaurant.getOpen_timing().getWednesday().getEn_time());
-        } else {
-            sw_wed.setChecked(false);
-        }
-
-        if (restaurant.getOpen_timing().getThursday().getState().equalsIgnoreCase("open")) {
-            sw_thu.setChecked(true);
-            tv_thursday_open.setText(restaurant.getOpen_timing().getThursday().getSt_time());
-            tv_thursday_close.setText(restaurant.getOpen_timing().getThursday().getEn_time());
-        } else {
-            sw_thu.setChecked(false);
-        }
-
-        if (restaurant.getOpen_timing().getFriday().getState().equalsIgnoreCase("open")) {
-            sw_fri.setChecked(true);
-            tv_friday_open.setText(restaurant.getOpen_timing().getFriday().getSt_time());
-            tv_friday_close.setText(restaurant.getOpen_timing().getFriday().getEn_time());
-        } else {
-            sw_fri.setChecked(false);
-        }
-
-        if (restaurant.getOpen_timing().getSaturday().getState().equalsIgnoreCase("open")) {
-            sw_sat.setChecked(true);
-            tv_saturday_open.setText(restaurant.getOpen_timing().getSaturday().getSt_time());
-            tv_saturday_close.setText(restaurant.getOpen_timing().getSaturday().getEn_time());
-        } else {
-            sw_sat.setChecked(false);
-        }
+//        RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
+//        if(null == restaurant.getOpen_timing()) {
+//            Log.wtf(TAG, "null openTiming");
+//            return;
+//        }
+//
+//        if (restaurant.getOpen_timing().getSunday().getState().equalsIgnoreCase("open")) {
+//            sw_sun.setChecked(true);
+//            tv_sunday_open.setText(restaurant.getOpen_timing().getSunday().getSt_time());
+//            tv_sunday_close.setText(restaurant.getOpen_timing().getSunday().getEn_time());
+//        } else {
+//            sw_sun.setChecked(false);
+//        }
+//
+//        if (restaurant.getOpen_timing().getMonday().getState().equalsIgnoreCase("open")) {
+//            sw_monday.setChecked(true);
+//            tv_monday_open.setText(restaurant.getOpen_timing().getMonday().getSt_time());
+//            tv_monday_close.setText(restaurant.getOpen_timing().getMonday().getEn_time());
+//        } else {
+//            sw_monday.setChecked(false);
+//        }
+//
+//        if (restaurant.getOpen_timing().getTuesday().getState().equalsIgnoreCase("open")) {
+//            sw_tuesday.setChecked(true);
+//            tv_tuesday_open.setText(restaurant.getOpen_timing().getTuesday().getSt_time());
+//            tv_tuesday_close.setText(restaurant.getOpen_timing().getTuesday().getEn_time());
+//        } else {
+//            sw_tuesday.setChecked(false);
+//        }
+//
+//        if (restaurant.getOpen_timing().getWednesday().getState().equalsIgnoreCase("open")) {
+//            sw_wed.setChecked(true);
+//            tv_wednesday_open.setText(restaurant.getOpen_timing().getWednesday().getSt_time());
+//            tv_wednesday_close.setText(restaurant.getOpen_timing().getWednesday().getEn_time());
+//        } else {
+//            sw_wed.setChecked(false);
+//        }
+//
+//        if (restaurant.getOpen_timing().getThursday().getState().equalsIgnoreCase("open")) {
+//            sw_thu.setChecked(true);
+//            tv_thursday_open.setText(restaurant.getOpen_timing().getThursday().getSt_time());
+//            tv_thursday_close.setText(restaurant.getOpen_timing().getThursday().getEn_time());
+//        } else {
+//            sw_thu.setChecked(false);
+//        }
+//
+//        if (restaurant.getOpen_timing().getFriday().getState().equalsIgnoreCase("open")) {
+//            sw_fri.setChecked(true);
+//            tv_friday_open.setText(restaurant.getOpen_timing().getFriday().getSt_time());
+//            tv_friday_close.setText(restaurant.getOpen_timing().getFriday().getEn_time());
+//        } else {
+//            sw_fri.setChecked(false);
+//        }
+//
+//        if (restaurant.getOpen_timing().getSaturday().getState().equalsIgnoreCase("open")) {
+//            sw_sat.setChecked(true);
+//            tv_saturday_open.setText(restaurant.getOpen_timing().getSaturday().getSt_time());
+//            tv_saturday_close.setText(restaurant.getOpen_timing().getSaturday().getEn_time());
+//        } else {
+//            sw_sat.setChecked(false);
+//        }
     }
 
 

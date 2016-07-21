@@ -4,12 +4,12 @@
         "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.1.0/res/drawable-xxhdpi/common_signin_btn_icon_focus_dark.9.png"
     },
     {
-        "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
-        "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png"
-    },
-    {
         "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/common_signin_btn_text_normal_light.9.png",
         "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.1.0/res/drawable-xxhdpi/common_signin_btn_text_normal_light.9.png"
+    },
+    {
+        "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png",
+        "source": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.1/res/drawable-xxhdpi-v4/abc_btn_radio_to_on_mtrl_000.png"
     },
     {
         "merged": "/Users/prateek.aggarwal/dineout_android_data-collection/dineoutnetworkmodule/build/intermediates/res/merged/androidTest/debug/drawable-xxhdpi-v4/common_signin_btn_text_normal_dark.9.png",

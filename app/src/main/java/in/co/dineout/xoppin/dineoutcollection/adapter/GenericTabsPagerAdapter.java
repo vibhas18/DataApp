@@ -13,7 +13,7 @@ import in.co.dineout.xoppin.dineoutcollection.fragment.steps.CuisineFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.steps.DetailFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.steps.ImageFragment;
 import in.co.dineout.xoppin.dineoutcollection.fragment.steps.NameAndDetailFragment;
-import in.co.dineout.xoppin.dineoutcollection.fragment.steps.TimingsFragment;
+import in.co.dineout.xoppin.dineoutcollection.fragment.steps.SlotTimingFragment;
 
 /**
  * Created by suraj on 19/02/16.
@@ -28,7 +28,7 @@ public class GenericTabsPagerAdapter extends FragmentStatePagerAdapter {
         mCurrentPageSequence.add(NameAndDetailFragment.create());
         mCurrentPageSequence.add(DetailFragment.create());
         mCurrentPageSequence.add(ContactFragment.create());
-        mCurrentPageSequence.add(TimingsFragment.create());
+        mCurrentPageSequence.add(SlotTimingFragment.create());
         mCurrentPageSequence.add(CuisineFragment.create());
         mCurrentPageSequence.add(ImageFragment.create());
     }

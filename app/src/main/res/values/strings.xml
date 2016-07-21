@@ -13,4 +13,24 @@
 
     <string name="submit_confirm_message">Do you want to send data for syncing?</string>
     <string name="submit_confirm_button">Sync</string>
+
+    <string-array name="day_array">
+
+        <item>Pick a day</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+    <string-array name="search_type_array">
+
+
+        <item>Name</item>
+        <item>Locality</item>
+
+    </string-array>
 </resources>
