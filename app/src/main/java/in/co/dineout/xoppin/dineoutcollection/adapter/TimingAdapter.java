@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -58,6 +60,7 @@ public class TimingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 timingModels.put(k,update.get(k));
             }
 
+            keys = new ArrayList<>();
             keys.addAll(timingModels.keySet());
             notifyDataSetChanged();
         }
@@ -67,8 +70,11 @@ public class TimingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         if(timingModels.containsKey(key)){
             timingModels.remove(key);
-            notifyDataSetChanged();
+            keys = new ArrayList<>();
+            keys.addAll(timingModels.keySet());
+
         }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -106,9 +112,12 @@ public class TimingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                         }
                     });
 
-                    for(int i=0;i<model.getSt_time().length;i++){
+                    mSlotContainer.removeAllViews();
+                    for(int i=0;i<model.getTimings().length();i++){
 
-                        mSlotContainer.addView(getSlotView(model.getSt_time()[i],model.getEn_time()[i]));
+                        JSONObject values = model.getTimings().optJSONObject(i);
+                        mSlotContainer.addView(getSlotView(values.optString("st_time","00:00:00"),
+                                values.optString("en_time","00:00:00")));
                     }
                 } else {
                     mLabel.setTextColor(mContext.getResources().getColor(R.color.grey_97));

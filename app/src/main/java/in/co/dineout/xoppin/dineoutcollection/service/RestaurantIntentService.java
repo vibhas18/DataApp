@@ -35,8 +35,10 @@ public class RestaurantIntentService extends Service {
         mRestId = intent.getStringExtra("REST_ID");
         mHandler = new RestaurantUploadHandler(getApplicationContext(),mRestId,manager);
 
-        mHandler.initialize();
             DataDatabaseUtils.getInstance(getBaseContext()).markRestaurantSyncProgress(mRestId);
+
+            mHandler.initialize();
+
         }
         return START_STICKY;
     }

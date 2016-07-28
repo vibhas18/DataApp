@@ -52,8 +52,7 @@ public class RestaurantUploadHandler implements ImageUploadCallback  {
         if(TextUtils.isEmpty(id) )
             return;
 
-        if(!Utils.isConnected(mContext))
-            return;
+
         String jsonRest = getSavedRestaurant(id);
         if(TextUtils.isEmpty(jsonRest))
             return;
@@ -65,19 +64,29 @@ public class RestaurantUploadHandler implements ImageUploadCallback  {
             else
                 mRestModel.validateRestaurant(mContext);
 
-            Map<String,String> param = new HashMap<>();
-            param.put("resturant",jsonRest);
-            mManager.stringRequestPost(900,
-                    "save-resturant",param,mRespListener,mErroListener,false);
 
+
+
+    }
+
+    private void makeApiCall(String json){
+
+        if(!Utils.isConnected(mContext))
+            return;
+        DataDatabaseUtils.getInstance(mContext).markRestaurantSynced(mRestID);
+        Map<String,String> param = new HashMap<>();
+        param.put("resturant",json);
+        mManager.stringRequestPost(900,
+                "save-resturant",param,mRespListener,mErroListener,false);
     }
 
     private String getSavedRestaurant(String id){
 
-        RestaurantDetailsModel model =  DataDatabaseUtils.getInstance(mContext)
+        mRestModel =  DataDatabaseUtils.getInstance(mContext)
                 .getRestaurantModelForId(id);
-        if(model != null)
-            return model.getRestaurantJSONString();
+        mRestModel.setRestaurantId(id);
+        if(mRestModel != null)
+            return mRestModel.getRestaurantJSONString();
 
         return null;
     }
@@ -118,23 +127,23 @@ public class RestaurantUploadHandler implements ImageUploadCallback  {
 
 
     @Override
-    public void initiateSaveRestaurant() {
+    public synchronized void initiateSaveRestaurant() {
 
-        String jsonRest = getSavedRestaurant(mRestID);
-        if(TextUtils.isEmpty(jsonRest))
+
+       String json = getSavedRestaurant(mRestID);
+        if(TextUtils.isEmpty(json))
             return;
 
-        mRestModel = new RestaurantDetailsModel(jsonRest);
-        mRestModel.setRestaurantId(mRestID);
+
         if(mRestModel.validateRestaurantWithoutToast(mContext) != -1)
             return;
-        else{
+        else if(mRestModel.getMode() != DataDatabaseUtils.SYNCED){
             mRestModel.validateRestaurant(mContext);
             DataDatabaseUtils.getInstance(mContext).
                     saveRestaurantForSyncing(mRestID, mRestModel.getRestaurantName(), mRestModel.getRestaurantJSONString());
 
         }
 
-        saveRestaurant(mRestID);
+       makeApiCall(mRestModel.getRestaurantJSONString());
     }
 }

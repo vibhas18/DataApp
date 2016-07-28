@@ -23,6 +23,7 @@ import com.dineout.android.volley.Response;
 import com.dineout.android.volley.VolleyError;
 import com.example.datanetworkmodule.DataPreferences;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -291,7 +292,7 @@ public class RootActivity extends AppCompatActivity implements GoogleApiClient.C
                     mCurrentLocation = lastKnownLocation;
                     DataPreferences.updateCurrentLocation(this,lastKnownLocation);
                 }
-//                fetchUserCurrentLocation();
+                fetchUserCurrentLocation();
             }
             else {
                 grantLocationPermission(this);
@@ -383,6 +384,8 @@ public class RootActivity extends AppCompatActivity implements GoogleApiClient.C
             }
         } else {
             // Show dialog using GooglePlayServicesUtil.getErrorDialog()
+
+            GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(),this,REQUEST_RESOLVE_ERROR).show();
 //            showErrorDialog(result.getErrorCode());
             mResolvingError = true;
         }

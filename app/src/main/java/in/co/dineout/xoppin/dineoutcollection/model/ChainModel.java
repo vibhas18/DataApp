@@ -8,9 +8,9 @@ import java.io.Serializable;
 public class ChainModel implements Serializable {
     private static final long serialVersionUID = 3883984775591639171L;
 
-    private int city_id;
-    private String restaurant_name;
-    private int restaurant_chain_id;
+    private int city_id = -1;
+    private String restaurant_name = "No chain";
+    private int restaurant_chain_id = -1;
 
     public int getCity_id() {
         return this.city_id;
@@ -34,5 +34,10 @@ public class ChainModel implements Serializable {
 
     public void setRestaurant_chain_id(int restaurant_chain_id) {
         this.restaurant_chain_id = restaurant_chain_id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this.restaurant_chain_id == ((ChainModel)o).getRestaurant_chain_id();
     }
 }

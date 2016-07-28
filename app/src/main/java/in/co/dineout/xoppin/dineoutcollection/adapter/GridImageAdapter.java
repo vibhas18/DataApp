@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 import java.io.File;
 import java.util.List;
@@ -60,13 +61,19 @@ public class GridImageAdapter extends BaseAdapter {
 
         ImageStatusModel syncStatusModel = getItem(position);
 
+        RequestCreator picassoRequestCreator = null;
+
 //        Picasso.with(mContext).load(syncStatusModel.getSyncedImageUrl()).into(imageView);
         if(syncStatusModel.getImage_state().equalsIgnoreCase("new"))
-        Picasso.with(mContext).load(Uri.fromFile(new File(syncStatusModel.getImageURI()))).into(imageView);
+       picassoRequestCreator =  Picasso.with(mContext).load(Uri.fromFile(new File(syncStatusModel.getImageURI())));
+
         else if(!syncStatusModel.getImage_state().equalsIgnoreCase("new") && !TextUtils.isEmpty(syncStatusModel.getRemotePath())){
-            Picasso.with(mContext).load(syncStatusModel.getRemotePath()).into(imageView);
+           picassoRequestCreator =  Picasso.with(mContext).load(syncStatusModel.getRemotePath());
+
         }
 
+        picassoRequestCreator.placeholder(mContext.getResources().getDrawable(R.drawable.default_image)).
+                resize(400,400).into(imageView);
         tvCaption.setText(syncStatusModel.getCaption());
 
         return convertView;

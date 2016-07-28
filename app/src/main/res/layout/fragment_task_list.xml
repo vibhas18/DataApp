@@ -20,10 +20,11 @@
         <TextView
             android:id="@+id/search_task_menu"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:text="Filter"
+            android:gravity="center"
             android:paddingRight="20dp"
             android:layout_gravity="right|center_vertical"
             android:background="@android:color/transparent"

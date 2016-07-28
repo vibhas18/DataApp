@@ -88,7 +88,7 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
         boolean fetchedImage = false;
 
         if(resultCode == Activity.RESULT_OK) {
-            mImageStatusModel.setKey("restaurant_" + Utils.cleanIt(mRestId) + "_" + new Date().getTime() + ".jpg");
+
 
             if (requestCode == TAKE_PHOTO && resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(getContext(), "Cancelled", Toast.LENGTH_SHORT).show();
@@ -116,6 +116,11 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
             for(int i=0 ;i<data.getClipData().getItemCount();i++){
 
                 ClipData.Item item = data.getClipData().getItemAt(i);
+                mImageStatusModel = new ImageStatusModel();
+                mImageStatusModel.setType(mImageType);
+                String key = "restaurant_" + Utils.cleanIt(mRestId) +  "_" + new Date().getTime()
+                        +((i+1)*1000)+ ".jpg";
+                mImageStatusModel.setKey(key);
                 if(item != null && item.getUri()!= null){
                     addPickedImageFilePath(item.getUri());
                 }
@@ -136,6 +141,7 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
         cursor.close();
         String filePath = file.getAbsolutePath();
         mImageStatusModel.setImageURI(filePath);
+
         DataDatabaseUtils.getInstance(getContext()).saveImageForSyncing(filePath,
                 mRestId, mImageType, mImageStatusModel.getKey());
     }
@@ -233,8 +239,7 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
         super.onActivityCreated(savedInstanceState);
 
         initializeView(getView());
-        mImageStatusModel = new ImageStatusModel();
-        mImageStatusModel.setType(mImageType);
+
 
 
     }
@@ -244,6 +249,8 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
 
         if(v == tvCamera){
 
+            mImageStatusModel = new ImageStatusModel();
+            mImageStatusModel.setType(mImageType);
             Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
 
@@ -252,7 +259,6 @@ public class ImageUploadFragment extends MasterDataFragment implements View.OnCl
             startActivityForResult(takePicture, TAKE_PHOTO);
         }else if(v == tvGallery){
 
-            mImageStatusModel = new ImageStatusModel();
             Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
            pickPhoto.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
             startActivityForResult(pickPhoto, PICK_IMAGE);

@@ -58,7 +58,18 @@ public class StaticDataModel implements Serializable {
     }
 
     public ArrayList<HotelsModel> getHotels() {
-        return this.hotels;
+        HotelsModel model = new HotelsModel();
+
+        if(hotels.contains(model))
+            return this.hotels;
+        else{
+
+            ArrayList<HotelsModel> chainModelArrayList = new ArrayList<>();
+            chainModelArrayList.add(model);
+            chainModelArrayList.addAll(this.hotels);
+            this.hotels = chainModelArrayList;
+            return hotels;
+        }
     }
 
     public void setHotels(ArrayList<HotelsModel> hotels) {
@@ -66,7 +77,20 @@ public class StaticDataModel implements Serializable {
     }
 
     public ArrayList<ChainModel> getChain() {
+
+
+        ChainModel model = new ChainModel();
+
+        if(chain.contains(model))
         return this.chain;
+        else{
+
+            ArrayList<ChainModel> chainModelArrayList = new ArrayList<>();
+            chainModelArrayList.add(model);
+            chainModelArrayList.addAll(chain);
+            chain = chainModelArrayList;
+            return chain;
+        }
     }
 
     public void setChain(ArrayList<ChainModel> chain) {

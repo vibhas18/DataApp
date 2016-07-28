@@ -190,6 +190,7 @@
             android:layout_alignParentLeft="true"
             android:background="@android:color/transparent"
             android:layout_marginLeft="16dp"
+            android:padding="10dp"
             android:src="@drawable/ic_delete"/>
 
 

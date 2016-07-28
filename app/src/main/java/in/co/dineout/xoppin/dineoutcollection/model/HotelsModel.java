@@ -8,9 +8,9 @@ import java.io.Serializable;
 public class HotelsModel implements Serializable {
     private static final long serialVersionUID = -2557135785006587467L;
 
-    private int city_id;
-    private String name;
-    private int hotel_id;
+    private int city_id = -1;
+    private String name = "No Hotel";
+    private int hotel_id = -1;
 
     public int getCity_id() {
         return this.city_id;
@@ -34,5 +34,10 @@ public class HotelsModel implements Serializable {
 
     public void setHotel_id(int hotel_id) {
         this.hotel_id = hotel_id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this.hotel_id == ((HotelsModel)o).getHotel_id();
     }
 }

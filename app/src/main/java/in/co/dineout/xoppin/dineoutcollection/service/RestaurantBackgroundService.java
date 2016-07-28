@@ -48,12 +48,20 @@ public class RestaurantBackgroundService extends Service {
                         new RestaurantUploadHandler(getBaseContext(),detailsModel.getRestaurantId(),manager);
                 Log.d("Background","Name ===== >> "+detailsModel.getProfile_name());
                 if(detailsModel.getMode() == DataDatabaseUtils.SYNC_READY){
-                        handler.initialize();
                     DataDatabaseUtils.getInstance(getBaseContext()).
                             markRestaurantSyncProgress(detailsModel.getRestaurantId());
+                        handler.initialize();
+
                 }
             }
         }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        manager.cancel();
     }
 
     @Nullable

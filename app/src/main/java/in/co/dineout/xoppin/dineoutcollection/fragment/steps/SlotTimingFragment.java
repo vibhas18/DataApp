@@ -52,6 +52,8 @@ public class SlotTimingFragment extends BaseStepFragment implements TimingDetail
 
         view.findViewById(R.id.add_timing).setOnClickListener(this);
 
+        populateViewFromData();
+
 
     }
 
@@ -59,8 +61,6 @@ public class SlotTimingFragment extends BaseStepFragment implements TimingDetail
     public void saveDataForStep() {
 
         RestaurantDetailsModel restaurant = ((RestaurantFormFragment)getParentFragment()).getRestaurantDetailsModel();
-
-
         restaurant.setSlotTimings( timingAdapter.getTiming());
     }
 

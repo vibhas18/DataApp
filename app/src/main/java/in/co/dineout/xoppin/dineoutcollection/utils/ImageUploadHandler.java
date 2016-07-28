@@ -283,11 +283,11 @@ public class ImageUploadHandler  {
                 DataDatabaseUtils.getInstance(mContext).markImageStateSynced(mImageModel.getId(),
                         url);
 
-                if(mToUpload.isEmpty() ){
+                if(mToUpload.isEmpty() && Utils.isConnected(mContext) ){
                     mCallback.initiateSaveRestaurant();
 
                 }
-                if(!mToUpload.empty()){
+                if(!mToUpload.empty() && Utils.isConnected(mContext)){
                     uploadImage(mToUpload.pop());
                 }
                 deleteFile(new File(mImageModel.getImageURI()+COPY_FILE_APPENDER));
@@ -314,8 +314,9 @@ public class ImageUploadHandler  {
         public void onError(int id, Exception ex) {
 
             if(!Utils.isConnected(mContext)){
-                mToUpload.push(mImageModel);
-                DataDatabaseUtils.getInstance(mContext).markRestaurantUnsynced(mRestId);
+
+                mToUpload = new Stack<>();
+//                DataDatabaseUtils.getInstance(mContext).markRestaurantUnsynced(mRestId);
             }
 
 

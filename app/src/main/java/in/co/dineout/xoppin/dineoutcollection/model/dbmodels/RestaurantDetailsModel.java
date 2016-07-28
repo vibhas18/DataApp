@@ -807,10 +807,18 @@ public class RestaurantDetailsModel implements Serializable {
 
     public Map<String,TimingModel> getSlotOpenTiming(){
 
-        Map<String, TimingModel> retMap = new Gson().fromJson(this.restaurant.optJSONObject("open_timing").toString(),
-                new TypeToken<LinkedHashMap<String, TimingModel>>() {}.getType());
+        Map<String,TimingModel> map = new LinkedHashMap<>();
+        try{
 
-        return retMap;
+            map = new Gson().
+                    fromJson(this.restaurant.optJSONObject("open_timing").toString(),
+                            new TypeToken<LinkedHashMap<String, TimingModel>>() {}.getType());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return map;
 
     }
     public OpenTimingDaysModel getOpen_timing() {
@@ -851,14 +859,18 @@ public class RestaurantDetailsModel implements Serializable {
                 if(model != null){
                     try{
                         value.put("state",model.getState());
-                        value.put("st_time",new JSONArray(model.getSt_time()));
-                        value.put("en_time",new JSONArray(model.getEn_time()));
+                        value.put("timings",model.getTimings());
                         openTiming.put(key,value);
 
                     }catch (Exception e){
-
+                        e.printStackTrace();
                     }
                 }
+            }
+            try {
+                restaurant.put("open_timing",openTiming);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
 
         }

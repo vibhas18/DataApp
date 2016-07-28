@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:hint="Phone Number"
+            android:hint="Mobile Number"
             android:imeOptions="flagNoExtractUi"
             android:inputType="phone"
             android:maxLength="10"

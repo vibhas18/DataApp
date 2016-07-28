@@ -22,6 +22,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -121,12 +124,16 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
     private void initializeView(){
         mDaysDropDown.setSelection(getDayPosition(selctedDayLabel));
         mDaysDropDown.setPrompt(selctedDayLabel);
+
+        JSONArray timingArray = timingModel.getTimings();
         String[] start_time = timingModel.getSt_time();
         String[] end_time = timingModel.getEn_time();
 
-        for(int i=0 ;i<start_time.length;i++){
+        for(int i=0 ;i<timingArray.length();i++){
 
-            addDaySlots(start_time[i],end_time[i]);
+            JSONObject values = timingArray.optJSONObject(i);
+            addDaySlots(values.optString("st_time","00:00:00"),
+                    values.optString("en_time","00:00:00"));
         }
     }
 
@@ -190,6 +197,8 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
 
         TimingModel model = new TimingModel();
         model.setState("open");
+
+        List<TimingModel.Slots> timing = new ArrayList<>();
         String[] openArray = new String[mSlotContainer.getChildCount()];
         String[] closeArray = new String[mSlotContainer.getChildCount()];
         for(int i=0;i<mSlotContainer.getChildCount();i++){
@@ -197,12 +206,26 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
             View v = mSlotContainer.getChildAt(i);
             TextView open = (TextView) v.findViewById(R.id.open_timing);
             TextView close = (TextView)v.findViewById(R.id.close_timing);
-            openArray[i] = open.getText().toString();
-            closeArray[i] = close.getText().toString();
+            try{
+
+
+
+                String openTiming = open.getText().toString();
+                String closeTiming = close.getText().toString();
+
+                if(!TextUtils.isEmpty(openTiming) && !TextUtils.isEmpty(closeTiming)){
+                    TimingModel.Slots slot = new TimingModel().new Slots();
+                    slot.setSt_time(open.getText().toString());
+                    slot.setEn_time(close.getText().toString());
+                    timing.add(slot);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
-        model.setSt_time(openArray);
-        model.setEn_time(closeArray);
+        model.setTimings(timing);
+
         HashMap<String,TimingModel> slotMap = new LinkedHashMap<>();
         for(String day : mSelectedDay){
             slotMap.put(day,model);
@@ -295,6 +318,7 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
             resetAllCheckBox();
             ((CheckBox) ((LinearLayout)mDaysGroup).getChildAt(position-1)).setChecked(true);
         }else{
+            selctedDayLabel = "";
             resetAllCheckBox();
             mAddSlot.setEnabled(false);
             mDelete.setEnabled(false);
@@ -319,6 +343,7 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
         @Override
         public void onClick(View v) {
 
+            if(!TextUtils.isEmpty(selctedDayLabel))
             showPicker(view);
         }
 

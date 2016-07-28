@@ -91,7 +91,7 @@ public class NameAndDetailFragment extends BaseStepFragment  {
 
     private void refreshLocation() {
 
-        ((RootActivity)getActivity()).fetchUserCurrentLocation();
+        ((RootActivity)getActivity()).getLastKnownLocation();
         double lat = Double.parseDouble(DataPreferences.getCurrentLocationLat(getContext()));
         double lng = Double.parseDouble(DataPreferences.getCurrentLocationLong(getContext()));
 

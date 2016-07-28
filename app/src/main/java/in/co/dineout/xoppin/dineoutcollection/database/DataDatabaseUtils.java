@@ -373,14 +373,14 @@ public class DataDatabaseUtils {
         return list;
     }
 
-    private void markRestaurantState(String id,int mode){
+    private synchronized void markRestaurantState(String id,int mode){
 
         SQLiteDatabase database = mHelper.getWritableDatabase();
 
-        String selection = RestaurantEntry.REST_ID+" =? ";
+        String selection = RestaurantEntry.REST_ID+" =? AND "+RestaurantEntry.REST_MODE +" <>?";
         ContentValues values = new ContentValues();
         values.put(RestaurantEntry.REST_MODE,mode);
-        database.update(RestaurantEntry.TABLE_NAME, values, selection, new String[]{id});
+        database.update(RestaurantEntry.TABLE_NAME, values, selection, new String[]{id,String.valueOf(mode)});
         if(database.isOpen())
             database.close();
     }
@@ -572,7 +572,7 @@ public class DataDatabaseUtils {
         saveImageForSyncing(uri, resId, ImageEntry.MENU_IMAGE, key);
     }
 
-    public void markRestaurantSynced(String id){
+    public synchronized void markRestaurantSynced(String id){
 
         markRestaurantState(id, SYNCED);
     }
