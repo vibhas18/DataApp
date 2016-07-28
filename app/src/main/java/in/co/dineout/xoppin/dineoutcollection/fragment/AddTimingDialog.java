@@ -47,7 +47,7 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
     private LinearLayout mSlotContainer;
     private TimingModel timingModel;
     private String selctedDayLabel = "";
-    private View mAddSlot,mDelete,mRepeatCheckbox,mDaysGroup;
+    private View mAddSlot,mDelete,mRepeatCheckbox,mDaysGroup,mRemoveSlot;
     private List<String> mSelectedDay = new ArrayList<>();
     private AddTimingCallback mCallback;
 
@@ -90,6 +90,7 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mRemoveSlot = view.findViewById(R.id.remove_day_slots);
         mDaysDropDown = (Spinner)view.findViewById(R.id.day_spinner);
         mRepeatCheckbox = view.findViewById(R.id.repeat_check);
         mAddSlot = view.findViewById(R.id.day_slots);
@@ -97,6 +98,9 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
         mSlotContainer = (LinearLayout)view.findViewById(R.id.slot_container);
         mDelete = view.findViewById(R.id.delete_timing);
         ((CheckBox)mRepeatCheckbox).setOnCheckedChangeListener(this);
+
+        mRemoveSlot.setEnabled(false);
+        mRemoveSlot.setOnClickListener(this);
         ((CheckBox)view.findViewById(R.id.radio_mon)).setOnCheckedChangeListener(this);
         ((CheckBox)view.findViewById(R.id.radio_sun)).setOnCheckedChangeListener(this);
         ((CheckBox)view.findViewById(R.id.radio_sat)).setOnCheckedChangeListener(this);
@@ -163,14 +167,39 @@ public class AddTimingDialog extends MasterDataFragment implements View.OnClickL
                 addDaySlots("","");
                 break;
 
+            case R.id.remove_day_slots:
+                removeSlot();
+                break;
+
         }
 
+    }
+
+
+    private void removeSlot(){
+
+        if(mSlotContainer.getChildCount() > 1){
+
+            int last = mSlotContainer.getChildCount() -1;
+            mSlotContainer.removeViewAt(last);
+            if(mSlotContainer.getChildCount() > 1){
+                mRemoveSlot.setEnabled(true);
+            }else{
+                mRemoveSlot.setEnabled(false);
+            }
+
+        }
     }
 
     private void addDaySlots(String start,String end){
 
         mSlotContainer.addView(getSlotView(start,end));
         ((Button)mAddSlot).setText("Add slot "+(mSlotContainer.getChildCount()+1));
+        if(mSlotContainer.getChildCount() > 1){
+            mRemoveSlot.setEnabled(true);
+        }else{
+            mRemoveSlot.setEnabled(false);
+        }
 
     }
 

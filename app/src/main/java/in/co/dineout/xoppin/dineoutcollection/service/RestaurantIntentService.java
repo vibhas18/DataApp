@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 
 import com.example.datanetworkmodule.DineoutNetworkManager;
 
-import in.co.dineout.xoppin.dineoutcollection.database.DataDatabaseUtils;
 import in.co.dineout.xoppin.dineoutcollection.utils.RestaurantUploadHandler;
 
 /**
@@ -35,7 +34,6 @@ public class RestaurantIntentService extends Service {
         mRestId = intent.getStringExtra("REST_ID");
         mHandler = new RestaurantUploadHandler(getApplicationContext(),mRestId,manager);
 
-            DataDatabaseUtils.getInstance(getBaseContext()).markRestaurantSyncProgress(mRestId);
 
             mHandler.initialize();
 

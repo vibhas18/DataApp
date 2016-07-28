@@ -37,6 +37,8 @@ public class RestaurantUploadHandler implements ImageUploadCallback  {
         mRestID = id;
         imageUploadHandler = new ImageUploadHandler(context,id,this);
         mManager = manager;
+        DataDatabaseUtils.getInstance(context).markRestaurantSyncProgress(id);
+
 
     }
 

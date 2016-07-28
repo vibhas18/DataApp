@@ -77,21 +77,43 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/day_slots"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:drawableLeft="@drawable/add_drawable"
-        android:background="#00ffffff"
-        android:enabled="false"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="4dp"
+        android:layout_margin="8dp"
+      >
 
-        android:text="Add New"/>
+        <Button
+            android:id="@+id/day_slots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_alignParentLeft="true"
+            android:drawableLeft="@drawable/add_drawable"
+            android:background="#00ffffff"
+            android:enabled="false"
+            android:textColor="@color/colorPrimary"
+
+            android:drawablePadding="4dp"
+
+            android:text="Add New"/>
+
+        <Button
+            android:id="@+id/remove_day_slots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@drawable/remove_slot_drawable"
+            android:background="#00ffffff"
+            android:enabled="false"
+
+            android:drawablePadding="4dp"
+
+           android:text=""/>
+    </RelativeLayout>
+
+
     <CheckBox
         android:id="@+id/repeat_check"
         android:layout_width="wrap_content"

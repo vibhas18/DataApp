@@ -300,7 +300,7 @@
     <string name="base_url">http://laravel.dineoutdeals.in/index.php/api/</string>
     <string name="bottom_sheet_behavior" translatable="false">android.support.design.widget.BottomSheetBehavior</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
-    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">84258902-80d0-43dd-9e49-0fa84d3aca3a</string>
+    <string name="com.crashlytics.android.build_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">81c69b33-5b00-4756-93d0-79cd13f61221</string>
     <string name="common_android_wear_notification_needs_update_text"><ns2:g id="app_name">%1$s</ns2:g> requires an update to the Android Wear app.</string>
     <string name="common_android_wear_update_text"><ns2:g id="app_name">%1$s</ns2:g> won\'t run unless you update the Android Wear app.</string>
     <string msgid="6006316683626838685" name="common_android_wear_update_title">Update Android Wear</string>
