@@ -93,55 +93,55 @@
             android:text="Features"
             android:textSize="12sp" />
 
-        <RadioGroup
+        <LinearLayout
             android:id="@+id/ll_features"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <CheckBox
-                android:id="@+id/cb_smoking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Smoking Area" />
+            <!--<CheckBox-->
+                <!--android:id="@+id/cb_smoking"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Smoking Area" />-->
 
-            <CheckBox
-                android:id="@+id/cb_ac"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Air Conditioned" />
+            <!--<CheckBox-->
+                <!--android:id="@+id/cb_ac"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Air Conditioned" />-->
 
-            <CheckBox
-                android:id="@+id/cb_dj"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="DJ" />
+            <!--<CheckBox-->
+                <!--android:id="@+id/cb_dj"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="DJ" />-->
 
-            <CheckBox
-                android:id="@+id/cb_wifi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Wifi" />
+            <!--<CheckBox-->
+                <!--android:id="@+id/cb_wifi"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Wifi" />-->
 
-            <CheckBox
-                android:id="@+id/cb_valet"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Valet available" />
+            <!--<CheckBox-->
+                <!--android:id="@+id/cb_valet"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Valet available" />-->
 
-            <CheckBox
-                android:id="@+id/cb_home"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Home Delivery" />
+            <!--<CheckBox-->
+                <!--android:id="@+id/cb_home"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Home Delivery" />-->
 
-            <CheckBox
-                android:id="@+id/cb_alcohol"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Serves Alcohol" />
+            <!--<CheckBox-->
+                <!--android:id="@+id/cb_alcohol"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Serves Alcohol" />-->
 
-        </RadioGroup>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_tags_label"
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RadioGroup
+            <LinearLayout
                 android:id="@+id/ll_tags"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -260,9 +260,9 @@
                     android:layout_height="wrap_content"
                     android:text="Dineout Plus" />
 
-            </RadioGroup>
+            </LinearLayout>
 
-            <RadioGroup
+            <LinearLayout
                 android:id="@+id/ll_tag_second"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -366,7 +366,7 @@
                     android:text="Dinner Buffet" />
 
 
-            </RadioGroup>
+            </LinearLayout>
         </LinearLayout>
 
 

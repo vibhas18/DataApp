@@ -1,5 +1,7 @@
 package in.co.dineout.xoppin.dineoutcollection.model;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 /**
@@ -14,7 +16,7 @@ public class TagModel implements Serializable {
         this.tag_name = tagName;
     }
 
-    private String tag_name;
+    private String tag_name = "";
 
     public String getTag_name() {
         return this.tag_name;
@@ -22,5 +24,28 @@ public class TagModel implements Serializable {
 
     public void setTag_name(String tag_name) {
         this.tag_name = tag_name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if(TextUtils.isEmpty(this.getTag_name())){
+            return false;
+        }
+
+        if(o != null && TextUtils.isEmpty(((TagModel)o).getTag_name()))
+            return false;
+
+        return this.getTag_name().equalsIgnoreCase(((TagModel)o).getTag_name());
+    }
+
+    @Override
+    public int hashCode() {
+
+        if(TextUtils.isEmpty(this.getTag_name())){
+            return super.hashCode();
+        }
+
+        return this.getTag_name().hashCode();
     }
 }

@@ -1,5 +1,7 @@
 package in.co.dineout.xoppin.dineoutcollection.model;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 /**
@@ -27,5 +29,28 @@ public class FeatureModel implements Serializable {
     @Override
     public String toString() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if(TextUtils.isEmpty(this.getName())){
+            return false;
+        }
+
+        if(o != null && TextUtils.isEmpty(((FeatureModel)o).getName()))
+            return false;
+
+        return this.getName().equalsIgnoreCase(((FeatureModel)o).getName());
+    }
+
+    @Override
+    public int hashCode() {
+
+        if(TextUtils.isEmpty(this.getName())){
+            return super.hashCode();
+        }
+
+        return this.getName().hashCode();
     }
 }

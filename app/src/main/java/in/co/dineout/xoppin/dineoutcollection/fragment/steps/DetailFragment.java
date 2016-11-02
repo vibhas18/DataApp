@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -26,7 +28,7 @@ import in.co.dineout.xoppin.dineoutcollection.model.HotelsModel;
 import in.co.dineout.xoppin.dineoutcollection.model.TagModel;
 import in.co.dineout.xoppin.dineoutcollection.model.dbmodels.RestaurantDetailsModel;
 
-public class DetailFragment extends BaseStepFragment  {
+public class DetailFragment extends BaseStepFragment implements CompoundButton.OnCheckedChangeListener {
     private static final String TAG = DetailFragment.class.getSimpleName();
     public static final String TAG2 = DetailFragment.class.getCanonicalName();
 
@@ -77,12 +79,16 @@ public class DetailFragment extends BaseStepFragment  {
     private CheckBox cb_dinner_buffet;
     private CheckBox cb_veg;
     private CheckBox cb_plus;
+    private LinearLayout mFeatureContainer;
 
-
+    private LinearLayout mTagContainer;
+    private LinearLayout mTagContainerSecond;
 
     //elements
     private ChainModel restaurantChain = null;
     private HotelsModel hotelsModel = null;
+    private List<TagModel> tagSelected = new ArrayList<>();
+    private List<FeatureModel> featureSelected = new ArrayList<>();
 
 
 
@@ -117,18 +123,20 @@ public class DetailFragment extends BaseStepFragment  {
     private void initView(View view) {
         spn_restaurant = (Spinner) view.findViewById(R.id.spn_restaurant);
         spn_hotel = (Spinner) view.findViewById(R.id.spn_hotel);
-
+        mFeatureContainer = (LinearLayout)view.findViewById(R.id.ll_features);
+        mTagContainer = (LinearLayout)view.findViewById(R.id.ll_tags);
+        mTagContainerSecond = (LinearLayout)view.findViewById(R.id.ll_tag_second);
         et_restaurant_description = (EditText) view.findViewById(R.id.et_restaurant_description);
         et_cft = (EditText) view.findViewById(R.id.et_cft);
 
         //features
-        cb_smoking = (CheckBox) view.findViewById(R.id.cb_smoking);
-        cb_ac = (CheckBox) view.findViewById(R.id.cb_ac);
-        cb_dj = (CheckBox) view.findViewById(R.id.cb_dj);
-        cb_wifi = (CheckBox) view.findViewById(R.id.cb_wifi);
-        cb_valet = (CheckBox) view.findViewById(R.id.cb_valet);
-        cb_home = (CheckBox) view.findViewById(R.id.cb_home);
-        cb_alcohol = (CheckBox) view.findViewById(R.id.cb_alcohol);
+//        cb_smoking = (CheckBox) view.findViewById(R.id.cb_smoking);
+//        cb_ac = (CheckBox) view.findViewById(R.id.cb_ac);
+//        cb_dj = (CheckBox) view.findViewById(R.id.cb_dj);
+//        cb_wifi = (CheckBox) view.findViewById(R.id.cb_wifi);
+//        cb_valet = (CheckBox) view.findViewById(R.id.cb_valet);
+//        cb_home = (CheckBox) view.findViewById(R.id.cb_home);
+//        cb_alcohol = (CheckBox) view.findViewById(R.id.cb_alcohol);
 
 
         //tags
@@ -209,109 +217,154 @@ public class DetailFragment extends BaseStepFragment  {
         spn_hotel.setAdapter(hotelSpinnerAdapter);
     }
 
-    private void setTags(List<TagModel> tagModels) {
-        if (null == tagModels || tagModels.size() == 0) {
+    private void setTags(List<TagModel> data) {
+
+        List<TagModel> tagModelList = StaticDataHandler.getInstance().getStaticDataModel().getTags();
+
+        if(tagModelList == null || tagModelList.size() <= 0 ){
+            mTagContainer.setVisibility(View.GONE);
+            mTagContainerSecond.setVisibility(View.GONE);
             return;
         }
 
-        for (TagModel tagModel : tagModels) {
-            if (tagModel.getTag_name().equalsIgnoreCase("Bar")) {
-                cb_bar.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Romantic")) {
-                cb_romantic.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("5 Star")) {
-                cb_five_star.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Breakfast")) {
-                cb_brekfast.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Candle Light Dinner")) {
-                cb_candle.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Fine Dining")) {
-                cb_fine.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Happy Hours")) {
-                cb_happy.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Hookah")) {
-                cb_hookah.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Live Music")) {
-                cb_music.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Lounge")) {
-                cb_lounge.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Microbrewery")) {
-                cb_brewery.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Outdoor Seating")) {
-                cb_out.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Private Dining Available")) {
-                cb_dining.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Pub")) {
-                cb_pub.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Screening")) {
-                cb_screening.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Seafood")) {
-                cb_seafood.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Sunday Brunch")) {
-                cb_sunday_brunch.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Buffet")) {
-                cb_buffet.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Roof Top")) {
-                cb_roof.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Cafe")) {
-                cb_cafe.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Kids Friendly")) {
-                cb_kids.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Luxury Dining")) {
-                cb_luxury.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Carlsberg")) {
-                cb_carlsberg.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Dance Floor")) {
-                cb_dance.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Dog Friendly")) {
-                cb_dog.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Karaoke")) {
-                cb_karaoke.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Poolside")) {
-                cb_pool.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Sea Facing")) {
-                cb_sea_facing.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Lunch Buffet")) {
-                cb_lunch_buffet.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Dinner Buffet")) {
-                cb_dinner_buffet.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Pure Veg")) {
-                cb_veg.setChecked(true);
-            }
-            if (tagModel.getTag_name().equalsIgnoreCase("Dineout Plus")) {
-                cb_plus.setChecked(true);
+        int l1 = tagModelList.size()/2;
+        int l2 = tagModelList.size() - l1;
+
+        for(int i=0;i<l1;i++){
+
+            TagModel model = tagModelList.get(i);
+            if(model != null){
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                CheckBox tag = new CheckBox(getContext());
+                tag.setOnCheckedChangeListener(this);
+                tag.setText(model.getTag_name());
+                tag.setTag(model.getTag_name());
+                if(data != null && data.contains(model.getTag_name())){
+
+                    tag.setChecked(true);
+                }
+                tag.setLayoutParams(params);
+                mTagContainer.addView(tag);
             }
         }
+        for(int i=l1;i<l2;i++){
+
+            TagModel model = tagModelList.get(i);
+            if(model != null){
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                CheckBox tag = new CheckBox(getContext());
+                tag.setOnCheckedChangeListener(this);
+                tag.setText(model.getTag_name());
+                tag.setTag(model.getTag_name());
+                if(data != null && data.contains(model.getTag_name())){
+
+                    tag.setChecked(true);
+                }
+                tag.setLayoutParams(params);
+                mTagContainerSecond.addView(tag);
+            }
+        }
+//
+//        for (TagModel tagModel : tagModels) {
+//            if (tagModel.getTag_name().equalsIgnoreCase("Bar")) {
+//                cb_bar.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Romantic")) {
+//                cb_romantic.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("5 Star")) {
+//                cb_five_star.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Breakfast")) {
+//                cb_brekfast.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Candle Light Dinner")) {
+//                cb_candle.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Fine Dining")) {
+//                cb_fine.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Happy Hours")) {
+//                cb_happy.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Hookah")) {
+//                cb_hookah.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Live Music")) {
+//                cb_music.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Lounge")) {
+//                cb_lounge.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Microbrewery")) {
+//                cb_brewery.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Outdoor Seating")) {
+//                cb_out.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Private Dining Available")) {
+//                cb_dining.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Pub")) {
+//                cb_pub.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Screening")) {
+//                cb_screening.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Seafood")) {
+//                cb_seafood.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Sunday Brunch")) {
+//                cb_sunday_brunch.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Buffet")) {
+//                cb_buffet.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Roof Top")) {
+//                cb_roof.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Cafe")) {
+//                cb_cafe.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Kids Friendly")) {
+//                cb_kids.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Luxury Dining")) {
+//                cb_luxury.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Carlsberg")) {
+//                cb_carlsberg.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Dance Floor")) {
+//                cb_dance.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Dog Friendly")) {
+//                cb_dog.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Karaoke")) {
+//                cb_karaoke.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Poolside")) {
+//                cb_pool.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Sea Facing")) {
+//                cb_sea_facing.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Lunch Buffet")) {
+//                cb_lunch_buffet.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Dinner Buffet")) {
+//                cb_dinner_buffet.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Pure Veg")) {
+//                cb_veg.setChecked(true);
+//            }
+//            if (tagModel.getTag_name().equalsIgnoreCase("Dineout Plus")) {
+//                cb_plus.setChecked(true);
+//            }
+//        }
 
     }
 
@@ -417,32 +470,32 @@ public class DetailFragment extends BaseStepFragment  {
     }
 
     private void setFeatures(List<FeatureModel> features) {
-        if (features == null || features.size() == 0) {
+
+
+       List<FeatureModel> featureModelList =  StaticDataHandler.getInstance().getStaticDataModel().getFeatures();
+        if(featureModelList == null || featureModelList .size() <=0){
+
+            mFeatureContainer.setVisibility(View.GONE);
             return;
         }
-        for (FeatureModel feature : features) {
-            if (feature.getName().equalsIgnoreCase("Smoking Area")) {
-                cb_smoking.setChecked(true);
+
+        for(FeatureModel model: featureModelList){
+
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            CheckBox feature = new CheckBox(getContext());
+            feature.setOnCheckedChangeListener(new FeatureListener());
+            feature.setText(model.getName());
+            feature.setTag(model.getName());
+            if(features != null && features.contains(model.getName())){
+
+                feature.setChecked(true);
             }
-            if (feature.getName().equalsIgnoreCase("Air Conditioned")) {
-                cb_ac.setChecked(true);
-            }
-            if (feature.getName().equalsIgnoreCase("DJ")) {
-                cb_dj.setChecked(true);
-            }
-            if (feature.getName().equalsIgnoreCase("Wifi")) {
-                cb_wifi.setChecked(true);
-            }
-            if (feature.getName().equalsIgnoreCase("Valet available")) {
-                cb_valet.setChecked(true);
-            }
-            if (feature.getName().equalsIgnoreCase("Home Delivery")) {
-                cb_home.setChecked(true);
-            }
-            if (feature.getName().equalsIgnoreCase("Serves Alcohol")) {
-                cb_alcohol.setChecked(true);
-            }
+            feature.setLayoutParams(params);
+            mFeatureContainer.addView(feature);
+
         }
+
     }
 
     private ArrayList<FeatureModel> getFeatures() {
@@ -502,12 +555,12 @@ public class DetailFragment extends BaseStepFragment  {
                 restaurant.setCost_for_2(0);
 
         }
-        if(getTags() != null && getTags().size()>0 )
+        if(tagSelected != null && tagSelected.size()>0 )
         restaurant.setTags(getTags());
         else
         restaurant.setTags(new ArrayList<TagModel>());
 
-        if(getFeatures() != null && getFeatures().size()>0)
+        if(featureSelected != null && featureSelected.size()>0)
         restaurant.setFeatures(getFeatures());
         else
             restaurant.setFeatures(new ArrayList<FeatureModel>());
@@ -538,6 +591,40 @@ public class DetailFragment extends BaseStepFragment  {
 //        notifyChanges();
 
 
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+        String tag = (String)buttonView.getTag();
+        if(tag != null ){
+            TagModel model = new TagModel();
+            model.setTag_name(tag);
+            if(!tagSelected.contains(model)){
+
+
+                tagSelected.add(model);
+            }
+        }
+    }
+
+
+    private class FeatureListener implements CompoundButton.OnCheckedChangeListener{
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            String feature = (String)buttonView.getTag();
+            if(feature != null ){
+                FeatureModel model = new FeatureModel();
+                model.setName(feature);
+                if(!featureSelected.contains(model)){
+
+
+                    featureSelected.add(model);
+                }
+            }
+        }
     }
 
 
